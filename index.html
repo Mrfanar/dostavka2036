@@ -783,10 +783,11 @@ const nearestAlive=(x,y)=>{let b=null,bd=1e9;for(const e of ENEMIES){if(e.dead>0
 const bullets=[],parts=[],texts=[];let hits=0;
 const SJ={x:0,y:0};const input={jx:0,jy:0,keys:{}};
 let PCM=matchMedia('(hover:hover) and (pointer:fine)').matches;const MSE={nx:0,ny:0,L:0,R:0,in:false},AIMG={x:0,y:0};let HWc=10,HHc=10;
-function curBind(){const b=(typeof META!=='undefined'&&META.pw)||{};const types=[...new Set(WPN.map(w=>w.m.w))].filter(t=>!WDEF[t].aps&&!isRk(t));const p=types.includes(b.p)?b.p:types[0],s=types.includes(b.s)&&b.s!==p?b.s:types.find(t=>t!==p);return{p,s,types}}
-function setBind(k,t){const c=curBind(),o={p:c.p,s:c.s};if(k==='p'&&o.s===t)o.s=o.p;if(k==='s'&&o.p===t)o.p=o.s;o[k]=t;META.pw=o;saveGame();updWl()}
+function curBind(){const b=(typeof META!=='undefined'&&META.pw)||{};const types=[...new Set(WPN.map(w=>w.m.w))].filter(t=>!WDEF[t].aps&&!isRk(t));const fl=x=>(Array.isArray(x)?x:x?[x]:[]).filter(t=>types.includes(t));
+ let p=b.p===undefined?[types[0]].filter(Boolean):fl(b.p),s=b.s===undefined?[types.find(t=>t!==types[0])].filter(Boolean):fl(b.s);return{p,s,types}}
+function setBind(k,t){const c=curBind(),o={p:c.p.slice(),s:c.s.slice()},i=o[k].indexOf(t);if(i>=0)o[k].splice(i,1);else o[k].push(t);META.pw=o;saveGame();updWl()}
 function updWl(){const types=[...new Set(WPN.map(w=>w.m.w))],el=document.getElementById('wl');if(!el)return;
- if(PCM){const c=curBind(),hasR=types.some(isRk);el.textContent=types.length?('ЛКМ: '+(c.p?WDEF[c.p].n:'—')+' · ПКМ: '+(c.s?WDEF[c.s].n:'—')+(hasR?' · ПРОБЕЛ: ракеты':'')):'без оружия'}
+ if(PCM){const c=curBind(),hasR=types.some(isRk);const nm=a=>a.length?a.map(t=>WDEF[t].n).join(' + '):'—';el.textContent=types.length?('ЛКМ: '+nm(c.p)+' · ПКМ: '+nm(c.s)+(hasR?' · ПРОБЕЛ: ракеты':'')):'без оружия'}
  else el.textContent=types.length?types.map(w=>WDEF[w].n).join(' · ')+(WPN.length>1?'  ×'+WPN.length:''):'без оружия'}
 window.__pcf=()=>({PCM,MSE,AIMG,FIRE,WPN:WPN.length,bl:bullets.length});
 const HINT_T=()=>document.getElementById('hint').dataset.t||(document.getElementById('hint').dataset.t=document.getElementById('hint').textContent);
@@ -801,14 +802,14 @@ function tankDrive(dt){const k=input.keys;let th=(k.KeyW||k.ArrowUp?1:0)-(k.KeyS
 const XPN=l=>Math.round(100*Math.pow(l,1.5));
 function addXp(n){if(!n)return;META.xp=(META.xp||0)+n;texts.push({x:P.x+1.5,y:P.y,z:5.4,life:1.1,max:1.1,s:'+'+n+' XP'});let up=false;while((META.lv||1)<15&&META.xp>=XPN(META.lv||1)){META.xp-=XPN(META.lv||1);META.lv=(META.lv||1)+1;up=true}if((META.lv||1)>=15)META.xp=Math.min(META.xp,XPN(14));
  if(up){texts.push({x:P.x,y:P.y,z:6.4,life:2.6,max:2.6,s:'УРОВЕНЬ '+META.lv+'!'});sfx('pick')}}
-function bhudUpd(){const h=document.getElementById('bhud');if(!h)return;const on=PCM&&STARTED&&!TITLE&&!CUT.on&&!shopOpen;h.hidden=!on;if(!on)return;
+function bhudUpd(){const h=document.getElementById('bhud');if(!h)return;{const x=document.getElementById('xh');x.hidden=!(PCM&&MSE.in&&!paused&&STARTED&&!CUT.on&&!shopOpen);cv.style.cursor=x.hidden?'':'none'}const on=PCM&&STARTED&&!TITLE&&!CUT.on&&!shopOpen;h.hidden=!on;if(!on)return;
  const hp=STAT.hp,f=hp.max?Math.max(0,Math.min(1,hp.shown/hp.max)):0,bf=document.getElementById('bhf');bf.style.width=(f*100)+'%';bf.classList.toggle('low',f<.3);document.getElementById('bht').textContent=Math.ceil(hp.v)+' / '+hp.max;
  const lv=META.lv||1,nx=lv>=15?1:XPN(lv),xp=lv>=15?1:(META.xp||0);document.getElementById('blv').textContent='УР '+lv;document.getElementById('bxf').style.width=Math.min(100,xp/nx*100)+'%';document.getElementById('bxt').textContent=lv>=15?'МАКС':Math.floor(xp)+' / '+nx;
- const c=curBind();for(const f of FBTN){let k=f.b.querySelector('.kl');if(!k){k=document.createElement('div');k.className='kl';f.b.appendChild(k)}const t=isRk(f.t)?'ПРОБЕЛ':f.t===c.p?'ЛКМ':f.t===c.s?'ПКМ':'';if(k._t!==t){k._t=t;k.textContent=t}f.b.classList.toggle('dim',!t)}}
+ const c=curBind();for(const f of FBTN){let k=f.b.querySelector('.kl');if(!k){k=document.createElement('div');k.className='kl';f.b.appendChild(k)}const t=isRk(f.t)?'ПРОБЕЛ':c.p.includes(f.t)&&c.s.includes(f.t)?'ЛКМ+ПКМ':c.p.includes(f.t)?'ЛКМ':c.s.includes(f.t)?'ПКМ':'';if(k._t!==t){k._t=t;k.textContent=t}f.b.classList.toggle('dim',!t)}}
 function aimUpdate(){const sP=Math.sin(PITCH),cP=Math.cos(PITCH),ox=cam.x+MSE.nx*HWc,oy=100*sP+MSE.ny*HHc*cP,oz=-cam.y+100*cP-MSE.ny*HHc*sP,t=oy/sP;AIMG.x=ox;AIMG.y=-(oz-cP*t);
  const xh=document.getElementById('xh'),on=PCM&&MSE.in&&!paused&&STARTED&&!CUT.on&&!shopOpen;xh.hidden=!on;cv.style.cursor=on?'none':''}
 function cursorTarget(mx,my,rng){let b=null,bd=1e9;for(const e of ENEMIES){if(e.dead>0)continue;const d=Math.hypot(e.x-AIMG.x,e.y-AIMG.y);if(d<3.2*e.sc&&d<bd&&Math.hypot(e.x-mx,e.y-my)<=rng){bd=d;b=e}}if(b)return b;let dx=AIMG.x-mx,dy=AIMG.y-my;const L=Math.hypot(dx,dy)||1,k=Math.min(1,rng/L);return{x:mx+dx*k,y:my+dy*k,a:0,v:0,dead:0,sc:1}}
-function pcFire(){for(const k in FIRE)FIRE[k]=false;if(paused||CUT.on||P.dead>0)return;const c=curBind();if(MSE.L&&c.p)FIRE[c.p]=true;if(MSE.R&&c.s)FIRE[c.s]=true;if(input.keys.Space)for(const w of WPN)if(isRk(w.m.w))FIRE[w.m.w]=true}
+function pcFire(){for(const k in FIRE)FIRE[k]=false;if(paused||CUT.on||P.dead>0)return;const c=curBind();if(MSE.L)for(const t of c.p)FIRE[t]=true;if(MSE.R)for(const t of c.s)FIRE[t]=true;if(input.keys.Space)for(const w of WPN)if(isRk(w.m.w))FIRE[w.m.w]=true}
 const FIRE={};let FBTN=[];const SHORT={tank:'Орудие',rocket:'Ракета',rocket2:'Ракеты ×2',rocket4:'Ракеты ×4',mg:'Пулемёт',mg_twin:'Сдвоен. пулемёт',shotgun:'Дробовик',gun4:'Пушка',harpoon:'Гарпун',gatling:'Гатлинг',laser:'Лазер',iskra:'Искра',rubin:'Рубин',duet:'Дуэт',rassek:'Рассекатель',prizma:'Призма',tsirkul:'Циркуль',dvoika:'Двойка',drovosek:'Дровосек',karusel:'Карусель',kolotushka:'Колотушка',kuvalda:'Кувалда',goroh:'Горох'};
 
 /* ---------- settings ---------- */
@@ -986,7 +987,7 @@ function fireUI(){for(const f of FBTN){const ws=WPN.filter(w=>w.m.w===f.t);if(!w
   const p=rl?100*(1-Math.max(...ws.map(w=>w.rel))/(d.rel*RELK())):100*ammo/mx;f.b.style.setProperty('--p',p.toFixed(1));
   f.b.classList.toggle('rl',rl);f.b.classList.toggle('low',!rl&&ammo/mx<.25);if(!f.img.getAttribute('src')&&ICON['w_'+f.t])f.img.src=ICON['w_'+f.t];{const am=f.am||(f.am=f.b.querySelector('.am')),n=AMMO[f.t]||0;if(am&&am._n!==n){am._n=n;am.textContent=n;am.classList.toggle('r',n<=1)}}}}
 addEventListener('contextmenu',e=>e.preventDefault());
-addEventListener('pointermove',e=>{if(e.pointerType==='mouse'){if(!PCM)setPCM(true);MSE.nx=e.clientX/innerWidth*2-1;MSE.ny=1-e.clientY/innerHeight*2;MSE.in=true;const x=document.getElementById('xh');x.style.left=e.clientX+'px';x.style.top=e.clientY+'px'}},{passive:true});
+addEventListener('pointermove',e=>{if(e.pointerType==='mouse'){if(!PCM)setPCM(true);MSE.nx=e.clientX/innerWidth*2-1;MSE.ny=1-e.clientY/innerHeight*2;MSE.in=true;const x=document.getElementById('xh');x.style.left=e.clientX+'px';x.style.top=e.clientY+'px';if(paused||shopOpen||TITLE||!STARTED||CUT.on)x.hidden=true}},{passive:true});
 cv.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'){if(!PCM)setPCM(true);if(e.button===0)MSE.L=1;else if(e.button===2)MSE.R=1;e.preventDefault()}else if(PCM)setPCM(false)});
 addEventListener('pointerup',e=>{if(e.pointerType==='mouse'){if(e.button===0)MSE.L=0;else if(e.button===2)MSE.R=0}});
 addEventListener('blur',()=>{MSE.L=MSE.R=0});
@@ -1223,10 +1224,12 @@ function renderQuests(){const bd=$('sbody');bd.innerHTML='';hudScrap();
  R.appendChild(E_('div','g-sum','Выполнено заданий: <b>'+QS.done+'</b>. Награда выдаётся сразу по выполнении.'));
  bd.appendChild(L);bd.appendChild(R)}
 let PREVC=null,PVON=false,PVS=null;
-function bindUI(){const d=E_('div','g-p');d.appendChild(E_('div','g-h','Управление огнём (мышь)'));const c=curBind();
- const mk=(lab,key)=>{const r=E_('div','');r.style.cssText='display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:4px 0';r.appendChild(E_('span','',lab));if(!c.types.length){r.appendChild(E_('span','','нет оружия'));return r}
-  for(const t of c.types){const on=c[key]===t,bt=E_('button','g-b',WDEF[t].n);if(on){bt.style.background='#e8b048';bt.style.color='#1a1208'}bt.onclick=()=>{setBind(key,t);renderShop()};r.appendChild(bt)}return r};
- d.appendChild(mk('ЛКМ — основное','p'));d.appendChild(mk('ПКМ — дополнительное','s'));const n=E_('div','g-empty','ПРОБЕЛ — ракеты · W/S — вперёд/назад · A/D — поворот · мышь — прицел');n.style.fontSize='12px';d.appendChild(n);return d}
+function bindUI(){const d=E_('div','g-p');{const h=E_('div','g-h','Группы огня (мышь)');h.style.color='#e2c88a';d.appendChild(h)}const c=curBind();
+ const r=E_('div','');r.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin:6px 0';
+ if(!c.types.length)r.appendChild(E_('span','','нет оружия'));
+ for(const t of c.types){const isP=c.p.includes(t),isS=c.s.includes(t),bt=E_('button','g-b',WDEF[t].n+(isP?'  <b style="background:#e8b048;color:#1a1208;border-radius:6px;padding:1px 6px;margin-left:4px">ЛКМ</b>':'')+(isS?'  <b style="background:#6fa8dc;color:#10202e;border-radius:6px;padding:1px 6px;margin-left:4px">ПКМ</b>':''));
+  bt.onclick=()=>{setBind('p',t);renderShop()};bt.oncontextmenu=e=>{e.preventDefault();setBind('s',t);renderShop()};r.appendChild(bt)}
+ d.appendChild(r);const n=E_('div','g-empty','ЛКМ по оружию — добавить/убрать из группы ЛКМ · ПКМ — из группы ПКМ · одно оружие может быть в обеих группах · ПРОБЕЛ — ракеты');n.style.fontSize='12px';n.style.color='#d9c9a6';d.appendChild(n);return d}
 function renderShop(){PREVC=null;if(gMode==='station')return renderStation();if(gMode==='quests')return renderQuests();const bd=$('sbody');bd.innerHTML='';hudScrap();
  {const gt=$('gtabs');gt.innerHTML='';const tb=(t,on,fn)=>{const b=E_('button','g-tb'+(on?' on':''),t);b.onclick=fn;gt.appendChild(b)};
   if(gMode==='garage'){tb('Магазин ›',false,()=>{gMode='store';gTab='shop';renderShop()});tb('Задания',false,()=>{gMode='quests';renderShop()})}
@@ -1238,11 +1241,11 @@ function renderShop(){PREVC=null;if(gMode==='station')return renderStation();if(
  const tr=E_('div','g-truck'),st=E_('div','stack');st.innerHTML='<canvas id="gprev" width="512" height="512" style="position:absolute;inset:0;width:100%;height:100%"></canvas>';tr.appendChild(st);L.appendChild(tr);PREVC=st.firstChild;
  // cargo
  {const cap=cargoCap(),cu=cargoUsed(),cg=E_('div','g-cg');cg.appendChild(E_('div','g-h',`Инвентарь кузова · ${cu}/${cap}`));const rw=E_('div','g-row');rw.style.gap='4px';const list=[];for(const w of WORDER)for(let n=0;n<wFree(w);n++)list.push(w);const als=[];for(const c of Object.keys(AMST))for(let n=AMST[c];n>0;n-=STK)als.push([c,Math.min(STK,n)]);
-  for(let n=0;n<Math.max(cap,list.length+als.length);n++){const w=list[n],a=n>=list.length?als[n-list.length]:null,c=E_('button','g-c sm'+(w||a?'':' empty')+(w&&gSelI&&gSelI.k==='w'&&gSelI.id===w?' sel':''),w?`<img src="${ICON['w_'+w]||''}">`:a?`<img src="${amIcon(a[0])}"><span class="n">${a[1]}</span>`:'');if(a)c.title=AMN[a[0]]+' · стак '+a[1]+'/'+STK;if(w)c.onclick=()=>{gSelI={k:'w',id:w};gSlot=null;renderShop()};rw.appendChild(c)}
+  for(let n=0;n<Math.max(cap,list.length+als.length);n++){const w=list[n],a=n>=list.length?als[n-list.length]:null,c=E_('button','g-c sm'+(w||a?'':' empty')+(w&&gSelI&&gSelI.k==='w'&&gSelI.id===w?' sel':''),w?`<img src="${ICON['w_'+w]||''}">`:a?`<img src="${amIcon(a[0])}"><span class="n">${a[1]}</span>`:'');if(a)c.title=AMN[a[0]]+' · стак '+a[1]+'/'+STK;if(w){c.onclick=()=>{gSelI={k:'w',id:w};gSlot=null;renderShop()};c.oncontextmenu=e=>{e.preventDefault();gSelI={k:'w',id:w};gSlot=null;const b=actionsFor(gSelI).find(x=>x.cls==='sell');if(b&&!b.dis)b.fn();renderShop()}}rw.appendChild(c)}
   cg.appendChild(rw);L.appendChild(cg)}
  // weapon slots
  const sl=curSlots(),sr=E_('div','g-row'),pw=gSelI&&gSelI.k==='w'&&wFree(gSelI.id)>0;
- sl.forEach((q,n)=>{const w=SLOTW[q.id],wr=E_('div','g-cw'),c=E_('button','g-c '+(q.rocket?'kr':q.kind==='cab'?'kc':'kb')+(gSlot===q.id?' sel':'')+(pw&&!w&&slotOk(q,gSelI.id)?' hint':''),w?`<img src="${ICON['w_'+w]||''}">`:'+');c.onclick=()=>slotClick(q);wr.appendChild(c);wr.appendChild(E_('small','',(n+1)+' · '+q.name.replace(/^Кузов, /,'')+' · '+secTxt(q)));sr.appendChild(wr)});
+ sl.forEach((q,n)=>{const w=SLOTW[q.id],wr=E_('div','g-cw'),c=E_('button','g-c '+(q.rocket?'kr':q.kind==='cab'?'kc':'kb')+(gSlot===q.id?' sel':'')+(pw&&!w&&slotOk(q,gSelI.id)?' hint':''),w?`<img src="${ICON['w_'+w]||''}">`:'+');c.onclick=()=>slotClick(q);c.oncontextmenu=e=>{e.preventDefault();if(SLOTW[q.id]){delete SLOTW[q.id];gSlot=null;rebuildWeapons();snd('reloaded');renderShop()}};wr.appendChild(c);wr.appendChild(E_('small','',(n+1)+' · '+q.name.replace(/^Кузов, /,'')+' · '+secTxt(q)));sr.appendChild(wr)});
  if(!sl.length)sr.appendChild(E_('div','g-sum','Слотов оружия нет'));
  L.appendChild(sr);
  if(sl.length){const cx=100,cy=74,R=62,pt=(a,r)=>[cx+Math.sin(a*D2R)*r,cy-Math.cos(a*D2R)*r];let sv=`<svg viewBox="0 0 200 150" style="width:100%;max-width:280px;display:block;margin:6px auto 0"><rect x="${cx-17}" y="${cy-46}" width="34" height="92" rx="5" fill="#2a241c" stroke="#8c7d64" stroke-width="1.5"/><rect x="${cx-15}" y="${cy-44}" width="30" height="26" rx="4" fill="#3a3226"/><text x="${cx}" y="12" text-anchor="middle" font-size="9" fill="#9c8f78">▲ перед</text>`;
@@ -1271,7 +1274,7 @@ function renderShop(){PREVC=null;if(gMode==='station')return renderStation();if(
   for(const i of vis){const cn=iCnt(i);let ex=`<span class="tr">T${iTier(i)}</span>`;
    if(iInst(i))ex+='<span class="ck">✔</span>';
    if(gTab==='shop')ex+=`<span class="pr">${cn&&i.k!=='w'?'есть':iPrice(i)}</span>`;else if(gTab==='sell')ex+=`<span class="pr">+${Math.round(iPrice(i)*.5)}</span>`+(i.k==='w'?`<span class="n" style="bottom:16px">×${wFree(i.id)}</span>`:'');else if(i.k==='w')ex+=`<span class="n">×${cn}</span>`;
-   const c=cell(i,gTab==='shop'&&cn&&i.k!=='w'?'off':'',ex);c.onclick=()=>{gSelI=i;gSlot=null;renderShop()};g.appendChild(c)}
+   const c=cell(i,gTab==='shop'&&cn&&i.k!=='w'?'off':'',ex);c.onclick=()=>{if(gTab==='shop'&&gSelI&&gSelI.k===i.k&&gSelI.id===i.id&&gSelI.t===i.t){const b=actionsFor(i).find(x=>x.cls==='go');if(b&&!b.dis){b.fn();renderShop();return}}gSelI=i;gSlot=null;renderShop()};c.oncontextmenu=e=>{e.preventDefault();gSelI=i;gSlot=null;const b=actionsFor(i).find(x=>x.cls==='sell');if(b&&!b.dis)b.fn();renderShop()};g.appendChild(c)}
   inv.appendChild(g)}
  if(!any)inv.appendChild(E_('div','g-empty',gTab==='sell'?'Нечего продавать: установленное и оружие в слотах не продаётся':'Склад пуст'));
  if(gMode==='store'){const S2=E_('div','g-p');S2.appendChild(inv);const cg=E_('div','g-sum',`<span>Инвентарь кузова <b>${cargoUsed()}/${cargoCap()}</b></span><span>Слотов свободно <b>${curSlots().filter(q=>!SLOTW[q.id]).length}</b></span>`);R.appendChild(cg);bd.appendChild(S2);bd.appendChild(R);return}
