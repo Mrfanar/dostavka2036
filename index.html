@@ -187,7 +187,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="title"><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="title"><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div></div>
 <div id="load">Загрузка</div>
 <script>
 (()=>{
@@ -789,9 +789,14 @@ function updWl(){const types=[...new Set(WPN.map(w=>w.m.w))],el=document.getElem
  else el.textContent=types.length?types.map(w=>WDEF[w].n).join(' · ')+(WPN.length>1?'  ×'+WPN.length:''):'без оружия'}
 window.__pcf=()=>({PCM,MSE,AIMG,FIRE,WPN:WPN.length,bl:bullets.length});
 const HINT_T=()=>document.getElementById('hint').dataset.t||(document.getElementById('hint').dataset.t=document.getElementById('hint').textContent);
-function setPCM(v){if(PCM===v&&document.body.classList.contains('pcm')===v)return;PCM=v;document.body.classList.toggle('pcm',v);try{const h=document.getElementById('hint');HINT_T();h.textContent=v?'WASD — движение, мышь — прицел. ЛКМ — основное оружие, ПКМ — дополнительное, ПРОБЕЛ — ракеты. Выбор оружия — в гараже. Меню: Esc.':h.dataset.t;updWl()}catch(e){}}
+function setPCM(v){if(PCM===v&&document.body.classList.contains('pcm')===v)return;PCM=v;document.body.classList.toggle('pcm',v);try{const h=document.getElementById('hint');HINT_T();h.textContent=v?'W — вперёд, S — назад, A/D — поворот, мышь — прицел. ЛКМ — основное оружие, ПКМ — дополнительное, ПРОБЕЛ — ракеты. Выбор оружия — в гараже. Меню: Esc.':h.dataset.t;updWl()}catch(e){}}
 (function(){const st=document.createElement('style');st.textContent='body.pcm .fires{display:none!important}#xh{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:2px solid #f0a030;border-radius:50%;pointer-events:none;z-index:50;box-shadow:0 0 6px #000a}#xh:before,#xh:after{content:"";position:absolute;background:#f0a030}#xh:before{left:50%;top:-7px;bottom:-7px;width:2px;margin-left:-1px}#xh:after{top:50%;left:-7px;right:-7px;height:2px;margin-top:-1px}';document.head.appendChild(st);
  const x=document.createElement('div');x.id='xh';x.hidden=true;document.body.appendChild(x);document.body.classList.toggle('pcm',PCM);if(PCM)setTimeout(()=>{PCM=false;setPCM(true)},0)})();
+function tankDrive(dt){const k=input.keys;let th=(k.KeyW||k.ArrowUp?1:0)-(k.KeyS||k.ArrowDown?1:0),st=(k.KeyD||k.ArrowRight?1:0)-(k.KeyA||k.ArrowLeft?1:0);if(P.dead>0)th=st=0;
+ const mx=10.5*TSPD[CFG.chas]*SPK()*(STAT.fu.v>0?1:.3),turn=130*TTURN[CFG.chas]*TNK();
+ if(th){const want=th>0?mx:-mx*.55;P.v+=Math.max(-9*dt,Math.min(9*dt,want-P.v))}else P.v*=Math.max(0,1-4.5*dt);
+ const cap=Math.min(turn,35+Math.abs(P.v)/(P.L||4)*57.3*.75);P.w=(P.w||0)+(st*cap-(P.w||0))*Math.min(1,dt*9);rot(P,P.w*dt);
+ P.x+=Math.sin(P.a*D2R)*P.v*dt;P.y+=Math.cos(P.a*D2R)*P.v*dt}
 function aimUpdate(){const sP=Math.sin(PITCH),cP=Math.cos(PITCH),ox=cam.x+MSE.nx*HWc,oy=100*sP+MSE.ny*HHc*cP,oz=-cam.y+100*cP-MSE.ny*HHc*sP,t=oy/sP;AIMG.x=ox;AIMG.y=-(oz-cP*t);
  const xh=document.getElementById('xh'),on=PCM&&MSE.in&&!paused&&STARTED&&!CUT.on&&!shopOpen;xh.hidden=!on;cv.style.cursor=on?'none':''}
 function cursorTarget(mx,my,rng){let b=null,bd=1e9;for(const e of ENEMIES){if(e.dead>0)continue;const d=Math.hypot(e.x-AIMG.x,e.y-AIMG.y);if(d<3.2*e.sc&&d<bd&&Math.hypot(e.x-mx,e.y-my)<=rng){bd=d;b=e}}if(b)return b;let dx=AIMG.x-mx,dy=AIMG.y-my;const L=Math.hypot(dx,dy)||1,k=Math.min(1,rng/L);return{x:mx+dx*k,y:my+dy*k,a:0,v:0,dead:0,sc:1}}
@@ -837,6 +842,7 @@ function ambInit(){if(AMB||!AC)return;const A={out:AC.createGain(),G:{}};A.out.g
  const mel=()=>{if(on()){const t=AC.currentTime,f=sc[Math.random()*sc.length|0]/(Math.random()<.3?2:1),out=mk(0);out.connect(A.G.mel);out.gain.setValueAtTime(0,t);out.gain.linearRampToValueAtTime(.35,t+1.5);out.gain.linearRampToValueAtTime(0,t+6);
   for(const dt of[-9,0,8]){const o=AC.createOscillator();o.type='triangle';o.frequency.value=f;o.detune.value=dt;const g=mk(.3);o.connect(g);g.connect(out);o.start(t);o.stop(t+6.2)}}setTimeout(mel,4500+Math.random()*7000)};setTimeout(mel,2500)}
 window.__amb=()=>AMB&&{g:AMB.out.gain.value,st:AC.state};
+setInterval(()=>{const e=document.getElementById('tsnd');if(e)e.hidden=!TITLE||!!(AC&&AC.state==='running')},400);
 function ambVol(){if(!AC||!AMB)return;AMB.out.gain.setTargetAtTime(TITLE&&!S.mute?.8:0,AC.currentTime,TITLE?1.5:.8)}
 function applyVol(){if(!AC)return;ambInit();ambVol();const t=AC.currentTime;master.gain.setTargetAtTime(S.mute||(paused&&!shopOpen)?0:S.vol/100,t,.03);sfxG.gain.value=S.sfx/100;engG.gain.value=S.eng/100*.5}
 let VOICES=0,VHI=false;const HI={tank:1,boom:1,rocket:1,rocket2:1,rocket4:1,phit:1,reloaded:0};
@@ -881,7 +887,7 @@ SND.iskra=SND.duet=SND.prizma=SND.laser;SND.rubin=SND.rassek=SND.laser2;SND.tsir
 const MINGAP={gboom:.04,aps:.05,mlaunch:.2,iskra:.05,duet:.06,prizma:.08,kolotushka:.05,goroh:.04,rocket:.08,rocket2:.08,rocket4:.08,boom:.12,gun4:.05,emg:.06,phit:.06,mg:.05,mg_twin:.05,gatling:.035,hit:.05,laser:.1};
 function sfx(k){if(!AC||S.mute||(paused&&!shopOpen))return;const t=AC.currentTime,g=MINGAP[k]||0;if(g&&lastT[k]&&t-lastT[k]<g)return;lastT[k]=t;VG=k==='hit'?S.hit/100:1;VHI=!!HI[k];SND[k]&&SND[k]();VHI=false;VG=1}
 function engine(v){if(!AC)return;const r=Math.min(1,Math.abs(v)/10.5),t=AC.currentTime;eo1.frequency.setTargetAtTime(38+r*58,t,.08);eo2.frequency.setTargetAtTime(19+r*29,t,.08);eflt.frequency.setTargetAtTime(160+r*520,t,.1);egain.gain.setTargetAtTime(paused?0:.35+r*.5,t,.1)}
-['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,initAudio,{passive:true}));
+['pointerdown','pointerup','mousedown','click','keydown','keyup','touchstart','touchend'].forEach(ev=>addEventListener(ev,()=>{initAudio();try{applyVol()}catch(e){}},{passive:true}));
 /* ---------- menu ---------- */
 const $=id=>document.getElementById(id);
 const SCHEMA={
@@ -977,7 +983,8 @@ cv.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'){if(!PCM)setPCM
 addEventListener('pointerup',e=>{if(e.pointerType==='mouse'){if(e.button===0)MSE.L=0;else if(e.button===2)MSE.R=0}});
 addEventListener('blur',()=>{MSE.L=MSE.R=0});
 function readInput(){let jx=input.jx,jy=input.jy;const k=input.keys;
- if(!sid){const kx=(k.KeyD||k.ArrowRight?1:0)-(k.KeyA||k.ArrowLeft?1:0),ky=(k.KeyW||k.ArrowUp?1:0)-(k.KeyS||k.ArrowDown?1:0);if(kx||ky){const l=Math.hypot(kx,ky);jx=kx/l;jy=ky/l}}
+
+ if(!sid&&!PCM){const kx=(k.KeyD||k.ArrowRight?1:0)-(k.KeyA||k.ArrowLeft?1:0),ky=(k.KeyW||k.ArrowUp?1:0)-(k.KeyS||k.ArrowDown?1:0);if(kx||ky){const l=Math.hypot(kx,ky);jx=kx/l;jy=ky/l}}
  return[jx,jy]}
 /* ---------- update ---------- */
 function rot(o,da){const pv=o.piv||0,px=o.x-Math.sin(o.a*D2R)*pv,py=o.y-Math.cos(o.a*D2R)*pv;o.a=norm(o.a+da);o.x=px+Math.sin(o.a*D2R)*pv;o.y=py+Math.cos(o.a*D2R)*pv}
@@ -1211,7 +1218,7 @@ let PREVC=null,PVON=false,PVS=null;
 function bindUI(){const d=E_('div','g-p');d.appendChild(E_('div','g-h','Управление огнём (мышь)'));const c=curBind();
  const mk=(lab,key)=>{const r=E_('div','');r.style.cssText='display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:4px 0';r.appendChild(E_('span','',lab));if(!c.types.length){r.appendChild(E_('span','','нет оружия'));return r}
   for(const t of c.types){const on=c[key]===t,bt=E_('button','g-b',WDEF[t].n);if(on){bt.style.background='#e8b048';bt.style.color='#1a1208'}bt.onclick=()=>{setBind(key,t);renderShop()};r.appendChild(bt)}return r};
- d.appendChild(mk('ЛКМ — основное','p'));d.appendChild(mk('ПКМ — дополнительное','s'));const n=E_('div','g-empty','ПРОБЕЛ — ракеты · WASD — движение · мышь — прицел');n.style.fontSize='12px';d.appendChild(n);return d}
+ d.appendChild(mk('ЛКМ — основное','p'));d.appendChild(mk('ПКМ — дополнительное','s'));const n=E_('div','g-empty','ПРОБЕЛ — ракеты · W/S — вперёд/назад · A/D — поворот · мышь — прицел');n.style.fontSize='12px';d.appendChild(n);return d}
 function renderShop(){PREVC=null;if(gMode==='station')return renderStation();if(gMode==='quests')return renderQuests();const bd=$('sbody');bd.innerHTML='';hudScrap();
  {const gt=$('gtabs');gt.innerHTML='';const tb=(t,on,fn)=>{const b=E_('button','g-tb'+(on?' on':''),t);b.onclick=fn;gt.appendChild(b)};
   if(gMode==='garage'){tb('Магазин ›',false,()=>{gMode='store';gTab='shop';renderShop()});tb('Задания',false,()=>{gMode='quests';renderShop()})}
@@ -1285,7 +1292,7 @@ function chkUpdate(dt){for(const c of CHK){c.cool=Math.max(0,c.cool-dt);const d=
 function update(dt){
  if(P.dead>0){P.dead-=dt;if(P.dead<=0){if(!DEATHC)playerDied();else{for(const k in STAT)STAT[k].v=STAT[k].max;P.inv=2}}}P.inv=Math.max(0,(P.inv||0)-dt);P.hurt=Math.max(0,(P.hurt||0)-dt);
  let[jx,jy]=readInput();if(P.dead>0){jx=jy=0}const sk=Math.min(1,dt*16);SJ.x+=(jx-SJ.x)*sk;SJ.y+=(jy-SJ.y)*sk;jx=SJ.x;jy=SJ.y;const mag=Math.min(1,Math.hypot(jx,jy));
- if(mag>.12){steer(P,Math.atan2(jx,jy)/D2R,mag,10.5*TSPD[CFG.chas]*SPK()*(STAT.fu.v>0?1:.3),130*TTURN[CFG.chas]*TNK(),9,dt,true)}else{P.w=(P.w||0)*Math.max(0,1-10*dt);rot(P,P.w*dt);P.v*=Math.max(0,1-4.5*dt);P.x+=Math.sin(P.a*D2R)*P.v*dt;P.y+=Math.cos(P.a*D2R)*P.v*dt}
+ if(PCM&&sid===null){tankDrive(dt)}else if(mag>.12){steer(P,Math.atan2(jx,jy)/D2R,mag,10.5*TSPD[CFG.chas]*SPK()*(STAT.fu.v>0?1:.3),130*TTURN[CFG.chas]*TNK(),9,dt,true)}else{P.w=(P.w||0)*Math.max(0,1-10*dt);rot(P,P.w*dt);P.v*=Math.max(0,1-4.5*dt);P.x+=Math.sin(P.a*D2R)*P.v*dt;P.y+=Math.cos(P.a*D2R)*P.v*dt}
  if(P.dead<=0&&STAT.fu.v>0){STAT.fu.v=Math.max(0,STAT.fu.v-dt*(.05+.17*Math.min(1,Math.abs(P.v)/10.5)));if(STAT.fu.v<=0){texts.push({x:P.x,y:P.y,z:4.2,life:1.6,max:1.6,s:'НЕТ ТОПЛИВА!',red:true})}}
  {const wt=waterAt(P.x,P.y);if(wt>.5&&P.dead<=0){P.v*=Math.max(0,1-2.2*dt);if(Math.abs(P.v)>1.5){P.sc=(P.sc||0)+dt*14;while(P.sc>=1){P.sc-=1;parts.push({t:'dust',c:[.72,.88,.95],x:P.x+(Math.random()-.5)*3,y:P.y+(Math.random()-.5)*3,z:.2,vx:(Math.random()-.5)*1.4,vy:(Math.random()-.5)*1.4,vz:1.6+Math.random(),life:.7,max:.7,r:.3+Math.random()*.4})}}}}
  {const t=TS(),sc=t?t.len/8.5:1;collide(P,[1.6*sc,-.2*sc,-2*sc,-3.5*sc],1.15*(1+(sc-1)*.45))}
