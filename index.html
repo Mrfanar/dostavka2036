@@ -812,7 +812,33 @@ function initAudio(){if(AC){if(AC.state==='suspended')AC.resume();return}
   {const L=AC.sampleRate*.45|0,ib=AC.createBuffer(1,L,AC.sampleRate);for(let c=0;c<1;c++){const d=ib.getChannelData(c);for(let i=0;i<L;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/L,3.2)}const cv=AC.createConvolver();cv.buffer=ib;const wg=AC.createGain();wg.gain.value=.16;sfxG.connect(cv);cv.connect(wg);wg.connect(master)}
   eo1=AC.createOscillator();eo1.type='sawtooth';eo2=AC.createOscillator();eo2.type='square';eflt=AC.createBiquadFilter();eflt.type='lowpass';egain=AC.createGain();egain.gain.value=0;
   eo1.connect(eflt);eo2.connect(eflt);eflt.connect(egain);egain.connect(engG);eo1.start();eo2.start();applyVol()}catch(e){AC=null}}
-function applyVol(){if(!AC)return;const t=AC.currentTime;master.gain.setTargetAtTime(S.mute||(paused&&!shopOpen)?0:S.vol/100,t,.03);sfxG.gain.value=S.sfx/100;engG.gain.value=S.eng/100*.5}
+/* ---------- ambient заставки ---------- */
+let AMB=null;
+function ambInit(){if(AMB||!AC)return;const A={out:AC.createGain(),G:{}};A.out.gain.value=0;A.out.connect(AC.destination);AMB=A;
+ const mk=v=>{const g=AC.createGain();g.gain.value=v;return g};
+ const nz=sec=>{const b=AC.createBuffer(1,AC.sampleRate*sec,AC.sampleRate),d=b.getChannelData(0);let l=0;for(let i=0;i<d.length;i++){const w=Math.random()*2-1;l=(l+.02*w)/1.02;d[i]=l*3.5}return b};
+ const imp=(sec,dec)=>{const n=AC.sampleRate*sec,b=AC.createBuffer(2,n,AC.sampleRate);for(let c=0;c<2;c++){const d=b.getChannelData(c);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,dec)}return b};
+ const rev=AC.createConvolver();rev.buffer=imp(6,2.4);const rg=mk(.55);rev.connect(rg);rg.connect(A.out);
+ const LV={drone:.11,wind:.064,clang:.045,mel:.09,radio:.098};
+ for(const k in LV){const g=mk(LV[k]);g.connect(A.out);const s=mk(.5);g.connect(s);s.connect(rev);A.G[k]=g}
+ const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=160;lp.Q.value=4;lp.connect(A.G.drone);
+ const lfo=AC.createOscillator(),lg=mk(70);lfo.frequency.value=.07;lfo.connect(lg);lg.connect(lp.frequency);lfo.start();
+ for(const[f,dt]of[[36.7,0],[36.7,6],[55,-5],[43.65,4],[73.4,-8]]){const o=AC.createOscillator();o.type='sawtooth';o.frequency.value=f;o.detune.value=dt;const g=mk(.12);o.connect(g);g.connect(lp);o.start()}
+ const sub=AC.createOscillator();sub.frequency.value=27.5;const sg=mk(.3);sub.connect(sg);sg.connect(A.G.drone);sub.start();
+ const ns=AC.createBufferSource();ns.buffer=nz(8);ns.loop=true;const bp=AC.createBiquadFilter();bp.type='bandpass';bp.frequency.value=500;bp.Q.value=.8;ns.connect(bp);bp.connect(A.G.wind);ns.start();
+ const wl=AC.createOscillator(),wg=mk(300);wl.frequency.value=.11;wl.connect(wg);wg.connect(bp.frequency);wl.start();
+ const wl2=AC.createOscillator(),wg2=mk(.03);wl2.frequency.value=.05;wl2.connect(wg2);wg2.connect(A.G.wind.gain);wl2.start();
+ const rs=AC.createBufferSource();rs.buffer=nz(3);rs.loop=true;const hp=AC.createBiquadFilter();hp.type='highpass';hp.frequency.value=2500;const rgn=mk(0);rs.connect(hp);hp.connect(rgn);rgn.connect(A.G.radio);rs.start();
+ const on=()=>TITLE&&!S.mute&&AC.state==='running';
+ const crack=()=>{if(on()){const t=AC.currentTime,n=2+Math.random()*5|0;for(let i=0;i<n;i++){const a=t+i*.07+Math.random()*.05;rgn.gain.setValueAtTime(0,a);rgn.gain.linearRampToValueAtTime(.35,a+.01);rgn.gain.linearRampToValueAtTime(0,a+.05)}}setTimeout(crack,3000+Math.random()*9000)};crack();
+ const clang=()=>{if(on()){const t=AC.currentTime,f=90+Math.random()*120,out=mk(0);out.connect(A.G.clang);out.gain.setValueAtTime(0,t);out.gain.linearRampToValueAtTime(.5,t+.005);out.gain.exponentialRampToValueAtTime(.001,t+5);
+  for(const r of[1,2.76,5.4,8.93]){const o=AC.createOscillator();o.frequency.value=f*r;const g=mk(.3/r);o.connect(g);g.connect(out);o.start(t);o.stop(t+5.2)}}setTimeout(clang,6000+Math.random()*14000)};setTimeout(clang,3000);
+ const sc=[146.8,174.6,196,220,261.6,293.7,174.6,130.8];
+ const mel=()=>{if(on()){const t=AC.currentTime,f=sc[Math.random()*sc.length|0]/(Math.random()<.3?2:1),out=mk(0);out.connect(A.G.mel);out.gain.setValueAtTime(0,t);out.gain.linearRampToValueAtTime(.35,t+1.5);out.gain.linearRampToValueAtTime(0,t+6);
+  for(const dt of[-9,0,8]){const o=AC.createOscillator();o.type='triangle';o.frequency.value=f;o.detune.value=dt;const g=mk(.3);o.connect(g);g.connect(out);o.start(t);o.stop(t+6.2)}}setTimeout(mel,4500+Math.random()*7000)};setTimeout(mel,2500)}
+window.__amb=()=>AMB&&{g:AMB.out.gain.value,st:AC.state};
+function ambVol(){if(!AC||!AMB)return;AMB.out.gain.setTargetAtTime(TITLE&&!S.mute?.8:0,AC.currentTime,TITLE?1.5:.8)}
+function applyVol(){if(!AC)return;ambInit();ambVol();const t=AC.currentTime;master.gain.setTargetAtTime(S.mute||(paused&&!shopOpen)?0:S.vol/100,t,.03);sfxG.gain.value=S.sfx/100;engG.gain.value=S.eng/100*.5}
 let VOICES=0,VHI=false;const HI={tank:1,boom:1,rocket:1,rocket2:1,rocket4:1,phit:1,reloaded:0};
 function vok(){return VOICES<(VHI?30:14)}
 function vend(s){VOICES++;s.onended=()=>{VOICES--;try{s.disconnect()}catch(e){}}}
