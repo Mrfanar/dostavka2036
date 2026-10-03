@@ -60,6 +60,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 #stick.idle{opacity:.45}
 #vest{position:fixed;top:calc(env(safe-area-inset-top,0px) + 132px);right:16px;width:116px;height:28px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:6px;background:#1c1712;border:2px solid #706452;border-radius:8px;color:#eadfc6;font:600 17px/1 'Chakra Petch',monospace;font-variant-numeric:tabular-nums;letter-spacing:1px;z-index:4;box-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none}#vest[hidden]{display:none}#vest i{font-style:normal;font-size:13px;opacity:.8}#vest.red{color:#ff4a3a;border-color:#c2362b;background:#2a1210;animation:vpl 1s steps(2) infinite}@keyframes vpl{50%{background:#4a1612}}
 #mm{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:16px;width:116px;height:116px;border-radius:12px;border:2px solid #706452;box-shadow:0 2px 10px rgba(0,0,0,.5);background:#2a2218;z-index:4;cursor:pointer}
+#fpsb{position:fixed;top:calc(env(safe-area-inset-top,0px) + 54px);right:144px;width:40px;text-align:center;color:#c9c0a8;font:600 11px/1 'Chakra Petch',monospace;font-variant-numeric:tabular-nums;z-index:4;pointer-events:none;text-shadow:0 1px 3px #000}#fpsb.lo{color:#ff6a5a}
 #gear{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:144px;width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font-size:20px;line-height:1;cursor:pointer;backdrop-filter:blur(3px);z-index:4;display:flex;align-items:center;justify-content:center}
 #menu{position:fixed;inset:0;background:rgba(12,9,6,.66);backdrop-filter:blur(4px);z-index:10;display:flex;align-items:center;justify-content:center;padding:16px;touch-action:auto}
 .mp{width:min(100%,460px);max-height:min(100%,640px);display:flex;flex-direction:column;background:#241d16;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
@@ -290,7 +291,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 </div></div>
 <div class="tiers"><span class="lb">DEV</span><select id="trsel"></select><span class="lb">тир</span><button data-t="1" class="on">1</button><button data-t="2">2</button><button data-t="3">3</button><button data-t="4">4</button><span id="wl"></span><span id="aps"></span></div>
 <canvas id="mm" width="232" height="232" title="Карта"></canvas><div id="vest" hidden><i>⚠</i><span id="vestt">04:00</span></div>
-<button id="gear" aria-label="Настройки">⚙</button>
+<button id="gear" aria-label="Настройки">⚙</button><div id="fpsb">-- FPS</div>
 <div id="editbar" hidden><span>Перетащи кнопки огня</span><button id="editdone">Готово</button></div>
 <div id="menu" hidden><div class="mp"><div class="mh"><h2>Настройки</h2><button class="mx" id="mclose" aria-label="Закрыть">✕</button></div><div class="tabs" id="mtabs"></div><div class="body" id="mbody"></div><div class="mf"><button class="mb" id="mreset">Сбросить</button><button class="mb" id="mtitle">В меню</button><button class="mb pri" id="mok">Продолжить</button></div></div></div>
 <div id="stick" hidden><div id="knob"></div></div>
@@ -299,7 +300,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tver">V. 0.125.4.03.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tver">V. 0.126.0.03.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -925,11 +926,11 @@ const beams=[];let HOOK=null;const MIS=[];
 const CANNON=Object.assign({},WDEF.mg,{dmg:[12,18],cd:.9,sp:36,rng:46,bw:.26,bl:.9,col:[1,.45,.2],snd:'shotgun',spr:2,cnt:1});
 const HEAVY_GUN=Object.assign({},WDEF.mg,{dmg:[4,7],cd:.32,mag:20,rel:2.4,alt:CANNON});
 const BAJA_GUN=Object.assign({},WDEF.shotgun,{dmg:[1.2,2.2],cnt:5,spr:16,sp:48,rng:20,mag:5,rel:2.4,cd:.75,tip:1.4,snd:'shotgun'});
-const ETYPES={baja:{n:'БАХА',veh:'baja',hp:120,sc:1,tint:null,spd:13,turn:135,rew:50,gun:BAJA_GUN,ai:'orbit',r:9,fire:21},
- buggy:{n:'БАГГИ',veh:'buggy',hp:40,sc:1,tint:null,spd:11.5,turn:150,rew:30,gun:ENEMY_MG,ai:'orbit',r:11,fire:34},
- ram:{n:'ТАРАН',veh:'jeep',hp:30,sc:.95,tint:null,spd:15.5,turn:220,rew:20,gun:null,ai:'ram',r:0,fire:0},
- heavy:{n:'БРОНЕВИК',veh:'truck',hp:230,sc:1,tint:null,spd:8.5,turn:95,rew:90,gun:HEAVY_GUN,ai:'orbit',r:17,fire:40},
- rocketeer:{n:'РАКЕТЧИК',veh:'jeep',hp:95,sc:1,tint:[.72,1,.78],spd:9.5,turn:130,rew:80,gun:null,ai:'orbit',r:23,fire:46,msl:true,mcd:6,mn:2,mdm:26}};
+const ETYPES={baja:{n:'БАХА',veh:'baja',hp:85,sc:1,tint:null,spd:13,turn:135,rew:50,gun:BAJA_GUN,ai:'orbit',r:9,fire:21},
+ buggy:{n:'БАГГИ',veh:'buggy',hp:28,sc:1,tint:null,spd:11.5,turn:150,rew:30,gun:ENEMY_MG,ai:'orbit',r:11,fire:34},
+ ram:{n:'ТАРАН',veh:'jeep',hp:21,sc:.95,tint:null,spd:15.5,turn:220,rew:20,gun:null,ai:'ram',r:0,fire:0},
+ heavy:{n:'БРОНЕВИК',veh:'truck',hp:160,sc:1,tint:null,spd:8.5,turn:95,rew:90,gun:HEAVY_GUN,ai:'orbit',r:17,fire:40},
+ rocketeer:{n:'РАКЕТЧИК',veh:'jeep',hp:65,sc:1,tint:[.72,1,.78],spd:9.5,turn:130,rew:80,gun:null,ai:'orbit',r:23,fire:46,msl:true,mcd:6,mn:2,mdm:26}};
 function mkEnemy(type,x,y){const t=ETYPES[type];return{type,t,n:t.n,x,y,a:Math.random()*360,v:0,wp:null,hit:0,acc:0,pv:0,hp:t.hp,max:t.hp,armor:0,dead:0,shown:t.hp,sc:t.sc,tint:t.tint,rew:t.rew,dir:1,
  gw:{aim:0,aw:0,cd:0,flash:0,kick:0,ammo:t.gun?t.gun.mag:0,rel:0,on:false,bt:.6+Math.random()}}}
 /* ---------- state ---------- */
@@ -2982,7 +2983,8 @@ function gUpdate(dt){
  if(STARTED&&!TITLE&&AC&&!GBUF._l)gLoad();
  const d=gDist();
  if(GD.st==='none'){if(!on||d<G_TRIG)return;GD.ang=Math.atan2(wr(P.y-GC[1]),wr(P.x-GC[0]));GD.x=GC[0]+Math.cos(GD.ang)*G_SPAWN;GD.y=GC[1]+Math.sin(GD.ang)*G_SPAWN;const[ax,ay]=gAimDir();GD.by=-Math.atan2(ax,ay);GD.yaw=GD.by+1.9;GD.st='rise';GD.t=0;GD.n=0;GD.cd=0;GD.off=-GOFF;GD.th=[GF,GF,GF,GF];GD.f1=GD.f2=GD.f3=0;gPlay('spawn',1.5);return}
- if(!on&&GD.st!=='sink'){if(P.dead>0||!STARTED||TITLE){GD.st='none';return}}
+ if(!STARTED||TITLE){GD.st='none';return}
+ if(P.dead>0||FAILON){if(GD.st==='rise'){if(!GD.frz)GD.t+=dt;const k=Math.min(1,GD.t/G_RISE),p=gPose(k);GD.off=p.off;GD.th=p.th;GD.shk=0;if(GD.t>=G_RISE){GD.st='idle';GD.off=0;GD.th=[0,0,0,0]}}return}
  if(GD.st==='rise'||GD.st==='idle'){
   const[ax,ay]=gAimDir(),ty=-Math.atan2(ax,ay);
   if(d<G_HIDE||!on){GD.st='sink';GD.t=0;gPlay('hide',1.4);return}
@@ -3130,7 +3132,7 @@ $('tcont').disabled=![1,2,3].some(slotMeta);tdrv();
 $('tset').onclick=()=>{initAudio();curTab='Звук';toggleMenu(true)};
 $('mtitle').onclick=()=>{toggleMenu(false);showTitle()};
 try{if(sessionStorage.getItem('skipTitle')){sessionStorage.removeItem('skipTitle');const nc=sessionStorage.getItem('newCut');sessionStorage.removeItem('newCut');STARTED=true;if(nc)setTimeout(()=>CUT.start(()=>hideTitle()),600);else hideTitle()}}catch(e){}
-const PERF={u:0,r:0};let _et=0;function errToast(e){console.error(e);const n=performance.now();if(n-_et<3000)return;_et=n;let d=document.getElementById('errt');if(!d){d=document.createElement('div');d.id='errt';d.style.cssText='position:fixed;left:8px;right:8px;bottom:4px;background:#500c;color:#fff;font:11px/1.3 monospace;padding:4px 8px;border-radius:6px;z-index:99;pointer-events:none';document.body.appendChild(d)}d.textContent='Ошибка: '+(e&&e.message)+' @'+((e&&e.stack||'').split('\n')[1]||'').slice(-60);setTimeout(()=>d.remove(),6000)}let last=0;function frame(t){requestAnimationFrame(frame);try{if(TITLE){last=t;if(SNAPC)render(0);return}const dt=Math.min(.05,(t-last)/1000||.016);last=t;const _a=performance.now();if(!paused)update(dt);const _b=performance.now();render(paused?0:dt);drawMini();compDraw();const _c=performance.now();PERF.u=Math.max(PERF.u*.95,_b-_a);PERF.r=Math.max(PERF.r*.95,_c-_b)}catch(e){errToast(e)}}
+const PERF={u:0,r:0};let _et=0;function errToast(e){console.error(e);const n=performance.now();if(n-_et<3000)return;_et=n;let d=document.getElementById('errt');if(!d){d=document.createElement('div');d.id='errt';d.style.cssText='position:fixed;left:8px;right:8px;bottom:4px;background:#500c;color:#fff;font:11px/1.3 monospace;padding:4px 8px;border-radius:6px;z-index:99;pointer-events:none';document.body.appendChild(d)}d.textContent='Ошибка: '+(e&&e.message)+' @'+((e&&e.stack||'').split('\n')[1]||'').slice(-60);setTimeout(()=>d.remove(),6000)}let last=0,FPSL=0,FPSN=0;function frame(t){requestAnimationFrame(frame);FPSN++;if(!FPSL)FPSL=t;if(t-FPSL>=500){const f=Math.round(FPSN*1000/(t-FPSL)),e=document.getElementById('fpsb');if(e){e.textContent=f+' FPS';e.classList.toggle('lo',f<30)}FPSL=t;FPSN=0}try{if(TITLE){last=t;if(SNAPC)render(0);return}const dt=Math.min(.05,(t-last)/1000||.016);last=t;const _a=performance.now();if(!paused)update(dt);const _b=performance.now();render(paused?0:dt);drawMini();compDraw();const _c=performance.now();PERF.u=Math.max(PERF.u*.95,_b-_a);PERF.r=Math.max(PERF.r*.95,_c-_b)}catch(e){errToast(e)}}
 
 /* ---------- DEV-режим и консоль ---------- */
 const DEVL=[];window.__devl=DEVL;
