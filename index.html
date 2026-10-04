@@ -300,7 +300,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tver">V. 0.126.1.03.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tver">V. 0.127.0.04.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -312,7 +312,7 @@ async function fetchTxt(u,tot){const r=await fetch(u);if(!r.ok)throw new Error(u
 (()=>{
 const cv=document.getElementById('game'),ov=document.getElementById('ov'),o2=ov.getContext('2d');
 const D2R=Math.PI/180,PITCH=38*D2R,PPM=44,WW=1600,WH=800;
-let W=0,H=0,DPR=1,Z=.8,RS=1,LOWN=0;
+let W=0,H=0,DPR=1,Z=.8,RS=1,LOWN=0;const MOBG=!!(window.matchMedia&&matchMedia('(pointer:coarse)').matches);
 const gl=cv.getContext('webgl2',{antialias:true,alpha:false,powerPreference:'high-performance'});
 if(!gl){document.getElementById('load').textContent='Нужен браузер с WebGL2';return}
 /* ---------- tiny matrix lib (column-major) ---------- */
@@ -861,7 +861,7 @@ const roadTex=(()=>{const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);g
 function radCanvas(){const t=document.createElement('canvas');t.width=t.height=64;const x=t.getContext('2d'),g=x.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.fillRect(0,0,64,64);return t}
 const blobTex=tex2d(radCanvas(),false,false);
 /* shadow map */
-const SM=2048;const shTex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,shTex);gl.texImage2D(gl.TEXTURE_2D,0,gl.DEPTH_COMPONENT24,SM,SM,0,gl.DEPTH_COMPONENT,gl.UNSIGNED_INT,null);
+const SM=1024;let SLVP=null,SHF=0;const shTex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,shTex);gl.texImage2D(gl.TEXTURE_2D,0,gl.DEPTH_COMPONENT24,SM,SM,0,gl.DEPTH_COMPONENT,gl.UNSIGNED_INT,null);
 gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
 gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_COMPARE_MODE,gl.COMPARE_REF_TO_TEXTURE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_COMPARE_FUNC,gl.LEQUAL);
 const shFB=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,shFB);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.TEXTURE_2D,shTex,0);gl.drawBuffers([gl.NONE]);gl.readBuffer(gl.NONE);gl.bindFramebuffer(gl.FRAMEBUFFER,null);
@@ -871,7 +871,7 @@ gl.bindAttribLocation(grdP.p,0,'aXZ');gl.linkProgram(grdP.p);{const u={};const n
 const cam={x:0,y:0},CT={x:0,y:0};
 let ZOOM=.85;const K=()=>PPM*Z*ZOOM;
 let VP=M4.id();
-function resize(){DPR=Math.min(2,window.devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=Math.round(W*DPR*RS);cv.height=Math.round(H*DPR*RS);ov.width=W*DPR;ov.height=H*DPR;Z=Math.max(.5,Math.min(1.05,Math.min(W,H*1.7)/1150))}
+function resize(){DPR=Math.min(2,window.devicePixelRatio||1);W=innerWidth;H=innerHeight;const RD=Math.min(DPR,MOBG?1.25:2)*RS;cv.width=Math.round(W*RD);cv.height=Math.round(H*RD);ov.width=W*DPR;ov.height=H*DPR;Z=Math.max(.5,Math.min(1.05,Math.min(W,H*1.7)/1150))}
 addEventListener('resize',resize);resize();
 function w2s(x,y,z){const v=[x,z,-y,1],m=VP;const cx=m[0]*v[0]+m[4]*v[1]+m[8]*v[2]+m[12],cy=m[1]*v[0]+m[5]*v[1]+m[9]*v[2]+m[13];return[(cx*.5+.5)*W,(-cy*.5+.5)*H]}
 const SUNOFF=[-16,30,14],LEN=Math.hypot(...SUNOFF),L=SUNOFF.map(v=>v/LEN);
@@ -1017,7 +1017,7 @@ function bhudUpd(){if(PCM){const pn=document.getElementById('qpan'),show=QSHOW&&
  const c=curBind();for(const f of FBTN){let k=f.b.querySelector('.kl');if(!k){k=document.createElement('div');k.className='kl';f.b.appendChild(k)}const t=isRk(f.t)?'ПРОБЕЛ':c.p.includes(f.t)&&c.s.includes(f.t)?'ЛКМ+ПКМ':c.p.includes(f.t)?'ЛКМ':c.s.includes(f.t)?'ПКМ':'';if(k._t!==t){k._t=t;k.textContent=t}f.b.classList.toggle('dim',!t)}}
 let PENDQ=false;
 const ST1_TXT=['Водитель.','Это твоя первая доставка, и прежде чем доверять тебе настоящие грузы, я должен проверить, чего ты стоишь.','Отвези этот конверт Аде Скалич, полковнику ГРАНИТА. Внутри сведения для неё. Тебе их знать незачем.','Снаряжение тебе выдали стандартное. Кроме бронежилета. Он у тебя особенный: с таймером.','На доставку у тебя четыре минуты. Не успеешь — бронежилет сработает. Громко.','Ха. Не бледней, водитель. Думаю, ты справишься.','Справишься — ОПЛОТ откроет на тебя счёт, и тогда поговорим о настоящей работе.'];
-function startStory(){if(META.st1)return;META.st1='act';META.vS='run';META.vT=240;const C=CITIES.find(c=>c.id==='B')||CITIES[1]||CITIES[0],A=CITIES.find(c=>c.id==='A')||CITIES[0];qChain({code:'st1',story:true,from:A.id,turn:A.id,rw:150,ti:'Конверт для мэра: '+C.name,ds:'Доставь конверт мэру города '+C.name+' и верни ответ',steps:[{k:'handover',city:C.id,take:'q_env',give:'q_safe',talk:'st1b',caught:['q_env'],txt:'Передай конверт мэру '+C.name+' (окно мэра в городе)'},{k:'handover',city:A.id,take:'q_safe',talk:'st1a',final:true,txt:'Верни сейф мэру '+A.name+' (окно мэра в городе)'}]});qiSet('q_env',1);sfx('pick');qHud();texts.push({x:P.x,y:P.y,z:5,life:3,max:3,s:'+ Конверт с красной печатью'})}
+function startStory(){if(META.st1)return;META.st1='act';META.vS='run';META.vT=240;META.vSs='run';META.vSv=240;const C=CITIES.find(c=>c.id==='B')||CITIES[1]||CITIES[0],A=CITIES.find(c=>c.id==='A')||CITIES[0];qChain({code:'st1',story:true,from:A.id,turn:A.id,rw:150,ti:'Конверт для мэра: '+C.name,ds:'Доставь конверт мэру города '+C.name+' и верни ответ',steps:[{k:'handover',city:C.id,take:'q_env',give:'q_safe',talk:'st1b',caught:['q_env'],txt:'Передай конверт мэру '+C.name+' (окно мэра в городе)'},{k:'handover',city:A.id,take:'q_safe',talk:'st1a',final:true,txt:'Верни сейф мэру '+A.name+' (окно мэра в городе)'}]});qiSet('q_env',1);sfx('pick');qHud();texts.push({x:P.x,y:P.y,z:5,life:3,max:3,s:'+ Конверт с красной печатью'})}
 function showStory(){if(META.st1||TITLE||CUT.on)return;let w=document.getElementById('qwin');if(!w){w=document.createElement('div');w.id='qwin';document.body.appendChild(w)}
  w.innerHTML='<div class="cp"><div class="qk">Первое задание</div><h2>Конверт для мэра</h2><div class="qf">Письмо от Аркадия Ветрова, коменданта ОПЛОТА</div><div class="ql">'+ST1_TXT.map(t=>'<p>'+t+'</p>').join('')+'<p class="qs">— А. Ветров</p></div><div class="qi"><img src="'+QITEMS.q_env.img+'" width="48" height="48"><span>Квестовый предмет: нельзя продать или выбросить. Награда: +150 лом и счёт в городе.</span></div><button class="go" id="qwgo">Принять конверт</button></div>';
  w.hidden=false;paused=true;try{applyVol()}catch(e){}document.getElementById('qwgo').onclick=()=>{w.hidden=true;paused=false;startStory();try{applyVol()}catch(e){}}}
@@ -1260,8 +1260,9 @@ function hitEnemy(x,y,d,en){en=en||E;sfx('hit');en.hit=.09;let dm=(d.dmg[0]+Math
  for(let k=0;k<(d.beam?9:5);k++)parts.push({t:'spark',x,y,z:1.3,vx:(Math.random()-.5)*7,vy:(Math.random()-.5)*7,vz:2+Math.random()*4,life:.35,max:.35,c:d.beam?(d.col||[.5,1,1]):[1,.75,.35]});
  texts.push({x:en.x+(Math.random()-.5)*1.4,y:en.y,z:2.6,life:.7,max:.7,s:'−'+(dm<10?dm.toFixed(1):dm)});
  en.hp=Math.max(0,en.hp-dm);if(en.hp<=0)killEnemy(en)}
-function playerHit(dm){if(P.dead>0||P.inv>0||GOD)return;sfx('phit');
- dm=Math.max(.1,Math.round(dm*10)/10);STAT.hp.v=Math.max(0,STAT.hp.v-dm)
+const ENEMY_DMG=.7;
+function playerHit(dm,raw){if(P.dead>0||P.inv>0||GOD)return;sfx('phit');
+ if(!raw)dm*=ENEMY_DMG;dm=Math.max(.1,Math.round(dm*10)/10);STAT.hp.v=Math.max(0,STAT.hp.v-dm)
  texts.push({x:P.x,y:P.y,z:3.6,life:.7,max:.7,s:'−'+(dm<10?dm.toFixed(1):Math.round(dm)),red:true});P.hurt=.12;
  if(STAT.hp.v<=0){P.dead=3;sfx('boom');for(let k=0;k<30;k++)parts.push({t:'spark',x:P.x+(Math.random()-.5)*2,y:P.y+(Math.random()-.5)*2,z:.8+Math.random()*1.4,vx:(Math.random()-.5)*9,vy:(Math.random()-.5)*9,vz:2+Math.random()*5,life:.8,max:.8,c:[1,.6,.2]});texts.push({x:P.x,y:P.y,z:4.2,life:1.6,max:1.6,s:'НЕУДАЧА',red:true})}}
 function killEnemy(en,nr){if(!nr&&Math.random()<.3)PROPS.push({k:itemRoll(Math.random()),x:en.x+(Math.random()-.5)*3,y:en.y+(Math.random()-.5)*3,ry:Math.random()*6.28,s:1.5,t:null});sfx('boom');en.dead=3;if(HOOK&&HOOK.en===en)HOOK=null;KILLS++;const rw=nr?0:en.rew;for(let k=0;k<40;k++)parts.push({t:'spark',x:en.x+(Math.random()-.5)*2,y:en.y+(Math.random()-.5)*2,z:.8+Math.random()*1.4,vx:(Math.random()-.5)*10,vy:(Math.random()-.5)*10,vz:2+Math.random()*6,life:.8,max:.8,c:Math.random()<.5?[1,.6,.2]:[1,.9,.5]});
@@ -1931,7 +1932,7 @@ function drawVehicle(P_,V,o,bobK,emi,tint){
  const{tilt:t0,st}=vehMats(V,o,bobK);const tilt=o.sc&&o.sc!==1?M4.mul(t0,M4.S(o.sc,o.sc,o.sc)):t0;for(const g of V.parts)drawMesh(P_,g,tilt,tint,emi,false,true);
  for(const w of V.wheels){let m=M4.mul(tilt,M4.T(...w.pos));if(w.front)m=M4.mul(m,M4.RY(-st));m=M4.mul(m,M4.RX(V.spin));drawMesh(P_,w.g,m,tint,emi,false,true)}
  return tilt}
-function rockMats(){return rocks.map(r=>{const rx=((r.x-P.x+WH)%WW+WW)%WW-WH+P.x,ry=((r.y-P.y+WH)%WW+WW)%WW-WH+P.y;if(Math.abs(rx-cam.x)>80||Math.abs(ry-cam.y)>72)return null;return M4.mul(M4.T(rx,r.s*.2,-ry),M4.mul(M4.RY(r.ry),M4.S(r.s*1.2,r.s,r.s)))})}
+const RMC={t:-1,x:0,y:0,px:0,py:0,m:null};function rockMats(){if(RMC.m&&RMC.t===T&&RMC.x===cam.x&&RMC.y===cam.y&&RMC.px===P.x&&RMC.py===P.y)return RMC.m;RMC.t=T;RMC.x=cam.x;RMC.y=cam.y;RMC.px=P.x;RMC.py=P.y;return RMC.m=rocks.map(r=>{const rx=((r.x-P.x+WH)%WW+WW)%WW-WH+P.x,ry=((r.y-P.y+WH)%WW+WW)%WW-WH+P.y;if(Math.abs(rx-cam.x)>80||Math.abs(ry-cam.y)>72)return null;return M4.mul(M4.T(rx,r.s*.2,-ry),M4.mul(M4.RY(r.ry),M4.S(r.s*1.2,r.s,r.s)))})}
 const SHOW_SCRAP=false;
 function drawScrapBay(P_,tilt){if(!SHOW_SCRAP)return;const sc=INF_MONEY?1e9:SCRAP,lv=sc<20?0:sc<150?1:sc<450?2:3;
  if(CFG.body===1){if(lv)drawMesh(P_,PG['scrap'+lv],M4.mul(tilt,M4.T(0,BED_Y,1.85)),null,null,false,false)}
@@ -2027,12 +2028,13 @@ function render(dt){
  const lc=[Math.round(cam.x*4)/4,0,Math.round(-cam.y*4)/4];
  const LVP=M4.mul(M4.ortho(-40,40,-40,40,1,160),M4.look([lc[0]+L[0]*60,L[1]*60,lc[2]+L[2]*60],lc,[0,1,0]));
  // shadow pass
+ SHF++;if(pv||!SLVP||(SHF&1)){SLVP=LVP;
  gl.bindFramebuffer(gl.FRAMEBUFFER,shFB);gl.viewport(0,0,SM,SM);gl.clear(gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.disable(gl.BLEND);
  gl.enable(gl.POLYGON_OFFSET_FILL);gl.polygonOffset(2,4);
- gl.useProgram(shadP.p);gl.uniformMatrix4fv(shadP.u.uLVP,false,LVP);drawScene(shadP,!pv);gl.disable(gl.POLYGON_OFFSET_FILL);
+ gl.useProgram(shadP.p);gl.uniformMatrix4fv(shadP.u.uLVP,false,LVP);drawScene(shadP,!pv);gl.disable(gl.POLYGON_OFFSET_FILL)}
  // main pass
  if(CELX)celEnsure(cv.width,cv.height);gl.bindFramebuffer(gl.FRAMEBUFFER,CELX?CEL.fb:null);gl.viewport(0,0,cv.width,cv.height);if(SNAPC)gl.clearColor(.2,.188,.165,1);else gl.clearColor(.41,.33,.23,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
- const setLight=(P_)=>{gl.uniform1f(P_.u.uCel,CELX?1:0);gl.uniformMatrix4fv(P_.u.uVP,false,VP);gl.uniformMatrix4fv(P_.u.uLVP,false,LVP);gl.uniform3fv(P_.u.uL,L);gl.uniform3fv(P_.u.uSunC,[1.02,.93,.78]);gl.uniform3fv(P_.u.uSky,[.58,.60,.66]);gl.uniform3fv(P_.u.uGnd,[.40,.33,.25]);gl.uniform1i(P_.u.uShadow,1)};
+ const setLight=(P_)=>{gl.uniform1f(P_.u.uCel,CELX?1:0);gl.uniformMatrix4fv(P_.u.uVP,false,VP);gl.uniformMatrix4fv(P_.u.uLVP,false,SLVP||LVP);gl.uniform3fv(P_.u.uL,L);gl.uniform3fv(P_.u.uSunC,[1.02,.93,.78]);gl.uniform3fv(P_.u.uSky,[.58,.60,.66]);gl.uniform3fv(P_.u.uGnd,[.40,.33,.25]);gl.uniform1i(P_.u.uShadow,1)};
  gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,shTex);gl.activeTexture(gl.TEXTURE0);
  gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,bioTex);gl.activeTexture(gl.TEXTURE0);gl.useProgram(grdP.p);setLight(grdP);gl.uniform2f(grdP.u.uC,cam.x,-cam.y);gl.uniform1i(grdP.u.uTex,0);gl.uniform1i(grdP.u.uBio,2);gl.uniform1i(grdP.u.uRoad,3);gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,roadTex);gl.activeTexture(gl.TEXTURE0);gl.uniform1f(grdP.u.uT,T);gl.uniform3f(grdP.u.uSn,SNOW.x,SNOW.y,SNOW.r);gl.bindTexture(gl.TEXTURE_2D,groundTex);gl.bindVertexArray(quadV);if(!SNAPC)gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
  gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);
@@ -2932,7 +2934,7 @@ function setSlot(n){SLOT=n;SKEY=skeyOf(n);try{localStorage.setItem('dost_slot',n
 function slotMeta(n){try{const o=JSON.parse(localStorage.getItem(skeyOf(n))||'null');return o&&o.meta}catch(e){return null}}
 function hasSave(){try{return !!localStorage.getItem(SKEY)}catch(e){return false}}
 function readMeta(){try{const o=JSON.parse(localStorage.getItem(SKEY)||'null');return o&&o.meta}catch(e){return null}}
-function saveGame(){if(!STARTED||CUT.on||DEATHC||NOSAVE||TITLE||P.dead>0)return;try{META.rec=Math.max(META.rec,Math.round(Math.hypot(wr(P.x+44),wr(P.y-18))));fogSave();localStorage.setItem(SKEY,JSON.stringify({v:1,meta:META,scrap:SCRAP,own:OWN,ft:FT,cfg:CFG,wown:WOWN,slotw:SLOTW,am:AMST,kills:KILLS,q:QS,p:[P.x,P.y,P.a],hp:STAT.hp.v,fu:STAT.fu.v,t:Date.now()}))}catch(e){}}
+function saveGame(){if(!STARTED||CUT.on||DEATHC||NOSAVE||TITLE||P.dead>0)return;try{META.rec=Math.max(META.rec,Math.round(Math.hypot(wr(P.x+44),wr(P.y-18))));fogSave();META.vSv=META.vT;META.vSs=META.vS;localStorage.setItem(SKEY,JSON.stringify({v:1,meta:META,scrap:SCRAP,own:OWN,ft:FT,cfg:CFG,wown:WOWN,slotw:SLOTW,am:AMST,kills:KILLS,q:QS,p:[P.x,P.y,P.a],hp:STAT.hp.v,fu:STAT.fu.v,t:Date.now()}))}catch(e){}}
 function loadGame(){fogLoad();let o=null;try{o=JSON.parse(localStorage.getItem(SKEY)||'null')}catch(e){}if(!o)return false;
  try{Object.assign(META,o.meta||{});SCRAP=o.scrap||0;KILLS=o.kills||0;
   for(const k of['cab','body','chas']){for(const i in OWN[k])delete OWN[k][i];Object.assign(OWN[k],(o.own&&o.own[k])||{1:1});}
@@ -2941,7 +2943,7 @@ function loadGame(){fogLoad();let o=null;try{o=JSON.parse(localStorage.getItem(S
   if(o.p){P.x=o.p[0];P.y=o.p[1];P.a=o.p[2];P.v=0;CT.x=cam.x=P.x;CT.y=cam.y=P.y}
   if(o.hp>0)STAT.hp.v=Math.min(STAT.hp.max,o.hp);if(o.fu>0)STAT.fu.v=Math.min(STAT.fu.max,o.fu);for(const k in STAT)STAT[k].shown=STAT[k].ghost=STAT[k].v;
   hudScrap();for(const id of new Set(Object.values(SLOTW)))if(CWEAP.some(c=>c.id===id)&&TIC['w_'+id]===undefined){TIC['w_'+id]='';snapIcon('w_'+id,VEH['w_'+id],(CWEAP.find(c=>c.id===id)||{}).z||3.5)}return true}catch(e){console.error('load',e);return false}}
-function respawnPlayer(){const c=META.cp||[-44,18,90];P.x=c[0];P.y=c[1];P.a=c[2];P.v=0;P.dead=0;P.inv=3;CT.x=cam.x=P.x;CT.y=cam.y=P.y;
+function respawnPlayer(){if(META.vSs){META.vS=META.vSs;META.vT=META.vSv;try{vestShow()}catch(e){}}const c=META.cp||[-44,18,90];P.x=c[0];P.y=c[1];P.a=c[2];P.v=0;P.dead=0;P.inv=3;CT.x=cam.x=P.x;CT.y=cam.y=P.y;
  bullets.length=0;parts.length=0;beams.length=0;HOOK=null;rebuildWeapons();for(const k in STAT){STAT[k].v=STAT[k].max;STAT[k].shown=STAT[k].ghost=STAT[k].max}
  for(const c of CHK){c.on=false;c.cool=0}for(const en of ENEMIES)respawnEnemy(en);hudScrap()}
 function setCheckpoint(){META.cp=[P.x,P.y,P.a];texts.push({x:P.x,y:P.y,z:4.6,life:1.8,max:1.8,s:'ЧЕКПОИНТ'});sfx('pick');saveGame()}
@@ -3021,7 +3023,7 @@ function gShoot(){
  const dm=GD.n===1?STAT.hp.v*.5:STAT.hp.v*3+50;
  texts.push({x:P.x,y:P.y,z:6,life:1.2,max:1.2,s:GD.n===1?'ЗАВЕТ: ПРЕДУПРЕЖДЕНИЕ':'ЗАВЕТ: УНИЧТОЖЕНИЕ',red:true});
  GSHK=.6;
- playerHit(dm);
+ playerHit(dm,true);
 }
 let GSHK=0;
 function drawGuardian(P_){if(GD.st==='none')return;const cx=cam.x,cy=cam.y,dx=wr(GD.x-cx),dy=wr(GD.y-cy);if(Math.abs(dx)>110||Math.abs(dy)>100)return;
@@ -3132,7 +3134,7 @@ $('tcont').disabled=![1,2,3].some(slotMeta);tdrv();
 $('tset').onclick=()=>{initAudio();curTab='Звук';toggleMenu(true)};
 $('mtitle').onclick=()=>{toggleMenu(false);showTitle()};
 try{if(sessionStorage.getItem('skipTitle')){sessionStorage.removeItem('skipTitle');const nc=sessionStorage.getItem('newCut');sessionStorage.removeItem('newCut');STARTED=true;if(nc)setTimeout(()=>CUT.start(()=>hideTitle()),600);else hideTitle()}}catch(e){}
-const PERF={u:0,r:0};let _et=0;function errToast(e){console.error(e);const n=performance.now();if(n-_et<3000)return;_et=n;let d=document.getElementById('errt');if(!d){d=document.createElement('div');d.id='errt';d.style.cssText='position:fixed;left:8px;right:8px;bottom:4px;background:#500c;color:#fff;font:11px/1.3 monospace;padding:4px 8px;border-radius:6px;z-index:99;pointer-events:none';document.body.appendChild(d)}d.textContent='Ошибка: '+(e&&e.message)+' @'+((e&&e.stack||'').split('\n')[1]||'').slice(-60);setTimeout(()=>d.remove(),6000)}let last=0,FPSL=0,FPSN=0;function frame(t){requestAnimationFrame(frame);FPSN++;if(!FPSL)FPSL=t;if(t-FPSL>=500){const f=Math.round(FPSN*1000/(t-FPSL)),e=document.getElementById('fpsb');if(e){e.textContent=f+' FPS';e.classList.toggle('lo',f<30)}if(!paused&&!TITLE&&!document.hidden){if(f<48&&RS>.61){if(++LOWN>=4){LOWN=0;RS=Math.max(.6,RS-.15);resize();e&&(e.title='Разрешение рендера '+Math.round(RS*100)+'%')}}else LOWN=0}FPSL=t;FPSN=0}try{if(TITLE){last=t;if(SNAPC)render(0);return}const dt=Math.min(.05,(t-last)/1000||.016);last=t;const _a=performance.now();if(!paused)update(dt);const _b=performance.now();render(paused?0:dt);drawMini();compDraw();const _c=performance.now();PERF.u=Math.max(PERF.u*.95,_b-_a);PERF.r=Math.max(PERF.r*.95,_c-_b)}catch(e){errToast(e)}}
+const PERF={u:0,r:0};let _et=0;function errToast(e){console.error(e);const n=performance.now();if(n-_et<3000)return;_et=n;let d=document.getElementById('errt');if(!d){d=document.createElement('div');d.id='errt';d.style.cssText='position:fixed;left:8px;right:8px;bottom:4px;background:#500c;color:#fff;font:11px/1.3 monospace;padding:4px 8px;border-radius:6px;z-index:99;pointer-events:none';document.body.appendChild(d)}d.textContent='Ошибка: '+(e&&e.message)+' @'+((e&&e.stack||'').split('\n')[1]||'').slice(-60);setTimeout(()=>d.remove(),6000)}let last=0,FPSL=0,FPSN=0;function frame(t){requestAnimationFrame(frame);FPSN++;if(!FPSL)FPSL=t;if(t-FPSL>=500){const f=Math.round(FPSN*1000/(t-FPSL)),e=document.getElementById('fpsb');if(e){e.textContent=f+' FPS';e.classList.toggle('lo',f<30)}if(!paused&&!TITLE&&!document.hidden){if(f<(MOBG?38:48)&&RS>.51){if(++LOWN>=3){LOWN=0;RS=Math.max(.5,RS-.15);resize();e&&(e.title='Разрешение рендера '+Math.round(RS*100)+'%')}}else LOWN=0}FPSL=t;FPSN=0}try{if(TITLE){last=t;if(SNAPC)render(0);return}const dt=Math.min(.05,(t-last)/1000||.016);last=t;const _a=performance.now();if(!paused)update(dt);const _b=performance.now();render(paused?0:dt);drawMini();compDraw();const _c=performance.now();PERF.u=Math.max(PERF.u*.95,_b-_a);PERF.r=Math.max(PERF.r*.95,_c-_b)}catch(e){errToast(e)}}
 
 /* ---------- DEV-режим и консоль ---------- */
 const DEVL=[];window.__devl=DEVL;
