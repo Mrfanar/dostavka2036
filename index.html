@@ -324,7 +324,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.129.24.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.129.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -4310,7 +4310,7 @@ function gUpdate(dt){
  const on=(STARTED&&!TITLE&&!CUT.on&&!DEV&&(META.act||1)===1&&P.dead<=0&&!modInvis())||(GD.cv&&STARTED&&!TITLE&&P.dead<=0);
  if(STARTED&&!TITLE&&AC&&!GBUF._l)gLoad();
  const d=gDist();
- if(GD.st==='none'){if(!on||d<G_TRIG)return;GD.ang=Math.atan2(wr(P.y-GC[1]),wr(P.x-GC[0]));GD.x=GC[0]+Math.cos(GD.ang)*G_SPAWN;GD.y=GC[1]+Math.sin(GD.ang)*G_SPAWN;const[ax,ay]=gAimDir();GD.by=-Math.atan2(ax,ay);GD.yaw=GD.by+1.9;GD.st='rise';GD.t=0;GD.n=0;GD.cv=0;GD.cd=0;GD.off=-GOFF;GD.th=[GF,GF,GF,GF];GD.f1=GD.f2=GD.f3=0;gPlay('spawn',1.5);return}
+ if(GD.st==='none'){if(!on||d<G_TRIG)return;GD.ang=Math.atan2(wr(P.y-GC[1]),wr(P.x-GC[0]));GD.x=GC[0]+Math.cos(GD.ang)*G_SPAWN;GD.y=GC[1]+Math.sin(GD.ang)*G_SPAWN;const[ax,ay]=gAimDir();GD.by=-Math.atan2(ax,ay);GD.yaw=GD.by+1.9;GD.st='rise';GD.t=0;GD.n=0;GD.pre=0;GD.cv=0;GD.cd=0;GD.off=-GOFF;GD.th=[GF,GF,GF,GF];GD.f1=GD.f2=GD.f3=0;gPlay('spawn',1.5);return}
  if(!STARTED||TITLE){GD.st='none';return}
  if(P.dead>0||FAILON){if(GD.st==='rise'){if(!GD.frz)GD.t+=dt;const k=Math.min(1,GD.t/G_RISE),p=gPose(k);GD.off=p.off;GD.th=p.th;GD.shk=0;if(GD.t>=G_RISE){GD.st='idle';GD.off=0;GD.th=[0,0,0,0]}}return}
  if(GD.st==='rise'||GD.st==='idle'){
@@ -4323,11 +4323,13 @@ function gUpdate(dt){
    if(k>.9&&!GD.f3){GD.f3=1;gRing(36,1.2)}
    if(k<.9){const rr=dt*(k<.3?26:34);if(Math.random()<rr*.55)gDirt(1,k<.3?.7:1.1,6);if(Math.random()<dt*6)gSmoke(1,.8,6,k<.3)}
    if(k<.85&&Math.random()<dt*(k<.3?30:18)){const a=Math.random()*6.283,r=3.5+Math.random()*3.5;parts.push({t:'dust',c:[.62,.55,.45],x:GD.x+Math.cos(a)*r,y:GD.y+Math.sin(a)*r,z:.2,vx:Math.cos(a)*1.2,vy:Math.sin(a)*1.2,vz:1+Math.random()*2.5,life:1.1,max:1.1,r:.6+Math.random()*.6})}
+   if(!GD.pre&&!GD.frz&&(GD.cv||d>=G_SHOOT)&&GD.t>=G_RISE-.7*(GD.cv?3:1)){GD.pre=1;gPlay('shot',1.15)}
    if(!GD.frz&&GD.t>=G_RISE){GD.st='idle';GD.off=0;GD.th=[0,0,0,0];GD.cd=0;GD.shk=0}return}
   /* idle: стоит на месте, башня следит за игроком */
   let dy=ty-GD.yaw;dy=Math.atan2(Math.sin(dy),Math.cos(dy));GD.yaw+=Math.max(-1,Math.min(1,dy))*Math.min(1,dt*2.2);
   GD.smk-=dt;if(GD.smk<=0){GD.smk=.25;const q=gMuz();parts.push({t:'dust',c:[.95,.95,.95],x:q[0],y:q[1],z:q[2],vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,vz:.8+Math.random()*.6,life:1.6,max:1.6,r:.35+Math.random()*.25})}
   GD.cd-=dt;
+  if(!GD.pre&&(GD.cv?GD.st==='idle':d>=G_SHOOT)&&GD.cd<=.7&&GD.cd>0){GD.pre=1;gPlay('shot',1.15)}
   if((GD.cv?GD.st==='idle':d>=G_SHOOT)&&GD.cd<=0){gShoot()}
  }else if(GD.st==='sink'){
   GD.t+=dt;const k=Math.min(1,GD.t/G_RISE),p=gPose(1-k);GD.off=p.off;GD.th=p.th;GD.shk=k<.7?.1:0;
@@ -4345,7 +4347,7 @@ function gShoot(){
  beams.push({x:q[0],y:q[1],z:q[2],dx:ax,dy:ay,L:bl,life:.45,max:.45,col:[1,.25,.2],wd:3.2});
  beams.push({x:q[0],y:q[1],z:q[2],dx:ax,dy:ay,L:bl,life:.2,max:.2,col:[1,1,1],wd:1.2});
  for(let i=0;i<22;i++)parts.push({t:'spark',x:q[0],y:q[1],z:q[2],vx:ax*(6+Math.random()*10)+(Math.random()-.5)*5,vy:ay*(6+Math.random()*10)+(Math.random()-.5)*5,vz:(Math.random()-.3)*5,life:.5,max:.5,c:[1,.5,.3]});
- gPlay('shot',1.15);
+ if(!GD.pre)gPlay('shot',1.15);GD.pre=0;
  const dm=GD.n===1?STAT.hp.v*.5:STAT.hp.v*3+50;
  texts.push({x:P.x,y:P.y,z:6,life:1.2,max:1.2,s:GD.n===1?'ЗАВЕТ: ПРЕДУПРЕЖДЕНИЕ':'ЗАВЕТ: УНИЧТОЖЕНИЕ',red:true});
  GSHK=.6;
@@ -4505,7 +4507,7 @@ function drawCaravan(P_){if(!CV||!PG.cvTruck)return;const cx=cam.x,cy=cam.y;
 /* --- нападение: Страж убивает с одного выстрела --- */
 function cvHit(x,y,r){if(!CV||CV.atk||P.dead>0)return false;r=r||0;for(const c of cvCircles()){const dx=wr(x-c[0]),dy=wr(y-c[1]);if(dx*dx+dy*dy<(c[2]+r)*(c[2]+r)){cvAttack();return true}}return false}
 function cvBeamHit(ox,oy,bx,by,L){if(!CV||CV.atk)return false;for(const c of cvCircles()){const rx=wr(c[0]-ox),ry=wr(c[1]-oy),f=rx*bx+ry*by,pr=Math.abs(rx*by-ry*bx);if(f>0&&f<L&&pr<c[2])return true}return false}
-function cvAttack(){if(!CV||CV.atk||GD.st!=='none'&&GD.cv)return;CV.atk=1;CV.v*=.3;const a=Math.random()*6.283,r=10+Math.random()*10;GD.cv=1;GD.ang=a;GD.x=P.x+Math.cos(a)*r;GD.y=P.y+Math.sin(a)*r;const[ax,ay]=gAimDir();GD.by=-Math.atan2(ax,ay);GD.yaw=GD.by+1.9;GD.st='rise';GD.t=0;GD.n=1;GD.cd=0;GD.off=-GOFF;GD.th=[GF,GF,GF,GF];GD.f1=GD.f2=GD.f3=0;gPlay('spawn',1.5);texts.push({x:P.x,y:P.y,z:6,life:2,max:2,s:'ЗАВЕТ: НАПАДЕНИЕ НА КАРАВАН',red:true})}
+function cvAttack(){if(!CV||CV.atk||GD.st!=='none'&&GD.cv)return;CV.atk=1;CV.v*=.3;const a=Math.random()*6.283,r=10+Math.random()*10;GD.cv=1;GD.ang=a;GD.x=P.x+Math.cos(a)*r;GD.y=P.y+Math.sin(a)*r;const[ax,ay]=gAimDir();GD.by=-Math.atan2(ax,ay);GD.yaw=GD.by+1.9;GD.st='rise';GD.t=0;GD.n=1;GD.pre=0;GD.cd=0;GD.off=-GOFF;GD.th=[GF,GF,GF,GF];GD.f1=GD.f2=GD.f3=0;gPlay('spawn',1.5);texts.push({x:P.x,y:P.y,z:6,life:2,max:2,s:'ЗАВЕТ: НАПАДЕНИЕ НА КАРАВАН',red:true})}
 /* --- окно торговли --- */
 let CVO=false,CVX={give:{},get:{}};
 const CVPH={greet:['Путник. Дорога длинна. Есть что обменять?','Мир тебе, водитель. Смотри товар.','Мы не берём лом. Только вещи.'],ok:['Хороший обмен. Приходи ещё.','Договорились. Дорога к тебе добра.'],pref:['Ты принёс то, что мы ищем. Доверие растёт.'],low:['Мало. Добавь ещё.','Это не равный обмен.'],lock:['Эту книгу я пока не покажу.'],bye:['Дорога зовёт. Береги колёса.']};
