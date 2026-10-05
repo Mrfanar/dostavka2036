@@ -324,7 +324,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.129.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.130.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -1086,6 +1086,16 @@ function geo(name){const wm=/^t[23]_wheel(\d)$/.exec(name),wsc=wm?1.18:1;if(wm)n
    if(!bad)keep.push(i)}
   const m=keep.length*3,P2=new Int16Array(m*3),N2=new Int8Array(m*3),C2=new Uint8Array(m*3);let j=0;for(const i of keep)for(let k=0;k<3;k++){for(let d=0;d<3;d++){P2[j*3+d]=P[(i+k)*3+d];N2[j*3+d]=N[(i+k)*3+d];C2[j*3+d]=C[(i+k)*3+d]}j++}
   P=P2;N=N2;C=C2}
+ /* шасси 4: на передних колёсах вместо прямоугольных бронелистов — круглые */
+ if(name==='chas4'){const S=2083,keep=[];for(let i=0;i+2<(P.length/3);i+=3){let cx=0,cy=0,cz=0;for(let k=0;k<3;k++){cx+=P[(i+k)*3];cy+=P[(i+k)*3+1];cz+=P[(i+k)*3+2]}cx=Math.abs(cx/3/S);cy=cy/3/S;cz=cz/3/S;if(!(cx>1.3&&cz<-1.1&&cy<1.0))keep.push(i)}
+  const m=keep.length*3,P2=new Int16Array(m*3),N2=new Int8Array(m*3),C2=new Uint8Array(m*3);let j=0;for(const i of keep)for(let k=0;k<3;k++){for(let d=0;d<3;d++){P2[j*3+d]=P[(i+k)*3+d];N2[j*3+d]=N[(i+k)*3+d];C2[j*3+d]=C[(i+k)*3+d]}j++}
+  const GD=[113,96,65],RM=[140,116,78],BK=[36,34,30],RV=[150,152,146],mb=MB(),cx0=.6,cz0=-1.85;
+  for(const sg of[1,-1]){const base=sg>0?-1.47:1.40,oy=sg>0?base-.03:base+.07;
+   mb.cyl(cx0,base,cz0,.58,.07,GD,20).torus(cx0,oy-(sg>0?0:.03),cz0,.55,.03,RM,20,4).cyl(cx0,oy-(sg>0?0:.03),cz0,.17,.03,BK,12).cyl(cx0,oy-(sg>0?0:.03),cz0,.3,.02,RM,14);
+   for(let k=0;k<10;k++){const a=k/10*6.2832;mb.cyl(cx0+Math.cos(a)*.44,oy-(sg>0?0:.03),cz0+Math.sin(a)*.44,.035,.03,RV,5)}}
+  mb.rz();const[RP,RN,RC]=mb.raw(),k0=P2.length,nn=RP.length,P3=new Int16Array(k0+nn),N3=new Int8Array(k0+nn),C3=new Uint8Array(k0+nn);P3.set(P2);N3.set(N2);C3.set(C2);
+  for(let i=0;i<nn;i++){P3[k0+i]=Math.round(RP[i]*S);N3[k0+i]=Math.round(RN[i]);C3[k0+i]=RC[i]}
+  P=P3;N=N3;C=C3}
  if(wsc!==1)for(let i=0;i<P.length;i++)P[i]=Math.round(P[i]*wsc);
  return vao(P,N,C)}
 function vehicle(def){const fz=def.wheels.filter(w=>w.front).map(w=>w.pos[2]),rz=def.wheels.filter(w=>!w.front).map(w=>w.pos[2]),av=a=>a.reduce((x,y)=>x+y,0)/a.length,piv=av(rz),L=piv-av(fz);return{piv,L,parts:[].concat(def.parts||def.body).map(geo),wheels:def.wheels.map(w=>({g:geo(w.mesh),pos:w.pos,front:w.front,r:w.r||def.r})),spin:0}}
@@ -2418,7 +2428,7 @@ const SECT={'c:roof':[0,180],'c:roofR':[0,165],'c:hood':[0,70],'c:fender':[-55,1
 const secOf=q=>q.only?q.sec:q.tr?(/^t:hood/.test(q.id)?[0,75]:q.pos[0]<-.1?[-90,110]:q.pos[0]>.1?[90,110]:[0,180]):SECT[q.id]||(Math.abs(q.pos[0])>.9?[q.pos[0]>0?80:-80,100]:q.pos[2]<-1.5?[0,75]:q.pos[2]>1?[180,140]:[0,180]),secTxt=q=>{if(q.rocket)return'вверх';const h=secOf(q)[1];return h>=180?'360°':2*h+'°'};
 const TRV={mg:480,mg_twin:420,shotgun:380,gun4:260,harpoon:220,gatling:300,laser:400,rocket:999,rocket2:999,rocket4:999};for(const k in TRV)WDEF[k].trv=TRV[k];
 const TONLY={tank:1},wShow=w=>TS()&&TS().lock4?!!TONLY[w]:!TONLY[w];
-const slotOk=(q,w)=>q.only?w===q.only:(!TONLY[w]&&isRk(w)===!!q.rocket);
+const lowT=()=>Math.min(CFG.cab,CFG.body),slotOk=(q,w)=>q.only?w===q.only:(!TONLY[w]&&WTIER[w]<=lowT()&&isRk(w)===!!q.rocket);
 const WPRICE={mg:60,mg_twin:150,shotgun:150,gun4:300,harpoon:280,gatling:500,laser:550,rocket:220,rocket2:420,rocket4:800,iskra:240,rubin:520,duet:480,rassek:700,prizma:760,tsirkul:260,dvoika:480,drovosek:640,karusel:700,kolotushka:380,kuvalda:620,goroh:700,yozh:300,miraj:450,zontik:600,metelka:800,kupol:900,tank:1500};
 const OWN={cab:{1:1},body:{1:1},chas:{1:1}},CFG={cab:1,body:1,chas:1},WOWN={mg:1},SLOTW={'c:roof':'mg'};
 const AMC={mg:'bul',mg_twin:'bul',shotgun:'bul',gun4:'bul',gatling:'bul',laser:'bat',harpoon:'harp',rocket:'rkt',rocket2:'rkt',rocket4:'rkt',iskra:'bat',rubin:'bat',duet:'bat',rassek:'bat',prizma:'bat',tsirkul:'saw',dvoika:'saw',drovosek:'saw',karusel:'saw',kolotushka:'gre',kuvalda:'gre',goroh:'gre',tank:'shl'};
@@ -2445,7 +2455,7 @@ const cabSlotsN=t=>TS()?TMNT(FT,t,1).filter(isCabSlot).length:MAN.cabs[t].slots.
 const curSlots=()=>TS()?TMNT(FT,CFG.cab,CFG.body).map(q=>({...q,tr:1,kind:isCabSlot(q)?'cab':'body'})):MAN.cabs[CFG.cab].slots.map(q=>({...q,kind:'cab'})).concat(MAN.bodies[CFG.body].slots.map(q=>({...q,kind:'body'})));
 const wUsed=w=>Object.values(SLOTW).filter(x=>x===w).length,wFree=w=>(WOWN[w]||0)-wUsed(w);
 const durMax=()=>Math.round((PART_HP[CFG.cab]+PART_HP[CFG.body]+PART_HP[CFG.chas])*HPK());
-let INF_MONEY=false;
+let INF_MONEY=DEV;
 function hudScrap(){if(INF_MONEY)SCRAP=999999;const t=INF_MONEY?'∞':SCRAP;$('t_scr').textContent=t;const e=$('s_scr');if(e)e.textContent=t}
 function getVeh(){if(TS())return truckVeh(FT,CFG.cab,CFG.body,CFG.chas);const k=CFG.cab+'-'+CFG.body+'-'+CFG.chas;if(!VEH[k]){const c=MAN.chassis[CFG.chas];VEH[k]=vehicle({parts:[MAN.cabs[CFG.cab].mesh,MAN.bodies[CFG.body].mesh,c.mesh],wheels:c.wheels,r:c.r})}return VEH[k]}
 function rebuildWeapons(){const sl=curSlots();WPN=[];sl.forEach((q,i)=>{const w=SLOTW[q.id];if(w)WPN.push({m:{pos:q.pos,g:q.g,w},sec:secOf(q),def:WDEF[w],aim:P.a,aw:0,cd:i*.05,flash:0,kick:0,ammo:WDEF[w].mag,rel:0,ai:0,bi:0})});
@@ -2454,6 +2464,7 @@ function rebuildWeapons(){const sl=curSlots();WPN=[];sl.forEach((q,i)=>{const w=
  updWl()}
 function applyBuild(refill){const oh=STAT.hp.max,of=STAT.fu.max;modTrim();TR=getVeh();STAT.hp.max=durMax();STAT.fu.max=Math.round(TFUEL[CFG.chas]*FUK());
  const ids=new Set(curSlots().map(q=>q.id));for(const id in SLOTW)if(!ids.has(id))delete SLOTW[id];
+ for(const q of curSlots()){const w0=SLOTW[q.id];if(w0&&!slotOk(q,w0))delete SLOTW[q.id]}
  for(const q of curSlots())if(!SLOTW[q.id]){const w=[...WORDER].reverse().find(k=>wFree(k)>0&&slotOk(q,k));if(w)SLOTW[q.id]=w}
  rebuildWeapons();
  if(refill){for(const k in STAT){STAT[k].v=STAT[k].max;STAT[k].shown=STAT[k].ghost=STAT[k].max}}
@@ -2503,7 +2514,7 @@ const cargoCap=()=>TS()?Math.max(5,Math.round(TS().st.cargo*(.5+.17*(CFG.body-1)
 function actionsFor(i){const a=[],mk=(t,dis,cls,fn)=>a.push({t,dis,cls,fn}),pr=iPrice(i),st=gMode==='store';
  if(i.k==='w'){const w=i.id,ow=WOWN[w]||0,fr=wFree(w),fs=curSlots().find(x=>!SLOTW[x.id]&&slotOk(x,w));
   if(st){const q0=fs,noRoom=!q0&&cargoUsed()>=cargoCap();
-   mk(noRoom?'Нет места в кузове':'Купить · '+pr,noRoom||SCRAP<pr,'go',()=>{SCRAP-=pr;WOWN[w]=ow+1;const q=curSlots().find(x=>!SLOTW[x.id]&&slotOk(x,w));if(q)SLOTW[q.id]=w;rebuildWeapons();snd('coin')});
+   const lowN=WTIER[w]>lowT();mk(lowN?'Нужен тир '+WTIER[w]+' (сейчас '+lowT()+')':noRoom?'Нет места в кузове':'Купить · '+pr,noRoom||lowN||(!INF_MONEY&&SCRAP<pr),'go',()=>{if(!INF_MONEY)SCRAP-=pr;WOWN[w]=ow+1;const q=curSlots().find(x=>!SLOTW[x.id]&&slotOk(x,w));if(q)SLOTW[q.id]=w;rebuildWeapons();snd('coin')});
    mk('Продать +'+Math.round(pr*.5),fr<=0,'sell',()=>{SCRAP+=Math.round(pr*.5);WOWN[w]=ow-1;if(!WOWN[w])delete WOWN[w];snd('sell')})}
   else{if(fr>0&&fs)mk('В слот',false,'go',()=>{SLOTW[fs.id]=w;rebuildWeapons();snd('reloaded')});
    {const wv=WEARV(w);if(wv>.5){const cost=Math.max(5,Math.round(wv*1.2));mk('Ремонт орудия '+Math.round(wv)+'% · '+cost,SCRAP<cost,'go',()=>{SCRAP-=cost;META.wear[w]=0;snd('coin');renderShop()})}}
@@ -2734,7 +2745,7 @@ function cWeap(R){R.innerHTML=cHdr(svgI('weap'),'Оружейник','покуп
  if(cWTab==='u'){R.appendChild(E_('div','c-h','Износ и ремонт орудий'));let any=false;
   for(const w of WORDER){if(!(WOWN[w]>0))continue;any=true;const wv=Math.round(WEARV(w)),cost=Math.max(5,Math.round(wv*1.2)),r=E_('div','c-q');r.innerHTML='<div class="ic"><img src="'+(ICON['w_'+w]||'')+'" width="40" height="40"></div><div class="t"><b>'+WDEF[w].n+'</b><span>износ '+wv+'%</span></div><div class="c-bar"><i style="width:'+wv+'%;background:'+(wv>60?'#c9573a':'#8fc04a')+'"></i></div>';const b=E_('button','c-b go','Ремонт · '+cost);b.disabled=wv<1||SCRAP<cost;b.onclick=()=>{SCRAP-=cost;META.wear[w]=0;snd('coin');renderShop()};r.appendChild(b);R.appendChild(r)}
   if(!any)R.appendChild(E_('div','c-note','Нет оружия для ремонта.'));R.appendChild(E_('div','c-note','Улучшения орудий (модификаторы) появятся позже.'));return}
- const g=E_('div','c-cards');for(const w of WORDER){if(!wShow(w))continue;const i={k:'w',id:w},ow=WOWN[w]||0,b=E_('button','c-card'+(ow?' f':'')+(sameI(i,gSelI)?' sel':''),'<img src="'+(ICON['w_'+w]||'')+'">'+(AMC[w]?'<img class="am" src="'+amIcon(AMC[w])+'">':'')+'<span class="tr">Т'+WTIER[w]+'</span><span class="pr">'+(ow?'×'+ow:WPRICE[w])+'</span>');b.title=WDEF[w].n+(AMC[w]?' · '+AMN[AMC[w]]:'');b.onclick=()=>{gSelI=i;gSlot=null;renderShop()};if(ow)dragW(b,w,null);ctrlBind(b,i);g.appendChild(b)}R.appendChild(g);
+ const g=E_('div','c-cards');for(const w of WORDER){if(!wShow(w))continue;const i={k:'w',id:w},ow=WOWN[w]||0,b=E_('button','c-card'+(ow?' f':'')+(WTIER[w]>lowT()?' off':'')+(sameI(i,gSelI)?' sel':''),'<img src="'+(ICON['w_'+w]||'')+'">'+(AMC[w]?'<img class="am" src="'+amIcon(AMC[w])+'">':'')+'<span class="tr">Т'+WTIER[w]+'</span><span class="pr">'+(ow?'×'+ow:WPRICE[w])+'</span>');b.title=WDEF[w].n+(AMC[w]?' · '+AMN[AMC[w]]:'');b.onclick=()=>{gSelI=i;gSlot=null;renderShop()};if(ow)dragW(b,w,null);ctrlBind(b,i);g.appendChild(b)}R.appendChild(g);
  if(gSelI&&gSelI.k==='w'){const inf=E_('div','c-info');inf.innerHTML='<div class="c-prev"><img src="'+(ICON['w_'+gSelI.id]||'')+'"></div><div class="c-stat">'+tipHtml(gSelI)+'</div>';R.appendChild(inf);
   const ac=E_('div','c-row');for(const a of actsAs(gSelI,true).concat(actsAs(gSelI,false))){const b=E_('button','c-b '+a.cls,a.t);b.disabled=a.dis;b.onclick=()=>{a.fn();renderShop()};ac.appendChild(b)}R.appendChild(ac)}
  else R.appendChild(E_('div','c-note','Выберите оружие в списке, затем — слот на грузовике слева.'));
@@ -3281,6 +3292,7 @@ function buildPlayerTrucks(){
   road:{tc:[34,33,32],lugs:20,lw:.1,lh:.05,rc:[196,198,194],rr:.62,cap:[222,224,220],bolts:5,capR:.2},
   van:{tc:[40,40,42],lugs:14,lw:.08,lh:.035,rc:[210,206,196],rr:.66,cap:[120,124,128],bolts:6,capR:.26,thin:1},
   bus:{tc:[30,30,30],lugs:16,lw:.14,lh:.07,rc:[70,100,140],rr:.58,cap:[150,156,160],bolts:8,capR:.3,dual:1},
+  kab:{tc:[44,42,36],lugs:18,lw:.16,lh:.05,rc:[120,110,70],rr:.5,cap:[96,98,90],bolts:10,capR:.34,ring:[220,170,50],rec:1},
   chunk:{tc:[44,42,36],lugs:9,lw:.34,lh:.16,rc:[120,110,70],rr:.5,cap:[96,98,90],bolts:10,capR:.34,ring:[220,170,50]},
   tatra:{tc:[36,36,34],lugs:7,lw:.5,lh:.2,rc:[190,100,40],rr:.52,cap:[130,132,128],bolts:6,capR:.4,cone:1},
   zil:{tc:[40,40,36],lugs:14,lw:.16,lh:.14,rc:[150,60,40],rr:.54,cap:[100,100,96],bolts:8,capR:.28,alt:.5},
@@ -3294,8 +3306,13 @@ function buildPlayerTrucks(){
   for(const y0 of ys){const yb=y0-tw/2;m.cyl(0,yb,0,r,tw,o.tc,14);
    for(let k=0;k<o.lugs;k++){const a=k/o.lugs*6.2832;m.box(Math.cos(a)*(r-.02),yb,Math.sin(a)*(r-.02),o.lh*2,tw*1.04,o.lw,sh(o.tc,1.35),-a+(k%2?(o.alt||0):-(o.alt||0)))}
    for(let i=0;i<(o.ribs||0);i++){m.torus(0,yb+tw*(i+1)/((o.ribs||0)+1),0,r*.99,tw*.045,sh(o.tc,.8),14,4)}}
-  const W2=w/2+.04;m.cyl(0,-W2-.02,0,r*o.rr,w+.12,o.rc,10);
-  for(const sg of[-1,1]){const yy=sg*(W2+.02);m.cyl(0,sg>0?yy:yy-.08,0,r*o.capR,.1,o.cap,o.flat?12:8);
+  const W2=w/2+.04;if(!o.rec)m.cyl(0,-W2-.02,0,r*o.rr,w+.12,o.rc,10);
+  if(o.rec)for(const sg of[-1,1]){const f=sg*w/2,c0=sg>0?f-.01:f-.04;
+   m.cyl(0,f-.01,0,r*o.rr,.02,o.rc,12);m.torus(0,f,0,r*o.rr*1.2,.11,sh(o.tc,1.3),16,5).torus(0,f,0,r*o.rr*1.62,.075,sh(o.tc,1.18),16,5);
+   if(o.ring)m.cyl(0,f-.01,0,r*o.rr*.98,.03,o.ring,12);
+   m.cyl(0,c0,0,r*o.capR*.8,.04,o.cap,8);
+   for(let k=0;k<o.bolts;k++){const a=k/o.bolts*6.2832,rr=r*(o.rr*.72);m.box(Math.cos(a)*rr,sg>0?f:f-.05,Math.sin(a)*rr,.08,.06,.08,[184,184,176])}}
+  else for(const sg of[-1,1]){const yy=sg*(W2+.02);m.cyl(0,sg>0?yy:yy-.08,0,r*o.capR,.1,o.cap,o.flat?12:8);
    if(o.cone)m.cyl(0,sg>0?yy+.1:yy-.18,0,r*o.capR*.9,.1,o.cap,8,r*.05);
    if(o.ring)m.cyl(0,sg>0?yy-.02:yy-.04,0,r*o.rr*1.02,.06,o.ring,12);
    if(!o.flat)for(let k=0;k<o.bolts;k++){const a=k/o.bolts*6.2832,rr=r*(o.rr*.78);m.box(Math.cos(a)*rr,sg>0?yy+.0:yy-.06,Math.sin(a)*rr,.08,.07,.08,[184,184,176])}
@@ -3307,22 +3324,24 @@ function buildPlayerTrucks(){
  const sym=(m,fn)=>{fn(m,-1);fn(m,1)};
 
  const SPEC={
-  pickup:{nb:2,bt:[2,4],c:[168,92,50],ww:.36,cabs:[{z:-.5,d:1.3,y0:.8,y1:1.7,w:1.8,ant:[.8]}],nose:{z:-2.5,y0:.8,y1:1.3,w:1.8,hood:[-1.8,1.2]},bed:{z:1.55,d:2.2,y0:.98,y1:1.48,w:1.8,type:'open'}},
-  van:{nb:2,bt:[2,4],c:[226,210,170],ww:.34,cabs:[{z:-1.45,d:1.4,y0:.57,y1:2.22,w:1.85,rack:false}],nose:{z:-2.65,y0:.57,y1:1.37,w:1.8,hood:[-2.1,.8]},bed:{z:.95,d:3.3,y0:1.35,y1:3.05,w:1.9,type:'box',hatch:[0,.4]}},
-  gaz53:{nb:2,bt:[2,4],c:[96,116,130],ww:.4,cabs:[{z:-.9,d:1.5,y0:1.5,y1:3.0,w:1.9}],nose:{z:-3.2,y0:.8,y1:1.85,w:1.7,hood:[-2.4,1.4]},bed:{z:2.0,d:3.6,y0:1.4,y1:2.0,w:2.1,type:'open'}},
-  gaz66:{nb:2,bt:[2,4],c:[86,96,60],ww:.46,cabs:[{z:-1.95,d:1.7,y0:1.45,y1:2.95,w:1.95,ant:[-.8]}],nose:{z:-2.85,y0:1.0,y1:1.75,w:1.85},bed:{z:1.45,d:2.9,y0:1.3,y1:1.8,w:2.0,type:'open',tent:{y0:1.8,y1:3.05,w:1.9,c:[150,138,96]}}},
+  pickup:{nb:2,bt:[2,4],c:[168,92,50],ww:.36,cabs:[{z:-.5,d:1.3,y0:.8,y1:1.7,w:1.8,ant:[.8]}],nose:{z:-2.5,y0:.8,y1:1.3,w:1.8,hood:[-1.8,1.2]},bed:{z:1.55,d:2.2,y0:.98,y1:1.78,w:1.8,type:'open'}},
+  van:{nb:2,bt:[2,2],c:[226,210,170],ww:.46,tank:-1,cabs:[{z:-1.45,d:1.4,y0:.57,y1:2.22,w:1.85,rack:false,exh:false}],nose:{z:-2.65,y0:.57,y1:1.37,w:1.8,hood:[-2.1,.8]},bed:{z:.95,d:3.3,y0:1.35,y1:3.05,w:1.9,type:'box'}},
+  gaz53:{nb:3,bt:[2,3,3],c:[96,116,130],ww:.46,cabs:[{z:-2.15,d:1.8,y0:.95,y1:3.0,w:1.1,exh:false}],nose:{z:-3.3,y0:.7,y1:1.4,w:2.0},bed:{z:2.0,d:3.6,y0:1.75,y1:2.55,w:2.1,type:'open'}},
+  gaz66:{nb:4,bt:[1,2,2,2],c:[86,96,60],ww:.46,cabs:[{z:-1.95,d:1.7,y0:1.45,y1:2.95,w:1.95,ant:[-.8]}],nose:{z:-2.85,y0:1.0,y1:1.75,w:1.85},bed:{z:1.45,d:2.9,y0:1.6,y1:2.1,w:2.0,type:'open',tent:{y0:2.1,y1:3.35,w:1.9,c:[150,138,96]}}},
   tatra4:{nb:3,bt:[2,3,4],c:[200,172,120],ww:.5,cabs:[{z:-2.3,d:1.9,y0:1.15,y1:2.6,w:2.1}],nose:{z:-3.25,y0:.95,y1:1.9,w:2.1},bed:{z:1.6,d:3.6,y0:1.45,y1:2.0,w:2.18,type:'open'}},
   zil131:{nb:3,bt:[2,3,4],c:[84,98,64],ww:.46,cabs:[{z:-1.4,d:1.5,y0:1.55,y1:3.05,w:1.95,ant:[.8]}],nose:{z:-3.72,y0:.8,y1:1.9,w:1.8,hood:[-2.9,1.5]},bed:{z:1.7,d:4.4,y0:1.4,y1:2.0,w:2.2,type:'open'}},
   tatra6:{nb:4,bt:[1,2,3,4],c:[196,160,104],ww:.55,cabs:[{z:-2.9,d:2.0,y0:1.45,y1:3.05,w:2.3}],nose:{z:-3.9,y0:1.0,y1:2.0,w:2.3},bed:{z:1.4,d:4.8,y0:1.35,y1:2.95,w:2.4,type:'open'},tank:-1},
   zil135:{nb:4,bt:[1,2,3,4],c:[92,104,70],ww:.56,cabs:[{z:-4.0,d:2.3,y0:1.75,y1:3.3,w:2.3,ant:[.8]}],nose:{z:-5.2,y0:1.2,y1:2.2,w:2.3},bed:{z:1.2,d:6.2,y0:1.5,y1:2.5,w:2.5,type:'open'}},
   maz543:{nb:4,bt:[1,2,3,4],c:[88,100,62],ww:.6,cabs:[{x:-.95,z:-4.2,d:2.5,y0:1.9,y1:3.5,w:1.1,sides:[-1],exs:-1,rack:false},{x:.95,z:-4.2,d:2.5,y0:1.9,y1:3.5,w:1.1,sides:[1],exs:1,rack:false,ant:[0]}],nose:{z:-5.5,y0:1.9,y1:3.2,w:2.7,bar:false},bed:{z:1.6,d:6.8,y0:1.45,y1:2.35,w:2.6,type:'open',spare:false}},
-  belaz:{nb:4,bt:[1,2,3,4],c:[226,164,44],ww:1.0,cabs:[{x:-1.9,z:-4.6,d:1.9,y0:3.6,y1:5.3,w:1.6,sides:[-1,1],exs:-1}],nose:{z:-5.42,y0:2.2,y1:4.0,w:2.7,hood:[-4.4,1.6]},tur:[0,3.7,1.4]},
+  belaz:{nb:4,bt:[1,2,3,4],c:[226,164,44],ww:1.4,cabs:[{x:-1.9,z:-4.6,d:1.9,y0:3.6,y1:5.3,w:1.6,sides:[-1,1],exs:-1,exh:false}],nose:{z:-5.42,y0:2.2,y1:4.0,w:2.7,hood:[-4.4,1.6]},tur:[0,3.7,1.4]},
   maz536:{nb:5,bt:[1,2,3,4,4],c:[70,80,56],ww:.7,cabs:[{z:-3.9,d:2.4,y0:2.5,y1:3.9,w:2.8,ant:[.9]}],nose:{z:-5.14,y0:1.5,y1:3.2,w:2.8},bed:{z:.6,d:5.6,y0:2.4,y1:4.0,w:3.0,type:'box',spare:false}}
  };
  /* ---- ДЕТАЛИРОВКА ПО ТИРАМ (кабина / кузов / шасси) ---- */
  const STEEL=[128,130,126],STEEL2=[92,94,92],RED=[196,52,38],DKK=[34,32,30];
- const TV={};let TIERS_=null,WW=null;
+ const TV={};let TIERS_=null,WW=null,WT_=null;
  const PRT=()=>{const p={m:MB(),mz:MB(),mx:MB()};p.mz.box(0,0,0,.001,.001,.001,[0,0,0]);p.mx.box(0,0,0,.001,.001,.001,[0,0,0]);return p};
+ const ring=(m,x,y,z)=>{m.cyl(x,y-.12,z,.34,.07,STEEL2,16).torus(x,y-.05,z,.3,.035,STEEL,16,4).cyl(x,y-.05,z,.2,.03,DKK,14);for(let k=0;k<6;k++){const a=k/6*6.2832;m.box(x+Math.cos(a)*.26,y-.05,z+Math.sin(a)*.26,.06,.05,.06,[184,184,176])}};
+ const mntRings=(id,t,kind,m)=>{if(id==='pickup'||SPEC[id].tur)return;const L=kind==='c'?MNT(id,t,0):MNT(id,0,t);for(const q of L)if(!q.rocket&&!q.nr&&q.pos)ring(m,q.pos[0],q.pos[1]+(kind==='b'?(id==='gaz53'?-.03:.14):0),q.pos[2])};
  const FIN=p=>[p.m.build(),p.mz.rx().build(),p.mx.rz().build()];
  const rivs=(m,col)=>({z:(x,y,z0,z1,st=.34)=>{for(let z=z0;z<=z1+1e-6;z+=st)m.box(x,y,z,.07,.07,.07,col)},x:(y,z,x0,x1,st=.34)=>{for(let x=x0;x<=x1+1e-6;x+=st)m.box(x,y,z,.07,.07,.07,col)}});
  const DRESS=(id,_m,W)=>{
@@ -3338,16 +3357,16 @@ function buildPlayerTrucks(){
       pad(cx+s*(hw+.055),cb.y0+h*.42,cb.z+cb.d*.3,.06,.06,.22,STEEL);
       pad(cx+s*(hw+.16),cb.y0+h*.5,z0+.12,.3,.05,.05,STEEL2);pad(cx+s*(hw+.3),cb.y0+h*.38,z0+.1,.07,.34,.2,STEEL2);pad(cx+s*(hw+.33),cb.y0+h*.42,z0+.1,.02,.26,.15,[150,170,176]);
       pad(cx+s*(hw+.12),cb.y0-.1,cb.z,.34,.06,cb.d*.9,STEEL);pad(cx+s*(hw+.12),cb.y0-.4,z0+.35,.05,.32,.05,STEEL2);pad(cx+s*(hw+.12),cb.y0-.4,z1-.35,.05,.32,.05,STEEL2);
-      if(cb.exh!==false&&(s===(cb.exs||1)||t>=4)){const ex=cx+s*(hw+.14);m.cyl(ex,cb.y0-.1,z1+.2,.09,h+.85,STEEL2,8).cyl(ex,cb.y1+.75,z1+.2,.11,.1,STEEL,8).cyl(ex,cb.y0+h*.35,z1+.2,.115,.08,STEEL,8).cyl(ex,cb.y0+h*.7,z1+.2,.115,.08,STEEL,8)}
+      if(cb.exh!==false&&!(id==='gaz66'&&t>=2)&&(s===(cb.exs||1)||t>=4)){const ex=cx+s*(hw+.14);m.cyl(ex,cb.y0-.1,z1+.2,.09,h+.85,STEEL2,8).cyl(ex,cb.y1+.75,z1+.2,.11,.1,STEEL,8).cyl(ex,cb.y0+h*.35,z1+.2,.115,.08,STEEL,8).cyl(ex,cb.y0+h*.7,z1+.2,.115,.08,STEEL,8)}
       if(t>=2){pad(cx+s*(hw+.03),cb.y0+.02,cb.z,.06,.26,cb.d*.96,c2);pad(cx+s*(hw+.03),cb.y1-.3,cb.z,.06,.18,cb.d*.96,c2);R.z(cx+s*(hw+.06),cb.y0+.12,z0+.15,z1-.15);R.z(cx+s*(hw+.06),cb.y1-.2,z0+.15,z1-.15);
        for(let z=z0+.3;z<z1-.2;z+=.28)pad(cx+s*(hw+.04),cb.y0+h*.55,z,.04,h*.38,.035,DKK)}
-      if(t>=3){pad(cx+s*(hw+.09),cb.y0+.28,cb.z+.05,.07,h*.5,cb.d*.8,c3);R.z(cx+s*(hw+.14),cb.y0+.34,z0+.2,z1-.2,.3);R.z(cx+s*(hw+.14),cb.y0+.28+h*.5-.08,z0+.2,z1-.2,.3)}
+      if(t>=3&&id!=='gaz53'){pad(cx+s*(hw+.09),cb.y0+.28,cb.z+.05,.07,h*.5,cb.d*.8,c3);R.z(cx+s*(hw+.14),cb.y0+.34,z0+.2,z1-.2,.3);R.z(cx+s*(hw+.14),cb.y0+.28+h*.5-.08,z0+.2,z1-.2,.3)}
       if(t>=4){pad(cx+s*(hw+.14),cb.y0+h*.78,cb.z,.06,.1,cb.d*.9,STEEL2);pad(cx+s*(hw+.13),cb.y0+.2,cb.z,.07,.16,cb.d*.9,c3)}
      }
      pad(cx,cb.y1-.02,cb.z,cb.w-.1,.06,cb.d-.1,c3);
-     if(t>=2){R.x(cb.y1-.14,z0-.035,cx-hw+.15,cx+hw-.15);R.x(cb.y0+.12,z0-.035,cx-hw+.15,cx+hw-.15);
-      for(let x=cx-hw*.8;x<=cx+hw*.8+1e-6;x+=.24)pad(x,cb.y0+h*.5,z0-.045,.04,h*.4,.035,DKK)}
-     if(t>=3){const ry=cb.y1+.04,rx=hw-.16;for(const s of[-1,1]){pad(cx+s*rx,ry,z0+.14,.05,.28,.05,STEEL);pad(cx+s*rx,ry,z1-.14,.05,.28,.05,STEEL);pad(cx+s*rx,ry+.28,cb.z,.05,.05,cb.d-.22,STEEL)}
+     if(t>=2&&id!=='gaz53'){R.x(cb.y1-.14,z0-.035,cx-hw+.15,cx+hw-.15);R.x(cb.y0+.12,z0-.035,cx-hw+.15,cx+hw-.15);
+      if(id!=='van')for(let x=cx-hw*.8;x<=cx+hw*.8+1e-6;x+=.24)pad(x,cb.y0+h*.5,z0-.045,.04,h*.4,.035,DKK)}
+     if(t>=3&&id!=='gaz53'){const ry=cb.y1+.04,rx=hw-.16;for(const s of[-1,1]){pad(cx+s*rx,ry,z0+.14,.05,.28,.05,STEEL);pad(cx+s*rx,ry,z1-.14,.05,.28,.05,STEEL);pad(cx+s*rx,ry+.28,cb.z,.05,.05,cb.d-.22,STEEL)}
       pad(cx,ry+.28,z0+.14,rx*2,.05,.05,STEEL);pad(cx,ry+.28,z1-.14,rx*2,.05,.05,STEEL);
       pad(cx-rx*.35,ry+.04,cb.z+cb.d*.18,.42,.5,.2,RED);pad(cx-rx*.35,ry+.54,cb.z+cb.d*.18,.16,.08,.1,[60,54,48])}
      if(t>=4){const ry=cb.y1+.04,rx=hw-.16;for(const s of[-1,1]){pad(cx+s*rx,ry+.28,z0+.14,.05,.45,.05,STEEL);pad(cx+s*rx,ry+.28,z1-.14,.05,.45,.05,STEEL);pad(cx+s*rx,ry+.7,cb.z,.05,.05,cb.d-.22,STEEL);pad(cx+s*rx*.55,ry+.7,cb.z,.05,.05,cb.d-.22,STEEL)}
@@ -3357,10 +3376,10 @@ function buildPlayerTrucks(){
      else if(cb.ant&&t>=2){m.cyl(cx+cb.ant[0]*hw,cb.y1,z1-.12,.025,1.4,[40,40,40],5)}
     }
     /* нос */
-    {const n=sp.nose,hw=n.w/2,zf=n.z;
+    if(id!=='gaz53'){const n=sp.nose,hw=n.w/2,zf=n.z;
      for(let i=0;i<4;i++)pad(0,n.y0+.12+i*Math.min(.12,(n.y1-n.y0-.3)/4),zf-.03,n.w*.55,.05,.035,DKK);
      pad(0,n.y0+.1,zf-.025,n.w*.62,.02,.03,STEEL2);pad(-n.w*.28,n.y0+.1,zf-.03,.05,n.y1-n.y0-.25,.04,STEEL2);pad(n.w*.28,n.y0+.1,zf-.03,.05,n.y1-n.y0-.25,.04,STEEL2);
-     for(const s of[-1,1]){pad(s*hw*.66,n.y1-.34,zf-.03,.34,.05,.08,STEEL2);pad(s*hw*.66,n.y1-.12,zf-.035,.34,.05,.08,STEEL2);pad(s*hw*.66-.18,n.y1-.34,zf-.03,.04,.27,.08,STEEL2);pad(s*hw*.66+.18,n.y1-.34,zf-.03,.04,.27,.08,STEEL2);pad(s*hw*.9,n.y0+.12,zf-.03,.09,.1,.04,[236,150,40])}
+     if(!(id==='gaz66'&&t>=2))for(const s of[-1,1]){pad(s*hw*.66,n.y1-.34,zf-.03,.34,.05,.08,STEEL2);pad(s*hw*.66,n.y1-.12,zf-.035,.34,.05,.08,STEEL2);pad(s*hw*.66-.18,n.y1-.34,zf-.03,.04,.27,.08,STEEL2);pad(s*hw*.66+.18,n.y1-.34,zf-.03,.04,.27,.08,STEEL2);pad(s*hw*.9,n.y0+.12,zf-.03,.09,.1,.04,[236,150,40])}
      if(t>=2)R.x(n.y1-.05,zf-.03,-hw+.12,hw-.12);
      if(n.hood){const hz=n.hood;for(const s of[-1,1]){pad(s*hw*.4,n.y1,hz[0],.26,.03,hz[1]*.8,sh(c,.55));for(let q=-1;q<=1;q++)pad(s*hw*.4,n.y1+.03,hz[0]+q*hz[1]*.27,.26,.02,.06,sh(c,.35))}
       if(t>=2){R.z(-hw+.1,n.y1,hz[0]-hz[1]/2,hz[0]+hz[1]/2,.4);R.z(hw-.1,n.y1,hz[0]-hz[1]/2,hz[0]+hz[1]/2,.4)}
@@ -3373,10 +3392,42 @@ function buildPlayerTrucks(){
       const hh=(n.y1-n.y0);pad(0,n.y0-.05,zf-.1,n.w+.12,hh+.15,.12,c3);pad(0,n.y0+hh*.4,zf-.17,n.w*.6,.1,.05,DKK);pad(0,n.y0+hh*.55,zf-.17,n.w*.6,.1,.05,DKK);
       R.x(n.y0+.1,zf-.17,-hw+.1,hw-.1,.3);R.x(n.y0+hh+.0,zf-.17,-hw+.1,hw-.1,.3);pad(0,n.y1+.1,zf-.05,n.w*.9,.12,.5,c3)}
     }
+    if(id==='pickup'){const cb=sp.cabs[0],z0=cb.z-cb.d/2;
+     for(let x=-.7;x<=.701;x+=.2)pad(x,1.3,z0-.02,.035,.45,.03,DKK);
+     for(const yy of[1.3,1.44,1.58,1.72])pad(0,yy,z0-.02,1.5,.035,.03,DKK);
+     m.cyl(.45,cb.y1+.07,cb.z,.34,.07,STEEL2,16).torus(.45,cb.y1+.14,cb.z,.3,.035,STEEL,16,4).cyl(.45,cb.y1+.14,cb.z,.2,.03,DKK,14);
+     for(let k=0;k<6;k++){const a=k/6*6.2832;pad(.45+Math.cos(a)*.26,cb.y1+.14,cb.z+Math.sin(a)*.26,.06,.05,.06,[184,184,176])}}
+    if(id==='van'){const cb=sp.cabs[0],z0=cb.z-cb.d/2,zf=sp.nose.z,mz=p.mz,mx=p.mx,BLU=[70,130,205];
+     pad(0,1.5,z0-.02,1.56,.62,.03,BLU);
+     for(let x=-.7;x<=.701;x+=.14)pad(x,1.5,z0-.045,.022,.62,.02,DKK);
+     for(let y=1.5;y<=2.121;y+=.1)pad(0,y,z0-.045,1.58,.022,.02,DKK);
+     if(t>=2){for(const sx of[-1,1]){pad(sx*.43,1.48,z0-.08,.72,.66,.04,c3);pad(sx*.43,1.48,z0-.1,.76,.05,.03,STEEL2);pad(sx*.43,2.09,z0-.1,.76,.05,.03,STEEL2);for(let y=1.58;y<2.1;y+=.22)pad(sx*.43,y,z0-.105,.62,.025,.02,STEEL2);for(const xx of[.12,.74])pad(sx*xx,1.55,z0-.1,.06,.06,.04,[184,184,176]);for(const xx of[.12,.74])pad(sx*xx,2.02,z0-.1,.06,.06,.04,[184,184,176])}}
+     for(const sx of[-1,1]){mz.cyl(sx*.62,-(zf+.03),1.05,.27,.1,STEEL2,16);mz.cyl(sx*.62,-(zf-.05),1.05,.22,.08,[255,244,200],16);mz.cyl(sx*.62,-(zf-.12),1.05,.1,.03,[255,255,235],10)}
+     mx.cyl(.83,-.78,zf-.08,.09,1.75,[130,92,66],10);mx.cyl(.83,.55,zf-.08,.11,.42,[128,130,126],10);mx.cyl(.83,.97,zf-.08,.095,.04,[44,42,40],10);
+     m.cyl(.62,.78,zf-.08,.07,.1,[84,80,76],8)}
+    if(id==='gaz53'&&t>=2){const mz=p.mz,mx=p.mx,xs=.64,zf=-3.14,zb=-1.2,y0=.95,yt=3.12,TB=STEEL,R2=.035;
+     for(const s of[-1,1]){for(const z of[zf,zb,-2.17])m.cyl(s*xs,y0,z,R2,yt-y0,TB,6);mz.cyl(s*xs,1.2,yt,R2,zb-zf,TB,6);mz.cyl(s*xs,1.2,1.9,R2,zb-zf,TB,6);mz.cyl(s*xs,1.2,2.5,R2,zb-zf,TB,6)}
+     for(const z of[zf,zb,-2.17])mx.cyl(yt,-xs,z,R2,2*xs,TB,6);for(const z of[zf,zb])mx.cyl(1.9,-xs,z,R2,2*xs,TB,6);
+     {const tp=MB();tp.box(0,-.46,0,.95,.4,.05,STEEL2,0);tp.box(0,.06,0,.95,.4,.05,STEEL2,0);tp.rxa(.5,0,0).mv(0,2.18,-2.94);m.cat(tp);
+      const tr=MB();for(const yy of[-.4,.4])tr.box(0,yy-.015,0,.95,.03,.06,STEEL,0);for(const xx of[-.4,0,.4])tr.box(xx-.015,-.46,0,.03,.92,.06,STEEL,0);tr.rxa(.5,0,0).mv(0,2.18,-2.97);m.cat(tr)}
+     for(const ex of(t>=3?[-.62,.62]:[.62])){m.cyl(ex,.95,-1.0,.09,1.95,[118,104,92],8).cyl(ex,2.9,-1.0,.1,.06,[40,36,34],8).cyl(ex,1.6,-1.0,.11,.07,STEEL,8).cyl(ex,2.3,-1.0,.11,.07,STEEL,8);pad(ex,1.5,-1.12,.07,.06,.14,DKK);pad(ex,2.2,-1.12,.07,.06,.14,DKK)}
+     if(t>=3)for(const sx of[-1,1]){m.cyl(sx*1.0,1.57,-2.15,.36,.2,STEEL2,12).cyl(sx*1.0,1.75,-2.15,.4,.04,STEEL,12)}}
+    if(id==='gaz66'&&t===1){m.cyl(0,3.1,-1.78,.38,.2,STEEL2,12).cyl(0,3.28,-1.78,.42,.05,STEEL,12)}
+    if(id==='gaz66'&&t>=4){const mz=p.mz,mx=p.mx,TB=STEEL,RT=.1;
+     for(const sx of[-1,1]){const X=sx*.95;m.cyl(X,1.2,-3.45,RT,1.0,TB,8);mz.cyl(X,2.8,2.2,RT,.65,TB,8);mz.cyl(X,2.8,1.5,.09,.65,TB,8);
+      const br=MB();br.box(X,-.025,0,.07,.07,1.151,TB,0).rxa(.97,0,0).mv(0,1.72,-3.125);m.cat(br);m.cyl(X,1.5,-2.8,RT,.75,TB,8);const b2=MB();b2.box(X,-.025,0,.1,.1,1.312,TB,0).rxa(-.704,0,0).mv(0,2.625,-2.95);m.cat(b2)}
+     mx.cyl(2.2,-.95,-3.45,RT,1.9,TB,8);mx.cyl(1.5,-.95,-3.45,.09,1.9,TB,8);mx.cyl(2.2,-.95,-3.1,.06,1.9,TB,8)}
+    if(id==='gaz66'&&t>=2){const mz=p.mz,mx=p.mx;
+     for(const sx of[-1,1]){pad(sx*.6,1.1,-2.9,.34,.28,.05,DK);pad(sx*.6,1.1,-2.915,.28,.04,.03,STEEL2);
+      mz.cyl(sx*.62,2.5,3.08,.19,.2,STEEL2,14);mz.cyl(sx*.62,2.68,3.08,.15,.1,[255,244,200],14);mz.cyl(sx*.62,2.78,3.08,.08,.04,[255,255,235],10);
+      pad(sx*.62,2.98,-2.4,.14,.1,.12,STEEL)}
+     for(const zz of[-.92,-.7]){m.cyl(1.12,1.35,zz,.08,.78,STEEL2,8).cyl(1.12,2.06,zz,.1,.08,STEEL,8);mx.cyl(2.15,-1.5,zz,.075,.38,[118,104,92],8);mx.cyl(2.15,-1.5,zz,.095,.06,[40,36,34],8);pad(1.12,1.55,zz,.06,.05,.1,DKK)}
+     for(const sx of[-1,1]){for(const z of[-1.28,-1.58])m.cyl(sx*1.08,1.0,z,.025,2.0,STEEL,6);for(let y=1.3;y<2.95;y+=.24)pad(sx*1.08,y,-1.43,.04,.04,.34,STEEL)}}
+    mntRings(id,t,'c',m);
     T.c.push(FIN(p))}
    /* ===== КУЗОВ ===== */
    {const p=PRT(),m=p.m,pad=(x,y,z,a,b,cc,col)=>m.box(x,y,z,a,b,cc,col),R=rivs(m,RV),mz=p.mz,b=sp.bed;
-    if(b){const hw=b.w/2,z0=b.z-b.d/2,z1=b.z+b.d/2,H=b.y1-b.y0;
+    if(b&&id!=='gaz53'&&!(id==='gaz66'&&t>=4)){const hw=b.w/2,z0=b.z-b.d/2,z1=b.z+b.d/2,H=b.y1-b.y0;
      pad(0,b.y0+H*.3,z1+.07,b.w-.2,.06,.05,STEEL2);
      if(b.type==='open'){
       for(const s of[-1,1]){
@@ -3392,8 +3443,8 @@ function buildPlayerTrucks(){
        for(const s of[-1,1]){pad(s*(hw-.06),b.y1+.16,b.z,.1,.08,b.d-.04,STEEL);R.z(s*(hw-.3),b.y1+.2,z0+.2,z1-.2,.36)}
        pad(0,b.y1+.16,z0+.04,b.w-.1,.08,.1,STEEL);pad(0,b.y1+.16,z1-.04,b.w-.1,.08,.1,STEEL);
        if(t>=3){pad(0,b.y1+.2,b.z,.05,.06,b.d-.2,STEEL)}
-       if(t>=2){const hz=b.z-b.d*.18;pad(0,b.y1+.18,hz,.7,.07,.7,STEEL2);pad(0,b.y1+.25,hz,.5,.04,.5,STEEL)}}
-      if(b.tent&&t>=2){const tt=b.tent;for(let z=z0+.3;z<z1-.1;z+=.62)for(const s of[-1,1])pad(s*(tt.w/2+.025),tt.y0,z,.05,tt.y1-tt.y0,.1,sh(tt.c,.78));pad(0,tt.y1+.28,b.z,tt.w*.7,.04,b.d-.1,sh(tt.c,.78));for(let z=z0+.3;z<z1-.1;z+=.62)pad(0,tt.y1+.27,z,tt.w*.75,.07,.1,sh(tt.c,.74))}
+       if(t>=2){const hz=id==='pickup'?b.z+.2:b.z-b.d*.18;pad(0,b.y1+.18,hz,.7,.07,.7,STEEL2);pad(0,b.y1+.25,hz,.5,.04,.5,STEEL)}}
+      if(b.tent&&t>=2&&!(id==='gaz66'&&t>=3)){const tt=b.tent;for(let z=z0+.3;z<z1-.1;z+=.62)for(const s of[-1,1])pad(s*(tt.w/2+.025),tt.y0,z,.05,tt.y1-tt.y0,.1,sh(tt.c,.78));pad(0,tt.y1+.28,b.z,tt.w*.7,.04,b.d-.1,sh(tt.c,.78));for(let z=z0+.3;z<z1-.1;z+=.62)pad(0,tt.y1+.27,z,tt.w*.75,.07,.1,sh(tt.c,.74))}
      }else{
       for(const s of[-1,1]){
        if(t>=2){for(let z=z0+.5;z<z1-.2;z+=.85)pad(s*(hw+.03),b.y0+.1,z,.06,H-.2,.12,c3);pad(s*(hw+.03),b.y0+.05,b.z,.07,.16,b.d,c2);pad(s*(hw+.03),b.y1-.3,b.z,.07,.16,b.d,c2);R.z(s*(hw+.07),b.y0+.1,z0+.2,z1-.2,.36);R.z(s*(hw+.07),b.y1-.18,z0+.2,z1-.2,.36)}
@@ -3405,20 +3456,166 @@ function buildPlayerTrucks(){
      }
      if(b.spare!==false&&t>=2){const sy=b.y0+.55;mz.cyl(0,-(z1+.12+.34),sy,.5,.34,TIRE,10).cyl(0,-(z1+.12+.37),sy,.22,.4,HUB,8)}
     }
+    if(id==='pickup'&&b){const hw=b.w/2,z1=b.z+b.d/2,ox=hw+(t>=2?.2:.11),RC=[196,70,44],OL=[96,110,64];
+     if(t>=2){for(const s of[-1,1])pad(s*hw,1.48,b.z,.07,.3,b.d,c);
+      m.cyl(0,b.y1+.15,b.z+.2,.4,.05,STEEL2,16).torus(0,b.y1+.2,b.z+.2,.36,.04,STEEL,16,4);
+      for(let k=0;k<8;k++){const a=k/8*6.2832;pad(Math.cos(a)*.3,b.y1+.2,b.z+.2+Math.sin(a)*.3,.06,.05,.06,[184,184,176])}}
+     const can=(s,z,col)=>{pad(s*ox,b.y0+.04,z,.12,.4,.3,col);pad(s*ox,b.y0+.12,z,.135,.05,.28,sh(col,.7));pad(s*ox,b.y0+.44,z,.08,.05,.12,DKK);pad(s*ox,b.y0+.49,z-.05,.05,.06,.05,[40,40,40]);pad(s*ox,b.y0+.3,z,.135,.04,.28,sh(col,.7))};
+     can(-1,z1-.35,RC);can(-1,z1-.75,OL);can(-1,z1-1.15,RC);
+     for(const hy of[.3,.14]){const rv=hy>.2;pad(ox,b.y0+hy,b.z-.1,.05,.05,1.1,WD);pad(ox+.01,b.y0+hy-.05,rv?b.z+.5:b.z-.7,.03,.2,.28,STEEL)}
+     for(const zz of[b.z-.45,b.z+.1])pad(ox,b.y0+.04,zz,.07,.4,.05,DKK)}
+    if(id==='gaz53'&&b){const lx=t>=2?1.2:1.15,za=t>=3?3.1:.45,zb=t>=3?3.55:.9,top=t>=2?3.4:2.75;pad(lx,1.2,za,.05,top-1.2,.05,STEEL);pad(lx,1.2,zb,.05,top-1.2,.05,STEEL);for(let y=1.3;y<top-.05;y+=.22)pad(lx,y,(za+zb)/2,.05,.04,.5,STEEL);for(const zz of[za,zb])pad(lx-.05,2.2,zz,.08,.05,.05,DKK)}
+    if(id==='gaz53'&&b&&t>=2){const mz=p.mz,mx=p.mx,CY=1.5,CT=3.3,SH=t>=3?-.6:0,zA=.1+SH,zB=4.5+SH,L=zB-zA,zc=(zA+zB)/2,hw=1.1,CC=sh(c,.82);
+     pad(0,CY,zc,2*hw,CT-CY,L,CC);
+     for(let z=zA+.2;z<zB-.1;z+=.2){for(const sx of[-1,1])pad(sx*(hw+.02),CY+.14,z,.05,CT-CY-.28,.09,c2);pad(0,CT,z,2*hw-.3,.03,.09,c2)}
+     for(const sx of[-1,1]){for(const z of[zA,zB])pad(sx*hw,CY,z,.14,CT-CY,.14,STEEL2);pad(sx*hw,CT-.07,zc,.14,.1,L,STEEL2);pad(sx*hw,CY,zc,.14,.1,L,STEEL2)}
+     for(const z of[zA,zB]){pad(0,CT-.07,z,2*hw,.1,.14,STEEL2);pad(0,CY,z,2*hw,.1,.14,STEEL2)}
+     for(const sx of[-1,1])pad(sx*.5,CY+.12,zB+.03,.98,CT-CY-.24,.04,sh(c,.95));
+     for(const x of[-.75,-.25,.25,.75])m.cyl(x,CY+.14,zB+.07,.025,CT-CY-.28,STEEL,6);
+     for(const x of[-.12,.12])pad(x,2.2,zB+.09,.06,.14,.05,DKK);
+     for(const x of[-.9,.9])for(const y of[1.7,2.4,3.0])pad(x,y,zB+.05,.12,.08,.04,STEEL2);
+     for(const z of[1.0,2.4])for(const sx of[-1,1]){pad(sx*(hw+.06),CT-.5,z,.04,.2,.4,[210,170,40])}
+     if(t>=3){pad(0,2.76,-.56,.64,.58,.07,STEEL2);pad(0,2.8,-.6,.52,.5,.03,DKK);pad(0,2.8,-.62,.44,.42,.02,[58,56,52]);for(const sx of[-1,1])for(const yy of[2.8,3.2])pad(sx*.26,yy,-.63,.06,.06,.03,[184,184,176]);
+      mz.cyl(0,.6,3.03,.12,.16,[196,198,190],12);mz.cyl(0,.76,3.03,.07,.04,[40,40,38],10)}
+     if(t>=3){const RC=[196,70,44],OL=[96,110,64];
+      for(const sx of[-1,1]){const x0=sx*1.5;pad(x0,1.9,.6,.8,.12,2.2,STEEL2);pad(x0,2.02,.6,.8,.03,2.2,c2);for(const zz of[-.5,1.7])pad(sx*1.93,1.9,zz,.06,.1,.06,STEEL);pad(sx*1.93,2.02,.6,.04,.14,2.2,STEEL);pad(x0,2.02,-.5,.8,.14,.04,STEEL);pad(x0,2.02,1.7,.8,.14,.04,STEEL);
+       for(const zz of[-.45,.6,1.65]){pad(sx*1.93,1.42,zz,.06,.5,.08,STEEL);pad(sx*1.6,1.42,zz,.04,.04,.08,STEEL);const g=MB();g.box(0,0,0,.05,.05,.7,STEEL,0);}
+       for(const zz of[-.45,.6,1.65])for(const yy of[1.55,1.88])pad(sx*1.5,yy,zz,.86,.05,.07,STEEL);}
+      const can=(sx,z,col,y0)=>{const ox=sx*(hw+.14);pad(ox,y0,z,.14,.42,.3,col);pad(ox,y0+.07,z,.155,.05,.28,sh(col,.7));pad(ox,y0+.3,z,.155,.04,.28,sh(col,.7));pad(ox,y0+.42,z,.08,.05,.12,DKK);pad(ox,y0+.47,z-.05,.05,.06,.05,[40,40,40])};
+      can(-1,2.05,RC,1.75);can(-1,2.4,OL,1.75);can(-1,2.75,RC,1.75);can(-1,2.05,OL,2.3);can(-1,2.4,RC,2.3);can(-1,2.75,OL,2.3);can(-1,3.2,RC,1.75);can(-1,3.55,OL,1.75);
+      const sv=(z,y0)=>{const ox=hw+.14;pad(ox,y0,z,.04,1.15,.04,WD);pad(ox,y0+1.15,z,.03,.34,.22,STEEL2);pad(ox,y0+.55,z,.07,.05,.1,DKK)};
+      sv(2.1,1.7);sv(2.4,1.7);sv(2.7,1.7);
+      for(const sx of[-1,1])for(const zz of[2.05,3.55])pad(sx*(hw+.07),CT-.9,zz,.1,.05,.12,STEEL)}}
+    if(id==='gaz53'&&b&&t===1){const mz=p.mz,mx=p.mx,hw=1.02,zs3=[.32,2.0,3.68],yt=3.35,y0=b.y1,TB=STEEL;
+     for(const s of[-1,1]){for(const z of zs3)m.cyl(s*hw,y0,z,.04,yt-y0,TB,6);mz.cyl(s*hw,-3.68,yt,.04,3.36,TB,6);mz.cyl(s*hw,-3.68,(yt+y0)/2,.035,3.36,TB,6)}
+     for(const z of zs3)mx.cyl(yt,-hw,z,.04,2*hw,TB,6);
+     for(const z of zs3)mx.cyl((yt+y0)/2,-hw,z,.03,2*hw,TB,6)}
+    if(id==='gaz66'&&b&&t<4){const mz=p.mz,mx=p.mx,hw=t>=2?1.5:1.04,zs3=[.1,1.45,2.8],yt=t>=3?3.2:3.88,y0=b.y1,TB=STEEL,XP=t>=2?1.46:1.0;
+     for(const s of[-1,1]){for(const z of zs3)m.cyl(s*hw,y0,z,.04,yt-y0,TB,6);mz.cyl(s*hw,-2.8,yt,.04,2.7,TB,6);mz.cyl(s*hw,-2.8,(yt+y0)/2,.035,2.7,TB,6)}
+     for(const z of zs3)mx.cyl(yt,-hw,z,.04,2*hw,TB,6);
+     for(const z of zs3)mx.cyl((yt+y0)/2,-hw,z,.03,2*hw,TB,6);
+     {const mz=p.mz,mx=p.mx,TB=STEEL,yd=t>=3?3.2:3.88;
+      for(const s of[-1,1]){for(const z of[2.12,2.46])m.cyl(s*hw,y0,z,.05,yd-y0,TB,6);mz.cyl(s*hw,-2.8,yd,.05,1.2,TB,6);mz.cyl(s*hw,-2.8,yd-.12,.04,1.2,TB,6);
+       for(const sg of[1,-1]){const br=MB();br.box(s*hw,-.025,0,.05,.05,t>=3?1.377:2.23,TB,0).rxa(sg*.923,0,0).mv(0,t>=3?2.65:2.99,2.125);m.cat(br)}}
+      for(const z of[2.12,2.46])mx.cyl(yd,-hw,z,.05,2*hw,TB,6);
+      if(t===1){pad(0,yd,2.3,2*(hw+.06),.07,1.25,STEEL2);pad(0,yd+.07,2.3,2*hw-.14,.025,1.1,c2);
+      for(const sx of[-1,1])pad(sx*hw,yd+.07,2.3,.05,.1,1.25,STEEL)}}
+     if(t>=2&&t<4){const TC=b.tent.c,yd=t>=3?3.2:3.88,TT=t>=3?3.1:3.35;pad(0,1.3,1.45,2*XP,.12,3.1,DK);if(t<3){pad(0,2.1,1.45,1.9,1.25,2.9,TC);pad(0,3.35,1.45,1.5,.3,2.8,TC)}else{pad(0,2.1,1.45,1.9,.85,2.9,TC);pad(0,2.95,1.45,1.5,.2,2.8,TC)}for(const sx of[-1,1]){pad(sx*1.2,2.1,1.45,.5,t>=3?.85:1.25,2.9,TC);
+       for(const z of[.55,1.6,2.5]){pad(sx*(XP+.07),1.5,z,.06,.72,.9,c3);pad(sx*(XP+.07),2.35,z,.06,t>=3?.6:.9,.9,c3);R.z(sx*(XP+.11),1.55,z-.4,z+.4,.3);R.z(sx*(XP+.11),t>=3?2.85:3.2,z-.4,z+.4,.3)}}
+      for(const sx of[-1,1])for(const dz of(t>=3?[.75]:[.75,2.15])){pad(sx*1.0,yd,dz,1.1,.07,1.2,STEEL2);pad(sx*1.0,yd+.07,dz,.96,.025,1.06,c2);pad(sx*1.52,yd+.07,dz,.05,.1,1.2,STEEL);pad(sx*.47,yd+.07,dz,.05,.1,1.2,STEEL);for(const z of[dz-.5,dz+.5])pad(sx*.5,TT,z,.05,yd-TT,.05,STEEL);pad(sx*1.0,yd-.12,dz,1.0,.05,.05,STEEL)}
+      if(t>=3){const dz=2.15;pad(0,yd,dz,1.3,.07,1.2,STEEL2);pad(0,yd+.07,dz,1.16,.025,1.06,c2);for(const sx of[-1,1])pad(sx*.6,yd+.07,dz,.05,.1,1.2,STEEL);for(const z of[dz-.55,dz+.55])pad(0,yd+.07,z,1.3,.1,.05,STEEL);for(const sx of[-1,1])for(const z of[dz-.5,dz+.5])pad(sx*.5,TT,z,.05,yd-TT,.05,STEEL)}}
+     for(const sx of[-1,1])pad(sx*XP,1.4,1.45,.1,.72,3.1,c);pad(0,1.4,.02,2*XP,.72,.08,c);
+     if(t>=3){for(const sx of[-.7,.7]){pad(sx,2.1,-.02,.64,.58,.07,STEEL2);pad(sx,2.14,-.06,.52,.5,.03,DKK);pad(sx,2.14,-.08,.44,.42,.02,[58,56,52]);for(const bx of[-1,1])for(const yy of[2.14,2.54])pad(sx+bx*.26,yy,-.09,.06,.06,.03,[184,184,176]);mz.cyl(sx,.09,2.4,.12,.16,[196,198,190],12);mz.cyl(sx,.25,2.4,.07,.04,[40,40,38],10)}
+      for(const sx of[-1,1]){pad(sx*.96,1.45,-.07,.9,.62,.05,c3);for(const rx of[-.4,.4])for(const yy of[1.55,2.0])pad(sx*.96+rx,yy,-.1,.07,.07,.03,[184,184,176])}
+      for(const sx of[-1,1]){pad(sx*.98,1.45,3.17,.85,1.3,.05,c3);for(const rx of[-.35,.35])for(const yy of[1.55,2.2,2.6])pad(sx*.98+rx,yy,3.2,.07,.07,.03,[184,184,176])}
+      const RC=[196,70,44],OL=[96,110,64],can=(z,col,y0)=>{const ox=-(XP+.17);pad(ox,y0,z,.14,.42,.3,col);pad(ox,y0+.07,z,.155,.05,.28,sh(col,.7));pad(ox,y0+.3,z,.155,.04,.28,sh(col,.7));pad(ox,y0+.42,z,.08,.05,.12,DKK)};
+      [[.4,RC],[.75,OL],[1.1,RC],[1.8,OL],[2.15,RC],[2.5,OL]].forEach(([z,col])=>can(z,col,1.55));[[.4,OL],[.75,RC],[1.1,OL],[1.8,RC],[2.15,OL],[2.5,RC]].forEach(([z,col])=>can(z,col,2.0));
+      for(const z of[.4,.7,1.0]){const ox=XP+.17;pad(ox,1.6,z,.04,1.15,.04,WD);pad(ox,2.75,z,.03,.34,.22,STEEL2);pad(ox,2.15,z,.07,.05,.1,DKK)}
+      pad(XP+.2,1.55,2.1,.22,.42,.8,STEEL2);pad(XP+.2,1.97,2.1,.24,.04,.84,STEEL);pad(XP+.2,1.7,2.55,.05,.1,.1,DKK);pad(XP+.2,1.7,1.65,.05,.1,.1,DKK)}
+     for(const sx of[-1,1])pad(sx*.36,1.4,3.1,.05,t>=3?1.75:2.4,.05,STEEL);for(let y=1.55;y<(t>=3?3.1:3.65);y+=.24)pad(0,y,3.1,.72,.04,.05,STEEL);for(const sx of[-1,1])for(const y of(t>=3?[1.8,2.95]:[1.8,3.5]))pad(sx*.36,y,3.05,.07,.08,.1,DKK)}
+    if(id==='gaz66'&&b&&t>=4){const TC=b.tent.c,L=4.4,zc=L/2,mx=p.mx;pad(0,3.21,.75,1.3,.07,1.2,STEEL2);pad(0,3.28,.75,1.16,.025,1.06,c2);for(const sx of[-1,1])pad(sx*.6,3.28,.75,.05,.1,1.2,STEEL);for(const z of[.15,1.35])pad(0,3.28,z,1.3,.1,.05,STEEL);
+     pad(0,1.3,3.75,2.0,.12,1.3,DK);
+     for(const sx of[-1,1]){pad(sx*1.0,1.4,zc,.1,1.7,L,c);for(const z of[1.7,2.8]){pad(sx*1.07,1.5,z,.06,.72,.9,c3);pad(sx*1.07,2.35,z,.06,.6,.9,c3);R.z(sx*1.11,1.55,z-.4,z+.4,.3);R.z(sx*1.11,2.85,z-.4,z+.4,.3)}pad(sx*1.07,1.5,.7,.06,.5,.9,c3);pad(sx*1.07,1.5,3.7,.06,.5,.9,c3);for(const z of[.65,3.75]){pad(sx*1.12,2.1,z,.07,.58,.64,STEEL2);pad(sx*1.16,2.14,z,.03,.5,.52,DKK);pad(sx*1.18,2.14,z,.02,.42,.44,[58,56,52]);for(const bz of[-1,1])for(const yy of[2.14,2.54])pad(sx*1.19,yy,z+bz*.26,.03,.06,.06,[184,184,176]);mx.cyl(2.4,-(sx*1.3),z,.12,.16,[196,198,190],12);mx.cyl(2.4,-(sx*1.3)+(sx>0?-.16:.16),z,.07,.04,[40,40,38],10)}pad(sx*1.0,1.3,zc,.14,.14,L,STEEL)}
+     {const RC=[196,70,44],OL=[96,110,64],can=(sx,z,col,y0)=>{const ox=sx*1.2;pad(ox,y0,z,.14,.42,.3,col);pad(ox,y0+.07,z,.155,.05,.28,sh(col,.7));pad(ox,y0+.3,z,.155,.04,.28,sh(col,.7));pad(ox,y0+.42,z,.08,.05,.12,DKK);pad(sx*1.13,y0+.1,z,.04,.05,.2,STEEL);pad(sx*1.13,y0+.32,z,.04,.05,.2,STEEL)};
+      [1.45,1.8,2.15,2.5,2.85].forEach((z,i)=>{can(-1,z,i%2?OL:RC,1.5);can(-1,z,i%2?RC:OL,1.95)});
+      for(const z of[1.5,1.8,2.1]){const ox=1.2;pad(ox,1.55,z,.04,1.25,.04,WD);pad(ox,2.8,z,.03,.34,.22,STEEL2);pad(ox,2.2,z,.07,.05,.1,DKK);pad(1.13,1.7,z,.04,.05,.12,STEEL)}
+      pad(1.22,1.45,2.65,.2,.42,.85,STEEL2);pad(1.22,1.87,2.65,.22,.04,.89,STEEL);pad(1.33,1.62,2.65,.04,.1,.12,DKK);
+      pad(1.2,2.0,2.65,.14,.14,.8,[110,70,40]);pad(1.2,2.0,3.1,.1,.5,.06,STEEL);
+      for(const sx of[-1,1]){pad(sx*.7,1.5,L+.14,.5,.5,.2,[120,60,40]);pad(sx*.7,1.7,L+.25,.3,.04,.04,STEEL)}
+      pad(0,2.0,L+.12,.9,.14,.14,[40,40,38])}
+     pad(0,1.4,.02,2.0,1.7,.08,c);pad(0,1.4,L,2.0,1.7,.08,c);pad(0,1.4,L+.05,1.6,.5,.04,c3);pad(0,2.2,L+.05,1.6,.7,.04,c3);
+     pad(0,2.95,zc,1.9,.2,L,TC);pad(0,3.15,zc,2.0,.06,L,c2);for(let z=.3;z<L;z+=.7)pad(0,3.2,z,2.04,.05,.12,STEEL2);for(const sx of[-1,1])pad(sx*.98,3.2,zc,.08,.07,L,STEEL);
+     for(const sx of[-1,1])pad(sx*.36,1.4,L+.07,.05,1.75,.05,STEEL);for(let y=1.55;y<3.1;y+=.24)pad(0,y,L+.07,.72,.04,.05,STEEL);
+     pad(0,1.3,L+.06,2.0,.1,.12,STEEL)}
+    if(id==='gaz66'&&b){const RS=[150,60,38],RS2=[112,48,32],RS3=[176,82,52],SL=[150,152,146],zc=-.76;
+     m.cyl(0,.95,zc,.32,.5,RS2,12).cyl(0,1.43,zc,.38,.06,SL,12);
+     pad(0,1.5,zc,.8,.55,.72,RS);pad(0,2.05,zc,.8,.05,.72,RS2);pad(.46,1.55,zc,.14,.3,.4,[64,62,58]);pad(-.46,1.6,zc+.1,.08,.4,.08,RS2);
+     for(const sx of[-1,1]){pad(sx*.62,1.05,zc,.5,.08,.14,RS2);pad(sx*.84,.86,zc,.12,.2,.14,SL)}
+     const b1=MB();b1.box(0,0,0,.24,1.75,.24,RS,0).rxa(.26,0,0).mv(0,1.9,zc+.0);m.cat(b1);
+     const b1r=MB();b1r.box(0,0,0,.28,.12,.28,RS3,0).rxa(.26,0,0).mv(0,1.9+.8,zc+.8*.26);m.cat(b1r);
+     const ty=1.9+1.75*Math.cos(.26),tz=zc+1.75*Math.sin(.26);
+     m.cyl(0,ty-.1,tz,.12,.2,SL,10).cyl(.0,ty-.1,tz,.09,.5,RS2,8);
+     const b2=MB();b2.box(.25,0,0,.22,1.4,.22,RS,0).rxa(Math.PI+.26,0,0).mv(0,ty,tz);m.cat(b2);
+     const e2y=ty+1.4*Math.cos(Math.PI+.26),e2z=tz+1.4*Math.sin(Math.PI+.26);
+     m.cyl(.25,e2y-.12,e2z,.12,.2,SL,8);pad(.25,e2y-.32,e2z,.3,.1,.1,RS2);for(const sx of[-1,1]){const pr=MB();pr.box(0,-.3,0,.06,.3,.06,SL,0).rxa(sx*.4,0,0).mv(.25,e2y-.3,e2z);m.cat(pr)}
+     for(const sx of[-1,1]){const hc=MB();hc.cyl(0,0,0,.05,1.22,SL,6).rxa(.426,0,0).mv(sx*.17,1.75,zc-.25);m.cat(hc);const hc2=MB();hc2.cyl(0,0,0,.075,.7,RS2,6).rxa(.426,0,0).mv(sx*.17,1.75,zc-.25);m.cat(hc2)}
+     m.cyl(.25,e2y+.7,e2z+.2,.04,.5,SL,6)}
+    if(id==='van'&&b){const hw=b.w/2,z0=b.z-b.d/2,z1=b.z+b.d/2,mx=p.mx,R=rivs(m,RV),xo=hw+(t>=2?.5:.04);
+     {const yc=2.0,zc=z1-.6;mx.cyl(yc,xo,zc,.44,.26,TIRE,14).cyl(yc,xo+.26,zc,.26,.04,[210,206,196],10).cyl(yc,xo+.3,zc,.1,.03,[120,124,128],8);
+      for(let k=0;k<5;k++){const a=k/5*6.2832;mx.cyl(yc+Math.cos(a)*.17,xo+.26,zc+Math.sin(a)*.17,.03,.06,[184,184,176],5)}
+      pad(-(xo-.04),yc+.46,zc,.06,.1,.5,STEEL2);pad(-(xo-.04),yc-.52,zc,.06,.1,.5,STEEL2)}
+     {const lx=hw+(t>=2?.43:.05),za=z0+.2,zb=z0+.66;pad(lx,.85,za,.05,2.4,.05,STEEL);pad(lx,.85,zb,.05,2.4,.05,STEEL);for(let y=.95;y<3.2;y+=.24)pad(lx,y,(za+zb)/2,.05,.04,.5,STEEL);
+      for(const zz of[za,zb])pad(lx-.04,1.4,zz,.08,.05,.05,DKK)}
+     if(t>=2){for(const s of[-1,1]){pad(s*(hw+.19),b.y0,b.z,.38,b.y1-b.y0,b.d,c);pad(s*(hw+.19),b.y1-.04,b.z,.4,.06,b.d+.02,c2);pad(s*(hw+.39),b.y0+.3,b.z,.02,.28,b.d,[70,102,130]);pad(s*(hw+.42),b.y0+.2,z1-.95,.08,1.35,1.7,c3);pad(s*(hw+.46),b.y0+.2,z1-.95,.03,.06,1.7,STEEL2);pad(s*(hw+.46),b.y0+1.5,z1-.95,.03,.06,1.7,STEEL2);R.z(s*(hw+.47),b.y0+.45,z1-1.7,z1-.2,.3);R.z(s*(hw+.47),b.y0+1.2,z1-1.7,z1-.2,.3)}
+      const hz=(z0+.7+z1-.7)/2,hl=z1-z0-1.4-.35;pad(0,b.y1,hz,.64,.22,hl,c2);pad(0,b.y1+.22,hz,.7,.04,hl+.06,STEEL2);
+      for(const sx of[-1,1]){for(let z=hz-hl/2+.1;z<hz+hl/2-.05;z+=.1)pad(sx*.325,b.y1+.05,z,.025,.12,.05,DKK);pad(sx*.325,b.y1+.02,hz,.03,.02,hl-.1,STEEL2);pad(sx*.325,b.y1+.18,hz,.03,.02,hl-.1,STEEL2)}}}
+    mntRings(id,t,'b',m);
     T.b.push(FIN(p))}
    /* ===== ШАССИ ===== */
    {const p=PRT(),m=p.m,pad=(x,y,z,a,b,cc,col)=>m.box(x,y,z,a,b,cc,col),R=rivs(m,RV),mz=p.mz,mx=p.mx,n=sp.nose,zf=n.z;
     const rear=sp.bed?sp.bed.z+sp.bed.d/2:zs[zs.length-1]+r+.6;
+    if(id==='gaz53'&&t>=2){
+     for(const w of W){if(w.pos[2]<0&&t<3)continue;const z=w.pos[2],cxx=w.pos[0],R3=w.pos[2]<0?r+.03:t>=3?r+.16:r+.07,sg=R3*.31;for(let k=0;k<11;k++){const th=(-85+k*17)*Math.PI/180,tmp=MB();tmp.box(cxx,r+R3-.035,z,.66,.07,sg,c2).rxa(th,r,z);m.cat(tmp)}}
+     for(const sx of[-1,1]){pad(sx*1.0,.45,3.5,.52,.5,.9,[118,120,114]);pad(sx*1.0,.95,3.5,.56,.05,.94,STEEL2);pad(sx*1.27,.55,3.5,.03,.14,.5,DKK);pad(sx*1.28,.67,3.5,.02,.05,.3,[200,200,194]);pad(sx*1.28,.63,3.12,.03,.12,.05,RED);pad(sx*1.28,.63,3.88,.03,.12,.05,RED)}}
+    if(id==='gaz53'&&t>=3){
+     for(const w of W){const sx=Math.sign(w.pos[0]),z=w.pos[2],xs=sx>0?1.35:-1.27,xr=sx>0?1.39:-1.29;
+      mx.cyl(r,-xs,z,.52,.08,STEEL2,20);mx.cyl(r,-xr,z,.2,.1,[70,68,64],12);
+      for(let k=0;k<8;k++){const a=k/8*6.2832;mx.cyl(r+Math.cos(a)*.4,-xr,z+Math.sin(a)*.4,.04,.1,[184,184,176],6)}}
+     pad(1.43,.42,-.2,.05,.62,1.9,STEEL2);pad(1.455,.48,-.2,.03,.5,1.7,c2);for(const zz of[-.9,-.2,.5])pad(1.46,.3,zz,.03,.7,.06,STEEL);pad(1.0,.33,-.2,.8,.04,1.9,STEEL2)}
+    if(id==='gaz53'){
+     for(const sx of[-1,1]){mz.cyl(sx*.7,3.4,.84,.2,.04,STEEL2,14);mz.cyl(sx*.7,3.43,.84,.15,.08,[255,244,200],14);mz.cyl(sx*.7,-4.75,.7,.17,.1,STEEL2,12);mz.cyl(sx*.7,-4.76,.7,.13,.12,[210,40,30],12)}
+     pad(0,.62,4.55,2.0,.2,.2,STEEL2);pad(0,.66,4.72,.2,.12,.3,STEEL);for(const sx of[-1,1])pad(sx*.6,.5,4.55,.1,.3,.1,DKK);
+     {const tm=MB();tm.cyl(0,-.17,0,.6,.34,TIRE,14).cyl(0,-.2,0,.28,.4,HUB,8).cyl(0,-.22,0,.12,.44,[60,60,56],6);tm.rza(-Math.PI/4);tm.mv(-1.0,.8,-.9);m.cat(tm)}
+     for(const zz of[-.55,-1.25])pad(-.78,.66,zz,.5,.05,.07,DKK);
+     pad(-1.0,.38,.45,.5,.46,.86,[118,120,114]);pad(-1.0,.84,.45,.54,.05,.9,STEEL2);pad(-1.255,.5,.45,.03,.16,.5,DKK);pad(-1.262,.62,.45,.02,.05,.3,[200,200,194]);pad(-1.27,.58,.18,.03,.12,.05,RED);pad(-1.27,.58,.72,.03,.12,.05,RED);
+     mz.cyl(1.0,-.8,.74,.38,2.0,[120,60,40],12).cyl(1.0,-.82,.74,.4,.05,STEEL2,12).cyl(1.0,1.2,.74,.4,.05,STEEL2,12);
+     for(const zz of[-.6,0.0,.5])mz.cyl(1.0,-(zz+.05),.74,.4,.09,STEEL2,12);
+     pad(1.0,1.1,-.1,.14,.07,.14,STEEL);pad(.78,.6,-.2,.1,.08,2.0,DKK)}
+    if(id==='gaz66'&&t===2){const mz=p.mz;
+     for(const zz of[-.72,.72]){const tm=MB();tm.cyl(0,-.17,0,.6,.34,TIRE,14).cyl(0,-.2,0,.28,.4,HUB,8).cyl(0,-.22,0,.12,.44,[60,60,56],6);tm.rza(-Math.PI/4);tm.mv(-1.25,.78,zz);m.cat(tm)}
+     pad(-.95,.6,-.72,.4,.06,.1,DKK);pad(-.95,.6,.72,.4,.06,.1,DKK);
+     mz.cyl(1.25,-1.4,.8,.42,2.8,[120,60,40],12).cyl(1.25,-1.42,.8,.45,.06,STEEL2,12).cyl(1.25,1.36,.8,.45,.06,STEEL2,12);
+     for(const zz of[-.9,0,.9])mz.cyl(1.25,-(zz+.05),.8,.44,.1,STEEL2,12);
+     for(const zz of[-.9,0,.9])pad(.95,.55,zz,.55,.06,.18,STEEL);pad(1.25,1.22,.4,.18,.06,.18,STEEL)}
+    if(id==='gaz66'&&t===1){for(const sx of[-1,1]){const tm=MB();tm.cyl(0,-.17,0,.6,.34,TIRE,14).cyl(0,-.2,0,.28,.4,HUB,8).cyl(0,-.22,0,.12,.44,[60,60,56],6);tm.rza(sx*Math.PI/4);tm.mv(sx*1.2,.9,-.02);m.cat(tm);pad(sx*.9,.6,-.45,.3,.06,.1,DKK);pad(sx*.9,.6,.45,.3,.06,.1,DKK)}}
+    if(id==='van'&&t===1){const wd=WH('van',r,.3),L=[W[0],W[1],...[[1.08],[-1.08],[.76],[-.76]].map(([x])=>({g:wd,pos:[x,r,W[2].pos[2]],front:false,r}))];WT_=[L,L,L,L]}
     for(const w of W){const x=w.pos[0],z=w.pos[2],s=Math.sign(x);
+     if(id==='gaz66'){if(t>=2&&z>0){const R2=r+.1,sg=R2*.31,wid=ww+.2;for(const zq of(t>=3?[z,.07]:[z])){for(let k=0;k<11;k++){const th=(-85+k*17)*Math.PI/180,tmp=MB();tmp.box(x,r+R2-.035,zq,wid,.1,sg,c2).rxa(th,r,zq);m.cat(tmp)}for(const sx of[-1,1])pad(x+sx*(wid/2-.03),r+R2*.1,zq-R2-.03,.08,r*.8,.1,c3)}}continue}
+     if(id==='gaz53')continue;
+     if(id==='belaz'){const R2=r+.1,sg=R2*.31,wid=ww+.2,xo=s*(Math.abs(x)+ww/2),xs=s>0?xo+.08:xo-.08+0,xr=s>0?xo+.14:xo-.14;
+      for(let k=0;k<11;k++){const th=(-85+k*17)*Math.PI/180,tmp=MB();tmp.box(x,r+R2-.035,z,wid,.1,sg,c2).rxa(th,r,z);m.cat(tmp)}
+      for(const sx of[-1,1])pad(x+sx*(wid/2-.03),r+R2*.1,z-R2-.03,.08,r*.8,.1,c3);
+      mx.cyl(r,-(s>0?xo+.1:xo),z,1.15,.1,STEEL2,26);mx.cyl(r,-(s>0?xo+.14:xo-.04),z,.45,.14,[70,68,64],14);
+      for(let k=0;k<10;k++){const a=k/10*6.2832;mx.cyl(r+Math.cos(a)*.85,-(s>0?xo+.14:xo-.04),z+Math.sin(a)*.85,.08,.14,[184,184,176],6)}
+      continue}
+     if(id==='van'){const rear=z>0,wid=rear?.84:.68,cxx=rear?.915*s:x,R2=r+.1,sg=R2*.31;
+      for(let k=0;k<11;k++){const th=(-85+k*17)*Math.PI/180,tmp=MB();tmp.box(cxx,r+R2-.035,z,wid,.07,sg,c2).rxa(th,r,z);m.cat(tmp)}
+      for(const sx of[-1,1])pad(cxx+sx*(wid/2-.02),r+R2*.0,z-R2-.04,.06,r*.9,.08,c3);
+      if(rear&&t>=2){const xo=s*1.33;pad(xo,.22,z,.07,.3,.95,c3);pad(xo,.5,z,.07,.3,1.25,c);pad(xo,.78,z,.07,.28,1.05,c3);R.z(xo+s*.04,.62,z-.55,z+.55,.3)}
+      continue}
      pad(x,2*r+.04,z,ww+.22,.1,2*r+.25,c2);if(t>=2){pad(x,2*r-.1,z-r-.1,ww+.22,.1,.14,c2);pad(x,2*r-.1,z+r+.1,ww+.22,.1,.14,c2);pad(x+s*(ww/2+.1),2*r-.06,z,.06,.22,2*r+.3,c3);R.z(x+s*(ww/2+.14),2*r+.04,z-r,z+r,.34)}
      if(t>=4){/* бронеплиты на колёса */pad(x+s*(ww/2+.2),r*.35,z,.1,r*1.5,r*1.7,c3);R.z(x+s*(ww/2+.27),r*.35+.12,z-r*.7,z+r*.7,.3);R.z(x+s*(ww/2+.27),r*1.85-.12,z-r*.7,z+r*.7,.3)}}
+    if(id==='pickup'){for(const sx of[-1,1]){pad(sx*.5,.46,0,.13,.16,4.5,STEEL);pad(sx*.5,.62,0,.13,.04,4.5,STEEL2);pad(sx*.7,.82,0,.1,.06,4.3,STEEL2)}
+     for(const zz of[-1.9,-.8,0,.8,1.9])pad(0,.5,zz,1.1,.1,.12,STEEL);
+     for(const w of W){if(w.pos[0]>0){const z=w.pos[2];pad(0,.4,z,1.9,.09,.12,STEEL);pad(0,.3,z,.42,.3,.38,STEEL2);pad(0,.3,z,.3,.34,.26,STEEL);for(const sx of[-1,1])pad(sx*.7,.5,z,.1,.07,.95,DKK)}}
+     for(const w of W){const x=w.pos[0],z=w.pos[2],s=Math.sign(x);if(z<0)continue;const xo=x+s*.3;
+      pad(xo,.66,z,.07,.26,1.2,c);pad(xo,.9,z,.07,.26,1.52,c2);R.z(xo+s*.04,.7,z-.55,z+.55,.3)}
+     if(t>=2){const bx=(x,col,lid)=>{pad(x,.42,0,.4,.4,.95,col);pad(x,.82,0,.42,.05,.98,lid)};
+      bx(1.04,[128,130,126],STEEL2);pad(1.255,.5,0,.03,.1,.25,DKK);pad(1.255,.6,.38,.03,.14,.05,RED);pad(1.255,.6,-.38,.03,.14,.05,RED);pad(1.26,.48,0,.02,.14,.32,[170,172,166]);
+      bx(-1.04,[84,94,58],[64,72,44]);for(const zz of[-.22,.22])pad(-1.255,.5,zz,.03,.14,.28,[224,194,64]);pad(-1.26,.62,0,.02,.03,.8,[224,194,64]);for(const zz of[-.3,.3])pad(-1.27,.74,zz,.03,.04,.14,DKK);
+      for(const sx of[-1,1])for(const zz of[-.3,.3])pad(sx*1.04,.34,zz,.3,.06,.08,DKK)}
+     if(t===2){const wd=WH('road',r,.17),W0=W;WT_=[null,[W0[0],W0[1],...[[1.1],[-1.1],[.8],[-.8]].map(([x])=>({g:wd,pos:[x,r,W0[2].pos[2]],front:false,r}))]]}}
     for(const z of zs){const X=Math.max(...W.filter(w=>Math.abs(w.pos[2]-z)<.01).map(w=>Math.abs(w.pos[0])));
      pad(0,r-.1,z,X*2-ww-.1,.2,.3,STEEL2);pad(0,r-.14,z,.6,.46,.55,STEEL);
      for(const s of[-1,1]){pad(s*(X-ww/2-.3),r+.16,z,.12,.07,1.2,STEEL2);pad(s*(X-ww/2-.3),r+.1,z,.12,.07,.9,STEEL2);pad(s*(X-ww/2-.3),r+.24,z,.1,.14,.2,STEEL)}}
     const lastZ=zs[zs.length-1];if(t>=2)for(const w of W)if(Math.abs(w.pos[2]-lastZ)<.01)pad(w.pos[0],r*.3,w.pos[2]+r+.35,ww*.9,.62,.04,[30,30,30]);
     /* баки: 1 малый / 2 / 2 больших */
-    {const zm=zs.length>=2?(zs[0]+zs[1])/2:zs[0]+1,gap=zs.length>=2?zs[1]-zs[0]:3,X=Math.max(...W.map(w=>Math.abs(w.pos[0]))),tr=t===1?.2:t===2?.28:.38,tl=Math.max(.8,gap-2*r-.5);
-     for(const s of(t===1?[sp.tank||1]:[-1,1])){const tx=s*(X-ww/2-tr-.08);mz.cyl(tx,-(zm+tl/2),r*.95,tr,tl,[120,60,40],10).cyl(tx,-(zm+tl/2)-.02,r*.95,tr+.03,.1,STEEL2,10).cyl(tx,-(zm-tl/2),r*.95,tr+.03,.1,STEEL2,10)}}
+    if(id==='belaz'){for(const sx of[-1,1]){const tx=sx*2.05;mz.cyl(tx,-1.2,1.5,.8,3.6,[120,60,40],14).cyl(tx,-1.22,1.5,.85,.12,STEEL2,14).cyl(tx,2.4-.0,1.5,.85,.12,STEEL2,14);
+      for(const zz of[-1.7,-.6,.5])mz.cyl(tx,-(zz+.06),1.5,.84,.12,STEEL2,14);
+      for(const zz of[-2.1,.9])pad(sx*1.45,2.1,zz,.55,.1,.3,STEEL);pad(tx,2.34,-.6,.3,.08,.3,STEEL)}
+      for(const sx of[-1,1]){const ex=sx*.7;m.cyl(ex,2.0,5.42,.13,2.4,[118,104,92],8).cyl(ex,4.4,5.42,.16,.1,[40,36,34],8).cyl(ex,2.9,5.42,.17,.09,STEEL,8).cyl(ex,3.7,5.42,.17,.09,STEEL,8);pad(ex,2.3,5.3,.1,.1,.35,DKK)}}
+    if(id!=='gaz53'&&id!=='belaz'&&!(id==='gaz66'&&t>=2)){const zm=zs.length>=2?(zs[0]+zs[1])/2:zs[0]+1,gap=zs.length>=2?zs[1]-zs[0]:3,X=Math.max(...W.map(w=>Math.abs(w.pos[0]))),tr=t===1?(id==='van'?.26:.2):t===2?.28:.38,tl=Math.max(.8,gap-2*r-.5);
+     for(const s of(t===1?[sp.tank||1]:[-1,1])){const tx=id==='van'?s*(.96+tr*.4):s*(X-ww/2-tr-.08);mz.cyl(tx,-(zm+tl/2),r*.95,tr,tl,[120,60,40],10).cyl(tx,-(zm+tl/2)-.02,r*.95,tr+.03,.1,STEEL2,10).cyl(tx,-(zm-tl/2),r*.95,tr+.03,.1,STEEL2,10)}}
     if(zs.length>=2)mz.cyl(0,-lastZ,r*.78,.07,lastZ-zs[0],STEEL2,6);
     /* бамперы */
     const by=n.y0-.14,bw=n.w;
@@ -3426,6 +3623,12 @@ function buildPlayerTrucks(){
     if(t===2){pad(0,by,zf-.14,bw+.18,.24,.2,STEEL);pad(0,by+.24,zf-.14,bw+.18,.04,.2,STEEL2);R.x(by+.1,zf-.25,-bw/2,bw/2,.4);for(const s of[-1,1]){pad(s*(bw/2+.1),by,zf-.1,.1,.34,.4,STEEL);pad(s*bw*.45,by-.02,zf-.28,.1,.12,.12,RED)}}
     if(t>=3){pad(0,by-.06,zf-.18,bw+.3,.4,.3,STEEL);pad(0,by+.34,zf-.18,bw+.3,.05,.3,STEEL2);R.x(by+.2,zf-.34,-bw/2,bw/2,.3);for(const s of[-1,1]){pad(s*(bw/2+.15),by-.06,zf-.1,.16,.5,.5,STEEL);pad(s*bw*.4,by-.1,zf-.36,.12,.14,.14,RED);pad(s*bw*.25,by+.4,zf-.3,.07,n.y1-by-.8,.07,STEEL)}
      pad(0,n.y1-.46,zf-.3,bw*.9,.07,.07,STEEL)}
+    if(id==='gaz66'){pad(0,by-.06,zf-.62,bw+.45,.4,.3,STEEL);pad(0,by+.34,zf-.62,bw+.45,.05,.3,STEEL2);R.x(by+.2,zf-.78,-(bw+.45)/2+.1,(bw+.45)/2-.1,.3);for(const s of[-1,1]){pad(s*(bw/2+.3),by-.08,zf-.5,.16,.5,.5,STEEL);pad(s*bw*.42,by-.1,zf-.8,.12,.14,.14,RED);pad(s*.5,by+.04,zf-.28,.16,.2,.4,STEEL2)}}
+    if(id==='gaz66'&&t>=3){const zc=-3.55;pad(0,by+.34,zc,1.1,.26,.9,STEEL2);pad(0,by+.6,zc,1.3,.07,1.0,STEEL2);pad(0,by+.67,zc,1.16,.025,.86,c2);for(const sx of[-1,1]){pad(sx*.65,by-.06,zc,.1,.4,1.0,STEEL);pad(sx*.5,by+.1,zc+.5,.06,.06,.5,STEEL);pad(sx*.6,by+.67,zc,.05,.1,1.0,STEEL)}for(const z of[zc-.5,zc+.5])pad(0,by+.67,z,1.3,.1,.05,STEEL);pad(0,by-.06,zc-.5,1.3,.4,.08,STEEL);ring(m,0,by+.79,zc);
+     {const LL=[...W,...[1.05,-1.05].map(x=>({g:W[2].g,pos:[x,r,.07],front:false,r}))];WT_=[null,null,LL,LL];
+      if(t>=4){for(const w of LL){const sx=Math.sign(w.pos[0]),z=w.pos[2],xs=sx>0?1.36:-1.28,xr=sx>0?1.4:-1.32;mx.cyl(r,-xs,z,.5,.08,STEEL2,20);mx.cyl(r,-xr,z,.18,.1,[70,68,64],12);for(let k=0;k<8;k++){const a=k/8*6.2832;mx.cyl(r+Math.cos(a)*.38,-xr,z+Math.sin(a)*.38,.04,.1,[184,184,176],6)}}pad(0,.75,3.6,1.3,.22,1.9,DK);for(const sx of[-1,1]){mz.cyl(sx*.82,3.62,by+.2,.15,.1,[60,60,56],10);mz.cyl(sx*.82,3.7,by+.2,.11,.08,[255,244,200],10);for(const bz of[-1,1])pad(sx*.82+bz*.12,by+.2,-3.7,.04,.04,.04,STEEL);const tm=MB();tm.cyl(0,-.17,0,.6,.34,TIRE,14).cyl(0,-.2,0,.28,.4,HUB,8).cyl(0,-.22,0,.12,.44,[60,60,56],6);tm.rza(sx*Math.PI/4);tm.mv(sx*1.12,.72,3.6);m.cat(tm);pad(sx*.85,.55,3.6,.5,.06,.18,DKK)}}}
+     for(const sx of[-1,1])for(const zc2 of[-1.0,1.16]){const X=sx*1.15,Hh=.78,yc=.89;pad(X,.5,zc2,.05,.05,Hh,STEEL);pad(X,1.28,zc2,.05,.05,Hh,STEEL);for(const zz of[-1,1])pad(X,.5,zc2+zz*Hh/2,.05,Hh,.05,STEEL);for(const sg of[1,-1]){const br=MB();br.box(X,-.025,0,.05,.05,Hh*1.414,STEEL,0).rxa(sg*Math.PI/4,0,0).mv(0,yc,zc2);m.cat(br)}}}
+    if(id==='van'&&t>=2)for(const sx of[-1,1]){pad(sx*.6,by+.1,zf-.28,.07,.07,.28,STEEL);pad(sx*.6,by-.08,zf-.46,.07,.25,.07,STEEL);pad(sx*.6,by-.08,zf-.4,.07,.07,.12,STEEL)}
     {const L=bw*.5;mx.cyl(by+.12,-L/2,zf-.4,.13,L,STEEL2,8).cyl(by+.12,-L/2,zf-.4,.16,.08,STEEL,8)}
     /* задний бампер */
     if(t>=2){pad(0,by,rear+.1,(sp.bed?sp.bed.w:bw)*.9,t>=3?.3:.2,.2,STEEL);pad(0,by+.05,rear+.22,.1,.14,.14,RED)}
@@ -3433,17 +3636,21 @@ function buildPlayerTrucks(){
   }
   TIERS_=T;
  };
- const MV=(id,base,W)=>{TV[id]={base,W,T:TIERS_,cache:{}};return truckVeh(id,1,1,1)};
- function truckVeh(id,tc,tb,ts){const o=TV[id],k=tc+''+tb+ts;if(!o.cache[k])o.cache[k]=mkVeh([...o.base,...o.T.c[tc-1],...o.T.b[tb-1],...o.T.s[ts-1]],o.W);o.cache[k].mount=null;return o.cache[k]}
+ const MV=(id,base,W)=>{TV[id]={base,W,T:TIERS_,WT:WT_,cache:{}};WT_=null;return truckVeh(id,1,1,1)};
+ function truckVeh(id,tc,tb,ts){const o=TV[id],k=tc+''+tb+ts;if(!o.cache[k])o.cache[k]=mkVeh([...o.base,...o.T.c[tc-1],...o.T.b[tb-1],...o.T.s[ts-1]],(o.WT&&o.WT[ts-1])||o.W);o.cache[k].mount=null;return o.cache[k]}
  /* слоты оружия: позиции фиксированы, тир открывает слот */
  const MNT=(id,tc,tb)=>{const sp=SPEC[id],out=[],cabs=sp.cabs,n=sp.nose,b=sp.bed;
   if(sp.tur)return[{...slot('t:turret','Башня',...sp.tur),only:'tank',sec:[0,5]}];
-  const cl=[];cabs.forEach((cb,i)=>cl.push({t:i===0?1:(cabs.length>1?3:4),slot:slot('t:cab'+i,cabs.length>1?(i?'Кабина, справа':'Кабина, слева'):'Крыша кабины',cb.x||0,cb.y1+.12+(tc>=4?.0:0),cb.z)}));
+  const cl=[];cabs.forEach((cb,i)=>cl.push({t:i===0?1:(cabs.length>1?3:4),slot:slot('t:cab'+i,cabs.length>1?(i?'Кабина, справа':'Кабина, слева'):'Крыша кабины',id==='pickup'?.45:cb.x||0,cb.y1+.12+(tc>=4?.0:0),cb.z)}));
   if(cabs.length===1||sp.hoodSlot)cl.push({t:3,slot:slot('t:hood','Капот',0,n.y1+.08,n.hood?n.hood[0]:n.z+.9)});
   if(sp.bigcab)cl.push({t:4,slot:slot('t:cab9','Надстройка кабины',0,cabs[0].y1+.12,cabs[0].z+cabs[0].d*.3)});
+  if(id==='gaz66'){cl.length=0;if(tc===1)cl.push({t:1,slot:slot('t:cab0','Крыша кабины',0,3.47,-1.78)})}
+  if(id==='gaz53'){cl.length=0;for(const sx of[-1,1])cl.push({t:1,slot:slot('t:cab'+(sx<0?0:1),sx<0?'Слева от кабины':'Справа от кабины',sx*1.0,tc>=3?1.89:1.69,tc>=3?-2.15:tc>=2?-2.75:-2.15)})}
   for(const q of cl)if(q.t<=tc)out.push(q.slot);
-  if(b){const N=sp.nb,tt=sp.bt;for(let i=0;i<N;i++){if(tt[i]<=tb){const zz=b.z-b.d/2+(i+.5)*b.d/N,xx=N>1?(i%2?.3:-.3)*b.w:0;out.push(slot('t:b'+i,'Кузов '+(i+1),xx,b.y1+.15,zz))}}}
-  if(b&&tb>=4){const hw=b.w/2,z0=b.z-b.d/2,H=b.y1-b.y0,op=b.type==='open',dz=op?Math.max(1.2,b.d*.3):Math.max(1.4,b.d*.32),yy=b.y0+H*(op?.25:.2)+1.2;
+  if(b){const N=sp.nb,tt=sp.bt;for(let i=0;i<N;i++){if(id==='gaz66'&&((tb>=4&&i>0)||(tb>=3&&i===3)))continue;if(tt[i]<=tb){const zz=id==='gaz66'?(tb>=2?(i<2?.75:2.15):i?.72:2.3):id==='gaz53'?(i?.6:tb>=3?3.0:3.6):id==='pickup'?b.z+.2+i*.62:id==='van'?(i?b.z+b.d/2-.7:b.z-b.d/2+.7):b.z-b.d/2+(i+.5)*b.d/N,xx=id==='gaz66'?(tb>=4||(tb>=3&&i===2)?0:tb>=2?(i%2?1.0:-1.0):0):id==='gaz53'?(i?(i===1?-1.5:1.5):0):id==='pickup'?(i?.45:0):id==='van'?(i?-.62:.62):N>1?(i%2?.3:-.3)*b.w:0;out.push(slot('t:b'+i,'Кузов '+(i+1),xx,(id==='gaz66'?(tb>=3?3.26:3.94):id==='gaz53'&&i?2.17:(id==='gaz53'&&tb>=2?3.3:b.y1)+.15),zz))}}}
+  if(id==='gaz66'&&tb>=3){for(const sx of tb===3?[-1,1]:[])out.push({...slot('t:rk'+(sx<0?'l':'r'),'Перед кузова, ракеты '+(sx<0?'слева':'справа'),sx*.7,2.82,-.15),rocket:true});out.push({...slot('t:bmp','Бампер',0,1.67,-3.55),nr:true});if(tb>=4)for(const sx of[-1,1])for(const k of[0,1])out.push({...slot('t:rk'+(sx<0?'l':'r')+k,'Борт '+(sx<0?'слева':'справа')+', ракеты '+(k+1),sx*1.3,2.8,k?3.75:.65),rocket:true})}
+  if(id==='gaz53'&&tb>=3)out.push({...slot('t:rk0','Перед кузова, ракеты',0,3.45,-.8),rocket:true});
+  if(b&&tb>=4&&id!=='gaz66'){const hw=b.w/2,z0=b.z-b.d/2,H=b.y1-b.y0,op=b.type==='open',dz=op?Math.max(1.2,b.d*.3):Math.max(1.4,b.d*.32),yy=b.y0+H*(op?.25:.2)+1.2;
    for(const s of[-1,1])for(let k=0;k<2;k++)out.push({...slot('t:rk'+(s<0?'l':'r')+k,'Борт '+(s<0?'слева':'справа')+', ракеты '+(k+1),s*(hw+.4),yy,z0+.9+k*dz),rocket:true})}
   return out};
 
@@ -3459,20 +3666,26 @@ function buildPlayerTrucks(){
   m.box(0,.58,0,1.2,.2,4.8,DK).box(0,.82,-2.2,1.8,.55,.9,C).box(0,1.12,-1.45,1.85,1.1,1.4,C).box(0,1.55,-2.12,1.5,.5,.05,GL,0).box(0,2.22,-1.45,1.8,.06,1.4,C2)
    .box(0,1.35,.95,1.9,1.7,3.3,C).box(0,3.07,.95,1.85,.08,3.2,C2).box(0,.55,-2.7,1.9,.2,.2,DK).box(0,.55,2.7,1.9,.2,.2,DK).box(0,1.1,2.62,1.8,1.6,.04,C2);
   sym(m,(m,s)=>{m.box(s*.95,1.55,-1.45,.04,.45,1.0,GL).box(s*.97,1.5,.95,.03,.4,3.2,BL).box(s*.97,2.3,.3,.03,.4,.9,GL).box(s*1.06,1.85,-2.0,.12,.28,.08,DK).box(s*.6,1.0,-2.66,.18,.12,.03,HL)});
-  add({id:'van',maxT:2,n:'Фургон «Ласточка»',cls:'2 оси',veh:(WW=WS('van',.46,.34,[[.92,-1.6,1],[-.92,-1.6,1],[.92,1.4,0],[-.92,1.4,0]]),DRESS('van',m,WW),MV('van',[m.build()],WW)),mounts:MNT('van',1,1),st:{hp:110,fu:44,spd:1.1,turn:1.05,cargo:12},len:6.5})}
+  add({id:'van',maxT:2,n:'Фургон «Ласточка»',cls:'2 оси',veh:(WW=WS('van',.46,.46,[[.92,-1.6,1],[-.92,-1.6,1],[.92,1.4,0],[-.92,1.4,0]]),DRESS('van',m,WW),MV('van',[m.build()],WW)),mounts:MNT('van',1,1),st:{hp:110,fu:44,spd:1.1,turn:1.05,cargo:12},len:6.5})}
  /* 3. ГАЗ-53 */
  {const B=[96,116,130],B2=[70,86,98],m=MB();
-  m.box(0,.68,.1,1.3,.22,6.4,DK).box(0,1.15,-2.4,1.7,.7,1.6,B).box(0,1.15,-3.2,1.4,.5,.05,DK).box(0,.7,-3.3,2.0,.2,.2,DK)
-   .box(0,1.5,-.9,1.9,1.5,1.5,B).box(0,1.92,-1.67,1.55,.55,.05,GL,0).box(0,3.0,-.9,1.85,.07,1.5,B2)
-   .box(0,1.0,2.0,2.1,.12,3.6,DK).box(0,1.4,3.8,2.1,.6,.08,WD).box(0,1.4,.2,2.1,.7,.08,WD2);
-  sym(m,(m,s)=>{m.box(s*.96,1.92,-.9,.04,.5,1.0,GL).box(s*1.05,1.35,2.0,.08,.6,3.6,WD).box(s*1.0,1.0,-2.05,.2,.1,1.2,B2).box(s*.6,1.2,-3.22,.16,.14,.03,HL).box(s*1.1,2.3,-1.7,.14,.3,.08,DK)});
-  add({id:'gaz53',maxT:3,n:'«Бычок»',cls:'2 оси',veh:(WW=WS('bus',.55,.4,[[1.05,-2.05,1],[-1.05,-2.05,1],[1.05,1.6,0],[-1.05,1.6,0]]),DRESS('gaz53',m,WW),MV('gaz53',[m.build()],WW)),mounts:MNT('gaz53',1,1),st:{hp:130,fu:60,spd:1,turn:.95,cargo:16},len:7.5})}
+  m.box(0,.68,.7,1.3,.22,7.6,DK).box(0,.7,-3.3,2.0,.2,.2,DK)
+   .box(0,.95,-2.15,1.1,.8,1.8,B).box(0,2.55,-1.925,1.1,.45,1.35,B).box(0,3.0,-2.15,1.2,.07,1.9,B2).box(0,1.05,-3.08,.9,.4,.04,DK)
+   .box(0,1.35,2.0,2.1,.12,3.6,DK).box(0,1.75,3.8,2.1,.8,.08,WD).box(0,1.75,.2,2.1,.8,.08,WD2);
+  for(let k=0;k<4;k++){const zf=-3.05+.15*k;m.box(0,1.75+.2*k,(zf-1.25)/2,1.1,.2,-1.25-zf,B)}
+  {const tg=MB();tg.box(0,-.46,0,.95,.92,.05,GL,0).rxa(.5,0,0).mv(0,2.15,-2.88);m.cat(tg)}
+  sym(m,(m,s)=>{m.box(s*.56,1.92,-2.15,.04,.5,1.2,GL).box(s*1.05,1.7,2.0,.08,.85,3.6,WD).box(s*1.0,1.45,-2.15,.9,.12,1.9,B2).box(s*.68,2.3,-3.0,.14,.3,.08,DK)});
+  add({id:'gaz53',maxT:3,n:'«Бычок»',cls:'2 оси',veh:(WW=WS('bus',.6875,.46,[[1.05,-2.05,1],[-1.05,-2.05,1],[1.05,2.0,0],[-1.05,2.0,0]]),DRESS('gaz53',m,WW),MV('gaz53',[m.build()],WW)),mounts:MNT('gaz53',1,1),st:{hp:130,fu:60,spd:1,turn:.95,cargo:16},len:7.5})}
  /* 4. ГАЗ-66 */
  {const O=[86,96,60],O2=[64,74,46],KH=[150,138,96],m=MB();
-  m.box(0,.75,0,1.3,.22,5.4,DK).box(0,1.45,-1.95,1.95,1.5,1.7,O).box(0,1.05,-2.82,1.6,.7,.05,DK).box(0,1.92,-2.8,1.6,.55,.05,GL,0).box(0,3.0,-1.95,1.9,.08,1.7,O2).box(0,.75,-2.95,2.0,.2,.2,DK)
-   .box(0,1.0,1.45,2.0,.12,3.1,DK).box(0,1.4,3.0,2.0,.5,.07,O).box(0,1.8,1.45,1.9,1.25,2.9,KH).box(0,3.05,1.45,1.5,.3,2.8,KH);
-  sym(m,(m,s)=>{m.box(s*.99,1.92,-1.95,.04,.5,1.1,GL).box(s*1.0,1.3,1.45,.08,.5,3.1,O).box(s*.6,1.15,-2.84,.18,.16,.03,HL).box(s*1.05,2.3,-2.6,.12,.3,.08,DK)});
-  add({id:'gaz66',maxT:3,n:'«Кабан»',cls:'2 оси',veh:(WW=WS('chunk',.62,.46,[[1.05,-1.6,1],[-1.05,-1.6,1],[1.05,1.55,0],[-1.05,1.55,0]]),DRESS('gaz66',m,WW),MV('gaz66',[m.build()],WW)),mounts:MNT('gaz66',1,1),st:{hp:150,fu:56,spd:.98,turn:1.05,cargo:14},len:7})}
+  m.box(0,.75,0,1.3,.22,5.4,DK).box(0,1.45,-1.95,1.95,.5,1.7,O).box(0,1.05,-2.82,1.6,.7,.05,DK).box(0,.75,-2.95,2.0,.2,.2,DK)
+   .box(0,1.3,1.45,2.0,.12,3.1,DK).box(0,1.7,3.0,2.0,.5,.07,O); 
+  for(let k=0;k<5;k++){const zf=-2.8+.07*k;m.box(0,1.95+.2*k,(zf-1.1)/2,1.95,.2,-1.1-zf,O)}
+  {const tg=MB();tg.box(0,-.52,0,1.7,1.06,.05,GL,0).rxa(.34,0,0).mv(0,2.46,-2.66);m.cat(tg);
+   const R=2.5,th=Math.asin(.975/R),n=9,zc=-1.78,L=1.55;for(let k=0;k<n;k++){const a=-th+k*2*th/(n-1),ra=MB();ra.box(0,R-.2,0,.27,.2,L,O2,0).rza(a).mv(0,3.15-R,zc);m.cat(ra)}
+   m.box(0,2.95,zc,1.95,.04,L,O2)}
+  sym(m,(m,s)=>{m.box(s*.99,1.92,-1.95,.04,.5,1.1,GL).box(s*1.0,1.6,1.45,.08,.5,3.1,O).box(s*.6,1.15,-2.84,.18,.16,.03,HL).box(s*1.05,2.3,-2.6,.12,.3,.08,DK)});
+  add({id:'gaz66',maxT:4,n:'«Кабан»',cls:'2 оси',veh:(WW=WS('kab',.62,.46,[[1.05,-2.1,1],[-1.05,-2.1,1],[1.05,2.25,0],[-1.05,2.25,0]]),DRESS('gaz66',m,WW),MV('gaz66',[m.build()],WW)),mounts:MNT('gaz66',1,1),st:{hp:150,fu:56,spd:.98,turn:1.05,cargo:14},len:7})}
  /* 5. ТАТРА 4×4 */
  {const S=[200,172,120],S2=[160,134,92],m=MB(),tb=MB();
   tb.cyl(0,-3.3,.78,.3,6.5,DK,8).rx();
@@ -3518,7 +3731,7 @@ function buildPlayerTrucks(){
    .box(0,3.4,1.2,4.8,.3,7.2,DK)
    .cyl(0,3.7,1.4,2.15,.2,[62,66,68],18);
   sym(m,(m,s)=>{m.box(s*2.0,2.6,-3.5,1.0,.4,1.8,Y2).box(s*.9,2.8,-5.55,.4,.2,.03,HL)});
-  add({id:'belaz',n:'«Колосс»',cls:'уникальный',uniq:true,veh:(WW=WS('giant',1.4,1.0,[[2.2,-4.2,1],[-2.2,-4.2,1],[2.2,3.0,0],[-2.2,3.0,0]]),DRESS('belaz',m,WW),MV('belaz',[m.build()],WW)),lock4:true,mounts:MNT('belaz',1,1),st:{hp:600,fu:200,spd:.7,turn:.55,cargo:60},len:15})}
+  add({id:'belaz',n:'«Колосс»',cls:'уникальный',uniq:true,veh:(WW=WS('giant',1.4,1.4,[[2.2,-4.2,1],[-2.2,-4.2,1],[2.2,3.0,0],[-2.2,3.0,0]]),DRESS('belaz',m,WW),MV('belaz',[m.build()],WW)),lock4:true,mounts:MNT('belaz',1,1),st:{hp:600,fu:200,spd:.7,turn:.55,cargo:60},len:15})}
  /* 11. МАЗ-536 (уникальный, квест) */
  {const O=[70,80,56],O2=[50,58,40],AR=[96,102,92],m=MB();
   m.box(0,1.15,0,1.8,.4,9.0,DK).box(0,2.5,-3.9,2.8,1.2,2.4,O).box(0,2.2,-5.12,2.4,1.0,.05,O2).box(0,2.9,-5.14,2.0,.22,.04,GL,0).box(0,3.7,-3.9,2.6,.2,2.2,O2)
