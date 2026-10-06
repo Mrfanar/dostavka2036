@@ -212,10 +212,11 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 .c-wh{position:absolute;width:20px;height:64px;background:repeating-linear-gradient(#111 0 6px,#1f1a14 6px 9px);border:2px solid #050403;border-radius:5px;z-index:4}
 .c-wh:hover{border-color:#e0a63a}
 .c-sl{position:absolute;background:#0f0b07dd;border:2px solid #7a5a30;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:700 9px var(--font-d);letter-spacing:.1em;color:#9a8566;z-index:5;box-shadow:inset 0 0 12px #000;cursor:pointer;padding:0}
+.c-sl .ti{display:block;width:40px;height:26px;color:#8a6c3c;pointer-events:none}.c-sl .ti svg{width:100%;height:100%}.c-sl.rk .ti{color:#d98a62}.c-sl.eq .ti{width:22px;height:15px;position:absolute;top:2px;left:3px;opacity:.85}
 .c-sl img{max-width:86%;max-height:62%;object-fit:contain;pointer-events:none}
 .c-sl.eq{border-color:#8fc04a;box-shadow:0 0 0 2px #2f4a14,inset 0 0 12px #000,0 0 14px #8fc04a55;color:#cfe6a0}
 .c-sl.sel{border-color:#e0a63a;box-shadow:0 0 0 2px #7a5412,0 0 16px #e0a63a99,inset 0 0 12px #000}
-.c-sl.hint{animation:gh 1s ease-in-out infinite}
+.c-sl.hint{animation:gh 1s ease-in-out infinite}.c-sl small{font:700 8px var(--font-d);letter-spacing:.08em;opacity:.85}.c-sl.rk{border-color:#a8502c;color:#d98a62;background:repeating-linear-gradient(45deg,#1c0e09f0 0 7px,#26140ef0 7px 14px)}.c-sl.rk.eq{border-color:#e8803a;box-shadow:0 0 0 2px #5a2a10,inset 0 0 12px #000,0 0 14px #e8803a66;color:#ffc79a}.c-sl.rk.hint{animation:ghr 1s ease-in-out infinite}@keyframes ghr{50%{box-shadow:0 0 0 3px #f09a50,inset 0 0 12px #f09a50aa}}.g-c.kr::after{content:'МКВР';position:absolute;left:0;right:0;bottom:1px;font:700 8px var(--font-d);color:#5a2a10;text-align:center}
 .c-sl.mod{cursor:default;opacity:.55;border-style:dashed}.c-sl.ms{border-color:#3e6fb0;color:#8fb4e8}.c-sl.ms.eq{border-color:#5a9ae0;box-shadow:0 0 0 2px #1c3a66,inset 0 0 12px #000,0 0 14px #3e7ad099}.c-sl.ms img{max-height:66%}
 .c-cg{position:absolute;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:42px;gap:2px;background:#0d0a0699;padding:2px;z-index:4;overflow-y:auto;scrollbar-width:none}
 .c-gc{position:relative;background:linear-gradient(#171008cc,#0d0a06cc);box-shadow:inset 0 0 0 1px #3a2c1a;border:0;padding:0;display:flex;align-items:center;justify-content:center;min-height:0}
@@ -324,7 +325,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.130.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.132.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -2455,6 +2456,7 @@ const cabSlotsN=t=>TS()?TMNT(FT,t,1).filter(isCabSlot).length:MAN.cabs[t].slots.
 const curSlots=()=>TS()?TMNT(FT,CFG.cab,CFG.body).map(q=>({...q,tr:1,kind:isCabSlot(q)?'cab':'body'})):MAN.cabs[CFG.cab].slots.map(q=>({...q,kind:'cab'})).concat(MAN.bodies[CFG.body].slots.map(q=>({...q,kind:'body'})));
 const wUsed=w=>Object.values(SLOTW).filter(x=>x===w).length,wFree=w=>(WOWN[w]||0)-wUsed(w);
 const durMax=()=>Math.round((PART_HP[CFG.cab]+PART_HP[CFG.body]+PART_HP[CFG.chas])*HPK());
+const SLGUN='<svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(152 24 16)" fill="currentColor" fill-opacity=".25" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M2 11h28v6H2z"/><path d="M9 10v8M16 10v8M23 10v8" fill="none"/><path d="M30 9h8l3 3v5l-3 3h-9z"/><path d="M34 20l1 8h-6l-1-8z"/><path d="M37 12h4" fill="none"/></g></svg>',SLRK='<svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor" fill-opacity=".28" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M46 16 41 13H10v6h31z"/><path d="M10 13 4 9v4l3 3-3 3v4l6-4z"/><path d="M22 13v6M30 13v6" fill="none"/></g></svg>';
 let INF_MONEY=DEV;
 function hudScrap(){if(INF_MONEY)SCRAP=999999;const t=INF_MONEY?'∞':SCRAP;$('t_scr').textContent=t;const e=$('s_scr');if(e)e.textContent=t}
 function getVeh(){if(TS())return truckVeh(FT,CFG.cab,CFG.body,CFG.chas);const k=CFG.cab+'-'+CFG.body+'-'+CFG.chas;if(!VEH[k]){const c=MAN.chassis[CFG.chas];VEH[k]=vehicle({parts:[MAN.cabs[CFG.cab].mesh,MAN.bodies[CFG.body].mesh,c.mesh],wheels:c.wheels,r:c.r})}return VEH[k]}
@@ -2647,8 +2649,8 @@ function cTruck(){
  lb(158,'КАБИНА<br>Т'+CFG.cab);lb(232,'КУЗОВ<br>Т'+CFG.body+'<br>'+cargoUsed()+'/'+cargoCap());
  modGarageSlots(S);
  const sl=curSlots(),pw=gSelI&&gSelI.k==='w'&&wFree(gSelI.id)>0;let nc=0,nb=0;
- sl.forEach((q,n)=>{const w=SLOTW[q.id],b=E_('button','c-sl'+(w?' eq':'')+(gSlot===q.id?' sel':'')+(pw&&!w&&slotOk(q,gSelI.id)?' hint':''));
-  b.innerHTML=(w?'<img src="'+(ICON['w_'+w]||'')+'">'+(AMC[w]?'<img class="am" src="'+amIcon(AMC[w])+'">':''):'')+'<span>'+(w?'':'+ ')+(n+1)+'</span>';b.title=(w?WDEF[w].n:'пусто')+' · '+q.name.replace(/^Кузов, /,'')+' · '+secTxt(q);
+ sl.forEach((q,n)=>{const w=SLOTW[q.id],b=E_('button','c-sl'+(q.rocket?' rk':'')+(w?' eq':'')+(gSlot===q.id?' sel':'')+(pw&&!w&&slotOk(q,gSelI.id)?' hint':''));
+  b.innerHTML='<i class="ti">'+(q.rocket?SLRK:SLGUN)+'</i>'+(w?'<img src="'+(ICON['w_'+w]||'')+'">'+(AMC[w]?'<img class="am" src="'+amIcon(AMC[w])+'">':''):'')+'<span>'+(w?'':'+ ')+(n+1)+'</span><small>'+(q.rocket?'МКВР':'МКВ')+'</small>';b.title=(w?WDEF[w].n:'пусто')+' · '+q.name.replace(/^Кузов, /,'')+' · '+secTxt(q);
   b.onclick=e=>{e.stopPropagation();slotClick(q)};b._q=q;if(w)dragW(b,w,q);b.oncontextmenu=e=>{e.preventDefault();e.stopPropagation();if(SLOTW[q.id]){delete SLOTW[q.id];gSlot=null;rebuildWeapons();snd('reloaded');renderShop()}};
   if(q.kind==='cab'){b.style.cssText='left:408px;top:'+(14+nc*66)+'px;width:54px;height:60px';nc++}
   else{const left=nb%2===0;b.style.cssText='left:'+(left?8:408)+'px;top:'+(300+Math.floor(nb/2)*66)+'px;width:54px;height:60px';nb++}S.appendChild(b)});
@@ -3071,7 +3073,7 @@ function vehMats(V,o,bobK){
  const pit=Math.max(-.08,Math.min(.08,o.acc*.0045)),rol=Math.max(-.1,Math.min(.1,(o.w||0)*o.v*.00007*bobK));
  const tilt=M4.mul(root,M4.mul(M4.T(0,bob,0),M4.mul(M4.RZ(rol),M4.RX(pit))));
  return{root,tilt,st}}
-function drawW(P_,id,M){const g=WG[id];if(Array.isArray(g)){const k=g.sc||WSC,M2=M4.mul(M,M4.S(k,k,k));for(const q of g)drawMesh(P_,q,M2,null,null,false,false)}else drawMesh(P_,g,M,null,null,false,false)}
+function drawW(P_,id,M){const g=WG[id];if(Array.isArray(g)){const hk=isRk(id)?1:.5,k=(g.sc||WSC)*hk,M2=M4.mul(M,M4.S(k,k,k));for(const q of g)drawMesh(P_,q,M2,null,null,false,false)}else drawMesh(P_,g,M4.mul(M,M4.S(isRk(id)?1:.5,isRk(id)?1:.5,isRk(id)?1:.5)),null,null,false,false)}
 function drawVehicle(P_,V,o,bobK,emi,tint){
  const{tilt:t0,st}=vehMats(V,o,bobK);const tilt=o.sc&&o.sc!==1?M4.mul(t0,M4.S(o.sc,o.sc,o.sc)):t0;for(const g of V.parts)drawMesh(P_,g,tilt,tint,emi,false,true);
  for(const w of V.wheels){let m=M4.mul(tilt,M4.T(...w.pos));if(w.front)m=M4.mul(m,M4.RY(-st));m=M4.mul(m,M4.RX(V.spin));drawMesh(P_,w.g,m,tint,emi,false,true)}
@@ -3299,9 +3301,10 @@ function buildPlayerTrucks(){
   tatra6:{tc:[34,34,32],lugs:8,lw:.34,lh:.17,rc:[160,150,130],rr:.5,cap:[110,104,92],bolts:8,capR:.34,dual:1},
   balloon:{tc:[48,50,44],lugs:0,lw:.1,lh:.05,rc:[160,160,150],rr:.5,cap:[190,60,40],bolts:12,capR:.4,ribs:3},
   deep:{tc:[32,32,28],lugs:16,lw:.2,lh:.22,rc:[60,66,50],rr:.48,cap:[44,46,40],bolts:14,capR:.36,alt:-.45},
-  giant:{tc:[28,28,28],lugs:18,lw:.42,lh:.26,rc:[226,164,44],rr:.46,cap:[200,140,30],bolts:12,capR:.4,ribs:2},
+  giant:{tc:[28,28,28],lugs:18,lw:.42,lh:.26,rc:[226,164,44],rr:.46,cap:[200,140,30],bolts:12,capR:.4,ribs:2,arm:1,nb:10},
   armor:{tc:[36,38,34],lugs:10,lw:.3,lh:.14,rc:[84,92,76],rr:.66,cap:[70,76,64],bolts:6,capR:.56,flat:1}
  };
+ WSTY.kab4={...WSTY.kab,arm:1,nb:8};
  const WH=(st,r,w)=>{const o=WSTY[st],m=MB(),n=o.dual?2:1,tw=o.dual?w*.46:w,ys=o.dual?[-w*.27,w*.27]:[0];
   for(const y0 of ys){const yb=y0-tw/2;m.cyl(0,yb,0,r,tw,o.tc,14);
    for(let k=0;k<o.lugs;k++){const a=k/o.lugs*6.2832;m.box(Math.cos(a)*(r-.02),yb,Math.sin(a)*(r-.02),o.lh*2,tw*1.04,o.lw,sh(o.tc,1.35),-a+(k%2?(o.alt||0):-(o.alt||0)))}
@@ -3317,6 +3320,7 @@ function buildPlayerTrucks(){
    if(o.ring)m.cyl(0,sg>0?yy-.02:yy-.04,0,r*o.rr*1.02,.06,o.ring,12);
    if(!o.flat)for(let k=0;k<o.bolts;k++){const a=k/o.bolts*6.2832,rr=r*(o.rr*.78);m.box(Math.cos(a)*rr,sg>0?yy+.0:yy-.06,Math.sin(a)*rr,.08,.07,.08,[184,184,176])}
    else for(let k=0;k<o.bolts;k++){const a=k/o.bolts*6.2832;m.box(Math.cos(a)*r*.42,sg>0?yy+.1:yy-.14,Math.sin(a)*r*.42,.1,.07,.1,[140,142,132])}}
+  if(o.arm)for(const sg of[-1,1]){const f=sg*w/2;m.cyl(0,sg>0?f+.14:f-.24,0,r*.82,.1,[92,94,92],22);m.cyl(0,sg>0?f+.24:f-.38,0,r*.3,.14,[70,68,64],12);for(let k=0;k<o.nb;k++){const a=k/o.nb*6.2832;m.box(Math.cos(a)*r*.6,sg>0?f+.24:f-.32,Math.sin(a)*r*.6,.08,.08,.08,[184,184,176])}}
   return m.rz().build()};
  const WS=(st,r,w,list)=>{const wg=WH(st,r,w);return list.map(([x,z,f])=>({g:wg,pos:[x,r,z],front:!!f,r}))};
  const slot=(id,name,x,y,z,sec)=>({id,name,pos:[x,y,z],g:[-z,-x],sec:sec||[0,180]});
@@ -3582,11 +3586,9 @@ function buildPlayerTrucks(){
     for(const w of W){const x=w.pos[0],z=w.pos[2],s=Math.sign(x);
      if(id==='gaz66'){if(t>=2&&z>0){const R2=r+.1,sg=R2*.31,wid=ww+.2;for(const zq of(t>=3?[z,.07]:[z])){for(let k=0;k<11;k++){const th=(-85+k*17)*Math.PI/180,tmp=MB();tmp.box(x,r+R2-.035,zq,wid,.1,sg,c2).rxa(th,r,zq);m.cat(tmp)}for(const sx of[-1,1])pad(x+sx*(wid/2-.03),r+R2*.1,zq-R2-.03,.08,r*.8,.1,c3)}}continue}
      if(id==='gaz53')continue;
-     if(id==='belaz'){const R2=r+.1,sg=R2*.31,wid=ww+.2,xo=s*(Math.abs(x)+ww/2),xs=s>0?xo+.08:xo-.08+0,xr=s>0?xo+.14:xo-.14;
+     if(id==='belaz'){const R2=r+.34,sg=R2*.31,wid=ww+.2,xo=s*(Math.abs(x)+ww/2),xs=s>0?xo+.08:xo-.08+0,xr=s>0?xo+.14:xo-.14;
       for(let k=0;k<11;k++){const th=(-85+k*17)*Math.PI/180,tmp=MB();tmp.box(x,r+R2-.035,z,wid,.1,sg,c2).rxa(th,r,z);m.cat(tmp)}
       for(const sx of[-1,1])pad(x+sx*(wid/2-.03),r+R2*.1,z-R2-.03,.08,r*.8,.1,c3);
-      mx.cyl(r,-(s>0?xo+.1:xo),z,1.15,.1,STEEL2,26);mx.cyl(r,-(s>0?xo+.14:xo-.04),z,.45,.14,[70,68,64],14);
-      for(let k=0;k<10;k++){const a=k/10*6.2832;mx.cyl(r+Math.cos(a)*.85,-(s>0?xo+.14:xo-.04),z+Math.sin(a)*.85,.08,.14,[184,184,176],6)}
       continue}
      if(id==='van'){const rear=z>0,wid=rear?.84:.68,cxx=rear?.915*s:x,R2=r+.1,sg=R2*.31;
       for(let k=0;k<11;k++){const th=(-85+k*17)*Math.PI/180,tmp=MB();tmp.box(cxx,r+R2-.035,z,wid,.07,sg,c2).rxa(th,r,z);m.cat(tmp)}
@@ -3626,7 +3628,7 @@ function buildPlayerTrucks(){
     if(id==='gaz66'){pad(0,by-.06,zf-.62,bw+.45,.4,.3,STEEL);pad(0,by+.34,zf-.62,bw+.45,.05,.3,STEEL2);R.x(by+.2,zf-.78,-(bw+.45)/2+.1,(bw+.45)/2-.1,.3);for(const s of[-1,1]){pad(s*(bw/2+.3),by-.08,zf-.5,.16,.5,.5,STEEL);pad(s*bw*.42,by-.1,zf-.8,.12,.14,.14,RED);pad(s*.5,by+.04,zf-.28,.16,.2,.4,STEEL2)}}
     if(id==='gaz66'&&t>=3){const zc=-3.55;pad(0,by+.34,zc,1.1,.26,.9,STEEL2);pad(0,by+.6,zc,1.3,.07,1.0,STEEL2);pad(0,by+.67,zc,1.16,.025,.86,c2);for(const sx of[-1,1]){pad(sx*.65,by-.06,zc,.1,.4,1.0,STEEL);pad(sx*.5,by+.1,zc+.5,.06,.06,.5,STEEL);pad(sx*.6,by+.67,zc,.05,.1,1.0,STEEL)}for(const z of[zc-.5,zc+.5])pad(0,by+.67,z,1.3,.1,.05,STEEL);pad(0,by-.06,zc-.5,1.3,.4,.08,STEEL);ring(m,0,by+.79,zc);
      {const LL=[...W,...[1.05,-1.05].map(x=>({g:W[2].g,pos:[x,r,.07],front:false,r}))];WT_=[null,null,LL,LL];
-      if(t>=4){for(const w of LL){const sx=Math.sign(w.pos[0]),z=w.pos[2],xs=sx>0?1.36:-1.28,xr=sx>0?1.4:-1.32;mx.cyl(r,-xs,z,.5,.08,STEEL2,20);mx.cyl(r,-xr,z,.18,.1,[70,68,64],12);for(let k=0;k<8;k++){const a=k/8*6.2832;mx.cyl(r+Math.cos(a)*.38,-xr,z+Math.sin(a)*.38,.04,.1,[184,184,176],6)}}pad(0,.75,3.6,1.3,.22,1.9,DK);for(const sx of[-1,1]){mz.cyl(sx*.82,3.62,by+.2,.15,.1,[60,60,56],10);mz.cyl(sx*.82,3.7,by+.2,.11,.08,[255,244,200],10);for(const bz of[-1,1])pad(sx*.82+bz*.12,by+.2,-3.7,.04,.04,.04,STEEL);const tm=MB();tm.cyl(0,-.17,0,.6,.34,TIRE,14).cyl(0,-.2,0,.28,.4,HUB,8).cyl(0,-.22,0,.12,.44,[60,60,56],6);tm.rza(sx*Math.PI/4);tm.mv(sx*1.12,.72,3.6);m.cat(tm);pad(sx*.85,.55,3.6,.5,.06,.18,DKK)}}}
+      if(t>=4){const g4=WH('kab4',r,.46);WT_=[null,null,LL,LL.map(w=>({...w,g:g4}))];pad(0,.75,3.6,1.3,.22,1.9,DK);for(const sx of[-1,1]){mz.cyl(sx*.82,3.62,by+.2,.15,.1,[60,60,56],10);mz.cyl(sx*.82,3.7,by+.2,.11,.08,[255,244,200],10);for(const bz of[-1,1])pad(sx*.82+bz*.12,by+.2,-3.7,.04,.04,.04,STEEL);const tm=MB();tm.cyl(0,-.17,0,.6,.34,TIRE,14).cyl(0,-.2,0,.28,.4,HUB,8).cyl(0,-.22,0,.12,.44,[60,60,56],6);tm.rza(sx*Math.PI/4);tm.mv(sx*1.12,.72,3.6);m.cat(tm);pad(sx*.85,.55,3.6,.5,.06,.18,DKK)}}}
      for(const sx of[-1,1])for(const zc2 of[-1.0,1.16]){const X=sx*1.15,Hh=.78,yc=.89;pad(X,.5,zc2,.05,.05,Hh,STEEL);pad(X,1.28,zc2,.05,.05,Hh,STEEL);for(const zz of[-1,1])pad(X,.5,zc2+zz*Hh/2,.05,Hh,.05,STEEL);for(const sg of[1,-1]){const br=MB();br.box(X,-.025,0,.05,.05,Hh*1.414,STEEL,0).rxa(sg*Math.PI/4,0,0).mv(0,yc,zc2);m.cat(br)}}}
     if(id==='van'&&t>=2)for(const sx of[-1,1]){pad(sx*.6,by+.1,zf-.28,.07,.07,.28,STEEL);pad(sx*.6,by-.08,zf-.46,.07,.25,.07,STEEL);pad(sx*.6,by-.08,zf-.4,.07,.07,.12,STEEL)}
     {const L=bw*.5;mx.cyl(by+.12,-L/2,zf-.4,.13,L,STEEL2,8).cyl(by+.12,-L/2,zf-.4,.16,.08,STEEL,8)}
@@ -4702,7 +4704,7 @@ const CVOFF=[[-4.4,6.5],[4.4,2.2],[-3.9,-7.5]];
 function cvPose(){const p=cvAt(CV.s),q=cvAt(CV.s+CV.dir*3),a0=cvAt(CV.s-CV.dir*3);CV.x=p[0];CV.y=p[1];CV.a=norm(Math.atan2(q[0]-a0[0],q[1]-a0[1])/D2R)}
 function cvInit(){CV={s:0,dir:1,v:0,wait:0,go:0,atk:0,t:[],d:99};if(DEV){CV.fixed=1;CV.x=-6;CV.y=8;CV.a=250}else{cvRoute();CV.s=CVR.tot*.45;cvPose()}for(const o of CVOFF){const f=[Math.sin(CV.a*D2R),Math.cos(CV.a*D2R)];CV.t.push({x:CV.x+f[1]*o[0]+f[0]*o[1],y:CV.y-f[0]*o[0]+f[1]*o[1],a:CV.a})}}
 function cvCircles(){if(!CV)return[];const o=[],sa=Math.sin(CV.a*D2R),ca=Math.cos(CV.a*D2R);for(const k of[-1.5,.2,1.7])o.push([CV.x+sa*k,CV.y+ca*k,1.75]);for(const t of CV.t){const s=Math.sin(t.a*D2R),c=Math.cos(t.a*D2R);o.push([t.x+s*.9,t.y+c*.9,1.2],[t.x-s*1.1,t.y-c*1.1,1.3])}return o}
-function cvPush(x,y,r){const dx=wr(P.x-x),dy=wr(P.y-y),d=Math.hypot(dx,dy),R=r+1.55;if(d<R&&d>1e-3){const k=(R-d)/d;P.x+=dx*k;P.y+=dy*k;P.v*=.92}}
+function cvPush(x,y,r){const dx=wr(P.x-x),dy=wr(P.y-y),d=Math.hypot(dx,dy),R=r+1.55;if(d<R&&d>1e-3){if(Math.abs(P.v)>1.5&&!CV.atk)cvAttack();const k=(R-d)/d;P.x+=dx*k;P.y+=dy*k;P.v*=.92}}
 const cvCanTalk=()=>!!(CV&&!CV.atk&&!CVO&&P.dead<=0&&CV.v<.8&&CV.d<17);
 function cvUpdate(dt){if(!STARTED||TITLE||CUT.on)return;if(!CV)cvInit();
  CV.d=Math.hypot(wr(P.x-CV.x),wr(P.y-CV.y));let tv=CV.fixed?0:CV_SPD;
