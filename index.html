@@ -63,7 +63,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 #clk{position:fixed;top:calc(env(safe-area-inset-top,0px) + 70px);right:144px;width:40px;text-align:center;color:#eadfc6;font:600 11px 'Chakra Petch',system-ui,sans-serif;opacity:.75;pointer-events:none;text-shadow:0 1px 3px #000}#fpsb{position:fixed;top:calc(env(safe-area-inset-top,0px) + 54px);right:144px;width:40px;text-align:center;color:#c9c0a8;font:600 11px/1 'Chakra Petch',monospace;font-variant-numeric:tabular-nums;z-index:4;pointer-events:none;text-shadow:0 1px 3px #000}#fpsb.lo{color:#ff6a5a}
 #gear{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:144px;width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font-size:20px;line-height:1;cursor:pointer;backdrop-filter:blur(3px);z-index:4;display:flex;align-items:center;justify-content:center}
 #menu{position:fixed;inset:0;background:rgba(12,9,6,.66);backdrop-filter:blur(4px);z-index:10;display:flex;align-items:center;justify-content:center;padding:16px;touch-action:auto}
-.mp{width:min(100%,460px);max-height:min(100%,640px);display:flex;flex-direction:column;background:#241d16;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
+.mp{width:min(100%,640px);max-height:min(100%,860px);display:flex;flex-direction:column;background:#241d16;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
 .mh{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px}
 .mh h2{margin:0;font:600 16px var(--font-d);letter-spacing:.12em;text-transform:uppercase}
 .mx{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:18px;cursor:pointer}
@@ -325,7 +325,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.147.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.151.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -1206,12 +1206,13 @@ function surfAt(x,y){const k=bIdx(x,y),sn=snowK(x,y)>.5;
  if(ROAD_A[ri+3]<150&&r<25)return'mud';if(sn)return'snow';
  if(-BD[k]<5)return'beach';
  if(r>=25)return'dust';if(BIO[k*4+2]>205)return'rock';if(BIO_G[k]>.5)return'grass';return'waste'}
-const SF={s:1,a:1,t:1};let SFC='asph',SINK=0,SINKM=0,SFN=0;
+let PSUB=0;const SF={s:1,a:1,t:1};let SFC='asph',SINK=0,SINKM=0,SFN=0;
 function surfPct(id){const c=SURF[id],k=axleK();if(id==='deep')return[0,0,0];if(id==='shallow'&&!SNORK())return[0,0,0];{const b=surfBonus(id),f=v=>v>=100?100:Math.min(100,v+b);return[f(effPct(c.s,k)),f(effPct(c.a,k)),f(effPct(c.t,k))]}}
 function surfUpdate(dt){MLC=null;SFC=surfAt(P.x,P.y);if(SFC==='shallow'&&ML('snork')>0)SHT+=dt;else SHT=Math.max(0,SHT-dt*1.5);turboUpdate(dt);const p=surfPct(SFC),w=Math.min(1,dt*4);
  const ts=SFC==='deep'||(SFC==='shallow'&&!SNORK())?.35:p[0]/100,ta=SFC==='deep'||(SFC==='shallow'&&!SNORK())?.4:p[1]/100,tt=SFC==='deep'||(SFC==='shallow'&&!SNORK())?.5:p[2]/100;
  SF.s+=(ts-SF.s)*w;SF.a+=(ta-SF.a)*w;SF.t+=(tt-SF.t)*w;
  const wet=SFC==='deep'||(SFC==='shallow'&&!SNORK());
+ {const wetN=SFC==='deep'||(SFC==='shallow'&&!SNORK());const tg=P.dead>1.5?PSUB:(SFC==='deep'?2.8:(wetN?Math.min(2.4,.6+SINK*1.1):(SFC==='shallow'?.5:0)));PSUB+=(tg-PSUB)*Math.min(1,dt*(tg>PSUB?1.6:2.5));if(PSUB<.01)PSUB=0;if(PSUB>.3&&Math.random()<dt*14)parts.push({t:'dust',c:[.8,.92,1],x:P.x+(Math.random()-.5)*3,y:P.y+(Math.random()-.5)*3,z:.15,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,vz:.8+Math.random(),life:.8,max:.8,r:.15+Math.random()*.2})}
  if(P.dead>0){SINK=0}else{
   if(SFC==='deep'||SFC==='shallow'){if(wet)P.v*=Math.max(0,1-1.8*dt);if(Math.abs(P.v)>1.5){P.wsp=(P.wsp||0)+dt*14;while(P.wsp>=1){P.wsp-=1;parts.push({t:'dust',c:[.72,.88,.95],x:P.x+(Math.random()-.5)*3,y:P.y+(Math.random()-.5)*3,z:.2,vx:(Math.random()-.5)*1.4,vy:(Math.random()-.5)*1.4,vz:1.6+Math.random(),life:.7,max:.7,r:.3+Math.random()*.4})}}}
   if(wet&&!GOD){SINK+=dt;SINKM-=dt;if(SINKM<=0){SINKM=1;texts.push({x:P.x,y:P.y,z:5,life:1.4,max:1.4,s:SFC==='shallow'?'НУЖЕН ШНОРКЕЛЬ! ГРУЗОВИК ТОНЕТ':'ГРУЗОВИК ТОНЕТ!',red:true})}
@@ -1221,7 +1222,7 @@ function surfUpdate(dt){MLC=null;SFC=surfAt(P.x,P.y);if(SFC==='shallow'&&ML('sno
 function tankDrive(dt){const k=input.keys;let th=(k.KeyW||k.ArrowUp?1:0)-(k.KeyS||k.ArrowDown?1:0),st=(k.KeyD||k.ArrowRight?1:0)-(k.KeyA||k.ArrowLeft?1:0);if(P.dead>0)th=st=0;
  const mx=10.5*TSPD[CFG.chas]*SPK()*(STAT.fu.v>0?1:.3)*SF.s,turn=130*TTURN[CFG.chas]*TNK();
  if(th){const want=th>0?mx:-mx*.55,ac=9*SF.a*(th*P.v<-.5?MODBRK():1);P.v+=Math.max(-Math.max(ac,9)*dt,Math.min(ac*dt,want-P.v))}else P.v*=Math.max(0,1-4.5*dt*(SFC==='ice'?.33:1));
- const cap=Math.min(turn,35+Math.abs(P.v)/(P.L||4)*MODLK()*57.3*.75)*SF.t;P.w=(P.w||0)+(st*cap-(P.w||0))*Math.min(1,dt*9);rot(P,P.w*dt);
+ const cap=Math.min(turn,Math.abs(P.v)/(P.L||4)*MODLK()*57.3*.75)*SF.t;P.w=(P.w||0)+(st*cap-(P.w||0))*Math.min(1,dt*9);rot(P,P.w*dt);
  {const hx=Math.sin(P.a*D2R)*P.v,hy=Math.cos(P.a*D2R)*P.v,kk=SFC==='ice'?1.5:80;P.vx=(P.vx||0)+(hx-(P.vx||0))*Math.min(1,dt*kk);P.vy=(P.vy||0)+(hy-(P.vy||0))*Math.min(1,dt*kk);P.x+=P.vx*dt;P.y+=P.vy*dt}}
 const XPN=l=>Math.round(100*Math.pow(l,1.5));
 function addXp(n){if(!n)return;META.xp=(META.xp||0)+n;texts.push({x:P.x+1.5,y:P.y,z:5.4,life:1.1,max:1.1,s:'+'+n+' XP'});let up=false;while((META.lv||1)<15&&META.xp>=XPN(META.lv||1)){META.xp-=XPN(META.lv||1);META.lv=(META.lv||1)+1;up=true}if((META.lv||1)>=15)META.xp=Math.min(META.xp,XPN(14));
@@ -1263,7 +1264,7 @@ function pcFire(){for(const k in FIRE)FIRE[k]=false;if(paused||CUT.on||P.dead>0)
 const FIRE={};let FBTN=[];const SHORT={tank:'Орудие',rocket:'Ракета',rocket2:'Ракеты ×2',rocket4:'Ракеты ×4',mg:'Пулемёт',mg_twin:'Сдвоен. пулемёт',shotgun:'Дробовик',gun4:'Пушка',harpoon:'Гарпун',gatling:'Гатлинг',laser:'Лазер',iskra:'Искра',rubin:'Рубин',duet:'Дуэт',rassek:'Рассекатель',prizma:'Призма',tsirkul:'Циркуль',dvoika:'Двойка',drovosek:'Дровосек',karusel:'Карусель',kolotushka:'Колотушка',kuvalda:'Кувалда',goroh:'Горох'};
 
 /* ---------- settings ---------- */
-const DEF={lang:(/^(ru|uk|be)/i.test(navigator.language||'ru')?'ru':'en'),fps:0,cel:100,xh:1,xs:100,vol:70,mus:100,sfx:100,eng:60,hit:100,mute:false,zoom:.85,lead:1,dyn:true,fs:100,js:100,fo:100,fixed:false,lefty:false,ox:0,oy:0};
+const DEF={lang:(/^(ru|uk|be)/i.test(navigator.language||'ru')?'ru':'en'),fps:0,cel:100,xh:1,xs:100,vol:70,mus:100,sfx:100,eng:60,env:100,wxs:100,hit:100,mute:false,zoom:.85,lead:1,dyn:true,fs:100,js:100,fo:100,fixed:false,lefty:false,ox:0,oy:0};
 const S=Object.assign({},DEF);
 try{Object.assign(S,JSON.parse(localStorage.getItem('mecha3d_settings')||'{}'))}catch(e){}
 const saveS=()=>{try{localStorage.setItem('mecha3d_settings',JSON.stringify(S))}catch(e){}};
@@ -2159,7 +2160,7 @@ function ambInit(){if(AMB||!AC)return;const A={out:AC.createGain(),G:{}};A.out.g
 window.__amb=()=>AMB&&{g:AMB.out.gain.value,st:AC.state};
 setInterval(()=>{const e=document.getElementById('tsnd');if(e)e.hidden=!TITLE||!!(AC&&AC.state==='running')},400);
 function ambVol(){if(!AC||!AMB)return;AMB.out.gain.setTargetAtTime(TITLE&&!S.mute?.8*(S.mus==null?100:S.mus)/100:0,AC.currentTime,TITLE?1.5:.8)}
-function applyVol(){if(!AC)return;ambInit();ambVol();const t=AC.currentTime;master.gain.setTargetAtTime(S.mute||(paused&&!shopOpen)?0:S.vol/100,t,.03);sfxG.gain.value=S.sfx/100;engG.gain.value=S.eng/100*.5;if(typeof musK!=='undefined')musK()}
+function applyVol(){if(!AC)return;ambInit();ambVol();const t=AC.currentTime;master.gain.setTargetAtTime(S.mute||(paused&&!shopOpen)?0:S.vol/100,t,.03);sfxG.gain.value=S.sfx/100;engG.gain.value=S.eng/100*.5;if(VGN.env)VGN.env.gain.value=(S.env==null?100:S.env)/100;if(VGN.wx)VGN.wx.gain.value=(S.wxs==null?100:S.wxs)/100;if(typeof musK!=='undefined')musK()}
 let VOICES=0,VHI=false;const HI={tank:1,boom:1,rocket:1,rocket2:1,rocket4:1,phit:1,reloaded:0};
 function vok(){return VOICES<(VHI?30:14)}
 function vend(s){VOICES++;s.onended=()=>{VOICES--;try{s.disconnect()}catch(e){}}}
@@ -2211,11 +2212,50 @@ const ENGP={_:{f1:[38,58],f2:[19,29],fl:[160,520],g:[.35,.5],wh:[0,2000,2000],t1
  maz536:{bo:1.2,f1:[44,40],f2:[22,20],fl:[145,460],g:[.48,.5],wh:[.24,800,1200,'sawtooth',1900],t1:'sawtooth',t2:'triangle',sb:.5,nz:[.07,.1,150,300]}};
 const TNE={tatra4:1.08,zil131:.96,tatra6:.9,zil135:.85,maz543:.8};for(const k in TNE)ENGP[k]={...ENGP.ural,tn:TNE[k]};ENGP.van.tn=1.06;ENGP.gaz66.tn=.94;ENGP.maz536.tn=.88;
 let ENGK=null;
+
+const SFS={asph:{nf:['bandpass',1800,.5,.09],gf:[0,0,0],hr:0,hf:0,hg:0},
+ narrow:{nf:['bandpass',1500,.5,.12],gf:[2200,.6,.05],hr:1.5,hf:1800,hg:.12},
+ dust:{nf:['lowpass',900,.7,.15],gf:[0,0,0],hr:.8,hf:900,hg:.08},
+ dirt:{nf:['bandpass',1100,.4,.16],gf:[1900,.5,.22],hr:6,hf:1400,hg:.22},
+ waste:{nf:['bandpass',800,.4,.14],gf:[1500,.5,.18],hr:4,hf:1100,hg:.2},
+ grass:{nf:['highpass',2600,.7,.1],gf:[0,0,0],hr:0,hf:0,hg:0},
+ rock:{nf:['bandpass',1300,.5,.15],gf:[2400,.6,.3],hr:9,hf:1700,hg:.3},
+ beach:{nf:['bandpass',3600,.6,.11],gf:[3000,.8,.08],hr:2.5,hf:3200,hg:.1},
+ snow:{nf:['lowpass',1800,.7,.14],gf:[1400,.6,.12],hr:1.2,hf:900,hg:.1},
+ ice:{nf:['highpass',4200,.7,.07],gf:[0,0,0],hr:.5,hf:5000,hg:.07},
+ mud:{nf:['lowpass',420,.9,.26],gf:[0,0,0],hr:3.5,hf:380,hg:.22,wet:1},
+ shallow:{nf:['bandpass',2000,.5,.28],gf:[0,0,0],hr:6,hf:1500,hg:.25,wet:1},
+ deep:{nf:['lowpass',500,.7,.05],gf:[0,0,0],hr:0,hf:0,hg:0}};
+
+let VGN={};function getVG(n){if(!VGN[n]){const g=AC.createGain();g.gain.value=(typeof S!=='undefined'&&S[n=== 'wx'?'wxs':'env']!=null?S[n==='wx'?'wxs':'env']:100)/100;g.connect(sfxG);VGN[n]=g}return VGN[n]}
+let WXS=null,WXT=0;
+function wxSnd(C,tn){if(!AC||typeof getVG('wx')==='undefined'||!getVG('wx'))return;const now=performance.now()/1000,t=AC.currentTime;
+ if(!WXS){const mk=(typ,f,Q)=>{const s=AC.createBufferSource();s.buffer=nbuf;s.loop=true;s.playbackRate.value=.8+Math.random()*.4;const fl=AC.createBiquadFilter();fl.type=typ;fl.frequency.value=f;fl.Q.value=Q;const g=AC.createGain();g.gain.value=0;s.connect(fl);fl.connect(g);g.connect(getVG('wx'));s.start(0,Math.random());return{s,fl,g}};
+  WXS={rh:mk('bandpass',3600,.35),rr:mk('lowpass',700,.6),wd:mk('bandpass',520,.9),ws:mk('highpass',3800,.7),cr:[...Array(6)].map((_,i)=>({f:3700+Math.random()*1300,nx:now+Math.random()*2,v:.6+Math.random()*.4})),gu:0}}
+ const W=WXS,on=paused?0:1,N=Math.max(C.night||0,tn||0),R=C.rain||0,D=C.dust||0;
+ W.rh.g.gain.setTargetAtTime(on*R*.13,t,.4);W.rr.g.gain.setTargetAtTime(on*R*.09,t,.4);
+ if(now>W.gu){W.gu=now+1.5+Math.random()*2.5;const gu=Math.random();W.wd.fl.frequency.setTargetAtTime(380+D*320+gu*420,t,.9);W.wd.g.gain.setTargetAtTime(on*D*(.1+gu*.2),t,.7);W.ws.g.gain.setTargetAtTime(on*D*(.03+gu*.06),t,.7)}
+ if(D<=.01){W.wd.g.gain.setTargetAtTime(0,t,.5);W.ws.g.gain.setTargetAtTime(0,t,.5)}
+ const dtm=Math.min(.1,now-(WXT||now));WXT=now;
+ if(on&&R>.02){let n=dtm*(34*R);while(Math.random()<n){n--;const s=AC.createBufferSource();s.buffer=nbuf;const fl=AC.createBiquadFilter();fl.type='bandpass';fl.frequency.value=1500+Math.random()*4500;fl.Q.value=2;const g=AC.createGain(),a=(.025+Math.random()*.05)*R;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(a,t+.002);g.gain.exponentialRampToValueAtTime(.001,t+.012+Math.random()*.02);s.connect(fl);fl.connect(g);g.connect(getVG('wx'));s.start(t,Math.random()*.9);s.stop(t+.05)}
+  if(Math.random()<dtm*3*R){const s=AC.createBufferSource();s.buffer=nbuf;const fl=AC.createBiquadFilter();fl.type='bandpass';fl.frequency.value=800+Math.random()*700;fl.Q.value=1.2;const g=AC.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.06*R,t+.003);g.gain.exponentialRampToValueAtTime(.001,t+.05);s.connect(fl);fl.connect(g);g.connect(getVG('wx'));s.start(t,Math.random()*.9);s.stop(t+.08)}}
+ if(on&&N>.05){for(const k of W.cr)if(now>=k.nx){k.nx=now+.55+Math.random()*.9;const o=AC.createOscillator(),g=AC.createGain(),a=.04*N*k.v;o.type='sine';o.frequency.value=k.f;for(let i=0;i<3;i++){const t0=t+i*.055;g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(a,t0+.008);g.gain.setValueAtTime(a,t0+.025);g.gain.linearRampToValueAtTime(0,t0+.04)}o.connect(g);g.connect(getVG('wx'));o.start(t);o.stop(t+.2)}}}
+let SRL=null,SRT=0;
+function stoneHit(f,g,wet,k){const t=AC.currentTime,s=AC.createBufferSource();s.buffer=nbuf;const fl=AC.createBiquadFilter();fl.type=wet?'lowpass':'bandpass';fl.frequency.value=f*(.6+Math.random()*.8)*k;fl.Q.value=wet?.8:1.4;const ga=AC.createGain(),d=(wet?.09:.025)+Math.random()*.04,a=g*(.4+Math.random()*.6);ga.gain.setValueAtTime(0,t);ga.gain.linearRampToValueAtTime(a,t+.003);ga.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(fl);fl.connect(ga);ga.connect(getVG('env'));s.start(t,Math.random()*.9);s.stop(t+d+.02);
+ if(!wet&&Math.random()<.3){const o=AC.createOscillator(),og=AC.createGain();o.type='sine';o.frequency.setValueAtTime(190*k*(.8+Math.random()*.5),t);o.frequency.exponentialRampToValueAtTime(70*k,t+.07);og.gain.setValueAtTime(a*.7,t);og.gain.exponentialRampToValueAtTime(.001,t+.08);o.connect(og);og.connect(getVG('env'));o.start(t);o.stop(t+.1)}}
+function surfSnd(v,p){if(!AC)return;const now=performance.now(),dt=Math.min(.1,Math.max(0,(now-SRT)/1000));SRT=now;
+ if(!SRL){const gb=AC.createBuffer(1,AC.sampleRate,AC.sampleRate),gd=gb.getChannelData(0);for(let i=0;i<gd.length;i++)gd[i]=0;for(let n=0;n<420;n++){const i0=Math.floor(Math.random()*gd.length),a=(Math.random()*.8+.2)*(Math.random()<.5?-1:1),l=30+Math.random()*50;for(let j=0;j<l&&i0+j<gd.length;j++)gd[i0+j]+=a*Math.exp(-j/12)*(Math.random()*2-1)}
+  const mk=(buf)=>{const s=AC.createBufferSource();s.buffer=buf;s.loop=true;const f=AC.createBiquadFilter(),g=AC.createGain();g.gain.value=0;s.connect(f);f.connect(g);g.connect(getVG('env'));s.start();return{s,f,g}};
+  SRL={n:mk(nbuf),g:mk(gb)}}
+ const sf=SFS[typeof SFC!=='undefined'?SFC:'asph']||SFS.asph,r=Math.min(1,Math.abs(v)/10.5),t=AC.currentTime,k=(p&&p.tn)||1,on=(!paused&&r>.04)?1:0;
+ SRL.n.f.type=sf.nf[0];SRL.n.f.frequency.setTargetAtTime(sf.nf[1]*k*(.7+r*.5),t,.15);SRL.n.f.Q.value=sf.nf[2];SRL.n.g.gain.setTargetAtTime(on*sf.nf[3]*Math.pow(r,1.3),t,.12);
+ SRL.g.f.type='bandpass';SRL.g.f.frequency.setTargetAtTime((sf.gf[0]||1500)*k,t,.15);SRL.g.f.Q.value=sf.gf[1]||.5;SRL.g.g.gain.setTargetAtTime(on*sf.gf[2]*Math.pow(r,1.2),t,.12);SRL.g.s.playbackRate.setTargetAtTime(.6+r*.9,t,.2);
+ if(on&&sf.hr>0&&Math.random()<dt*sf.hr*r*r*(.5+(2-Math.min(2,k*1.5)))){stoneHit(sf.hf,sf.hg,sf.wet,k)}}
 let ENGMV=false,ENGAB=0;const AXL3=new Set(['zil131','tatra6','ural','zil135','maz543','maz536']);
 function airBrake(p,ti){if(!AC)return;const t=AC.currentTime,k=(p.tn||1),br=1+.22*ti,s=AC.createBufferSource();s.buffer=nbuf;s.loop=true;const hp=AC.createBiquadFilter();hp.type='highpass';hp.frequency.value=1500*k*br;const f=AC.createBiquadFilter();f.type='bandpass';f.Q.value=.6+.25*ti;f.frequency.setValueAtTime(4200*k*br,t);f.frequency.exponentialRampToValueAtTime(2400*k*br,t+.9+.2*ti);const g=AC.createGain(),a=[.3,.42,.55,.7][ti],tl=.2+.05*ti;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(a,t+.012);g.gain.setTargetAtTime(a*.35,t+.05,.07);g.gain.setTargetAtTime(0,t+.3,tl);s.connect(hp);hp.connect(f);f.connect(g);g.connect(engG);s.start(t);s.stop(t+1.6);const o=AC.createOscillator(),og=AC.createGain();o.type='sine';o.frequency.setValueAtTime(110*k,t);o.frequency.exponentialRampToValueAtTime(55*k,t+.09);og.gain.setValueAtTime(.45,t);og.gain.exponentialRampToValueAtTime(.001,t+.12);o.connect(og);og.connect(engG);o.start(t);o.stop(t+.15);if(ti>=1){const w=AC.createOscillator(),wg=AC.createGain();w.type='sine';w.frequency.setValueAtTime(5600*k,t+.02);w.frequency.exponentialRampToValueAtTime(3200*k,t+.7);wg.gain.setValueAtTime(0,t);wg.gain.linearRampToValueAtTime(.035*ti,t+.05);wg.gain.exponentialRampToValueAtTime(.001,t+.75);w.connect(wg);wg.connect(engG);w.start(t);w.stop(t+.8)}}
 let ENGPK=0,ENGBO=0;
 function blowOff(p,ti){if(!AC)return;const t=AC.currentTime,s=AC.createBufferSource();s.buffer=nbuf;s.loop=true;s.playbackRate.value=.9;const kt=(p.tn||1)*(1-.12*ti);const hp=AC.createBiquadFilter();hp.type='highpass';hp.frequency.value=1800*kt;const f=AC.createBiquadFilter();f.type='bandpass';f.Q.value=.45;f.frequency.setValueAtTime(5200*kt,t);f.frequency.linearRampToValueAtTime(3000*kt,t+.9);const g=AC.createGain(),a=Math.min(.8,.5*(p.bo==null?.3:p.bo)*[.12,.4,.75,1.1][ti]);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(a,t+.07);g.gain.setTargetAtTime(0,t+.1,.22);const lf=AC.createOscillator(),lg=AC.createGain();lf.frequency.value=24;lg.gain.value=a*.25;lf.connect(lg);lg.connect(g.gain);s.connect(hp);hp.connect(f);f.connect(g);g.connect(engG);s.start(t);s.stop(t+1.3);lf.start(t);lf.stop(t+1.3)}
-function engine(v){if(!AC)return;const p=ENGP[FT]||ENGP._,r=Math.min(1,Math.abs(v)/10.5),t=AC.currentTime,ti=Math.max(0,Math.min(3,(typeof CFG!=='undefined'&&CFG.chas||1)-1)),pm=(p.tn||1)*(1-.1*ti),fm=1+.18*ti,nm=1+.5*ti,sm=1+.7*ti,wk=FT+'|'+ti;{const av=Math.abs(v);if(av>2.5)ENGMV=true;else if(ENGMV&&av<.15){ENGMV=false;if((AXL3.has(FT)||(FT==='gaz66'&&ti>=2))&&t>ENGAB){ENGAB=t+1;airBrake(p,ti)}}}{const rr=r;if(rr>ENGPK)ENGPK=rr;else if(ENGPK>.55&&ENGPK-rr>.3&&t>ENGBO){ENGBO=t+.8;blowOff(p,ti);ENGPK=rr}else if(ENGPK-rr>.3)ENGPK=rr;ENGPK-=.004}if(ENGK!==wk){ENGK=wk;eo1.type=p.t1;eo2.type=p.t2;ewo.type=(p.wh[3]==='sawtooth'&&ti>=2)?'square':(p.wh[3]||'sine');ewf.frequency.value=p.wh[4]||6000}
+function engine(v){if(!AC)return;const p=ENGP[FT]||ENGP._;surfSnd(v,p);const r=Math.min(1,Math.abs(v)/10.5),t=AC.currentTime,ti=Math.max(0,Math.min(3,(typeof CFG!=='undefined'&&CFG.chas||1)-1)),pm=(p.tn||1)*(1-.1*ti),fm=1+.18*ti,nm=1+.5*ti,sm=1+.7*ti,wk=FT+'|'+ti;{const av=Math.abs(v);if(av>2.5)ENGMV=true;else if(ENGMV&&av<.15){ENGMV=false;if((AXL3.has(FT)||(FT==='gaz66'&&ti>=2))&&t>ENGAB){ENGAB=t+1;airBrake(p,ti)}}}{const rr=r;if(rr>ENGPK)ENGPK=rr;else if(ENGPK>.55&&ENGPK-rr>.3&&t>ENGBO){ENGBO=t+.8;blowOff(p,ti);ENGPK=rr}else if(ENGPK-rr>.3)ENGPK=rr;ENGPK-=.004}if(ENGK!==wk){ENGK=wk;eo1.type=p.t1;eo2.type=p.t2;ewo.type=(p.wh[3]==='sawtooth'&&ti>=2)?'square':(p.wh[3]||'sine');ewf.frequency.value=p.wh[4]||6000}
 eo1.frequency.setTargetAtTime((p.f1[0]+r*p.f1[1])*pm,t,.08);eo2.frequency.setTargetAtTime((p.f2[0]+r*p.f2[1])*pm,t,.08);eflt.frequency.setTargetAtTime((p.fl[0]+r*p.fl[1])*fm,t,.1);egain.gain.setTargetAtTime(paused?0:(p.g[0]+r*p.g[1])*(1+.04*ti),t,.1);
 eo3.frequency.setTargetAtTime((p.f2[0]+r*p.f2[1])*.5*pm,t,.08);eg3.gain.setTargetAtTime(((p.sb||0)+.25*ti)*sm*(.5+r*.5),t,.1);const nz=p.nz||[0,0,100,100];eng_.gain.setTargetAtTime((nz[0]+.01*ti+r*nz[1])*nm,t,.1);enf.frequency.setTargetAtTime(nz[2]+r*nz[3],t,.1);ewo.frequency.setTargetAtTime((p.wh[1]+r*p.wh[2])*(1-.08*ti),t,.15);ewg.gain.setTargetAtTime(p.wh[0]*(1-.2*ti)*r*r,t,.2)}
 ['pointerdown','pointerup','mousedown','click','keydown','keyup','touchstart','touchend'].forEach(ev=>addEventListener(ev,()=>{initAudio();try{applyVol()}catch(e){}},{passive:true}));
@@ -2228,6 +2268,8 @@ const SCHEMA={
   {k:'sfx',t:'range',l:'Оружие и эффекты',min:0,max:100,step:5,f:v=>v+'%'},
   {k:'mus',t:'range',l:'Музыка',h:'Тема города и музыка в игре',min:0,max:100,step:5,f:v=>v+'%'},
   {k:'eng',t:'range',l:'Двигатель',min:0,max:100,step:5,f:v=>v+'%'},
+  {k:'env',t:'range',l:'Окружение',h:'Шум шин, гравий, камни о кузов, вода',min:0,max:100,step:5,f:v=>v+'%'},
+  {k:'wxs',t:'range',l:'Погода',h:'Дождь, ветер, сверчки ночью',min:0,max:100,step:5,f:v=>v+'%'},
   {k:'hit',t:'range',l:'Попадание по врагу',min:0,max:200,step:10,f:v=>v+'%'},
   {k:'mute',t:'tog',l:'Выключить звук'},
   {t:'btn',l:'Проверить звук',fn:()=>{initAudio();shopOpen=true;applyVol();['mg','shotgun','gatling','laser','boom'].forEach((k,i)=>setTimeout(()=>sfx(k),i*260));setTimeout(()=>{shopOpen=false;applyVol()},1800)}}],
@@ -2345,7 +2387,7 @@ function readInput(){let jx=input.jx,jy=input.jy;const k=input.keys;
 function rot(o,da){const pv=o.piv||0,px=o.x-Math.sin(o.a*D2R)*pv,py=o.y-Math.cos(o.a*D2R)*pv;o.a=norm(o.a+da);o.x=px+Math.sin(o.a*D2R)*pv;o.y=py+Math.cos(o.a*D2R)*pv}
 function steer(o,tgtA,thr,maxV,turn,acc,dt,rev){
  if(rev){const d0=Math.abs(angDiff(o.a,tgtA));if(!o.rv&&d0>115)o.rv=1;else if(o.rv&&d0<65)o.rv=0;if(o.rv)tgtA=norm(tgtA+180)}else o.rv=0;
- const d=angDiff(o.a,tgtA);const cap=Math.min(turn,20+Math.abs(o.v)/(o.L||4)*(o===P?MODLK():1)*57.3*.75);const rate=Math.max(-cap,Math.min(cap,d*7));o.w=(o.w||0)+(rate-(o.w||0))*Math.min(1,dt*9);rot(o,o.w*dt);
+ const d=angDiff(o.a,tgtA);const cap=Math.min(turn,(o===P?0:20)+Math.abs(o.v)/(o.L||4)*(o===P?MODLK():1)*57.3*.75);const rate=Math.max(-cap,Math.min(cap,d*7));o.w=(o.w||0)+(rate-(o.w||0))*Math.min(1,dt*9);rot(o,o.w*dt);
  const align=Math.max(.3,Math.cos(Math.min(90,Math.abs(d))*D2R));const want=thr*maxV*align*(o.rv?-.55:1);
  if(o===P&&want*o.v<-.5)acc*=MODBRK();o.v+=Math.max(-acc*dt,Math.min(acc*dt,want-o.v));
  o.x+=Math.sin(o.a*D2R)*o.v*dt;o.y+=Math.cos(o.a*D2R)*o.v*dt}
@@ -3087,7 +3129,7 @@ function drawMesh(P_,g,M,tint,emi,unlit,ao){if(NODRAW)return;gl.bindVertexArray(
 function vehMats(V,o,bobK){
  o.piv=V.piv;o.L=V.L;const st=Math.max(-.6,Math.min(.6,Math.atan2(V.L*(o.w||0)*D2R,Math.max(Math.abs(o.v),2.5))));V.spin-=o.v*DT/V.wheels[0].r;
  const root=M4.mul(M4.T(o.x,0,-o.y),M4.RY(-o.a*D2R));
- const bob=Math.sin(T*22)*.012*Math.min(1,Math.abs(o.v)/8)*bobK;
+ const bob=Math.sin(T*22)*.012*Math.min(1,Math.abs(o.v)/8)*bobK-(o===P?PSUB:0);
  const pit=Math.max(-.08,Math.min(.08,o.acc*.0045)),rol=Math.max(-.1,Math.min(.1,(o.w||0)*o.v*.00007*bobK));
  const tilt=M4.mul(root,M4.mul(M4.T(0,bob,0),M4.mul(M4.RZ(rol),M4.RX(pit))));
  return{root,tilt,st}}
@@ -4621,7 +4663,7 @@ function wxTune(){const n=WX.q?340:150;while(WX.drops.length<n)WX.drops.push({x:
  if(!WX.bl.length)for(let i=0;i<7;i++)WX.bl.push({x:Math.random(),y:Math.random(),r:.25+Math.random()*.3,s:.02+Math.random()*.03})}
 function wxDraw(dt){const T=WX.t,C=WX.c,k=Math.min(1,dt*.9);let any=false;
  for(const n in T){C[n]+=(T[n]-C[n])*k;if(Math.abs(T[n]-C[n])<.004)C[n]=T[n];if(C[n]>0)any=true}
- const tn=todN(),tw=todTw();if(tn>0||tw>0)any=true;
+ const tn=todN(),tw=todTw();if(tn>0||tw>0)any=true;try{wxSnd(C,tn)}catch(e){}
  if(wxc.width!==W||wxc.height!==H){wxc.width=W;wxc.height=H}
  if(!any){if(WX.on){wx2.clearRect(0,0,W,H);WX.on=false}return}
  WX.on=true;wxTune();WX.ph+=dt;const g=wx2;g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);
@@ -4654,7 +4696,7 @@ function todSet(h){h=((h%24)+24)%24;if(TOD.force!=null)TOD.force=h;else META.tod
 function todN(h){h=h==null?todH():h;/* 0 день … 1 ночь */const s=(a,b,x)=>Math.max(0,Math.min(1,(x-a)/(b-a)));return h>=12?s(18,21,h):1-s(5,7.5,h)}
 function todTw(h){h=h==null?todH():h;/* сумерки: 0..1 */return Math.max(0,1-Math.abs(h-18.8)/1.8,1-Math.abs(h-6)/1.6)}
 function todUpdate(dt){if(!STARTED||TITLE)return;TOD.ls-=dt;if(TOD.ls<=0){TOD.ls=.5;const e=document.getElementById('clk'),h=todH(),m=Math.floor(h%1*60);e.textContent=('0'+Math.floor(h)).slice(-2)+':'+('0'+m).slice(-2)}
- if(TOD.force!=null||TOD.f||CUT.on||paused||shopOpen||P.dead>0)return;if(META.tod==null)META.tod=10;META.tod=(META.tod+dt*24/TOD.len)%24}
+ if(TOD.force!=null||TOD.f||CUT.on||paused||shopOpen||P.dead>0)return;if(META.tod==null)META.tod=10;META.tod=(META.tod+dt*24/TOD.len*(TOD.sp||1))%24}
 
 /* ===== тест слоёв: что нагружает FPS (меню → Тест) ===== */
 function layerTest(){if(LTON||BENCH.on)return;toggleMenu(false);paused=false;LTON=true;
@@ -4933,9 +4975,10 @@ function conRun(line){const a=line.trim().split(/\s+/),c=(a.shift()||'').toLower
  if(c==='time'||c==='время'){const s=(a[0]||'').toLowerCase(),fm=()=>{const h=todH();return ('0'+Math.floor(h)).slice(-2)+':'+('0'+Math.floor(h%1*60)).slice(-2)};
   if(s==='freeze'||s==='stop'){TOD.f=1;return o('время стоит · '+fm())}
   if(s==='run'||s==='go'){TOD.f=0;TOD.force=null;return o('время идёт · '+fm())}
+  {const mm=/^x?(\d+(?:\.\d+)?)x?$/.exec(s);if(mm&&/x/.test(s)){const v=+mm[1];if([1,2,5,20].includes(v)||(v>0&&v<=100)){TOD.sp=v;return o('время ускорено: x'+v+' (сутки = '+(TOD.len/60/v).toFixed(1)+' мин)')}}}
   if(s==='len'){const v=+a[1];if(v>=1)TOD.len=v*60;return o('сутки = '+TOD.len/60+' мин')}
   if(/^\d{1,2}(:\d{2})?$/.test(s)){const[hh,mm]=s.split(':');todSet(+hh+(+mm||0)/60);return o('время: '+fm())}
-  return o('время '+fm()+(TOD.f?' (стоит)':TOD.force!=null?' (задано квестом)':'')+' · time HH[:MM] | freeze | run | len <мин>')}
+  return o('время '+fm()+(TOD.f?' (стоит)':TOD.force!=null?' (задано квестом)':'')+' · time HH[:MM] | freeze | run | len <мин> | x1 x2 x5 x20 (ускорение, сейчас x'+(TOD.sp||1)+')')}
  if(c==='perf'&&a[0]==='test'){layerTest();return o('тест слоёв запущен')}
  if(c==='perf'){const v=a[0]?on(a[0]):!PERFON;perfOn(v);return o('диагностика: '+(v?'включена (U — update, R — рендер, M — миникарта/компас, dc — вызовов отрисовки, % — разрешение)':'выключена'))}
  if(c==='fog'){const v=a[0]?on(a[0]):!FOGON;fogSet(v);return o('туман войны: '+(v?'включён':'выключен'))}
