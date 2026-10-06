@@ -261,6 +261,8 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 .c-bar{width:130px;height:10px;background:#0d0a07;border:1px solid #6b5334}.c-bar i{display:block;height:100%;background:#8fc04a}
 .c-side{display:flex;flex-direction:column;gap:8px;width:170px;flex:none}
 .c-tiers{display:flex;flex-direction:column;gap:8px;width:104px;flex:none}
+.c-tier .pi{display:block;height:46px;color:#d9b36a}.c-tier.on .pi{color:#e0a63a}.c-vw{display:flex;gap:8px}.c-vv{flex:1;min-width:0;position:relative;background:#14100b;border:2px solid #4a3a26;border-radius:4px;aspect-ratio:1/1;max-height:210px;display:flex;align-items:center;justify-content:center}.c-vv img{width:100%;height:100%;object-fit:contain}.c-vv span{position:absolute;left:6px;top:4px;font:700 10px var(--font-d);letter-spacing:.1em;text-transform:uppercase;color:#c9b07a}
+.c-mcol{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}.c-mcol .c-tiers{flex-direction:row;width:auto;flex-wrap:wrap}.c-mcol .c-tier{width:104px;flex:none}.c-mcol .c-stat{flex:none}
 .c-tier{position:relative;height:84px;background:#2a2118;border:2px solid #4a3a26;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font:700 11px var(--font-d);color:#a8977a;cursor:pointer;padding:0}
 .c-tier img{height:44px;max-width:90%;object-fit:contain}
 .c-tier.on{border-color:#e0a63a;color:#e0a63a}.c-tier.ins{box-shadow:inset 0 0 0 2px #6d8a3a}.c-tier.dim{opacity:.55}
@@ -282,7 +284,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 #shop.city .g-b{background:linear-gradient(#4a3822,#2f2314);border:2px solid #6b5334;box-shadow:inset 0 1px 0 #8a6c46;color:#d6c6a0;border-radius:4px}
 #shop.city .g-p{background:#14100b;border:2px solid #4a3a26;box-shadow:none}
 #shop.city .g-empty,#shop.city .g-sum{color:#9a8a68}#shop.city .g-sum b{color:#e0a63a}
-@media(max-width:820px){#shop.city .c-left{flex:none;height:calc((100vw - 32px)*1.4)}.c-tab{min-width:0;flex:1;padding:0 6px;font-size:10px}.c-tab i{display:none}#shop.city .g-money{min-width:0}.c-right{overflow:visible}.c-side{width:100%;flex-direction:row;flex-wrap:wrap}.c-tiers{width:100%;flex-direction:row}.c-tier{flex:1}}
+@media(max-width:820px){#shop.city .c-left{flex:none;height:calc((100vw - 32px)*1.4)}.c-tab{min-width:0;flex:1;padding:0 6px;font-size:10px}.c-tab i{display:none}#shop.city .g-money{min-width:0}.c-right{overflow:visible}.c-side{width:100%;flex-direction:row;flex-wrap:wrap}.c-tiers{width:100%;flex-direction:row}.c-tier{flex:1}.c-mcol .c-tier{width:auto;flex:1}}
 .qctx{position:fixed;z-index:970;background:#1c1712;border:1px solid #e2a63e;border-radius:8px;padding:4px;box-shadow:0 8px 24px #000a;min-width:140px}.qctx button{display:block;width:100%;text-align:left;background:none;border:0;color:#f1e6c8;font:600 15px system-ui,sans-serif;padding:9px 14px;border-radius:6px;cursor:pointer}.qctx button:hover{background:#3a2d1a;color:#ffd678}
 .qdlg{position:fixed;inset:0;z-index:965;display:flex;align-items:center;justify-content:center;background:rgba(8,6,4,.7);padding:16px}.qdlg .cp{width:min(440px,100%);background:#1c1712;border:2px solid #e2a63e;border-radius:12px;padding:20px 22px;color:#eadfc6;font:15px/1.55 system-ui,sans-serif;box-shadow:0 12px 40px #000}.qdlg h2{margin:0 0 8px;font:700 21px "Chakra Petch",system-ui,sans-serif;color:#ffd678}.qdlg p{margin:0 0 16px}.qdb{display:flex;gap:10px;flex-wrap:wrap}.qdb button{flex:1;min-width:120px;padding:10px 14px;border-radius:8px;border:2px solid #6b5b3a;background:#2a2217;color:#eadfc6;font:700 15px system-ui,sans-serif;cursor:pointer}.qdb .go{background:#e2a63e;border-color:#e2a63e;color:#241a0a}.qdb button:hover{filter:brightness(1.15)}
 #sfg{position:fixed;inset:0;z-index:960;display:flex;align-items:center;justify-content:center;background:rgba(8,6,4,.84);padding:10px}.sfw{position:relative;width:min(720px,96vw);aspect-ratio:720/420}.sfw canvas{width:100%;height:100%;display:block;touch-action:none;border-radius:14px;cursor:grab}.sfx{position:absolute;top:6px;right:6px;width:34px;height:34px;border-radius:50%;border:1px solid #78808a;background:#22262a;color:#cfd4d8;font-size:16px;cursor:pointer}.sfm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.62);border-radius:14px}.sfm[hidden]{display:none}.sfb{background:#1a1d20;border:2px solid #78808a;border-radius:12px;padding:20px 26px;text-align:center;color:#dfe3e6;font:15px/1.5 system-ui,sans-serif;max-width:360px}.sfb h3{margin:0 0 6px;font:700 28px "Chakra Petch",system-ui,sans-serif;letter-spacing:.12em;color:#ffd678}.sfb p{margin:0 0 14px}.sfb .go{padding:10px 24px;border-radius:8px;border:0;background:#e2a63e;color:#241a0a;font:700 15px system-ui,sans-serif;cursor:pointer}.c-gc .qo{position:absolute;left:0;right:0;bottom:1px;font:700 9px system-ui,sans-serif;color:#ff9a8a;text-shadow:0 1px 2px #000;pointer-events:none}
@@ -325,7 +327,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.158.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.159.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -473,7 +475,7 @@ function MB(){const P=[],N=[],C=[];
   cat(q){const[a,b,c]=q.raw();for(let i=0;i<a.length;i++){P.push(a[i]);N.push(b[i]);C.push(c[i])}return o},
   ry(a){const c=Math.cos(a),s=Math.sin(a);for(let i=0;i<P.length;i+=3){const x=P[i],z=P[i+2];P[i]=x*c+z*s;P[i+2]=-x*s+z*c;const nx=N[i],nz=N[i+2];N[i]=nx*c+nz*s;N[i+2]=-nx*s+nz*c}return o},
   rza(a){const c=Math.cos(a),s=Math.sin(a);for(let i=0;i<P.length;i+=3){const x=P[i],y=P[i+1];P[i]=x*c-y*s;P[i+1]=x*s+y*c;const nx=N[i],ny=N[i+1];N[i]=nx*c-ny*s;N[i+1]=nx*s+ny*c}return o},
-  build(){return vao(new Float32Array(P),new Int8Array(N),new Uint8Array(C))}};
+  build(){const v=vao(new Float32Array(P),new Int8Array(N),new Uint8Array(C));v._raw=[P,N,C];return v}};
  return o}
 const RKT={rocket:[[0,0]],rocket2:[[0,-.2],[0,.2]],rocket4:[[-.2,-.2],[.2,-.2],[-.2,.2],[.2,.2]]},isRk=w=>!!RKT[w];
 function rocketGeo(k){const m=MB(),D=[62,70,54],B=[70,72,66],R=[206,64,42],L=[92,100,80],t=RKT[k||'rocket4'];const wx=t.length>2?.9:.5,wz=t.length>1?.9:.5;m.box(0,-.75,0,wx,.14,wz,B);
@@ -2564,14 +2566,23 @@ const wAvg=w=>{const d=WDEF[w];return(d.dmg[0]+d.dmg[1])/2*(d.cnt||1)},wDps=w=>w
 const TIC={};let TQ=Promise.resolve();
 function ensureWIcons(){for(const c of CWEAP)if(TIC['w_'+c.id]===undefined){TIC['w_'+c.id]='';snapIcon('w_'+c.id,VEH['w_'+c.id],c.z||3.5)}}
 function snapIcon(key,veh,zoom){TQ=TQ.then(()=>new Promise(r=>{LV=veh;LZ=zoom;SNAPA=215;const c=document.createElement('canvas');c.width=c.height=512;SNAPC=c;let n=0;const f=()=>{if(++n<5)return requestAnimationFrame(f);SNAPC=null;LV=null;TIC[key]=c.toDataURL();if(key.startsWith('w_'))ICON[key]=TIC[key];r();if(shopOpen)renderShop()};requestAnimationFrame(f)}))}
+function snapView(key,veh,zoom,ang,pit){TQ=TQ.then(()=>new Promise(r=>{LV=veh;LZ=zoom;SNAPA=ang;SNAPP=pit;const c=document.createElement('canvas');c.width=c.height=512;SNAPC=c;let n=0;const f=()=>{if(++n<5)return requestAnimationFrame(f);SNAPC=null;LV=null;SNAPP=null;TIC[key]=c.toDataURL();r();if(shopOpen)renderShop()};requestAnimationFrame(f)}))}
+const VANG_L=270,VANG_R=90;
+const MVIEWS=[['Слева',VANG_L,null],['Справа',VANG_R,null],['Сверху',0,88*D2R]];
+function mView(i,v){const t=TS();if(!t)return iIcon(i);const key='v'+v+FT+i.k+i.t;if(TIC[key]===undefined){TIC[key]='';const o=i.t,m=MVIEWS[v],pv=window.partVeh(FT,i.k,o);snapView(key,window.partVeh(FT,i.k,o),(i.k==='chas'?Math.max(8,t.len*(m[2]===null?.62:1.25)):Math.max(3.2,pv.ext*(m[2]===null?1.1:1.25))),m[1],m[2]===null?PITCH:m[2])}return TIC[key]}
+const PSVG=k=>'<svg viewBox="0 0 320 320" width="46" height="46" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">'+({
+cab:'<path d="M32 168L132 146L172 62H272V236H32Z"/><path d="M148 168V236M192 182H240M46 192H66"/><path d="M178 132L200 92H246V132Z" stroke-width="16"/>',
+chas:'<path d="M32 88H286M32 118H286M58 88V118M180 88V118M268 88V118"/><circle cx="84" cy="206" r="48"/><circle cx="84" cy="206" r="12"/><path d="M132 206H182"/><rect x="182" y="132" width="106" height="112" rx="26"/><path d="M216 136V240M254 136V240"/>',
+body:'<path d="M32 86V236H286V86"/><path d="M40 118H278M40 160H278M118 118V160M200 118V160M40 206H278" stroke-width="16"/>'
+})[k]+'</svg>';
 const tIcon=i=>{const t=TS(),key=FT+i.k+i.t;if(TIC[key]===undefined){TIC[key]='';const o=i.t;snapIcon(key,truckVeh(FT,i.k==='cab'?o:1,i.k==='body'?o:1,i.k==='chas'?o:1),Math.max(9,t.len*.95))}return TIC[key]};
 const iIcon=i=>(i.k!=='w'&&TS())?tIcon(i):ICON[i.k==='w'?'w_'+i.id:i.k+i.t]||'',iName=i=>i.k==='w'?WDEF[i.id].n:PINFO_N[i.k][i.t],iTier=i=>i.k==='w'?WTIER[i.id]:i.t,iPrice=i=>i.k==='w'?WPRICE[i.id]:PRICE[i.k][i.t];
 const iCnt=i=>i.k==='w'?(WOWN[i.id]||0):(OWN[i.k][i.t]?1:0),iInst=i=>i.k!=='w'&&CFG[i.k]===i.t,sameI=(a,b)=>!!a&&!!b&&a.k===b.k&&a.t===b.t&&a.id===b.id;
 const cell=(i,cls,extra)=>{const c=E_('button','g-c '+(cls||'')+(sameI(i,gSelI)?' sel':''),`<img src="${iIcon(i)}">`+(extra||''));c.title=iName(i);return c};
 function tipHtml(i){const r=(a,b,c)=>`<div class="r"><span>${a}</span><b${c?' class="'+c+'"':''}>${b}</b></div>`,t=iTier(i),pr=iPrice(i);let s=`<h4>${iName(i)}</h4>`;
- if(i.k==='w'&&WDEF[i.id].aps){const w=i.id,d=WDEF[w];s+=r('Тип','Активная защита · тир '+t)+r('Радиус',d.R+' м')+r('Заряды / перезарядка',d.mag+' / '+d.rel+' с')+r('Действие',d.note)+r('Есть / на слотах',(WOWN[w]||0)+' / '+wUsed(w))}
- else if(i.k==='w'){const w=i.id,d=WDEF[w];s+=(d.note?r('Особенность',d.note):'')+r('Тип','Оружие · тир '+t)+(AMC[w]?r('Боеприпасы',AMN[AMC[w]]):'')+r('Урон',d.dmg[0]+'–'+d.dmg[1]+(d.cnt>1?' ×'+d.cnt:''))+r('Урон/сек',wDps(w).toFixed(1))+r('Скорострельность',d.rpm+'/мин')+r('Обойма / перезарядка',d.mag+' / '+d.rel+' с')+r('Есть / на слотах',(WOWN[w]||0)+' / '+wUsed(w))}
- else{s+=r('Тип',PNAME[i.k]+' · тир '+t)+r('Прочность',PART_HP[t]);if(i.k==='cab')s+=r('Слотов оружия',cabSlotsN(t));else if(i.k==='body')s+=r('Слотов оружия',bodySlotsN(t));else s+=r('Скорость / поворот',Math.round(TSPD[t]*100)+'% / '+Math.round(TTURN[t]*100)+'%')+r('Бак',TFUEL[t]);
+ if(i.k==='w'&&WDEF[i.id].aps){const w=i.id,d=WDEF[w];s+=r('Тип','Активная защита · Кл.'+t)+r('Радиус',d.R+' м')+r('Заряды / перезарядка',d.mag+' / '+d.rel+' с')+r('Действие',d.note)+r('Есть / на слотах',(WOWN[w]||0)+' / '+wUsed(w))}
+ else if(i.k==='w'){const w=i.id,d=WDEF[w];s+=(d.note?r('Особенность',d.note):'')+r('Тип','Оружие · Кл.'+t)+(AMC[w]?r('Боеприпасы',AMN[AMC[w]]):'')+r('Урон',d.dmg[0]+'–'+d.dmg[1]+(d.cnt>1?' ×'+d.cnt:''))+r('Урон/сек',wDps(w).toFixed(1))+r('Скорострельность',d.rpm+'/мин')+r('Обойма / перезарядка',d.mag+' / '+d.rel+' с')+r('Есть / на слотах',(WOWN[w]||0)+' / '+wUsed(w))}
+ else{s+=r('Тип',PNAME[i.k]+' · Мк.'+t)+r('Прочность',PART_HP[t]);if(i.k==='cab')s+=r('Слотов оружия',cabSlotsN(t));else if(i.k==='body')s+=r('Слотов оружия',bodySlotsN(t));else s+=r('Скорость / поворот',Math.round(TSPD[t]*100)+'% / '+Math.round(TTURN[t]*100)+'%')+r('Бак',TFUEL[t]);
   s+=r('Статус',iInst(i)?'установлено':iCnt(i)?'куплено':'не куплено',iInst(i)?'':iCnt(i)?'':'m')}
  return s+r('Цена / продажа',pr+' / '+Math.round(pr*.5))}
 const cargoCap=()=>TS()?Math.max(5,Math.round(TS().st.cargo*(.5+.17*(CFG.body-1)))):[0,6,8,10,12][CFG.body]||6,itemCells=()=>Object.keys(ITEMS).reduce((a,id)=>a+Math.ceil(invN(id)/STK),0)+Object.keys(QITEMS).reduce((a,id)=>a+qiN(id),0),cargoUsed=()=>WORDER.reduce((a,w)=>a+wFree(w),0)+amStacks()+itemCells()+modFreeN();
@@ -2704,11 +2715,11 @@ function cTruck(){
  const L=E_('div','c-left'),S=E_('div','c-stage');L.appendChild(S);
  const jump=p=>{cTab='mech';cPart=p;renderShop()};
  const zone=(x,y,w,h,p,t)=>{const z=E_('button','c-zone');z.style.cssText='left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+h+'px'+';--zx:'+(-x)+'px;--zy:'+(-y)+'px';z.title=t;z.onclick=()=>jump(p);S.appendChild(z);return z};
- zone(130,28,210,184,'cab','Кабина Т'+CFG.cab);const wt='Колёса / шасси Т'+CFG.chas;
+ zone(130,28,210,184,'cab','Кабина Мк.'+CFG.cab);const wt='Колёса / шасси Мк.'+CFG.chas;
  zone(92,104,38,136,'chas',wt);zone(340,104,38,136,'chas',wt);zone(78,430,36,166,'chas',wt);zone(354,430,36,166,'chas',wt);
- zone(114,214,238,388,'body','Кузов Т'+CFG.body).classList.add('z-body');
+ zone(114,214,238,388,'body','Кузов Мк.'+CFG.body).classList.add('z-body');
  const lb=(y,t)=>{const d=E_('div','c-lb',t);d.style.top=y+'px';S.appendChild(d)};
- lb(158,'КАБИНА<br>Т'+CFG.cab);lb(232,'КУЗОВ<br>Т'+CFG.body+'<br>'+cargoUsed()+'/'+cargoCap());
+ lb(158,'КАБИНА<br>Мк.'+CFG.cab);lb(232,'КУЗОВ<br>Мк.'+CFG.body+'<br>'+cargoUsed()+'/'+cargoCap());
  modGarageSlots(S);
  const sl=curSlots(),pw=gSelI&&gSelI.k==='w'&&wFree(gSelI.id)>0;let nc=0,nb=0;
  sl.forEach((q,n)=>{const w=SLOTW[q.id],b=E_('button','c-sl'+(q.rocket?' rk':'')+(w?' eq':'')+(gSlot===q.id?' sel':'')+(pw&&!w&&slotOk(q,gSelI.id)?' hint':''));
@@ -2789,7 +2800,7 @@ const cQuick=(i,kind)=>{const a=actsAs(i,true).find(x=>x.t.indexOf(kind==='buy'?
 const ctrlBind=(b,i)=>{const o=b.onclick;b.onclick=e=>{if(e&&e.ctrlKey){e.preventDefault();cQuick(i,'buy');return}o&&o(e)};b.addEventListener('contextmenu',e=>{if(e.ctrlKey){e.preventDefault();e.stopPropagation();cQuick(i,'sell')}})};
 function cMech(R){const own=k=>{const a=[];for(let t=(TS()&&TS().lock4?4:1);t<=(TS()&&TS().maxT||4);t++)a.push({k,t});return a};
  R.innerHTML=cHdr(svgI('mech'),'Механик','кабина, кузов, шасси, ремонт и заправка');
- const row=E_('div','c-row');row.style.cssText='align-items:stretch;flex:1;min-height:0;flex-wrap:nowrap';const side=E_('div','c-side');
+ const row=E_('div','c-row');row.style.cssText='align-items:stretch;flex:1;min-height:0;flex-wrap:nowrap;margin-top:26px';const side=E_('div','c-side');
  const sb=(t,k)=>{const b=E_('button','c-b'+(cPart===k?' go':''),t);b.onclick=()=>{cPart=k;if(k==='cab'||k==='body'||k==='chas')gSelI={k,t:CFG[k]};renderShop()};side.appendChild(b)};
  sb('Выбор кабины','cab');sb('Выбор кузова','body');sb('Выбор шасси','chas');sb('Ремонт','rep');sb('Заправка','fuel');sb('Модули','mod');row.appendChild(side);
  if(cPart==='mod'){row.appendChild(cModPanel('mech'))}
@@ -2797,11 +2808,11 @@ function cMech(R){const own=k=>{const a=[];for(let t=(TS()&&TS().lock4?4:1);t<=(
   const st=E_('div','c-stat');st.innerHTML='<h4>'+(isR?'Ремонт корпуса':'Заправка бака')+'</h4><div class="r"><span>'+(isR?'Прочность':'Топливо')+'</span><b>'+Math.round(cur.v)+' / '+Math.round(cur.max)+'</b></div><div class="r"><span>Стоимость</span><b>'+(c>0?c+' лом':'не нужно')+'</b></div>';
   const b=E_('button','c-b go',c<=0?(isR?'Ремонт не нужен':'Бак полный'):(isR?'Починить · ':'Заправить · ')+c);b.style.marginTop='12px';b.disabled=c<=0||SCRAP<c;b.onclick=()=>{SCRAP-=c;cur.v=cur.max;snd('coin');renderShop()};st.appendChild(b);row.appendChild(st)}
  else{const tl=E_('div','c-tiers');if(!gSelI||gSelI.k!==cPart)gSelI={k:cPart,t:CFG[cPart]};
-  for(const i of own(cPart)){const ow=iCnt(i),ins=iInst(i),b=E_('button','c-tier'+(sameI(i,gSelI)?' on':'')+(ins?' ins':'')+(ow?'':' dim'),'<img src="'+iIcon(i)+'"><span>Т'+i.t+'</span>'+(ins?'<i class="ck">✔</i>':'')+(ow?'':'<span class="pr">'+iPrice(i)+'</span>'));b.onclick=()=>{gSelI=i;renderShop()};ctrlBind(b,i);tl.appendChild(b)}
-  row.appendChild(tl);const st=E_('div','c-stat');st.innerHTML=tipHtml(gSelI);
+  for(const i of own(cPart)){const ow=iCnt(i),ins=iInst(i),b=E_('button','c-tier'+(sameI(i,gSelI)?' on':'')+(ins?' ins':'')+(ow?'':' dim'),'<span class="pi">'+PSVG(i.k)+'</span><span>Мк.'+i.t+'</span>'+(ins?'<i class="ck">✔</i>':'')+(ow?'':'<span class="pr">'+iPrice(i)+'</span>'));b.onclick=()=>{gSelI=i;renderShop()};ctrlBind(b,i);tl.appendChild(b)}
+  const mc=E_('div','c-mcol');mc.appendChild(tl);{const vw=E_('div','c-vw');MVIEWS.forEach((m,v)=>{const d=E_('div','c-vv',(mView(gSelI,v)?'<img src="'+mView(gSelI,v)+'">':'')+'<span>'+m[0]+'</span>');vw.appendChild(d)});mc.appendChild(vw)}const st=E_('div','c-stat');st.innerHTML=tipHtml(gSelI);
   const ac=E_('div','c-row');ac.style.marginTop='12px';const i=gSelI;
   for(const a of (iCnt(i)?actsAs(i,false).concat((iPrice(i)>0?actsAs(i,true).filter(x=>x.cls==='sell'):[])):actsAs(i,true).filter(x=>x.cls==='go'))){const b=E_('button','c-b '+a.cls,a.t);b.disabled=a.dis;b.onclick=()=>{a.fn();renderShop()};ac.appendChild(b)}
-  st.appendChild(ac);row.appendChild(st)}
+  st.appendChild(ac);mc.appendChild(st);row.appendChild(mc)}
  R.appendChild(row)}
 function cWeap(R){R.innerHTML=cHdr(svgI('weap'),'Оружейник','покупка, продажа и установка оружия');
  const tb=E_('div','c-row');const t1=E_('button','c-b'+(cWTab==='w'?' on':''),'Выбор оружия'),t2=E_('button','c-b'+(cWTab==='u'?' on':''),'Выбор улучшения'),t3=E_('button','c-b'+(cWTab==='m'?' on':''),'Модули');t3.onclick=()=>{cWTab='m';renderShop()};t1.onclick=()=>{cWTab='w';renderShop()};t2.onclick=()=>{cWTab='u';renderShop()};tb.appendChild(t1);tb.appendChild(t2);tb.appendChild(t3);R.appendChild(tb);
@@ -2809,7 +2820,7 @@ function cWeap(R){R.innerHTML=cHdr(svgI('weap'),'Оружейник','покуп
  if(cWTab==='u'){R.appendChild(E_('div','c-h','Износ и ремонт орудий'));let any=false;
   for(const w of WORDER){if(!(WOWN[w]>0))continue;any=true;const wv=Math.round(WEARV(w)),cost=Math.max(5,Math.round(wv*1.2)),r=E_('div','c-q');r.innerHTML='<div class="ic"><img src="'+(ICON['w_'+w]||'')+'" width="40" height="40"></div><div class="t"><b>'+WDEF[w].n+'</b><span>износ '+wv+'%</span></div><div class="c-bar"><i style="width:'+wv+'%;background:'+(wv>60?'#c9573a':'#8fc04a')+'"></i></div>';const b=E_('button','c-b go','Ремонт · '+cost);b.disabled=wv<1||SCRAP<cost;b.onclick=()=>{SCRAP-=cost;META.wear[w]=0;snd('coin');renderShop()};r.appendChild(b);R.appendChild(r)}
   if(!any)R.appendChild(E_('div','c-note','Нет оружия для ремонта.'));R.appendChild(E_('div','c-note','Улучшения орудий (модификаторы) появятся позже.'));return}
- const g=E_('div','c-cards');let lastCl=null;for(const w of WCLS_ORD()){if(!wShow(w))continue;const cl=WCLS[w];if(cl!==lastCl){lastCl=cl;g.appendChild(E_('div','c-ch',cl))}const i={k:'w',id:w},ow=WOWN[w]||0,b=E_('button','c-card'+(ow?' f':'')+(WTIER[w]>lowT()?' off':'')+(sameI(i,gSelI)?' sel':''),'<img src="'+(ICON['w_'+w]||'')+'">'+(AMC[w]?'<img class="am" src="'+amIcon(AMC[w])+'">':'')+'<span class="tr">Т'+WTIER[w]+'</span><span class="pr">'+(ow?'×'+ow:WPRICE[w])+'</span>');b.title=WDEF[w].n+(AMC[w]?' · '+AMN[AMC[w]]:'');b.onclick=()=>{gSelI=i;gSlot=null;renderShop()};if(ow)dragW(b,w,null);ctrlBind(b,i);g.appendChild(b)}R.appendChild(g);
+ const g=E_('div','c-cards');let lastCl=null;for(const w of WCLS_ORD()){if(!wShow(w))continue;const cl=WCLS[w];if(cl!==lastCl){lastCl=cl;g.appendChild(E_('div','c-ch',cl))}const i={k:'w',id:w},ow=WOWN[w]||0,b=E_('button','c-card'+(ow?' f':'')+(WTIER[w]>lowT()?' off':'')+(sameI(i,gSelI)?' sel':''),'<img src="'+(ICON['w_'+w]||'')+'">'+(AMC[w]?'<img class="am" src="'+amIcon(AMC[w])+'">':'')+'<span class="tr">Кл.'+WTIER[w]+'</span><span class="pr">'+(ow?'×'+ow:WPRICE[w])+'</span>');b.title=WDEF[w].n+(AMC[w]?' · '+AMN[AMC[w]]:'');b.onclick=()=>{gSelI=i;gSlot=null;renderShop()};if(ow)dragW(b,w,null);ctrlBind(b,i);g.appendChild(b)}R.appendChild(g);
  if(gSelI&&gSelI.k==='w'){const inf=E_('div','c-info');inf.innerHTML='<div class="c-prev"><img src="'+(ICON['w_'+gSelI.id]||'')+'"></div><div class="c-stat">'+tipHtml(gSelI)+'</div>';R.appendChild(inf);
   const ac=E_('div','c-row');for(const a of actsAs(gSelI,true).concat(actsAs(gSelI,false))){const b=E_('button','c-b '+a.cls,a.t);b.disabled=a.dis;b.onclick=()=>{a.fn();renderShop()};ac.appendChild(b)}R.appendChild(ac)}
  else R.appendChild(E_('div','c-note','Выберите оружие в списке, затем — слот на грузовике слева.'));
@@ -3247,7 +3258,7 @@ function render(dt){
  if(pv){sv={cx:cam.x,cy:cam.y,a:P.a,v:P.v,aims:WPN.map(w=>w.aim),b:bullets.splice(0),p:parts.splice(0),bm:beams.splice(0),t:texts.splice(0)};if(!PVS){PVS=[0,0];out:for(let r=0;r<120;r+=6)for(let q=0;q<16;q++){const x=Math.cos(q*.39)*r,y=Math.sin(q*.39)*r;if(waterAt(x,y)<.01&&grassAt(x,y)<.12&&cityD(x,y)>60&&offRoad(x,y,14)&&stnD(x,y)>30){PVS=[x,y];break out}}}sv.px=P.x;sv.py=P.y;P.x=PVS[0];P.y=PVS[1];cam.x=P.x;cam.y=P.y;P.a=SNAPC?SNAPA:215;P.v=0;for(const w of WPN)w.aim=P.a+(w.sec?w.sec[0]:0);PVON=true}
  CELX=CELON&&S.cel>0&&!pv&&!BENCH.on;
  T+=dt;DT=dt;{const zt=S.zoom*(S.dyn?1-.16*Math.min(1,Math.abs(P.v)/10):1);ZOOM+=(zt-ZOOM)*Math.min(1,dt*(paused?0:3))}const k=pv?Math.min(W,H)/(LV?LZ:Math.max(10.5,(TS()?TS().len*.9+2:0))):K()*TZF(),hw=W/2/k,hh=H/2/k;HWc=hw;HHc=hh;
- const eye=[cam.x,100*Math.sin(PITCH),-cam.y+100*Math.cos(PITCH)];
+ const PP=(SNAPC&&SNAPP!=null)?SNAPP:PITCH,eye=[cam.x,100*Math.sin(PP),-cam.y+100*Math.cos(PP)];
  VP=M4.mul(M4.ortho(-hw,hw,-hh,hh,1,400),M4.look(eye,[cam.x,0,-cam.y],[0,1,0]));
  const lc=[Math.round(cam.x*4)/4,0,Math.round(-cam.y*4)/4];
  const LVP=M4.mul(M4.ortho(-40,40,-40,40,1,160),M4.look([lc[0]+L[0]*60,L[1]*60,lc[2]+L[2]*60],lc,[0,1,0]));
@@ -3413,7 +3424,7 @@ function buildPlayerTrucks(){
   zil131:{nb:3,bt:[2,3,4],c:[84,98,64],ww:.46,cabs:[{z:-1.4,d:1.5,y0:1.55,y1:3.05,w:1.95,ant:[.8]}],nose:{z:-3.72,y0:.8,y1:1.9,w:1.8,hood:[-2.9,1.5]},bed:{z:1.7,d:4.4,y0:1.4,y1:2.0,w:2.2,type:'open'}},
   tatra6:{nb:4,bt:[1,2,3,4],c:[196,160,104],ww:.55,cabs:[{z:-2.9,d:2.0,y0:1.45,y1:3.05,w:2.3}],nose:{z:-3.9,y0:1.0,y1:2.0,w:2.3},bed:{z:1.4,d:4.8,y0:1.35,y1:2.95,w:2.4,type:'open'},tank:-1},
   zil135:{nb:4,bt:[1,2,3,4],c:[92,104,70],ww:.56,cabs:[{z:-4.0,d:2.3,y0:1.75,y1:3.3,w:2.3,ant:[.8]}],nose:{z:-5.2,y0:1.2,y1:2.2,w:2.3},bed:{z:1.2,d:6.2,y0:1.5,y1:2.5,w:2.5,type:'open'}},
-  maz543:{nb:4,bt:[1,2,3,4],c:[88,100,62],ww:.6,cabs:[{x:-.95,z:-4.2,d:2.5,y0:1.9,y1:3.5,w:1.1,sides:[-1],exs:-1,rack:false},{x:.95,z:-4.2,d:2.5,y0:1.9,y1:3.5,w:1.1,sides:[1],exs:1,rack:false,ant:[0]}],nose:{z:-5.5,y0:1.9,y1:3.2,w:2.7,bar:false},bed:{z:1.6,d:6.8,y0:1.45,y1:2.35,w:2.6,type:'open',spare:false}},
+  maz543:{nb:4,bt:[1,2,3,4],c:[150,88,50],ww:.6,cabs:[{x:0,z:-3.55,d:2.3,y0:1.95,y1:3.85,w:2.6,exh:false,rack:false,ant:[.8]}],nose:{z:-6.7,y0:1.35,y1:2.7,w:2.4,bar:false,hood:[-5.4,2.2]},bed:{z:1.75,d:7.3,y0:1.6,y1:3.85,w:2.7,type:'box',spare:false}},
   belaz:{nb:4,bt:[1,2,3,4],c:[226,164,44],ww:1.4,cabs:[{x:-1.9,z:-4.6,d:1.9,y0:3.6,y1:5.3,w:1.6,sides:[-1,1],exs:-1,exh:false}],nose:{z:-5.42,y0:2.2,y1:4.0,w:2.7,hood:[-4.4,1.6]},tur:[0,3.7,1.4]},
   maz536:{nb:5,bt:[1,2,3,4,4],c:[70,80,56],ww:.7,cabs:[{z:-3.9,d:2.4,y0:2.5,y1:3.9,w:2.8,ant:[.9]}],nose:{z:-5.14,y0:1.5,y1:3.2,w:2.8},bed:{z:.6,d:5.6,y0:2.4,y1:4.0,w:3.0,type:'box',spare:false}}
  };
@@ -3817,6 +3828,15 @@ function buildPlayerTrucks(){
   m.torus(0,4.05,.6,.9,.28,TIRE,12,5);
   const wg=[[1.5,-3.2,1],[-1.5,-3.2,1],[1.5,.2,0],[-1.5,.2,0],[1.5,2.6,0],[-1.5,2.6,0]];
   add({id:'maz536',n:'«Бастион»',cls:'уникальный',uniq:true,veh:(WW=WS('armor',1.0,.7,wg),DRESS('maz536',m,WW),MV('maz536',[m.build()],WW)),mounts:MNT('maz536',1,1),st:{hp:520,fu:170,spd:.75,turn:.62,cargo:44},len:13})}
+ window.partVeh=(id,kind,t)=>{const o=TV[id],k='P'+kind+t;if(!o.cache[k]){const full=truckVeh(id,1,1,kind==='chas'?t:1),sp=SPEC[id],yc=Math.min(sp.bed.y0,sp.cabs[0].y0)-.02,zs=sp.bed.z-sp.bed.d/2-.1;
+  const cls=(y,z)=>y<yc?'chas':z<zs?'cab':'body',tri=[];
+  const filt=m=>{if(!m._raw)return;const[P,N,C]=m._raw,p2=[],n2=[],c2=[];for(let q=0;q<P.length;q+=9){const y=(P[q+1]+P[q+4]+P[q+7])/3,z=(P[q+2]+P[q+5]+P[q+8])/3;if(cls(y,z)!==kind)continue;for(let r=0;r<9;r++){p2.push(P[q+r]);n2.push(N[q+r]);c2.push(C[q+r])}}if(p2.length)tri.push([p2,n2,c2])};
+  const add=kind==='cab'?o.T.c[t-1]:kind==='body'?o.T.b[t-1]:o.T.s[t-1];
+  o.base.forEach(filt);add.forEach(m=>m._raw&&tri.push(m._raw))
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9,z0=1e9,z1=-1e9;for(const[P]of tri)for(let q=0;q<P.length;q+=3){x0=Math.min(x0,P[q]);x1=Math.max(x1,P[q]);y0=Math.min(y0,P[q+1]);y1=Math.max(y1,P[q+1]);z0=Math.min(z0,P[q+2]);z1=Math.max(z1,P[q+2])}
+  const cz=kind==='chas'?0:(z0+z1)/2,cy=kind==='chas'?0:(y0+y1)/2,ext=Math.max(x1-x0,z1-z0,(y1-y0)*1.4);
+  const ps=tri.map(([P,N,C])=>{const p=new Float32Array(P.length);for(let q=0;q<P.length;q+=3){p[q]=P[q];p[q+1]=P[q+1]-cy;p[q+2]=P[q+2]-cz}return vao(p,new Int8Array(N),new Uint8Array(C))});
+  o.cache[k]={piv:kind==='chas'?full.piv:0,L:kind==='chas'?full.L:0,parts:ps,wheels:kind==='chas'?full.wheels:[{g:DW,pos:[0,-9,0],front:false,r:1}],spin:0,mount:null,ext,bb:[x0,x1,y0,y1,z0,z1,cz].map(x=>+x.toFixed(2))}}return o.cache[k]};
  window.truckVeh=truckVeh;window.TMNT=MNT;
 }
 
@@ -4475,7 +4495,7 @@ K_SCN.push({min:10,auto:true,k:[1.0,0,0,.03],caps:[],
   c.fillStyle='rgba(255,252,238,'+wh+')';c.fillRect(-4,-4,w+8,h+8);
   if(wh>.02){c.fillStyle=K_rad(c,w/2,h*.3,Math.hypot(w,h)*.5,[[0,'rgba(255,255,255,'+wh+')'],[1,'rgba(255,255,255,0)']]);c.fillRect(0,0,w,h)}}});
 // ---- движок катсцены ----
-const CUT={on:false,truck:null};let SNAPC=null,SNAPA=215;
+const CUT={on:false,truck:null};let SNAPC=null,SNAPA=215,SNAPP=null;
 {
 const el=$('cut'),cv2=el.querySelector('canvas'),cx=cv2.getContext('2d'),capEl=$('cutcap'),hint=$('cuthint');
 let LIST=K_SCN,W_,H_,Q,PX,PY,PW,PH,si=0,ci=0,st=0,ct=0,buf=null,typed=0,fin=false,onEnd=null,last=0,fade=0,raf=0,cur=null;
