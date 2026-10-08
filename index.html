@@ -315,6 +315,8 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 .c-card .tr{color:#ffd36a;text-shadow:-1px -1px 0 #1a1208,1px -1px 0 #1a1208,-1px 1px 0 #1a1208,1px 1px 0 #1a1208,0 0 4px #000;z-index:2}
 .c-card .pr{background:transparent;color:#ffd36a;font-size:13px;text-shadow:-1px -1px 0 #1a1208,1px -1px 0 #1a1208,-1px 1px 0 #1a1208,1px 1px 0 #1a1208,0 0 4px #000;z-index:2}
 .c-card img.am{z-index:2}
+.c-mrow{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:center;width:100%;padding:3px 10px 3px 3px;background:linear-gradient(#171008,#0d0a06);border:0;box-shadow:inset 0 0 0 1px #3a2c1a;color:#d6c6a0;cursor:pointer;text-align:left}.c-mrow.f{box-shadow:inset 0 0 0 1px #c9822a}.c-mrow.sel{box-shadow:inset 0 0 0 2px #e0a63a,0 0 10px #e0a63a88}.c-mrow img{width:52px;height:52px;object-fit:contain;background:#cfcbbd}.c-mrow .mn{display:flex;flex-direction:column;gap:2px;min-width:0}.c-mrow .mn b{color:#e8dcc0;font:700 13px var(--font-d)}.c-mrow .mn i{color:#ffd24a;font-style:normal;font-size:11px}.c-mrow .mn small{color:#9a8a68;font-size:11px;line-height:1.2}.c-mrow .mp{color:#ffd36a;font:700 14px var(--font-d)}
+#trb{position:fixed;right:calc(14px + 176px + 14px + env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 22px);width:58px;height:58px;border-radius:50%;z-index:30;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#9fd8ff;cursor:pointer;touch-action:none;background:radial-gradient(circle,#10161c 56%,transparent 58%),conic-gradient(#5ec8ff calc(var(--p,100)*1%),#0009 0);box-shadow:0 0 0 2px #3a2c1a}.lefty #trb{right:auto;left:calc(14px + 176px + 14px + env(safe-area-inset-left,0px))}#trb b{font:700 8px system-ui;letter-spacing:.08em;margin-top:-1px}#trb.on{color:#ffd24a;background:radial-gradient(circle,#2a2008 56%,transparent 58%),conic-gradient(#ffd24a calc(var(--p,100)*1%),#0009 0);box-shadow:0 0 14px #ffd24a99}#trb.on .ti{animation:trbs .25s linear infinite}#trb.lk{color:#c9573a;background:radial-gradient(circle,#1c0e09 56%,transparent 58%),conic-gradient(#c9573a calc(var(--p,100)*1%),#0009 0)}@keyframes trbs{to{transform:rotate(360deg)}}
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&family=Russo+One&display=swap">
 <canvas id="game"></canvas><canvas id="wx"></canvas><canvas id="ov"></canvas>
@@ -336,7 +338,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.168.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.171.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -2224,6 +2226,7 @@ SND.saw2=()=>{tn('sawtooth',420,120,.3,.4);nz(.25,2400,500,1,.35,'bandpass');tn(
 SND.gren=()=>{nz(.08,1200,400,1,.45,'lowpass');tn('sine',140,55,.1,.55);tn('square',260,120,.04,.15)};
 SND.gren2=()=>{nz(.15,900,200,.8,.7,'lowpass');tn('sine',100,38,.22,.8);tn('triangle',180,70,.12,.4)};
 SND.gboom=()=>{nz(.05,2500,700,.8,.5);nz(.5,900,90,.6,.6,'lowpass');tn('sine',110,40,.4,.7)};
+SND.tbon=()=>{nz(.7,2500,7500,4,.75,'bandpass');tn('sine',900,3800,.55,.55);tn('triangle',1400,5400,.5,.35);tn('sine',2600,2000,.35,.3,.12)};
 SND.aps=()=>{nz(.12,2200,500,1,.5,'bandpass');tn('square',380,140,.08,.25);tn('sine',90,40,.1,.5)};
 SND.tank=()=>{tn('sine',75,26,.6,1.2);nz(.5,900,90,.7,1.1,'lowpass');nz(.05,3000,800,.8,.6);tn('triangle',140,40,.4,.6)};
 SND.mlaunch=()=>{nz(.5,1800,500,.7,.35,'bandpass');tn('sawtooth',160,60,.35,.2)};
@@ -3203,7 +3206,8 @@ function vehMats(V,o,bobK){
 function drawW(P_,id,M){const g=WG[id];if(Array.isArray(g)){const hk=(isRk(id)||id==='tank')?1:.5,k=(g.sc||WSC)*hk,M2=M4.mul(M,M4.S(k,k,k));for(const q of g)drawMesh(P_,q,M2,null,null,false,false)}else drawMesh(P_,g,M4.mul(M,M4.S((isRk(id)||id==='tank')?1:.5,(isRk(id)||id==='tank')?1:.5,(isRk(id)||id==='tank')?1:.5)),null,null,false,false)}
 function drawVehicle(P_,V,o,bobK,emi,tint){
  const{tilt:t0,st}=vehMats(V,o,bobK);const tilt=o.sc&&o.sc!==1?M4.mul(t0,M4.S(o.sc,o.sc,o.sc)):t0;for(const g of V.parts)drawMesh(P_,g,tilt,tint,emi,false,true);
- for(const w of V.wheels){let m=M4.mul(tilt,M4.T(...w.pos));if(w.front)m=M4.mul(m,M4.RY(-st));m=M4.mul(m,M4.RX(V.spin));drawMesh(P_,w.g,m,tint,emi,false,true)}
+ const al=o===P?ML('axle'):0;o.rs=(o.rs||0)+((al?-st*(.4+.2*al):0)-(o.rs||0))*Math.min(1,DT*9);let rz=-1e9;if(Math.abs(o.rs)>.002)for(const w of V.wheels)if(!w.front&&w.pos[2]>rz)rz=w.pos[2];
+ for(const w of V.wheels){let m=M4.mul(tilt,M4.T(...w.pos));if(w.front)m=M4.mul(m,M4.RY(-st));else if(rz>-1e8&&w.pos[2]>=rz-.15)m=M4.mul(m,M4.RY(-o.rs));m=M4.mul(m,M4.RX(V.spin));drawMesh(P_,w.g,m,tint,emi,false,true)}
  return tilt}
 const RMC={t:-1,x:0,y:0,px:0,py:0,m:null};function rockMats(){if(RMC.m&&RMC.t===T&&RMC.x===cam.x&&RMC.y===cam.y&&RMC.px===P.x&&RMC.py===P.y)return RMC.m;RMC.t=T;RMC.x=cam.x;RMC.y=cam.y;RMC.px=P.x;RMC.py=P.y;return RMC.m=rocks.map(r=>{const rx=((r.x-P.x+WH)%WW+WW)%WW-WH+P.x,ry=((r.y-P.y+WH)%WW+WW)%WW-WH+P.y;if(Math.abs(rx-cam.x)>80||Math.abs(ry-cam.y)>72)return null;return M4.mul(M4.T(rx,r.s*.2,-ry),M4.mul(M4.RY(r.ry),M4.S(r.s*1.2,r.s,r.s)))})}
 const SHOW_SCRAP=false;
@@ -3988,15 +3992,21 @@ function modEff(id,l){if(id[0]==='q')return tr('Квестовый модуль:
 /* --- эффекты --- */
 let SHT=0;const TBO={e:1,on:0,lock:0};
 const modGood=t=>MODAM[AMC[t]];
-function turboUpdate(dt){if(P.dead>0||!ML('turbo')){TBO.on=0;TBO.e=Math.min(1,TBO.e+dt/10);return}
+function turboUpdate(dt){if(P.dead>0||!ML('turbo')){TBO.on=0;TBO.e=Math.min(1,TBO.e+dt/10);turboSnd();return}
  const k=input.keys,want=!!(k.ShiftLeft||k.ShiftRight)&&Math.abs(P.v)>1&&!shopOpen,dur=MODTRB[ML('turbo')];
  if(TBO.lock&&TBO.e>=.25)TBO.lock=0;
  if(want&&!TBO.lock&&TBO.e>0){TBO.on=1;TBO.e=Math.max(0,TBO.e-dt/dur);if(TBO.e<=0){TBO.on=0;TBO.lock=1}}
  else{TBO.on=0;TBO.e=Math.min(1,TBO.e+dt/10)}
- turboHud()}
+ turboHud();turboSnd()}
 function turboHud(){let e=document.getElementById('trb');if(!ML('turbo')||TITLE||shopOpen){if(e)e.style.display='none';return}
- if(!e){e=document.createElement('div');e.id='trb';e.style.cssText='position:fixed;left:50%;bottom:64px;transform:translateX(-50%);width:150px;height:10px;background:#0009;border:2px solid #3a2c1a;border-radius:3px;z-index:30;pointer-events:none';e.innerHTML='<i style="display:block;height:100%;width:100%;background:#5ec8ff"></i><b style="position:absolute;left:0;right:0;top:-15px;text-align:center;font:700 10px system-ui;color:#9fd8ff;letter-spacing:.12em">'+tr('ТУРБО · SHIFT')+'</b>';document.body.appendChild(e)}
- e.style.display='';const i=e.firstChild;i.style.width=(TBO.e*100).toFixed(0)+'%';i.style.background=TBO.lock?'#c9573a':TBO.on?'#ffd24a':'#5ec8ff'}
+ if(!e){e=document.createElement('div');e.id='trb';e.innerHTML='<div class="ti"><svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="3"/><path d="M16 13c-1-5 1-9 5-9 1 4-1 8-5 9zM19 16c5-1 9 1 9 5-4 1-8-1-9-5zM16 19c1 5-1 9-5 9-1-4 1-8 5-9zM13 16c-5 1-9-1-9-5 4-1 8 1 9 5z"/></svg></div><b>SHIFT</b>';
+  const dn=ev=>{input.keys.ShiftLeft=true;ev.preventDefault()},up=()=>{input.keys.ShiftLeft=false};e.addEventListener('pointerdown',dn);addEventListener('pointerup',up);document.body.appendChild(e)}
+ e.style.display='';{const bs=document.querySelectorAll('#fires .fb');if(bs.length&&((TBPOS=(TBPOS+1)%10)===0||!e._ok)){let mn=1e9,my=0,n=0;bs.forEach(x=>{const r=x.getBoundingClientRect();if(r.width&&r.left<mn){mn=r.left;my=r.top+r.height/2}n++});if(mn<1e8){e.style.right='auto';e.style.bottom='auto';e.style.left=Math.max(4,mn-58-12)+'px';e.style.top=(my-29)+'px';e._ok=1}}}
+ e.style.setProperty('--p',(TBO.e*100).toFixed(0));e.className=TBO.lock?'lk':TBO.on?'on':''}
+function turboSnd(){if(!AC)return;const t=AC.currentTime,on=ML('turbo')&&TBO.on&&!S.mute&&!paused;if(on&&!TBPREV)sfx('tbon');TBPREV=on?1:0;
+ if(!TBW){if(!on)return;const o=AC.createOscillator(),o2=AC.createOscillator(),g=AC.createGain(),f=AC.createBiquadFilter();o.type='sine';o2.type='triangle';f.type='bandpass';f.Q.value=5;g.gain.value=0;o.connect(f);o2.connect(f);f.connect(g);g.connect(sfxG);o.start();o2.start();TBW={o,o2,g}}
+ const r=Math.min(1,Math.abs(P.v)/12),fq=1700+r*1700+(on?1500:0);TBW.o.frequency.setTargetAtTime(fq,t,.1);TBW.o2.frequency.setTargetAtTime(fq*1.5,t,.1);TBW.g.gain.setTargetAtTime(on?.2:(ML('turbo')&&r>.2&&!paused?.02*r:0),t,on?.04:.2)}
+let TBW=null,TBPREV=0,TBPOS=0;
 const MODSPD=()=>TBO.on?1.1:1,MODTURN=()=>1+MPC('gur'),MODLK=()=>1+MPC('axle'),MODBRK=()=>1+MPC('brake');
 function surfBonus(id){if(id==='asph'||id==='deep'||id==='shallow')return 0;let b=MODPCT[ML('ctis')];if(id==='ice'||id==='snow')b+=MODPCT[ML('chain')];return b}
 /* --- UI --- */
@@ -4018,18 +4028,21 @@ function cModPanel(vendor){const C=QCITY||CITIES[0],W=E_('div','c-stat');W.style
  const ofs=modOffers(C,vendor),n=modSlotsN();
  W.appendChild(E_('div','c-h',tr(vendor==='weap'?'Модули оружейника':'Модули механика')+' · '+tr(C.name)));
  W.appendChild(E_('div','c-note',tr('Слотов под модули')+': <b style="color:#e0a63a">'+n+'</b>'+(n?'':' ('+tr('откроются со 2 тира кабины и шасси')+')')+'. '+tr('Число слотов считается по меньшему из тиров кабины и шасси. Модуль ставится перетаскиванием из кузова в слот на грузовике.')));
- const g=E_('div','c-cards');
- const card=(key,mode,sold)=>{const[id,l]=modParse(key),b=E_('button','c-card'+(mode==='own'?' f':'')+(gMod&&gMod.key===key&&gMod.mode===mode?' sel':''),'<img src="'+modIconOf(key)+'"><span class="tr">'+modStars(l,id)+'</span><span class="pr">'+(mode==='own'?'×'+modFree(key):sold?tr('продано'):modPrice(id,l))+'</span>');b.title=tr(MODBYID[id].n);b.onclick=()=>{gMod={key,mode,sold};renderShop()};return b};
+ const bodyR=E_('div','');bodyR.style.cssText='display:flex;gap:12px;align-items:flex-start;min-height:0';const left=E_('div','');left.style.cssText='flex:1;min-width:0';const right=E_('div','');right.style.cssText='width:250px;flex:none;position:sticky;top:0';bodyR.appendChild(left);bodyR.appendChild(right);W.appendChild(bodyR);
+ const g=E_('div','');g.style.cssText='display:flex;flex-direction:column;gap:4px';
+ if(!gMod&&ofs.length){gMod={key:ofs[0].key,mode:'shop',sold:ofs[0].sold}}
+ const card=(key,mode,sold)=>{const[id,l]=modParse(key),b=E_('button','c-card'+(mode==='own'?' f':'')+(gMod&&gMod.key===key&&gMod.mode===mode?' sel':''),'<img src="'+modIconOf(key)+'"><span class="tr">'+modStars(l,id)+'</span><span class="pr">'+(mode==='own'?'×'+modFree(key):sold?tr('продано'):modPrice(id,l))+'</span>');b.title=tr(MODBYID[id].n);b.onclick=()=>{gMod={key,mode,sold};renderShop()};
+  b.className='c-mrow'+(mode==='own'?' f':'')+(gMod&&gMod.key===key&&gMod.mode===mode?' sel':'');b.innerHTML='<img src="'+modIconOf(key)+'"><span class="mn"><b>'+tr(MODBYID[id].n)+'</b> <i>'+modStars(l,id)+'</i><small>'+modEff(id,l)+'</small></span><span class="mp">'+(mode==='own'?'×'+modFree(key):sold?tr('продано'):modPrice(id,l))+'</span>';return b};
  for(const o of ofs)g.appendChild(card(o.key,'shop',o.sold));
- if(!ofs.length)W.appendChild(E_('div','c-note',tr('Здесь модулей нет.')));else W.appendChild(g);
+ if(!ofs.length)left.appendChild(E_('div','c-note',tr('Здесь модулей нет.')));else left.appendChild(g);
 
  const own=Object.keys(MST().own).filter(k=>modFree(k)>0&&modParse(k)[0][0]!=='q'&&(!!MODWEAP[modParse(k)[0]])===(vendor==='weap'));
- if(own.length){W.appendChild(E_('div','c-h',tr('В кузове')));const g2=E_('div','c-cards');for(const k of own)g2.appendChild(card(k,'own'));W.appendChild(g2)}
- if(gMod){const[id,l]=modParse(gMod.key),o=MODBYID[id],inf=E_('div','c-info');inf.innerHTML='<div class="c-prev"><img src="'+modIconOf(gMod.key)+'"></div><div class="c-stat"><h4>'+tr(o.n)+' <span style="color:#ffd24a">'+modStars(l,id)+'</span></h4><div class="r"><span>'+tr('Эффект')+'</span><b>'+modEff(id,l)+'</b></div><div class="r"><span>'+tr('Слот')+'</span><b>'+tr('общий (модули)')+'</b></div><p style="margin:8px 0 0;color:#a8977a;font-size:12px">'+tr(o.d)+'</p></div>';W.appendChild(inf);
+ if(own.length){left.appendChild(E_('div','c-h',tr('В кузове')));const g2=E_('div','');g2.style.cssText='display:flex;flex-direction:column;gap:4px';for(const k of own)g2.appendChild(card(k,'own'));left.appendChild(g2)}
+ if(gMod){const[id,l]=modParse(gMod.key),o=MODBYID[id],inf=E_('div','c-info');inf.style.flexDirection='column';inf.innerHTML='<div class="c-prev"><img src="'+modIconOf(gMod.key)+'"></div><div class="c-stat"><h4>'+tr(o.n)+' <span style="color:#ffd24a">'+modStars(l,id)+'</span></h4><div class="r"><span>'+tr('Эффект')+'</span><b>'+modEff(id,l)+'</b></div><div class="r"><span>'+tr('Слот')+'</span><b>'+tr('общий (модули)')+'</b></div><p style="margin:8px 0 0;color:#a8977a;font-size:12px">'+tr(o.d)+'</p></div>';right.appendChild(inf);
   const ac=E_('div','c-row');
   if(gMod.mode==='shop'){const pr=modPrice(id,l),b=E_('button','c-b go',gMod.sold?tr('Продано'):tr('Купить')+' · '+pr);b.disabled=gMod.sold||(!INF_MONEY&&SCRAP<pr)||cargoUsed()>=cargoCap();b.onclick=()=>modBuy(gMod.key,C,vendor);ac.appendChild(b);if(!gMod.sold&&cargoUsed()>=cargoCap())ac.appendChild(E_('div','c-note',tr('Нет места в кузове')))}
   else{const sp=Math.round(modPrice(id,l)*.6),b=E_('button','c-b',tr('Продать')+' · +'+sp);b.onclick=()=>modSell(gMod.key);ac.appendChild(b)}
-  W.appendChild(ac)}
+  right.appendChild(ac)}
  return W}
 function dragM(el,key,from){el.style.touchAction='none';
  el.addEventListener('pointerdown',e=>{if(e.button!==0)return;const x0=e.clientX,y0=e.clientY;let g=null;
