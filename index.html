@@ -340,7 +340,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.181.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.182.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -1111,6 +1111,8 @@ const norm=a=>((a%360)+360)%360;
 const angDiff=(a,b)=>{let d=norm(b-a);return d>180?d-360:d};
 /* ---------- models ---------- */
 let MAN=null,BIN=null;
+/* соединительные детали старых запечённых оружий (чтобы ничего не висело в воздухе) */
+const WFIX={gatling:()=>MB().box(0,.5,-.5,.34,.32,.5,[45,45,47]),laser:()=>MB().box(0,.5,-1.4,.3,.3,.2,[33,33,30]),mg_twin:()=>MB().box(0,.58,.5,.4,.16,.14,[33,33,31])};
 function geo(name){const wm=/^t[23]_wheel(\d)$/.exec(name),wsc=wm?1.18:1;if(wm)name='t1_wheel'+wm[1];/* колёса тиров 2-4: целое колесо t1 (шина+диск), чуть крупнее */const q=MAN.meshes.find(m=>m.name===name),n=q.n,o=q.off;
  let P=new Int16Array(BIN.slice(o,o+n*6)),N=new Int8Array(BIN.slice(o+n*6,o+n*9)),C=new Uint8Array(BIN.slice(o+n*9,o+n*12));
  /* шасси 2-4: в меш «запечены» колёса (ступицы/шины) — убираем их, чтобы колёса не дублировались и вращались/поворачивались */
@@ -1129,10 +1131,13 @@ function geo(name){const wm=/^t[23]_wheel(\d)$/.exec(name),wsc=wm?1.18:1;if(wm)n
   mb.rz();const[RP,RN,RC]=mb.raw(),k0=P2.length,nn=RP.length,P3=new Int16Array(k0+nn),N3=new Int8Array(k0+nn),C3=new Uint8Array(k0+nn);P3.set(P2);N3.set(N2);C3.set(C2);
   for(let i=0;i<nn;i++){P3[k0+i]=Math.round(RP[i]*S);N3[k0+i]=Math.round(RN[i]);C3[k0+i]=RC[i]}
   P=P3;N=N3;C=C3}
+ {const wf=WFIX[name];if(wf){const mb=wf(),S=2083,[RP,RN,RC]=mb.raw(),k0=P.length,nn=RP.length,P3=new Int16Array(k0+nn),N3=new Int8Array(k0+nn),C3=new Uint8Array(k0+nn);P3.set(P);N3.set(N);C3.set(C);
+  for(let i=0;i<nn;i++){P3[k0+i]=Math.round(RP[i]*S);N3[k0+i]=Math.round(RN[i]);C3[k0+i]=RC[i]}P=P3;N=N3;C=C3}}
  if(wsc!==1)for(let i=0;i<P.length;i++)P[i]=Math.round(P[i]*wsc);
  return vao(P,N,C)}
 function vehicle(def){const fz=def.wheels.filter(w=>w.front).map(w=>w.pos[2]),rz=def.wheels.filter(w=>!w.front).map(w=>w.pos[2]),av=a=>a.reduce((x,y)=>x+y,0)/a.length,piv=av(rz),L=piv-av(fz);return{piv,L,parts:[].concat(def.parts||def.body).map(geo),wheels:def.wheels.map(w=>({g:geo(w.mesh),pos:w.pos,front:w.front,r:w.r||def.r})),spin:0}}
 let TR,BG,BOX,ROCK,TIER=1,WPN=[],LV=null,LZ=10.5;const VEH={},WG={};
+const WK={avtomat:.8,mg:.8,mg_twin:.8,gun4:.8,shotgun:.8,ldrob:.8};/* уменьшение визуала оружия */
 const WDEF={
  /* rpm = выстрелов в минуту, mag = обойма (залпов), rel = перезарядка, с; dmg = урон за пулю */
  mg:{n:'Пулемёт',rpm:400,mag:50,rel:3,dmg:[.5,2],spread:5,sp:70,rng:36,cnt:1,tip:1.85,zb:.64,bw:.07,bl:2.6,col:[1,.95,.7],fl:1.1,fc:[1,.9,.6]},
@@ -3229,7 +3234,7 @@ function vehMats(V,o,bobK){
  const pit=Math.max(-.08,Math.min(.08,o.acc*.0045)),rol=Math.max(-.1,Math.min(.1,(o.w||0)*o.v*.00007*bobK));
  const tilt=M4.mul(root,M4.mul(M4.T(0,bob,0),M4.mul(M4.RZ(rol),M4.RX(pit))));
  return{root,tilt,st}}
-function drawW(P_,id,M){const g=WG[id];if(Array.isArray(g)){const hk=(isRk(id)||id==='tank')?1:.5,k=(g.sc||WSC)*hk,M2=M4.mul(M,M4.S(k,k,k));for(const q of g)drawMesh(P_,q,M2,null,null,false,false)}else drawMesh(P_,g,M4.mul(M,M4.S((isRk(id)||id==='tank')?1:.5,(isRk(id)||id==='tank')?1:.5,(isRk(id)||id==='tank')?1:.5)),null,null,false,false)}
+function drawW(P_,id,M){const g=WG[id];if(WK[id])M=M4.mul(M,M4.S(WK[id],WK[id],WK[id]));if(Array.isArray(g)){const hk=(isRk(id)||id==='tank')?1:.5,k=(g.sc||WSC)*hk,M2=M4.mul(M,M4.S(k,k,k));for(const q of g)drawMesh(P_,q,M2,null,null,false,false)}else drawMesh(P_,g,M4.mul(M,M4.S((isRk(id)||id==='tank')?1:.5,(isRk(id)||id==='tank')?1:.5,(isRk(id)||id==='tank')?1:.5)),null,null,false,false)}
 
 /* ПОВРЕЖДЕНИЯ: следы пуль (чёрные точки с белым контуром) + дым и огонь по стадиям 100/60/35/15/0 */
 const DSTG=[0,12,26,44,60];
@@ -3249,10 +3254,15 @@ function dmgInfo(V){if(V._dm)return V._dm;
  const len=zmax-zmin;let hy=0,cy=0;for(const g of V.parts){const Pp=g._p;if(!Pp)continue;const k=Pp instanceof Int16Array?g.q/32767:1;for(let i=0;i<Pp.length;i+=3){const z=Pp[i+2]*k,y=Pp[i+1]*k;if(z<zmin+len*.28&&y>hy)hy=y;if(z>zmax-len*.4&&y>cy)cy=y}}
  return V._dm={dec,hood:{y:hy,z:zmin+len*.12},cargo:[[0,zmax-len*.12],[-.5,zmax-len*.27],[.5,zmax-len*.22],[0,zmax-len*.38]],cy,len,zmin,zmax}}
 const DK=.75,DSH=[[[0,0,.24,.24]],[[0,0,.2,.2],[.2,.1,.1,.1]],[[0,0,.34,.15]],[[0,0,.16,.16],[-.18,-.06,.09,.09],[.13,-.16,.08,.08]]],DBK=[.02,.02,.02],DWH=[1,1,1],DEM=[.3,.3,.3];
-function drawDecals(P_,V,tilt,st){const I=dmgInfo(V),n=Math.min(I.dec.length,DSTG[st]);
- for(let i=0;i<n;i++){const d=I.dec[i],ax=d.ax,ua=ax===0?2:0,va=ax===1?2:1;
-  for(const[du0,dv0,w0,h0]of DSH[d.v]){const du=du0*DK,dv=dv0*DK,w=w0*DK,h=h0*DK;for(const pass of[0,1]){const c=[d.p[0],d.p[1],d.p[2]],sc=[0,0,0],e=pass?.0:.0;c[ua]+=du;c[va]+=dv;c[ax]+=d.sg*(pass?.012:0);sc[ua]=pass?w:w+.045;sc[va]=pass?h:h+.045;sc[ax]=pass?.04:.03;
-   drawMesh(P_,BOX,M4.mul(tilt,M4.mul(M4.T(c[0],c[1],c[2]),M4.S(sc[0],sc[1],sc[2]))),pass?DBK:DWH,pass?null:DEM,false,false)}}}}
+function drawDecals(P_,V,tilt,st){const I=dmgInfo(V),n=Math.min(I.dec.length,DSTG[st]);if(!n)return;
+ /* пятна повреждений склеены в 2 меша (белая кромка + чёрная пробоина) на машину и стадию — 2 вызова вместо десятков */
+ const CB=V._dcb||(V._dcb={});let b=CB[st];
+ if(!b){const mw=MB(),mk=MB(),W=[255,255,255];
+  for(let i=0;i<n;i++){const d=I.dec[i],ax=d.ax,ua=ax===0?2:0,va=ax===1?2:1;
+   for(const[du0,dv0,w0,h0]of DSH[d.v]){const du=du0*DK,dv=dv0*DK,w=w0*DK,h=h0*DK;for(const pass of[0,1]){const c=[d.p[0],d.p[1],d.p[2]],sc=[0,0,0];c[ua]+=du;c[va]+=dv;c[ax]+=d.sg*(pass?.012:0);sc[ua]=pass?w:w+.045;sc[va]=pass?h:h+.045;sc[ax]=pass?.04:.03;
+    (pass?mk:mw).box(c[0],c[1]-sc[1]/2,c[2],sc[0],sc[1],sc[2],W)}}}
+  b=CB[st]={w:mw.build(),k:mk.build()}}
+ drawMesh(P_,b.w,tilt,DWH,DEM,false,false);drawMesh(P_,b.k,tilt,DBK,null,false,false)}
 function emitDmg(o,V,dt,minSt){const f=o.df;if(f===undefined||f>.8||!V||o.dead>0||dt<=0)return;const st=dmgStage(f);if(st<(minSt||1))return;const I=dmgInfo(V),sa=Math.sin(o.a*D2R),ca=Math.cos(o.a*D2R),sc=o.sc||1,
   at=(lx,lz)=>[o.x+(-lz*sc)*sa+lx*sc*ca,o.y+(-lz*sc)*ca-lx*sc*sa],vx=sa*o.v*.4,vy=ca*o.v*.4;
  o.dA=(o.dA||0)+dt;o.fA=(o.fA||0)+dt;const rate=[0,4,8,13,18][st],col=st===1?[.92,.92,.94]:st===2?[.5,.5,.5]:[.07,.07,.07];
@@ -4167,23 +4177,24 @@ function buildTankGun(){const Y=[226,164,44],Y2=[190,128,32],ST=[96,100,102],ST2
  m.mv(0,-3.7,-1.4);mz.mv(0,-3.7,-1.4);
  const veh=mkVeh([m.build(),mz.build()],[]);veh.piv=0;veh.L=1;veh.mount=null;veh.wheels=[{g:DW,pos:[0,-9,0],front:false,r:1}];VEH.w_tank=veh;WG.tank=veh.parts;WG.tank.sc=1;CWEAP.push({id:'tank',n:'Башенное орудие',z:7.5})}
 function buildConceptWeapons(){
+ for(const k in WK){const d=WDEF[k];if(d&&!d._k){d._k=1;d.tip*=WK[k];d.zb*=WK[k];if(d.off)d.off*=WK[k];if(d.seq)d.seq=d.seq.map(q=>[q[0]*WK[k],q[1]*WK[k]])}}
  {const sm=MB().cyl(0,-.04,0,1,.08,[196,202,210],18).cyl(0,-.07,0,.34,.14,[70,72,78],8);for(let i=0;i<10;i++){const a=i/10*6.2832;sm.box(Math.cos(a)*1.02,-.04,Math.sin(a)*1.02,.26,.08,.2,[226,150,60],-a)}SAWG=sm.build()}
  const ST=[104,110,114],ST2=[70,74,78],DK=[40,42,44],DK2=[26,28,30],CY=[96,232,244],RD=[226,60,70],GR=[110,236,130],CU=[190,116,62],YL=[226,166,62],OR=[212,110,40],VI=[170,110,240],WH=[226,230,230],BLADE=[176,182,186],BLD2=[132,138,142],OLV=[84,96,60];
  DW=DW||MB().box(0,0,0,.001,.001,.001,[0,0,0]).build();const mk=(id,n,fn,tilt)=>{const m=MB(),mz=MB(),mx=MB(),bm=tilt?MB():m,z0=[0,0,0];mz.box(0,0,0,.001,.001,.001,z0);mx.box(0,0,0,.001,.001,.001,z0);
   const cz=(x,y,za,zb,r,col,seg=12,r2)=>mz.cyl(x,-zb,y,r,zb-za,col,seg,r2);   /* цилиндр вдоль z (ствол): za<zb, r2 — радиус у za (дульный) */
   const cx=(xa,xb,y,z,r,col,seg=14)=>mx.cyl(y,-xb,z,r,xb-xa,col,seg);            /* цилиндр вдоль x (диск/барабан) */
-  const saw=(x,y,z,r,n,col,th=.07)=>{cx(x-th/2,x+th/2,y,z,r,col,16);cx(x-th*.9,x+th*.9,y,z,r*.28,DK,8);for(let i=0;i<n;i++){const a=i/n*6.2832;m.box(x,y+Math.sin(a)*(r+.04),z+Math.cos(a)*(r+.04),th*1.1,.1*r+.05,.1*r+.05,col)}};
+  const saw=(x,y,z,r,n,col,th=.07)=>{cx(x-th/2,x+th/2,y,z,r,col,16);cx(x-th*.9,x+th*.9,y,z,r*.28,DK,8);for(let i=0;i<n;i++){const a=i/n*6.2832;{const hh=.1*r+.05;m.box(x,y+Math.sin(a)*(r+.02)-hh/2,z+Math.cos(a)*(r+.02),th*1.1,hh,hh,col)}}};
   const base=(w=1.1)=>{bm.box(0,0,0,w,.14,w,ST2).cyl(0,.14,0,.38,.16,DK,12).cyl(0,.3,0,.3,.06,YL,12);for(const sx of[-1,1])for(const sz of[-1,1])bm.box(sx*w*.4,.14,sz*w*.4,.08,.05,.08,CU)};
   fn({m,mz,mx,cz,cx,saw,base});
   mz.rx();mx.rz();if(tilt){for(const u of[m,mz,mx])u.rxa(tilt,.6,.3,.42);for(const sx of[-1,1])bm.box(sx*.36,.3,.2,.1,.85,.5,ST2).box(sx*.36,.95,.2,.14,.14,.2,CU);bm.box(0,.3,.2,.62,.14,.5,DK)}const veh=mkVeh(tilt?[bm.build(),m.build(),mz.build(),mx.build()]:[m.build(),mz.build(),mx.build()],[]);veh.piv=0;veh.L=1;veh.mount=null;veh.wheels=[{g:mz.build?DW:DW,pos:[0,-9,0],front:false,r:1}];VEH['w_'+id]=veh;WG[id]=veh.parts;{const bb=[m,mz,mx].map(u=>u.bnd()),b0=bb.reduce((a,b)=>b.mz<a.mz?b:a);if(WDEF[id]){WDEF[id].tip=Math.max(.9,-b0.mz)*WSC;WDEF[id].zb=b0.yz*WSC}}CWEAP.push({id,n});};
  /* ===== КЛ.1: АВТОМАТ И ОБРЕЗ ===== */
  const WD=[128,86,50],WD2=[96,64,38];
  mk('avtomat','«Пистолет-пулемёт»',({m,cz,base})=>{base(.95);
-  m.box(0,.5,.05,.3,.3,1.1,ST2).box(0,.8,.05,.24,.05,1.0,DK).box(0,.84,-.45,.1,.08,.3,ST).box(.17,.6,-.2,.04,.1,.3,DK2);
-  cz(0,.65,-1.3,-.4,.095,DK,10);for(const z of[-1.15,-.95,-.75])m.box(0,.6,z,.2,.1,.05,DK2);cz(0,.65,-1.55,-1.3,.05,DK2,10);m.box(0,.74,-1.45,.04,.1,.04,DK);
+  m.box(0,.5,.05,.3,.3,1.1,ST2).box(0,.8,.05,.24,.05,1.0,DK).box(0,.84,-.45,.1,.08,.3,ST).box(0,.3,.0,.3,.22,.3,DK).box(.17,.6,-.2,.04,.1,.3,DK2);
+  cz(0,.65,-1.3,-.4,.095,DK,10);for(const z of[-1.15,-.95,-.75])m.box(0,.6,z,.2,.1,.05,DK2);cz(0,.65,-1.55,-1.3,.05,DK2,10);m.box(0,.68,-1.45,.04,.12,.04,DK);
   m.box(0,.0,.58,.17,.78,.14,DK).box(0,.5,.58,.2,.26,.24,DK2);});
  mk('ldrob','«Обрез»',({m,cz,base})=>{base(.95);
-  m.box(0,.46,.2,.3,.3,.85,ST2).box(0,.76,.15,.2,.06,.4,DK).box(0,.5,.7,.24,.22,.1,DK);
+  m.box(0,.46,.2,.3,.3,.85,ST2).box(0,.76,.15,.2,.06,.4,DK).box(0,.5,.6,.24,.22,.1,DK);
   cz(0,.64,-1.55,.0,.08,DK,10);cz(0,.64,-1.6,-1.5,.105,DK2,10);
   m.box(0,.5,-.55,.3,.22,.75,WD).box(0,.46,-.55,.34,.06,.65,WD2);
   m.box(.25,.3,.15,.16,.46,.6,DK).box(.34,.45,.15,.03,.18,.4,RD).box(.25,.76,.15,.16,.04,.6,ST);
@@ -4196,12 +4207,12 @@ function buildConceptWeapons(){
   m.box(0,.4,.78,.46,.4,.46,YL).box(0,.56,1.02,.3,.08,.04,CY).box(0,.42,1.02,.3,.08,.04,CY).box(.25,.8,.5,.08,.08,.5,DK);
   m.box(0,.5,-.55,.6,.12,.12,DK)});
  mk('rubin','«Рубин»',({m,cz,base})=>{base(1.2);
-  m.box(0,.46,.1,.5,.3,1.4,ST2).box(0,.46,.62,.7,.62,.5,DK);
+  m.box(0,.3,.0,.4,.2,.4,DK2).box(0,.46,.1,.5,.3,1.4,ST2).box(0,.46,.62,.7,.62,.5,DK);
   cz(0,.78,-1.9,.5,.2,[200,210,214],12);cz(0,.78,-1.55,.0,.17,RD,10);for(let i=0;i<7;i++)cz(0,.78,-1.6+i*.2,-1.5+i*.2,.255,CU,12);
   cz(0,.78,-2.15,-1.9,.26,DK,12,.3);cz(0,.78,-2.2,-2.14,.12,RD,10);cz(0,.78,.5,.85,.26,ST,12);
   m.box(0,1.05,-.6,.12,.18,1.0,ST2).box(.2,.7,.4,.06,.5,.06,CU).box(-.2,.7,.4,.06,.5,.06,CU)});
  mk('duet','«Дуэт»',({m,cz,base})=>{base(1.3);
-  m.box(0,.46,.2,.95,.5,1.5,ST).box(0,.96,.2,.9,.05,1.3,DK);for(let i=0;i<9;i++)m.box(0,1.01,-.35+i*.15,.8,.22,.05,ST2);
+  m.box(0,.3,.0,.5,.2,.5,DK2).box(0,.46,.2,.95,.5,1.5,ST).box(0,.96,.2,.9,.05,1.3,DK);for(let i=0;i<9;i++)m.box(0,1.01,-.35+i*.15,.8,.22,.05,ST2);
   for(const s of[-1,1]){cz(s*.28,.72,-1.7,-.5,.12,ST2);cz(s*.28,.72,-2.0,-1.7,.16,DK,12,.19);cz(s*.28,.72,-2.07,-2.0,.09,GR);for(const z of[-1.3,-1.0,-.75])cz(s*.28,.72,z-.04,z+.04,.16,ST,12);m.box(s*.34,.35,1.05,.3,.4,.4,YL).box(s*.34,.5,1.27,.18,.08,.04,GR)}
   m.box(0,.55,-.6,.32,.18,.4,DK)});
  mk('rassek','«Рассекатель»',({m,cz,base})=>{base(1.5);
@@ -4220,9 +4231,9 @@ function buildConceptWeapons(){
   m.box(0,.3,.2,.5,.4,1.3,ST2).box(-.3,.3,.2,.08,.6,1.1,ST).box(.3,.3,.2,.08,.6,1.1,ST);
   cz(0,.55,-1.5,.2,.16,ST,10);m.box(0,.85,-.3,.5,.1,1.6,DK).box(-.2,.95,-.3,.04,.5,1.6,ST2).box(.2,.95,-.3,.04,.5,1.6,ST2);
   for(let i=0;i<5;i++)saw(0,1.1+i*.04,.0,.42,10,i%2?BLADE:BLD2,.05);
-  saw(0,.74,-1.5,.44,12,BLADE,.07);cz(0,.52,.2,1.2,.14,CU,10);cz(0,.52,1.2,1.5,.2,DK,10);m.box(0,.95,.9,.35,.3,.35,YL)});
+  saw(0,.74,-1.5,.44,12,BLADE,.07);cz(0,.52,.2,1.2,.14,CU,10);cz(0,.52,1.2,1.5,.2,DK,10);m.box(0,.38,.9,.35,.3,.35,YL)});
  mk('dvoika','«Двойка»',({m,mz,cz,saw,base})=>{base(1.4);
-  m.box(0,.4,.2,1.3,.2,2.2,ST2);for(const s of[-1,1]){m.box(s*.45,.6,-.2,.09,.5,2.0,DK).box(s*.15,.6,-.2,.09,.5,2.0,DK);saw((s*.3),.9,-1.15,.45,12,BLADE,.1);for(let i=0;i<9;i++)cz(s*.3,.7,.1+i*.09,.17+i*.09,.16,i%2?CU:ST,10);cz(s*.3,.7,.9,1.2,.2,DK,10)}
+  m.box(0,.3,.0,.5,.12,.5,DK2).box(0,.4,.2,1.3,.2,2.2,ST2);for(const s of[-1,1]){m.box(s*.45,.6,-.2,.09,.5,2.0,DK).box(s*.15,.6,-.2,.09,.5,2.0,DK);saw((s*.3),.9,-1.15,.45,12,BLADE,.1);for(let i=0;i<9;i++)cz(s*.3,.7,.1+i*.09,.17+i*.09,.16,i%2?CU:ST,10);cz(s*.3,.7,.9,1.2,.2,DK,10)}
   m.box(0,.8,.55,1.2,.6,.12,ST).box(0,1.05,-.1,1.15,.06,.2,YL)});
  mk('karusel','«Карусель»',({m,mx,cz,cx,saw,base})=>{base(1.4);
   m.box(0,.3,.3,1.0,.5,1.0,ST2);cx(-.55,.55,.95,.25,.75,DK,16);cx(-.2,.2,.95,.25,.25,ST,10);
@@ -4234,9 +4245,9 @@ function buildConceptWeapons(){
   m.box(0,.3,.3,1.2,.3,3.0,ST2).box(-.5,.6,-.2,.12,.8,2.4,DK).box(.5,.6,-.2,.12,.8,2.4,DK);
   saw(0,1.45,-1.35,.95,16,BLADE,.16);cx(-.45,.45,1.45,-1.35,.2,CU,10);
   for(const s of[-1,1]){cz(s*.3,.75,-.9,.6,.15,ST,10);cz(s*.3,.75,.6,1.9,.22,DK,10);cz(s*.3,.75,-1.2,-.9,.07,WH,8)}
-  cx(-.8,.8,.75,1.6,.38,OR,14);m.box(0,.75,1.6,1.5,.08,.2,DK);m.box(.95,1.0,.9,.2,.2,.2,WH);
+  cx(-.8,.8,.75,1.6,.38,OR,14);m.box(0,.75,1.6,1.5,.08,.2,DK);m.box(.62,1.0,.9,.2,.2,.2,WH);
   for(let i=0;i<5;i++)m.box(0,.2,-.6+i*.35,1.22,.31,.2,i%2?YL:DK2);
-  m.box(0,1.3,1.1,1.3,.9,.12,ST).box(0,1.15,1.14,1.1,.15,.04,YL)});
+  m.box(0,.7,1.1,1.3,1.5,.12,ST).box(0,1.15,1.14,1.1,.15,.04,YL)});
  /* ===== АВТОМАТИЧЕСКИЕ ГРАНАТОМЁТЫ ===== */
  mk('kolotushka','«Колотушка»',({m,cz,base})=>{base(1.2);
   m.box(-.3,.14,0,.08,.7,.9,ST2).box(.3,.14,0,.08,.7,.9,ST2);m.box(0,.5,.15,.6,.5,1.2,OLV).box(0,1.0,.15,.5,.05,1.0,ST2).box(0,1.05,-.2,.1,.14,.22,DK).box(0,1.05,-.05,.07,.1,.14,CY);
@@ -4264,8 +4275,8 @@ function buildConceptWeapons(){
  /* ===== АКТИВНАЯ ЗАЩИТА ===== */
  mk('yozh','«Ёж»',({m,base})=>{base(1.1);
   m.box(0,.3,.1,.8,.5,.8,ST).box(0,.8,.1,.7,.06,.7,DK);m.box(0,.84,-.1,.5,.34,.08,DK2).box(0,.88,-.14,.4,.26,.04,CY);
-  for(const row of[0,1])for(let i=0;i<7;i++){const a=(i-3)*.42,ux=Math.sin(a),uz=-Math.cos(a),r=.62;m.box(ux*r*.8,.3+row*.28,uz*r*.8+.1,.16,.16,.5,i%2?ST2:DK,a).box(ux*(r+.08)*1.15,.3+row*.28,uz*(r+.08)*1.15+.1,.16,.16,.06,RD,a)}
-  m.box(0,.3,.62,.5,.3,.3,YL).box(0,.9,.35,.08,.5,.08,ST2).box(0,1.4,.35,.2,.06,.2,CY)});
+  for(const row of[0,1])for(let i=0;i<7;i++){const a=(i-3)*.42,ux=Math.sin(a),uz=-Math.cos(a),r=.62;m.box(ux*r*.8,.3+row*.28,uz*r*.8+.1,.16,.16,.5,i%2?ST2:DK,a).box(ux*(r+.04)*1.15,.3+row*.28,uz*(r+.04)*1.15+.1,.16,.16,.12,RD,a)}
+  m.box(0,.3,.62,.5,.3,.3,YL).box(0,.84,.35,.08,.56,.08,ST2).box(0,1.4,.35,.2,.06,.2,CY)});
  mk('kupol','«Купол»',({m,mz,cz,base})=>{base(1.0);
   m.cyl(0,.14,0,.5,.45,ST,14).cyl(0,.59,0,.52,.06,DK,14).cyl(0,.65,0,.4,.35,ST2,14,.3);
   m.box(0,1.0,0,.5,.34,.6,DK).box(0,1.34,0,.4,.05,.5,ST2);
@@ -4286,7 +4297,7 @@ function buildConceptWeapons(){
   m.box(0,.3,.2,.9,.5,1.0,ST2).box(0,.8,.2,.84,.05,.9,DK);
   for(const row of[0,1])for(let i=0;i<6;i++)for(const s of[-1,1]){const x=s*.32,z=-.2+i*.13;cz(x,.88+row*.14,z-.07,z+.07,.065,i%2?OR:ST,8);}
   for(const x of[-.3,.3])for(let i=0;i<5;i++)m.box(x,.86,-.3+i*.16,.28,.14,.1,i%2?OR:RD);
-  m.box(0,.86,-.05,.06,.5,.06,ST).box(0,1.4,-.05,.34,.3,.06,CY);for(const [x,h] of[[-.38,1.5],[-.2,1.9],[.38,1.3]])m.box(x,.8,.6,.05,h-.8,.05,ST2).box(x,h,.6,.14,.04,.14,YL);
+  m.box(0,.86,-.05,.06,.56,.06,ST).box(0,1.4,-.05,.34,.3,.06,CY);for(const [x,h] of[[-.38,1.5],[-.2,1.9],[.38,1.3]])m.box(x,.8,.6,.05,h-.8,.05,ST2).box(x,h,.6,.14,.04,.14,YL);
   m.cyl(.0,.85,.65,.28,.14,DK,12,.2).cyl(0,.99,.65,.12,.14,GR,8)});
 }
 
@@ -5143,7 +5154,7 @@ function rangeShot(st){const d=st.d,id=st.id,ox=st.x+d.tip,oy=st.y,z0=st.d.zb+.5
  else{for(let c=0;c<(d.cnt||1);c++){const sq=d.seq?d.seq[(st.bi=((st.bi||0)+1)%d.seq.length)]:null,lat=sq?sq[0]:(d.cnt>1&&d.off?(c-(d.cnt-1)/2)*d.off*(d.cnt===2?2:1.4):0),a=(90+(Math.random()-.5)*(d.spread||0))*D2R;bullets.push({x:ox,y:oy+lat,dx:Math.sin(a),dy:Math.cos(a),d:0,d0:d.rng,z0:z0+(sq?sq[1]:0),dm:d,w:{},sp:d.sp*(.94+Math.random()*.12)})}}}
 function dmgTick(dt){if(paused)return;P.df=STAT.hp.max?STAT.hp.v/STAT.hp.max:1;if(P.dead<=0)emitDmg(P,LV||TR,dt,1);for(const en of ENEMIES){if(en.dead>0||!en.max)continue;en.df=en.hp/en.max;emitDmg(en,VEH[en.t.veh]||BG,dt,2)}}
 const RTR=[],RTC={x:RX0+16,y:RY0-10,r:10,v:8};
-function rangeTrucks(){RTR.length=0;[['gaz66',.6],['tatra4',.35],['zil131',.15],['maz543',.02]].forEach(([id,df],i)=>{const t=PTRUCKS.find(q=>q.id===id);if(!t)return;RTR.push({id,veh:t.veh,th:i*Math.PI/2,x:0,y:0,a:0,v:RTC.v,w:0,acc:0,sc:1,hit:0,dead:0,df})})}
+function rangeTrucks(){RTR.length=0;return;/* машины с повреждениями убраны с полигона (нагрузка на FPS) */[['gaz66',.6],['tatra4',.35],['zil131',.15],['maz543',.02]].forEach(([id,df],i)=>{const t=PTRUCKS.find(q=>q.id===id);if(!t)return;RTR.push({id,veh:t.veh,th:i*Math.PI/2,x:0,y:0,a:0,v:RTC.v,w:0,acc:0,sc:1,hit:0,dead:0,df})})}
 function rtrUpdate(dt){if(!RTR.length||paused)return;const om=RTC.v/RTC.r;for(const o of RTR){o.th+=om*dt;o.x=RTC.x+Math.cos(o.th)*RTC.r;o.y=RTC.y+Math.sin(o.th)*RTC.r;o.a=norm(Math.atan2(-Math.sin(o.th),Math.cos(o.th))/D2R);o.w=-om/D2R;o.v=RTC.v;emitDmg(o,o.veh,dt)}}
 function rangeUpdate(dt){rtrUpdate(dt);if(!RSTANDS.length||paused)return;for(const st of RSTANDS){st.cd-=dt;st.kick=Math.max(0,st.kick-dt*8);if(st.cd<=0&&Math.hypot(AIMG.x-st.x,AIMG.y-st.y)<2.6){st.cd=Math.max(.08,60/(st.d.rpm||60));rangeShot(st)}}}
 function drawRange(P_){if(!RSTANDS.length)return;if(Math.hypot(RTC.x-cam.x,RTC.y-cam.y)<RTC.r+60)for(const o of RTR)drawVehicle(P_,o.veh,o,.7,null,null);for(const st of RSTANDS){if(Math.abs(st.y-cam.y)>60||Math.abs(RX0-cam.x)>150&&Math.abs(RX0+210-cam.x)>150)continue;
