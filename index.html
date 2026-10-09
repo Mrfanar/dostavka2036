@@ -16,7 +16,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 #game{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
 .hud{position:fixed;left:0;right:0;top:0;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 0;display:flex;justify-content:space-between;gap:12px;pointer-events:none;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
 .hud b{color:var(--accent);font-weight:600}
-.ico{width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:50%;backdrop-filter:blur(3px);position:relative}
+.ico{width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--panel);border:1px solid var(--line);border-radius:50%;position:relative}
 .ico.hp{width:52px;height:52px}
 .ico i{position:relative;width:38px;height:38px;border-radius:50%;--lv:100%;--gl:100%;
  background:linear-gradient(to top,#a8261a 0,#e04a34 var(--lv),#f3a08f var(--lv),#f3a08f var(--gl),rgba(0,0,0,0) var(--gl)),radial-gradient(circle at 36% 30%,#3a1c17,#100807);
@@ -24,7 +24,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 .ico i::after{content:"";position:absolute;left:22%;top:14%;width:26%;height:18%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.55),rgba(255,255,255,0));transform:rotate(-30deg)}
 .durbox{position:fixed;left:16px;top:calc(env(safe-area-inset-top,0px) + 10px);display:flex;flex-direction:column;gap:8px;pointer-events:none;z-index:5}.drow{display:flex;align-items:center;gap:12px}.drow.fuel{padding-left:13px}.ico.fd{color:#e2a63e}.durbox .ico.ar{width:50px;height:50px}.durbox .ico.ar svg{width:30px;height:30px}.durbox .dur b{font-size:20px}.durbox .dur span{font-size:9px}.durbox .ico.fd{width:36px;height:36px}.durbox .ico.fd svg{width:22px;height:22px}.durbox .drow{gap:9px}.durbox .drow.fuel,.drow.scrap{padding-left:7px}.durbox .drow.fuel .dur b{font-size:13px!important}.ico.ar{color:#6fbf73}.dur{display:flex;flex-direction:column;justify-content:center;line-height:1.05;text-transform:none;letter-spacing:.02em;text-shadow:0 1px 3px #000}.dur b{font-size:20px;color:#fff3d3;font-variant-numeric:tabular-nums}.dur span{font-size:10px;color:#9aa;letter-spacing:.08em;text-transform:uppercase}.ico svg{display:block}
 .bars{display:flex;gap:8px;flex-wrap:wrap;min-width:0;align-items:center}
-.bar{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:5px 9px 5px 7px;backdrop-filter:blur(3px)}
+.bar{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:5px 9px 5px 7px;}
 .bar .ic{font-style:normal;width:16px;height:16px;display:flex;align-items:center;justify-content:center}
 .bar .ic.dot::before{content:"";width:12px;height:12px;border-radius:50%;background:#d24b32;box-shadow:0 0 0 2px rgba(210,75,50,.28)}
 .bar .tr{position:relative;width:96px;height:9px;background:rgba(0,0,0,.45);border-radius:2px;overflow:hidden}
@@ -35,13 +35,13 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 @media(max-width:560px){.bar .tr{width:56px}.bar span{min-width:36px}.hud{font-size:11px}}
 .tiers{position:fixed;left:16px;top:calc(env(safe-area-inset-top,0px) + 164px);display:flex;align-items:center;gap:6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;z-index:3}
 .tiers .lb{color:var(--dim);margin-right:2px}
-.tiers button{font:600 14px var(--font-d);width:38px;height:34px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--fg);cursor:pointer;backdrop-filter:blur(3px)}
+.tiers button{font:600 14px var(--font-d);width:38px;height:34px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--fg);cursor:pointer;}
 .tiers select{font:600 12px var(--font-d);height:34px;border-radius:6px;border:1px solid var(--line);background:var(--panel);color:var(--fg);max-width:150px}
 .tiers button.on{background:var(--accent);color:#2a1d07;border-color:var(--accent)}
-#wl{color:var(--dim);margin-left:8px;text-transform:none;letter-spacing:.02em;font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 10px;backdrop-filter:blur(3px)}
+#wl{color:var(--dim);margin-left:8px;text-transform:none;letter-spacing:.02em;font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 10px;}
 #aps{color:#8fe3c0;margin-left:8px;font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 10px}#aps:empty{display:none}
 @media(max-width:560px){#wl,#aps{display:none}}
-.chip{background:var(--panel);border:1px solid var(--line);padding:6px 10px;border-radius:6px;backdrop-filter:blur(3px)}
+.chip{background:var(--panel);border:1px solid var(--line);padding:6px 10px;border-radius:6px;}
 #stick{position:fixed;width:132px;height:132px;margin:-66px 0 0 -66px;border-radius:50%;border:2px solid var(--line);background:radial-gradient(circle,rgba(234,223,198,.10),rgba(234,223,198,.03));pointer-events:none;transition:opacity .15s}
 #knob{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:var(--accent);border:2px solid #fff3d3;box-shadow:0 2px 10px rgba(0,0,0,.5)}
 .fires{position:fixed;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 18px);width:176px;height:176px;touch-action:none}
@@ -61,7 +61,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 #vest{position:fixed;top:calc(env(safe-area-inset-top,0px) + 132px);right:16px;width:116px;height:28px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:6px;background:#1c1712;border:2px solid #706452;border-radius:8px;color:#eadfc6;font:600 17px/1 'Chakra Petch',monospace;font-variant-numeric:tabular-nums;letter-spacing:1px;z-index:4;box-shadow:0 2px 8px rgba(0,0,0,.5);pointer-events:none}#vest[hidden]{display:none}#vest i{font-style:normal;font-size:13px;opacity:.8}#vest.red{color:#ff4a3a;border-color:#c2362b;background:#2a1210;animation:vpl 1s steps(2) infinite}@keyframes vpl{50%{background:#4a1612}}
 #mm{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:16px;width:116px;height:116px;border-radius:12px;border:2px solid #706452;box-shadow:0 2px 10px rgba(0,0,0,.5);background:#2a2218;z-index:4;cursor:pointer}
 #clk{position:fixed;top:calc(env(safe-area-inset-top,0px) + 70px);right:144px;width:40px;text-align:center;color:#eadfc6;font:600 11px 'Chakra Petch',system-ui,sans-serif;opacity:.75;pointer-events:none;text-shadow:0 1px 3px #000}#fpsb{position:fixed;top:calc(env(safe-area-inset-top,0px) + 54px);right:144px;width:40px;text-align:center;color:#c9c0a8;font:600 11px/1 'Chakra Petch',monospace;font-variant-numeric:tabular-nums;z-index:4;pointer-events:none;text-shadow:0 1px 3px #000}#fpsb.lo{color:#ff6a5a}
-#gear{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:144px;width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font-size:20px;line-height:1;cursor:pointer;backdrop-filter:blur(3px);z-index:4;display:flex;align-items:center;justify-content:center}
+#gear{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:144px;width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font-size:20px;line-height:1;cursor:pointer;z-index:4;display:flex;align-items:center;justify-content:center}
 #menu{position:fixed;inset:0;background:rgba(12,9,6,.66);backdrop-filter:blur(4px);z-index:10;display:flex;align-items:center;justify-content:center;padding:16px;touch-action:auto}
 .mp{width:min(100%,640px);max-height:min(100%,860px);display:flex;flex-direction:column;background:#241d16;border:1px solid var(--line);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6);overflow:hidden}
 .mh{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px}
@@ -86,7 +86,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 .mf{display:flex;gap:8px;padding:12px 16px 16px;border-top:1px solid var(--line)}
 .mf .pri{background:var(--accent);border-color:var(--accent);color:#2a1d07;font-weight:600}
 .keys{font-size:12px;color:var(--dim);line-height:1.7}.keys kbd{font:600 11px var(--font-d);background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:4px;padding:1px 6px;color:var(--fg)}
-#editbar{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 62px);transform:translateX(-50%);z-index:9;background:var(--panel);border:1px solid var(--accent);border-radius:10px;padding:8px 8px 8px 14px;display:flex;gap:12px;align-items:center;font-size:13px;backdrop-filter:blur(3px)}
+#editbar{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 62px);transform:translateX(-50%);z-index:9;background:var(--panel);border:1px solid var(--accent);border-radius:10px;padding:8px 8px 8px 14px;display:flex;gap:12px;align-items:center;font-size:13px;}
 #editbar button{padding:8px 14px;border-radius:8px;border:0;background:var(--accent);color:#2a1d07;font:600 13px var(--font-d);cursor:pointer}
 @media(max-width:560px){.tiers{top:calc(env(safe-area-inset-top,0px) + 164px)}.bars{padding-right:52px}}
 #hint{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);transform:translateX(-50%);font-size:12px;color:var(--dim);letter-spacing:.05em;pointer-events:none;text-align:center;transition:opacity 1s}
@@ -340,7 +340,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.184.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.185.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -353,7 +353,7 @@ async function fetchTxt(u,tot){const r=await fetch(u);if(!r.ok)throw new Error(u
 const cv=document.getElementById('game'),ov=document.getElementById('ov'),o2=ov.getContext('2d');
 const D2R=Math.PI/180,PITCH=38*D2R,PPM=44,WW=1600,WH=800;
 let W=0,H=0,DPR=1,ODPR=1,Z=.8,RS=1,LOWN=0;const MOBG=!!(window.matchMedia&&matchMedia('(pointer:coarse)').matches);
-const gl=cv.getContext('webgl2',{antialias:true,alpha:false,powerPreference:'high-performance'});
+const gl=cv.getContext('webgl2',{antialias:(()=>{try{return (JSON.parse(localStorage.getItem('mecha3d_settings')||'{}').cel)===0}catch(e){return false}})(),alpha:false,powerPreference:'high-performance'});
 if(!gl){document.getElementById('load').textContent='Нужен браузер с WebGL2';return}
 /* ---------- tiny matrix lib (column-major) ---------- */
 const M4={
@@ -434,7 +434,7 @@ void main(){if(uDbg>.5&&uDbg<1.5){o=vec4(shade(vec3(.4,.35,.25),vec3(0.,1.,0.),v
   col=mix(col,as,core);}}
  {float mk=1.-texture(uRoad,bu).a;if(mk>0.){float mm2=smoothstep(.12,.5,mk+(fbm(wp*1.3)-.5)*.35);vec3 mc=vec3(.22,.15,.09)*(.75+.5*fbm(wp*.8))+vec3(.05,.04,.03)*smoothstep(.7,.85,vn(wp*3.1+4.));mc=mix(mc,vec3(.30,.34,.34),smoothstep(.8,.9,vn(wp*1.1+9.))*.35);col=mix(col,mc,mm2*.95*(1.-b.r));}}
  col*=1.-.32*smoothstep(.0,.5,w)*(1.-smoothstep(.5,.6,w));
- if(uCl>0.){vec2 cp=wp*.032+uWd*2.;cp+=vec2(vn(cp*.6+3.),vn(cp*.6+9.))*1.1;float cm=(vn(cp)*.5+vn(cp*2.03+5.)*.27+vn(cp*4.1+11.)*.15+vn(cp*8.3+2.)*.08)*.9+vn(wp*.004-uWd*.3+4.)*.15;col*=1.-uCl*smoothstep(.43,.55,cm)*.17;}
+ if(uCl>0.){vec2 cp=wp*.032+uWd*2.;float cm=(vn(cp)*.55+vn(cp*2.03+5.)*.28+vn(cp*4.1+11.)*.17)*.9+vn(wp*.004-uWd*.3+4.)*.15;col*=1.-uCl*smoothstep(.43,.55,cm)*.17;}
  if(w>.34){float rp=sin(wp.x*1.7+uT*1.3+sin(wp.y*.9+uT))*sin(wp.y*1.3-uT*1.1+wp.x*.4);
  vec3 wc=mix(vec3(.20,.42,.46),vec3(.08,.22,.32),smoothstep(.55,1.,w));wc+=vec3(.10,.12,.12)*smoothstep(.55,.95,rp)+vec3(.35)*smoothstep(.93,1.,sin(wp.x*5.1+uT*2.1)*sin(wp.y*4.7-uT*1.7));
  col=mix(col,vec3(.78,.74,.62),smoothstep(.34,.44,w)*(1.-smoothstep(.44,.52,w))*.55);
@@ -3376,7 +3376,7 @@ void main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));gl_Posit
 precision highp float;uniform sampler2D uD;uniform vec2 uPx;uniform float uK;out vec4 o;
 void main(){vec2 uv=gl_FragCoord.xy*uPx;float c=texture(uD,uv).r;vec2 s=uPx*1.9;
  float l=texture(uD,uv-vec2(s.x,0.)).r,r=texture(uD,uv+vec2(s.x,0.)).r,u=texture(uD,uv+vec2(0.,s.y)).r,d=texture(uD,uv-vec2(0.,s.y)).r;
- float lap=max(abs(l+r-2.*c),abs(u+d-2.*c));float e=smoothstep(.00035,.0008,lap);o=vec4(.06,.045,.04,e*uK);}`);
+ float lap=max(abs(l+r-2.*c),abs(u+d-2.*c));float e=smoothstep(.00035,.0008,lap);if(e<.01)discard;o=vec4(.06,.045,.04,e*uK);}`);
 const blitP=prog(`#version 300 es
 out vec2 vT;void main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));vT=p;gl_Position=vec4(p*2.-1.,0.,1.);}`,`#version 300 es
 precision highp float;in vec2 vT;uniform sampler2D uC;out vec4 o;void main(){o=vec4(texture(uC,vT).rgb,1.);}`);
@@ -3434,7 +3434,7 @@ function render(dt){
  if(!pv)for(const m of MIS)spr(m.x-Math.sin(m.a)*.7,m.y-Math.cos(m.a)*.7,m.z,m.dud?.5:.85,m.dud?[.6,.6,.6]:[1,.7,.3],.9);
  for(const b of beams)spr(b.x+b.dx*b.L,b.y+b.dy*b.L,b.L<39?1.4:b.z,1.2*(b.life/b.max)+.3,b.col||[.5,1,1],.9)
  gl.depthMask(true);gl.disable(gl.BLEND);
- if(CELX){gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,cv.width,cv.height);gl.disable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.useProgram(blitP.p);gl.activeTexture(gl.TEXTURE4);gl.bindTexture(gl.TEXTURE_2D,CEL.ct);gl.uniform1i(blitP.u.uC,4);gl.bindVertexArray(CEL.vao);gl.drawArrays(gl.TRIANGLES,0,3);gl.activeTexture(gl.TEXTURE0);gl.enable(gl.DEPTH_TEST)}
+ if(CELX){gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,cv.width,cv.height);gl.disable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.bindFramebuffer(gl.READ_FRAMEBUFFER,CEL.fb);gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER,null);gl.blitFramebuffer(0,0,CEL.w,CEL.h,0,0,cv.width,cv.height,gl.COLOR_BUFFER_BIT,gl.NEAREST);gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.enable(gl.DEPTH_TEST)}
  if(pv){const s2=Math.min(cv.width,cv.height),c2=(SNAPC||PREVC).getContext('2d');c2.clearRect(0,0,512,512);c2.drawImage(cv,(cv.width-s2)/2,(cv.height-s2)/2,s2,s2,0,0,512,512);P.x=sv.px;P.y=sv.py;cam.x=sv.cx;cam.y=sv.cy;P.a=sv.a;P.v=sv.v;WPN.forEach((w,i)=>w.aim=sv.aims[i]);bullets.push(...sv.b);parts.push(...sv.p);beams.push(...sv.bm);texts.push(...sv.t);PVON=false}
  // overlay
  o2.setTransform(ODPR,0,0,ODPR,0,0);o2.clearRect(0,0,W,H);if(NOOV)return;o2.textAlign='center';
@@ -3952,14 +3952,34 @@ function buildPlayerTrucks(){
   sym(m,(m,s)=>{m.box(s*1.15,1.95,-4.0,.04,.55,1.4,GL).box(s*1.25,1.5,1.2,.1,1.0,6.2,O).box(s*1.35,1.2,-2.7,.4,.3,.7,[130,58,36]).box(s*.7,1.3,-5.2,.2,.16,.03,HL).box(s*1.3,1.6,-4.0,.26,.12,1.8,O2)});
   const wg=[[1.25,-3.4,1],[-1.25,-3.4,1],[1.25,-1.4,1],[-1.25,-1.4,1],[1.25,1.6,0],[-1.25,1.6,0],[1.25,3.6,0],[-1.25,3.6,0]];
   add({id:'zil135',n:'«Мамонт»',cls:'4 оси',veh:(WW=WS('balloon',.7,.56,wg),DRESS('zil135',m,WW),MV('zil135',[m.build()],WW)),mounts:MNT('zil135',1,1),st:{hp:320,fu:130,spd:.85,turn:.78,cargo:34},len:12})}
- /* 9. МАЗ-543 (4 оси, две кабины) */
- {const O=[88,100,62],O2=[64,74,46],m=MB(),tb=MB();
-  tb.cyl(0,-3.2,2.5,.75,6.8,[104,112,86],10).rx();
-  m.box(0,.95,0,1.5,.3,9.6,DK).box(0,.9,-4.6,2.7,.3,.3,DK)
-   .box(0,1.5,-4.2,.7,.9,2.4,DK);
-  sym(m,(m,s)=>{m.box(s*.95,1.9,-4.2,1.1,1.6,2.5,O).box(s*.95,2.1,-5.47,.95,.6,.05,GL,0).box(s*.95,2.78,-4.2,1.05,.08,2.5,O2).box(s*1.5,1.9,-4.2,.04,.55,1.3,GL).box(s*.9,1.1,-5.5,.4,.14,.03,HL)});
-  m.box(0,1.45,1.6,2.6,.2,6.8,DK).box(0,1.9,-1.75,2.6,.9,.1,O2);
-  sym(m,(m,s)=>{m.box(s*1.3,1.75,1.6,.1,.6,6.8,O2).box(s*1.38,1.15,-2.0,.3,.3,.8,[130,58,36])});
+ /* 9. МАЗ-543 «Гром» (4 оси) — новая модель: капотная кабина, бронекороб (y у box = низ) */
+ {const O=[140,84,48],O2=[96,100,62],O3=[108,64,38],R1=[168,98,50],m=MB(),tb=MB(),D2=[60,54,48],SG=[90,84,78],ST=[100,94,88];
+  let rs=7;const rn=()=>(rs=(rs*16807)%2147483647)/2147483647;
+  m.box(0,.95,-.3,1.5,.3,11.8,DK).box(0,.9,-6.5,2.7,.3,.3,DK)
+   .box(0,1.6,-5.4,2.3,1.1,2.5,O).box(0,2.7,-5.4,2.0,.06,2.3,O2).box(0,1.7,-6.68,2.0,.9,.06,DK)
+   .box(0,1.95,-3.55,2.6,1.9,2.3,O).box(0,1.95,-3.55,2.64,.55,2.3,O2).box(0,3.85,-3.55,2.4,.08,2.1,O2).box(0,2.75,-4.72,2.1,.7,.05,GL,0)
+   .box(0,1.95,-2.38,2.4,.9,.06,O3);
+  for(let k=-3;k<=3;k++)m.box(k*.25,1.72,-6.72,.07,.82,.04,[34,32,30]);
+  m.box(0,2.5,-6.72,1.8,.05,.04,[34,32,30]).box(0,1.75,-6.72,1.8,.05,.04,[34,32,30]);
+  for(const s of[-1,1]){
+   m.box(s*1.32,2.75,-3.9,.04,.7,1.3,GL).box(s*.78,1.65,-6.7,.34,.22,.04,HL).box(s*1.17,1.7,-5.4,.08,.7,2.2,O3)
+    .cyl(s*1.45,1.9,-2.5,.12,2.8,SG,8).cyl(s*1.45,4.7,-2.5,.15,.12,[56,52,48],8).cyl(s*1.45,3.0,-2.5,.16,.08,[110,100,90],8);
+   for(let c=0;c<3;c++)m.box(s*(.9+c*.12),.7,-6.72,.05,.5,.05,[70,66,60]);
+   /* ржавые пятна на кабине */
+   for(let q=0;q<9;q++)m.box(s*1.32,2.0+rn()*1.7,-4.6+rn()*2.0,.03,.15+rn()*.3,.2+rn()*.5,rn()<.5?R1:O3)}
+  m.cyl(0,1.9,-2.17,.1,2.5,SG,8).cyl(0,4.4,-2.17,.13,.12,[56,52,48],8);
+  for(let k=-4;k<=4;k++)m.box(k*.29,.35,-6.85,.2,.62,.1,[84,76,68]);
+  m.box(0,.85,-6.85,2.6,.2,.12,[84,76,68]);
+  const z0=-1.95,z1=5.45,zc=(z0+z1)/2,L=z1-z0;
+  tb.box(0,1.55,zc,2.7,2.3,L,O).box(0,1.55,zc,2.74,.6,L,O2).box(0,3.85,zc,2.5,.08,L-.2,O2).box(0,1.45,zc,2.8,.14,L+.1,DK);
+  for(let k=0;k<5;k++)tb.box(0,1.55,z0+.9+k*1.55,2.76,2.34,.07,O3);
+  for(const s of[-1,1]){
+   for(let q=0;q<4;q++){const z=z0+1.5+q*1.75;tb.box(s*1.37,2.2,z,.05,1.1,1.1,[50,46,42]);for(let v=0;v<6;v++)tb.box(s*1.405,2.3+v*.16,z,.03,.05,1.0,[24,22,20])}
+   tb.box(s*1.2,4.15,zc,.05,.05,L-.4,ST);
+   for(let k=0;k<5;k++)tb.box(s*1.2,3.9,z0+.5+k*1.5,.05,.28,.05,ST);
+   for(let q=0;q<26;q++)tb.box(s*1.37,1.8+rn()*1.9,z0+.2+rn()*(L-.5),.03,.15+rn()*.35,.3+rn()*.7,rn()<.5?R1:O3)}
+  tb.box(0,4.15,z0+.5,2.4,.05,.05,ST).box(0,4.15,z1-.5,2.4,.05,.05,ST).box(0,4.15,zc,2.4,.05,.05,ST);
+  for(const[x,z,w,l]of[[-.6,.2,1.1,1.5],[.7,1.8,1.0,1.4],[-.5,3.6,1.1,1.5]])tb.box(x,3.93,z,w,.4,l,D2).box(x,4.33,z,w-.2,.06,l-.2,[40,38,36]);
   const wg=[[1.3,-3.3,1],[-1.3,-3.3,1],[1.3,-1.6,1],[-1.3,-1.6,1],[1.3,2.2,0],[-1.3,2.2,0],[1.3,3.9,0],[-1.3,3.9,0]];
   add({id:'maz543',n:'«Гром»',cls:'4 оси',veh:(WW=WS('deep',.76,.6,wg),DRESS('maz543',m,WW),MV('maz543',[m.build(),tb.build()],WW)),mounts:MNT('maz543',1,1),st:{hp:380,fu:140,spd:.82,turn:.72,cargo:38},len:12.5})}
  /* 10. БЕЛАЗ (уникальный, квест) */
