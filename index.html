@@ -12,6 +12,7 @@
   --font-d:"Chakra Petch","Arial Narrow",system-ui,sans-serif; --font-b:"Chakra Petch",system-ui,sans-serif;
 }
 html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-b);overflow:hidden;overscroll-behavior:none;touch-action:none;-webkit-user-select:none;user-select:none}
+body.gpc :is(.ico,.bar,.tiers button,#wl,.chip,#gear,#editbar){backdrop-filter:blur(3px)}
 #ov{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}@media(pointer:coarse){*{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}.c-tab:disabled{opacity:.35;filter:grayscale(1);cursor:not-allowed}#wx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
 #game{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
 .hud{position:fixed;left:0;right:0;top:0;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 0;display:flex;justify-content:space-between;gap:12px;pointer-events:none;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
@@ -340,7 +341,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.186.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.187.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -352,8 +353,8 @@ async function fetchTxt(u,tot){const r=await fetch(u);if(!r.ok)throw new Error(u
 (()=>{
 const cv=document.getElementById('game'),ov=document.getElementById('ov'),o2=ov.getContext('2d');
 const D2R=Math.PI/180,PITCH=38*D2R,PPM=44,WW=1600,WH=800;
-let W=0,H=0,DPR=1,ODPR=1,Z=.8,RS=1,LOWN=0;const MOBG=!!(window.matchMedia&&matchMedia('(pointer:coarse)').matches);
-const gl=cv.getContext('webgl2',{antialias:(()=>{try{return (JSON.parse(localStorage.getItem('mecha3d_settings')||'{}').cel)===0}catch(e){return false}})(),alpha:false,powerPreference:'high-performance'});
+const GFX={pc:false};let W=0,H=0,DPR=1,ODPR=1,Z=.8,RS=1,LOWN=0;const MOBG=!!(window.matchMedia&&matchMedia('(pointer:coarse)').matches);
+const gl=cv.getContext('webgl2',{antialias:(()=>{try{const q=JSON.parse(localStorage.getItem('mecha3d_settings')||'{}');return q.cel===0||q.gfx===0}catch(e){return false}})(),alpha:false,powerPreference:'high-performance'});
 if(!gl){document.getElementById('load').textContent='Нужен браузер с WebGL2';return}
 /* ---------- tiny matrix lib (column-major) ---------- */
 const M4={
@@ -400,7 +401,7 @@ const grdP=prog(`#version 300 es
 in vec2 aXZ;uniform mat4 uVP;uniform mat4 uLVP;uniform vec2 uC;out vec2 vUV;out vec2 vP;out vec4 vL;
 void main(){vec2 p=aXZ*300.+uC;vUV=p/8.;vP=p;vL=uLVP*vec4(p.x,0.,p.y,1.);gl_Position=uVP*vec4(p.x,0.,p.y,1.);}`,
 `#version 300 es
-precision highp float;in vec2 vUV;in vec2 vP;in vec4 vL;out vec4 o;uniform sampler2D uTex;uniform sampler2D uBio;uniform sampler2D uRoad;uniform float uT;uniform vec3 uSn;uniform float uCl;uniform vec2 uWd;${LIGHT}
+precision highp float;in vec2 vUV;in vec2 vP;in vec4 vL;out vec4 o;uniform sampler2D uTex;uniform sampler2D uBio;uniform sampler2D uRoad;uniform float uT;uniform vec3 uSn;uniform float uCl;uniform float uCq;uniform vec2 uWd;${LIGHT}
 float snowK(vec2 wp){vec2 d=wp-uSn.xy;d=mod(d+800.,1600.)-800.;if(dot(d,d)>uSn.z*uSn.z*1.6)return 0.;float th=atan(d.y,d.x);float R=uSn.z*(1.+.12*sin(3.*th+1.)+.08*sin(5.*th+2.));float hw=R*.16;return 1.-smoothstep(R-hw,R+hw,length(d));}
 float hs(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
 float vn(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hs(i),hs(i+vec2(1.,0.)),f.x),mix(hs(i+vec2(0.,1.)),hs(i+vec2(1.,1.)),f.x),f.y);}
@@ -434,7 +435,7 @@ void main(){if(uDbg>.5&&uDbg<1.5){o=vec4(shade(vec3(.4,.35,.25),vec3(0.,1.,0.),v
   col=mix(col,as,core);}}
  {float mk=1.-texture(uRoad,bu).a;if(mk>0.){float mm2=smoothstep(.12,.5,mk+(fbm(wp*1.3)-.5)*.35);vec3 mc=vec3(.22,.15,.09)*(.75+.5*fbm(wp*.8))+vec3(.05,.04,.03)*smoothstep(.7,.85,vn(wp*3.1+4.));mc=mix(mc,vec3(.30,.34,.34),smoothstep(.8,.9,vn(wp*1.1+9.))*.35);col=mix(col,mc,mm2*.95*(1.-b.r));}}
  col*=1.-.32*smoothstep(.0,.5,w)*(1.-smoothstep(.5,.6,w));
- if(uCl>0.){vec2 cp=wp*.032+uWd*2.;float cm=(vn(cp)*.55+vn(cp*2.03+5.)*.28+vn(cp*4.1+11.)*.17)*.9+vn(wp*.004-uWd*.3+4.)*.15;col*=1.-uCl*smoothstep(.43,.55,cm)*.17;}
+ if(uCl>0.){vec2 cp=wp*.032+uWd*2.;float cm;if(uCq>.5){cm=(vn(cp)*.55+vn(cp*2.03+5.)*.28+vn(cp*4.1+11.)*.17)*.9+vn(wp*.004-uWd*.3+4.)*.15;}else{cp+=vec2(vn(cp*.6+3.),vn(cp*.6+9.))*1.1;cm=(vn(cp)*.5+vn(cp*2.03+5.)*.27+vn(cp*4.1+11.)*.15+vn(cp*8.3+2.)*.08)*.9+vn(wp*.004-uWd*.3+4.)*.15;}col*=1.-uCl*smoothstep(.43,.55,cm)*.17;}
  if(w>.34){float rp=sin(wp.x*1.7+uT*1.3+sin(wp.y*.9+uT))*sin(wp.y*1.3-uT*1.1+wp.x*.4);
  vec3 wc=mix(vec3(.20,.42,.46),vec3(.08,.22,.32),smoothstep(.55,1.,w));wc+=vec3(.10,.12,.12)*smoothstep(.55,.95,rp)+vec3(.35)*smoothstep(.93,1.,sin(wp.x*5.1+uT*2.1)*sin(wp.y*4.7-uT*1.7));
  col=mix(col,vec3(.78,.74,.62),smoothstep(.34,.44,w)*(1.-smoothstep(.44,.52,w))*.55);
@@ -1305,7 +1306,7 @@ function pcFire(){for(const k in FIRE)FIRE[k]=false;if(paused||CUT.on||P.dead>0)
 const FIRE={};let FBTN=[];const SHORT={avtomat:'Пист.-пулемёт',ldrob:'Обрез',tank:'Орудие',rocket:'Ракета',rocket2:'Ракеты ×2',rocket4:'Ракеты ×4',mg:'Пулемёт',mg_twin:'Сдвоен. пулемёт',shotgun:'Дробовик',gun4:'Пушка',harpoon:'Гарпун',gatling:'Гатлинг',laser:'Лазер',iskra:'Искра',rubin:'Рубин',duet:'Дуэт',rassek:'Рассекатель',prizma:'Призма',tsirkul:'Циркуль',dvoika:'Двойка',drovosek:'Дровосек',karusel:'Карусель',kolotushka:'Колотушка',kuvalda:'Кувалда',goroh:'Горох'};
 
 /* ---------- settings ---------- */
-const DEF={lang:(/^(ru|uk|be)/i.test(navigator.language||'ru')?'ru':'en'),fps:0,cel:100,ars:1,xh:1,xs:100,vol:70,mus:100,sfx:100,eng:60,cld:100,env:100,wxs:100,hit:100,mute:false,zoom:.85,lead:1,dyn:true,fs:100,js:100,fo:100,fixed:false,lefty:false,ox:0,oy:0};
+const DEF={lang:(/^(ru|uk|be)/i.test(navigator.language||'ru')?'ru':'en'),fps:0,cel:100,ars:1,gfx:1,xh:1,xs:100,vol:70,mus:100,sfx:100,eng:60,cld:100,env:100,wxs:100,hit:100,mute:false,zoom:.85,lead:1,dyn:true,fs:100,js:100,fo:100,fixed:false,lefty:false,ox:0,oy:0};
 const S=Object.assign({},DEF);
 try{Object.assign(S,JSON.parse(localStorage.getItem('mecha3d_settings')||'{}'))}catch(e){}
 const saveS=()=>{try{localStorage.setItem('mecha3d_settings',JSON.stringify(S))}catch(e){}};
@@ -2341,6 +2342,8 @@ const SCHEMA={
   {k:'cld',t:'range',l:'Интенсивность облаков',h:'Мягкие тени облаков на земле. 0 — выключить',min:0,max:200,step:10,f:v=>v+'%'},
   {k:'cel',t:'seg',l:'Контуры (cel)',opts:[[0,'Выкл'],[50,'50%'],[100,'100%']]},
   {t:'note',l:'Тёмная обводка вокруг машин и объектов. Выключение даёт прибавку FPS на слабых телефонах.'},
+  {k:'gfx',t:'seg',l:'Графика: режим',opts:[[1,'Ноутбук (V.186)'],[0,'ПК (V.184)']]},
+  {t:'note',l:'Ноутбук — облегчённая отрисовка для встроенных видеокарт. ПК — прежняя (V.184), со сглаживанием MSAA и размытием панелей. Сглаживание меняется после перезапуска игры.'},
   {k:'ars',t:'seg',l:'Авто-разрешение',opts:[[0,'Выкл'],[1,'Вкл']]},
   {t:'note',l:'Если FPS ниже 55, игра сама снижает чёткость картинки (до 70%), чтобы держать плавность. Интерфейс остаётся чётким.'},
   {t:'btn',l:'Диагностика FPS: показать/скрыть',fn:()=>perfOn(!PERFON)}],
@@ -2378,7 +2381,7 @@ function renderMenu(){const tb=$('mtabs'),bd=$('mbody');tb.innerHTML='';bd.inner
   else if(it.t==='keys'){r.innerHTML='<div class="keys"><kbd>W</kbd>/<kbd>S</kbd> — вперёд/назад · <kbd>A</kbd>/<kbd>D</kbd> — поворот<br>Мышь — прицел · <kbd>ЛКМ</kbd>/<kbd>ПКМ</kbd> — группы оружия · <kbd>Пробел</kbd> — ракеты<br><kbd>E</kbd> — гараж/заправка · <kbd>Q</kbd> — задания · <kbd>M</kbd> — масштаб миникарты<br><kbd>1</kbd>–<kbd>4</kbd> — выбор тира · <kbd>Esc</kbd> — меню</div>'}
   bd.appendChild(r);if(S.lang==='en'&&(it.t==='map'||it.t==='bench'||it.t==='keys'))trDom(r)}}
 function xhPrev(){const p=document.getElementById('xhp');if(!p)return;const d=XHD[S.xh]||XHD[1],sc=(S.xs||100)/100;p.querySelectorAll('.xp').forEach(e=>{e.style.color=e.classList.contains('e')?'#e8392f':e.classList.contains('a')?'#3aa0ff':'#f0a030';e.innerHTML='<svg viewBox="-50 -50 100 100" style="position:absolute;inset:0;width:70px;height:70px;transform:scale('+sc+');overflow:visible">'+d+'</svg>'})}
-function applyS(live){try{xhBuild();xhPrev()}catch(e){}const r=document.documentElement.style;r.setProperty('--fs',S.fs/100);r.setProperty('--fo',S.fo/100);r.setProperty('--ox',S.ox+'px');r.setProperty('--oy',S.oy+'px');
+function applyS(live){try{xhBuild();xhPrev()}catch(e){}GFX.pc=S.gfx===0;document.body.classList.toggle('gpc',GFX.pc);try{if(wxc){wxc.style.display='';wxc._v=undefined}}catch(e){}const r=document.documentElement.style;r.setProperty('--fs',S.fs/100);r.setProperty('--fo',S.fo/100);r.setProperty('--ox',S.ox+'px');r.setProperty('--oy',S.oy+'px');
  document.body.classList.toggle('lefty',!!S.lefty);placeStick();applyVol();engine(0);applyLang();if(!$('menu').hidden)trDom($('menu'))}
 function toggleMenu(force){if(shopOpen)return;const open=force!==undefined?force:$('menu').hidden;if(open&&editing)return;$('menu').hidden=!open;paused=open||TITLE;{const x=$('xh');if(x&&open)x.hidden=true}
  if(open){for(const k in FIRE)FIRE[k]=false;for(const f of FBTN)f.b.classList.remove('on');sid=null;input.jx=input.jy=0;placeStick();renderMenu()}applyVol()}
@@ -3375,22 +3378,25 @@ document.getElementById('mm').onclick=()=>{if(shopOpen)return;curTab='Карта
 let CELON=true,CELX=false,NOCEL=false,DBG=0;
 const edgeP=prog(`#version 300 es
 void main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));gl_Position=vec4(p*2.-1.,0.,1.);}`,`#version 300 es
-precision highp float;uniform sampler2D uD;uniform vec2 uPx;uniform float uK;out vec4 o;
+precision highp float;uniform sampler2D uD;uniform vec2 uPx;uniform float uK;uniform float uDc;out vec4 o;
 void main(){vec2 uv=gl_FragCoord.xy*uPx;float c=texture(uD,uv).r;vec2 s=uPx*1.9;
  float l=texture(uD,uv-vec2(s.x,0.)).r,r=texture(uD,uv+vec2(s.x,0.)).r,u=texture(uD,uv+vec2(0.,s.y)).r,d=texture(uD,uv-vec2(0.,s.y)).r;
- float lap=max(abs(l+r-2.*c),abs(u+d-2.*c));float e=smoothstep(.00035,.0008,lap);if(e<.01)discard;o=vec4(.06,.045,.04,e*uK);}`);
+ float lap=max(abs(l+r-2.*c),abs(u+d-2.*c));float e=smoothstep(.00035,.0008,lap);if(e<.01&&uDc>.5)discard;o=vec4(.06,.045,.04,e*uK);}`);
 const blitP=prog(`#version 300 es
 out vec2 vT;void main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));vT=p;gl_Position=vec4(p*2.-1.,0.,1.);}`,`#version 300 es
 precision highp float;in vec2 vT;uniform sampler2D uC;out vec4 o;void main(){o=vec4(texture(uC,vT).rgb,1.);}`);
 const CEL={w:0,h:0,fb:null,ct:null,dt:null,fb2:null,dt2:null,vao:gl.createVertexArray()};
 function celEnsure(w,h){if(CEL.w===w&&CEL.h===h&&CEL.fb)return;CEL.w=w;CEL.h=h;
- for(const k of['fb','fb2'])if(CEL[k])gl.deleteFramebuffer(CEL[k]);for(const k of['ct','dt'])if(CEL[k])gl.deleteTexture(CEL[k]);
+ for(const k of['fb','fb2','fb3'])if(CEL[k])gl.deleteFramebuffer(CEL[k]);for(const k of['ct','dt','dt2'])if(CEL[k])gl.deleteTexture(CEL[k]);
  const tex=(f,i,t)=>{const x=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,x);gl.texImage2D(gl.TEXTURE_2D,0,f,w,h,0,i,t,null);for(const[a,v]of[[gl.TEXTURE_MIN_FILTER,gl.NEAREST],[gl.TEXTURE_MAG_FILTER,gl.NEAREST],[gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE],[gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE]])gl.texParameteri(gl.TEXTURE_2D,a,v);return x};
  CEL.ct=tex(gl.RGBA8,gl.RGBA,gl.UNSIGNED_BYTE);CEL.dt=tex(gl.DEPTH_COMPONENT24,gl.DEPTH_COMPONENT,gl.UNSIGNED_INT);
  CEL.fb=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,CEL.fb);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,CEL.ct,0);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.TEXTURE_2D,CEL.dt,0);
- CEL.fb2=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,CEL.fb2);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,CEL.ct,0);gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.bindTexture(gl.TEXTURE_2D,null)}
-function celEdges(){const w=CEL.w,h=CEL.h;gl.bindFramebuffer(gl.FRAMEBUFFER,CEL.fb2);
- gl.disable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.useProgram(edgeP.p);gl.activeTexture(gl.TEXTURE4);gl.bindTexture(gl.TEXTURE_2D,CEL.dt);gl.uniform1i(edgeP.u.uD,4);gl.uniform2f(edgeP.u.uPx,1/w,1/h);gl.uniform1f(edgeP.u.uK,S.cel/100);gl.bindVertexArray(CEL.vao);gl.drawArrays(gl.TRIANGLES,0,3);
+ CEL.fb2=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,CEL.fb2);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,CEL.ct,0);CEL.dt2=tex(gl.DEPTH_COMPONENT24,gl.DEPTH_COMPONENT,gl.UNSIGNED_INT);CEL.fb3=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,CEL.fb3);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.TEXTURE_2D,CEL.dt2,0);gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.bindTexture(gl.TEXTURE_2D,null)}
+function celEdgesOld(){const w=CEL.w,h=CEL.h;gl.bindFramebuffer(gl.READ_FRAMEBUFFER,CEL.fb);gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER,CEL.fb3);gl.blitFramebuffer(0,0,w,h,0,0,w,h,gl.DEPTH_BUFFER_BIT,gl.NEAREST);gl.bindFramebuffer(gl.FRAMEBUFFER,CEL.fb);
+ gl.disable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.useProgram(edgeP.p);gl.activeTexture(gl.TEXTURE4);gl.bindTexture(gl.TEXTURE_2D,CEL.dt2);gl.uniform1i(edgeP.u.uD,4);gl.uniform2f(edgeP.u.uPx,1/w,1/h);gl.uniform1f(edgeP.u.uK,S.cel/100);gl.uniform1f(edgeP.u.uDc,0);gl.bindVertexArray(CEL.vao);gl.drawArrays(gl.TRIANGLES,0,3);
+ gl.activeTexture(gl.TEXTURE0);gl.disable(gl.BLEND);gl.enable(gl.DEPTH_TEST);gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK)}
+function celEdges(){if(GFX.pc){celEdgesOld();return}const w=CEL.w,h=CEL.h;gl.bindFramebuffer(gl.FRAMEBUFFER,CEL.fb2);
+ gl.disable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.useProgram(edgeP.p);gl.activeTexture(gl.TEXTURE4);gl.bindTexture(gl.TEXTURE_2D,CEL.dt);gl.uniform1i(edgeP.u.uD,4);gl.uniform2f(edgeP.u.uPx,1/w,1/h);gl.uniform1f(edgeP.u.uK,S.cel/100);gl.uniform1f(edgeP.u.uDc,1);gl.bindVertexArray(CEL.vao);gl.drawArrays(gl.TRIANGLES,0,3);
  gl.bindFramebuffer(gl.FRAMEBUFFER,CEL.fb);gl.activeTexture(gl.TEXTURE0);gl.disable(gl.BLEND);gl.enable(gl.DEPTH_TEST);gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK)}
 function render(dt){
  const pv=!!(SNAPC||(shopOpen&&gMode==='garage'&&PREVC&&PREVC.isConnected));let sv=null;
@@ -3410,7 +3416,7 @@ function render(dt){
  if(CELX)celEnsure(cv.width,cv.height);gl.bindFramebuffer(gl.FRAMEBUFFER,CELX?CEL.fb:null);gl.viewport(0,0,cv.width,cv.height);if(SNAPC)gl.clearColor(...(SNAPBG||[.2,.188,.165,1]));else gl.clearColor(.41,.33,.23,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
  const setLight=(P_)=>{gl.uniform1f(P_.u.uCel,CELX?1:0);gl.uniformMatrix4fv(P_.u.uVP,false,VP);gl.uniformMatrix4fv(P_.u.uLVP,false,SLVP||LVP);gl.uniform3fv(P_.u.uL,L);gl.uniform3fv(P_.u.uSunC,[1.02,.93,.78]);gl.uniform3fv(P_.u.uSky,[.58,.60,.66]);gl.uniform3fv(P_.u.uGnd,[.40,.33,.25]);gl.uniform1i(P_.u.uShadow,1);gl.uniform1f(P_.u.uDbg,DBG)};
  gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,shTex);gl.activeTexture(gl.TEXTURE0);
- gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,bioTex);gl.activeTexture(gl.TEXTURE0);gl.useProgram(grdP.p);setLight(grdP);gl.uniform2f(grdP.u.uC,cam.x,-cam.y);gl.uniform1i(grdP.u.uTex,0);gl.uniform1i(grdP.u.uBio,2);gl.uniform1i(grdP.u.uRoad,3);gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,roadTex);gl.activeTexture(gl.TEXTURE0);gl.uniform1f(grdP.u.uT,T);gl.uniform1f(grdP.u.uCl,SNAPC?0:CLS());cloudUpd();gl.uniform2f(grdP.u.uWd,CLD.x,CLD.y);gl.uniform3f(grdP.u.uSn,SNOW.x,SNOW.y,SNOW.r);gl.bindTexture(gl.TEXTURE_2D,groundTex);gl.bindVertexArray(quadV);if(!SNAPC)gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+ gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,bioTex);gl.activeTexture(gl.TEXTURE0);gl.useProgram(grdP.p);setLight(grdP);gl.uniform2f(grdP.u.uC,cam.x,-cam.y);gl.uniform1i(grdP.u.uTex,0);gl.uniform1i(grdP.u.uBio,2);gl.uniform1i(grdP.u.uRoad,3);gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,roadTex);gl.activeTexture(gl.TEXTURE0);gl.uniform1f(grdP.u.uT,T);gl.uniform1f(grdP.u.uCl,SNAPC?0:CLS());gl.uniform1f(grdP.u.uCq,GFX.pc?0:1);cloudUpd();gl.uniform2f(grdP.u.uWd,CLD.x,CLD.y);gl.uniform3f(grdP.u.uSn,SNOW.x,SNOW.y,SNOW.r);gl.bindTexture(gl.TEXTURE_2D,groundTex);gl.bindVertexArray(quadV);if(!SNAPC)gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
  gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);
  gl.useProgram(meshP.p);setLight(meshP);if(CELX){drawScene(meshP,true,1);celEdges();gl.viewport(0,0,cv.width,cv.height);gl.useProgram(meshP.p);setLight(meshP);gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,shTex);gl.activeTexture(gl.TEXTURE0);drawScene(meshP,true,2)}else drawScene(meshP,!pv);
  // bullets (unlit boxes)
@@ -3436,7 +3442,7 @@ function render(dt){
  if(!pv)for(const m of MIS)spr(m.x-Math.sin(m.a)*.7,m.y-Math.cos(m.a)*.7,m.z,m.dud?.5:.85,m.dud?[.6,.6,.6]:[1,.7,.3],.9);
  for(const b of beams)spr(b.x+b.dx*b.L,b.y+b.dy*b.L,b.L<39?1.4:b.z,1.2*(b.life/b.max)+.3,b.col||[.5,1,1],.9)
  gl.depthMask(true);gl.disable(gl.BLEND);
- if(CELX){gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,cv.width,cv.height);gl.disable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.bindFramebuffer(gl.READ_FRAMEBUFFER,CEL.fb);gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER,null);gl.blitFramebuffer(0,0,CEL.w,CEL.h,0,0,cv.width,cv.height,gl.COLOR_BUFFER_BIT,gl.NEAREST);gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.enable(gl.DEPTH_TEST)}
+ if(CELX){gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,cv.width,cv.height);gl.disable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);if(GFX.pc){gl.useProgram(blitP.p);gl.activeTexture(gl.TEXTURE4);gl.bindTexture(gl.TEXTURE_2D,CEL.ct);gl.uniform1i(blitP.u.uC,4);gl.bindVertexArray(CEL.vao);gl.drawArrays(gl.TRIANGLES,0,3);gl.activeTexture(gl.TEXTURE0)}else{gl.bindFramebuffer(gl.READ_FRAMEBUFFER,CEL.fb);gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER,null);gl.blitFramebuffer(0,0,CEL.w,CEL.h,0,0,cv.width,cv.height,gl.COLOR_BUFFER_BIT,gl.NEAREST);gl.bindFramebuffer(gl.FRAMEBUFFER,null)}gl.enable(gl.DEPTH_TEST)}
  if(pv){const s2=Math.min(cv.width,cv.height),c2=(SNAPC||PREVC).getContext('2d');c2.clearRect(0,0,512,512);c2.drawImage(cv,(cv.width-s2)/2,(cv.height-s2)/2,s2,s2,0,0,512,512);P.x=sv.px;P.y=sv.py;cam.x=sv.cx;cam.y=sv.cy;P.a=sv.a;P.v=sv.v;WPN.forEach((w,i)=>w.aim=sv.aims[i]);bullets.push(...sv.b);parts.push(...sv.p);beams.push(...sv.bm);texts.push(...sv.t);PVON=false}
  // overlay
  o2.setTransform(ODPR,0,0,ODPR,0,0);o2.clearRect(0,0,W,H);if(NOOV)return;o2.textAlign='center';
@@ -4899,7 +4905,7 @@ function wxDraw(dt){const T=WX.t,C=WX.c,k=Math.min(1,dt*.9);let any=false;
  for(const n in T){C[n]+=(T[n]-C[n])*k;if(Math.abs(T[n]-C[n])<.004)C[n]=T[n];if(C[n]>0)any=true}
  const tn=todN(),tw=todTw();if(tn>0||tw>0)any=true;try{wxSnd(C,tn)}catch(e){}
  if(wxc.width!==W||wxc.height!==H){wxc.width=W;wxc.height=H}
- {const v=any?'':'none';if(wxc._v!==v){wxc.style.display=v;wxc._v=v}}if(!any){if(WX.on){wx2.clearRect(0,0,W,H);WX.on=false}return}
+ {const v=(any||GFX.pc)?'':'none';if(wxc._v!==v){wxc.style.display=v;wxc._v=v}}if(!any){if(WX.on){wx2.clearRect(0,0,W,H);WX.on=false}return}
  WX.on=true;wxTune();WX.ph+=dt;const g=wx2;g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,H);
  // ---- дождь
  if(C.rain>0){const r=C.rain;g.fillStyle='rgba(38,52,78,'+(.3*r)+')';g.fillRect(0,0,W,H);
@@ -5240,7 +5246,7 @@ $('tcont').disabled=![1,2,3].some(slotMeta);tdrv();
 $('tset').onclick=()=>{initAudio();curTab='Звук';toggleMenu(true)};
 $('mtitle').onclick=()=>{toggleMenu(false);showTitle()};
 try{if(sessionStorage.getItem('skipTitle')){sessionStorage.removeItem('skipTitle');const nc=sessionStorage.getItem('newCut');sessionStorage.removeItem('newCut');STARTED=true;if(nc)setTimeout(()=>CUT.start(()=>hideTitle()),600);else hideTitle()}}catch(e){}
-let LFT=0,FRN=0,GLN=0,GLV=0,PERFON=false,NOSH=false,NOMINI=false,LTON=false,NOUPD=false,NOOV=false,NODRAW=false;const PERF={u:0,r:0,m:0,n:0};function perfOn(v){PERFON=v;if(v&&!gl.__w){gl.__w=1;for(const k of['drawArrays','drawElements','drawArraysInstanced','drawElementsInstanced']){const f=gl[k];if(f)gl[k]=function(a,b,c){GLN++;GLV+=(k[4]==='E'?b:c)||0;return f.apply(this,arguments)}}}const e=document.getElementById('fpsb');if(e&&!v)e.textContent=''}let _et=0;function errToast(e){console.error(e);const n=performance.now();if(n-_et<3000)return;_et=n;let d=document.getElementById('errt');if(!d){d=document.createElement('div');d.id='errt';d.style.cssText='position:fixed;left:8px;right:8px;bottom:4px;background:#500c;color:#fff;font:11px/1.3 monospace;padding:4px 8px;border-radius:6px;z-index:99;pointer-events:none';document.body.appendChild(d)}d.textContent='Ошибка: '+(e&&e.message)+' @'+((e&&e.stack||'').split('\n')[1]||'').slice(-60);setTimeout(()=>d.remove(),6000)}const ARS={e:16.7,n:0,up:0,bad:9};function arsTick(dt){if(!S.ars||ARS.off||paused||document.hidden||BENCH.on||SNAPC||LTON||TITLE||(S.fps&&S.fps<55)||dt<=0)return;ARS.e+=(dt*1000-ARS.e)*.04;ARS.n+=dt;ARS.bad+=dt/1200;if(ARS.n<3)return;
+let LFT=0,FRN=0,GLN=0,GLV=0,PERFON=false,NOSH=false,NOMINI=false,LTON=false,NOUPD=false,NOOV=false,NODRAW=false;const PERF={u:0,r:0,m:0,n:0};function perfOn(v){PERFON=v;if(v&&!gl.__w){gl.__w=1;for(const k of['drawArrays','drawElements','drawArraysInstanced','drawElementsInstanced']){const f=gl[k];if(f)gl[k]=function(a,b,c){GLN++;GLV+=(k[4]==='E'?b:c)||0;return f.apply(this,arguments)}}}const e=document.getElementById('fpsb');if(e&&!v)e.textContent=''}let _et=0;function errToast(e){console.error(e);const n=performance.now();if(n-_et<3000)return;_et=n;let d=document.getElementById('errt');if(!d){d=document.createElement('div');d.id='errt';d.style.cssText='position:fixed;left:8px;right:8px;bottom:4px;background:#500c;color:#fff;font:11px/1.3 monospace;padding:4px 8px;border-radius:6px;z-index:99;pointer-events:none';document.body.appendChild(d)}d.textContent='Ошибка: '+(e&&e.message)+' @'+((e&&e.stack||'').split('\n')[1]||'').slice(-60);setTimeout(()=>d.remove(),6000)}const ARS={e:16.7,n:0,up:0,bad:9};function arsTick(dt){if(!S.ars||GFX.pc||ARS.off||paused||document.hidden||BENCH.on||SNAPC||LTON||TITLE||(S.fps&&S.fps<55)||dt<=0)return;ARS.e+=(dt*1000-ARS.e)*.04;ARS.n+=dt;ARS.bad+=dt/1200;if(ARS.n<3)return;
  if(ARS.e>18.2&&RS>.7){ARS.bad=RS;RS=Math.max(.7,Math.round((RS-.1)*100)/100);ARS.n=-2;ARS.up=0;ARS.e=16.7;resize()}
  else if(ARS.e<17.4){ARS.up+=dt;if(ARS.up>45&&RS<1&&RS+.1<ARS.bad){RS=Math.min(1,Math.round((RS+.1)*100)/100);ARS.n=-2;ARS.up=0;ARS.e=16.7;resize()}}else ARS.up=0}
 let last=0,FPSL=0,FPSN=0;function frame(t){requestAnimationFrame(frame);if(S.fps&&!TITLE&&t-LFT<1000/S.fps-3)return;LFT=t;FPSN++;if(!FPSL)FPSL=t;if(t-FPSL>=500){const f=Math.round(FPSN*1000/(t-FPSL)),e=document.getElementById('fpsb');if(e){e.textContent=f+' FPS'+(PERFON?' ':'');if(PERFON)e.innerHTML=f+' FPS<br><small style="font-size:9px;white-space:nowrap;margin-left:-20px;display:block;width:80px">U'+PERF.u.toFixed(0)+' R'+PERF.r.toFixed(0)+' M'+PERF.m.toFixed(0)+' '+PERF.n+'dc '+Math.round((PERF.v||0)/1000)+'kv '+Math.round(RS*100)+'%</small>';e.classList.toggle('lo',f<30)}if(!paused&&!TITLE&&!document.hidden&&!LTON){LOWN=0}FPSL=t;FPSN=0}try{if(TITLE){last=t;if(SNAPC)render(0);return}const dt=Math.min(.05,(t-last)/1000||.016);last=t;arsTick(dt);const _a=performance.now();if(!paused&&!NOUPD)update(dt);const _b=performance.now();GQB();render(paused?0:dt);GQE();const _m=performance.now();if((FRN++%3)===0&&!NOMINI){drawMini();compDraw()}const _c=performance.now();PERF.u=Math.max(PERF.u*.95,_b-_a);PERF.r=Math.max(PERF.r*.95,_m-_b);PERF.m=Math.max((PERF.m||0)*.95,_c-_m);PERF.n=GLN;GLN=0;PERF.v=GLV;GLV=0}catch(e){errToast(e)}}
