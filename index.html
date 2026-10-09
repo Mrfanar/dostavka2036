@@ -340,7 +340,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.183.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.184.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -375,9 +375,10 @@ function prog(vs,fs){const mk=(t,s)=>{const h=gl.createShader(t);gl.shaderSource
  const u={};const n=gl.getProgramParameter(p,gl.ACTIVE_UNIFORMS);for(let i=0;i<n;i++){const nm=gl.getActiveUniform(p,i).name.replace('[0]','');u[nm]=gl.getUniformLocation(p,nm)}return{p,u}}
 const LIGHT=`
 uniform highp sampler2DShadow uShadow;uniform vec3 uL;uniform vec3 uSunC;uniform vec3 uSky;uniform vec3 uGnd;
-float shadowAt(vec4 lp,float nl){vec3 c=lp.xyz/lp.w*.5+.5;if(c.x<0.||c.x>1.||c.y<0.||c.y>1.||c.z>1.)return 1.;
- float b=.0009+.0022*(1.-nl);float s=0.;float t=1./2048.;
- for(int i=-1;i<=1;i++)for(int j=-1;j<=1;j++)s+=texture(uShadow,vec3(c.xy+vec2(float(i),float(j))*t*1.3,c.z-b));return s/9.;}
+uniform float uDbg;
+float shadowAt(vec4 lp,float nl){vec3 c=lp.xyz/lp.w*.5+.5;if(c.x<0.||c.x>1.||c.y<0.||c.y>1.||c.z>1.)return 1.;if(uDbg>1.5&&uDbg<2.5)return 1.;
+ float b=.0009+.0022*(1.-nl);float t=1./2048.*1.3;float z=c.z-b;
+ float s=texture(uShadow,vec3(c.xy+vec2(-t,-t),z))+texture(uShadow,vec3(c.xy+vec2(t,-t),z))+texture(uShadow,vec3(c.xy+vec2(-t,t),z))+texture(uShadow,vec3(c.xy+vec2(t,t),z));return s*.25;}
 uniform float uCel;
 vec3 shade(vec3 col,vec3 n,vec4 lp,float ao){float nl=max(dot(n,uL),0.);float sh=shadowAt(lp,nl);
  vec3 amb=mix(uGnd,uSky,n.y*.5+.5);
@@ -400,11 +401,11 @@ in vec2 aXZ;uniform mat4 uVP;uniform mat4 uLVP;uniform vec2 uC;out vec2 vUV;out 
 void main(){vec2 p=aXZ*300.+uC;vUV=p/8.;vP=p;vL=uLVP*vec4(p.x,0.,p.y,1.);gl_Position=uVP*vec4(p.x,0.,p.y,1.);}`,
 `#version 300 es
 precision highp float;in vec2 vUV;in vec2 vP;in vec4 vL;out vec4 o;uniform sampler2D uTex;uniform sampler2D uBio;uniform sampler2D uRoad;uniform float uT;uniform vec3 uSn;uniform float uCl;uniform vec2 uWd;${LIGHT}
-float snowK(vec2 wp){vec2 d=wp-uSn.xy;d=mod(d+800.,1600.)-800.;float th=atan(d.y,d.x);float R=uSn.z*(1.+.12*sin(3.*th+1.)+.08*sin(5.*th+2.));float hw=R*.16;return 1.-smoothstep(R-hw,R+hw,length(d));}
+float snowK(vec2 wp){vec2 d=wp-uSn.xy;d=mod(d+800.,1600.)-800.;if(dot(d,d)>uSn.z*uSn.z*1.6)return 0.;float th=atan(d.y,d.x);float R=uSn.z*(1.+.12*sin(3.*th+1.)+.08*sin(5.*th+2.));float hw=R*.16;return 1.-smoothstep(R-hw,R+hw,length(d));}
 float hs(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
 float vn(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hs(i),hs(i+vec2(1.,0.)),f.x),mix(hs(i+vec2(0.,1.)),hs(i+vec2(1.,1.)),f.x),f.y);}
 float fbm(vec2 p){return vn(p)*.5+vn(p*2.13+3.1)*.3+vn(p*4.37+7.7)*.2;}
-void main(){vec2 wp=vec2(vP.x,-vP.y);vec2 bu=wp/${WW}.;vec4 b=texture(uBio,bu);
+void main(){if(uDbg>.5&&uDbg<1.5){o=vec4(shade(vec3(.4,.35,.25),vec3(0.,1.,0.),vL,1.),1.);return;}vec2 wp=vec2(vP.x,-vP.y);vec2 bu=wp/${WW}.;vec4 b=texture(uBio,bu);
  vec3 t1=texture(uTex,vUV).rgb,t2=texture(uTex,mat2(.8,.6,-.6,.8)*wp/19.3+.37).rgb,t3=texture(uTex,wp/43.1+.6).rgb;
  vec3 col=(t1+t2+t3)*.3333;float lum=dot(col,vec3(.3,.5,.2));
  vec4 b3=texture(uBio,bu*3.);col*=mix(vec3(.86,.82,.76),vec3(1.14,1.05,.92),b3.b);
@@ -413,32 +414,32 @@ void main(){vec2 wp=vec2(vP.x,-vP.y);vec2 bu=wp/${WW}.;vec4 b=texture(uBio,bu);
  col=mix(col,vec3(.5,.45,.39)*(lum*1.7+.15),smoothstep(.72,.95,b.b)*.7);
  float bl=hs(floor(wp*7.));vec3 gc=vec3(.30,.42,.17)*(lum*1.6+.2)*(.8+.4*bl)+vec3(0.,.02,0.)*hs(floor(wp*2.));
  col=mix(col,gc,b.g*.94);
- float sk=snowK(wp);{vec3 sn=vec3(.66,.72,.80)*(.84+.22*fbm(wp*.7)+.06*vn(wp*6.));col=mix(col,sn,sk*.95*(1.-b.r));}
- {vec3 rd=texture(uRoad,bu).rgb;
-  float nA=fbm(wp*.55),nB=fbm(wp*2.7),nC=vn(wp*14.);
+ float sk=snowK(wp);if(sk>0.){vec3 sn=vec3(.66,.72,.80)*(.84+.22*fbm(wp*.7)+.06*vn(wp*6.));col=mix(col,sn,sk*.95*(1.-b.r));}
+ vec3 rd=texture(uRoad,bu).rgb;if(max(rd.r,max(rd.g,rd.b))>.03){
+  float nA=fbm(wp*.55),nB=fbm(wp*2.7);
   float md=rd.b+(nA-.5)*.5+(nB-.5)*.25;float dm=smoothstep(.22,.5,md);
-  vec3 dc=col*vec3(.74,.60,.44)+vec3(.05,.03,0.)*nC;dc*=.86+.26*nB;col=mix(col,dc,dm*.95);
+  if(dm>0.){vec3 dc=col*vec3(.74,.60,.44)+vec3(.05,.03,0.)*vn(wp*14.);dc*=.86+.26*nB;col=mix(col,dc,dm*.95);}
   float ms=rd.g+(nA-.5)*.5+(nB-.5)*.25;float sm=smoothstep(.24,.5,ms);
-  vec3 sc2=vec3(.40,.38,.34)*(.8+.3*nB);sc2=mix(sc2,gc*.9,smoothstep(.55,.75,nA)*.6);sc2*=.88+.2*nC;col=mix(col,sc2,sm*.95);
+  if(sm>0.){vec3 sc2=vec3(.40,.38,.34)*(.8+.3*nB);sc2=mix(sc2,gc*.9,smoothstep(.55,.75,nA)*.6);sc2*=.88+.2*vn(wp*14.);col=mix(col,sc2,sm*.95);}
   float mm=rd.r+(nA-.5)*.55+(nB-.5)*.28;
   float zone=smoothstep(.08,.45,mm),core=smoothstep(.47,.6,mm);
   vec3 dust=col*vec3(.92,.85,.74)+vec3(.04,.03,.02);
-  col=mix(col,dust,zone*(1.-core)*.85);
-  float peb=step(.86,hs(floor(wp*13.)))*zone*(1.-core);col=mix(col,vec3(.5,.46,.4),peb*.6);
-  vec3 as=vec3(.215,.215,.23)*(.86+.28*fbm(wp*1.4))*(.94+.1*nC);
+  if(zone>0.){col=mix(col,dust,zone*(1.-core)*.85);
+  float peb=step(.86,hs(floor(wp*13.)))*zone*(1.-core);col=mix(col,vec3(.5,.46,.4),peb*.6);}
+  if(core>0.){float nC=vn(wp*14.);vec3 as=vec3(.215,.215,.23)*(.86+.28*fbm(wp*1.4))*(.94+.1*nC);
   float cr=1.-smoothstep(.0,.035,abs(vn(wp*2.3+11.)-.5));as*=1.-.5*cr*step(.35,nA);
   float ph=smoothstep(.74,.8,vn(wp*.45+5.));as=mix(as,col*.6,ph*.85);
   float pt=smoothstep(.7,.76,vn(wp*.28+21.));as=mix(as,as*1.35+.03,pt*.5);
   float drift=(1.-smoothstep(.5,.95,rd.r))*smoothstep(.3,.7,fbm(wp*1.6+9.));as=mix(as,dust*1.05,drift*.75);
-  col=mix(col,as,core);}
- {float mk=1.-texture(uRoad,bu).a;float mm2=smoothstep(.12,.5,mk+(fbm(wp*1.3)-.5)*.35);vec3 mc=vec3(.22,.15,.09)*(.75+.5*fbm(wp*.8))+vec3(.05,.04,.03)*smoothstep(.7,.85,vn(wp*3.1+4.));mc=mix(mc,vec3(.30,.34,.34),smoothstep(.8,.9,vn(wp*1.1+9.))*.35);col=mix(col,mc,mm2*.95*(1.-b.r));}
+  col=mix(col,as,core);}}
+ {float mk=1.-texture(uRoad,bu).a;if(mk>0.){float mm2=smoothstep(.12,.5,mk+(fbm(wp*1.3)-.5)*.35);vec3 mc=vec3(.22,.15,.09)*(.75+.5*fbm(wp*.8))+vec3(.05,.04,.03)*smoothstep(.7,.85,vn(wp*3.1+4.));mc=mix(mc,vec3(.30,.34,.34),smoothstep(.8,.9,vn(wp*1.1+9.))*.35);col=mix(col,mc,mm2*.95*(1.-b.r));}}
  col*=1.-.32*smoothstep(.0,.5,w)*(1.-smoothstep(.5,.6,w));
  if(uCl>0.){vec2 cp=wp*.032+uWd*2.;cp+=vec2(vn(cp*.6+3.),vn(cp*.6+9.))*1.1;float cm=(vn(cp)*.5+vn(cp*2.03+5.)*.27+vn(cp*4.1+11.)*.15+vn(cp*8.3+2.)*.08)*.9+vn(wp*.004-uWd*.3+4.)*.15;col*=1.-uCl*smoothstep(.43,.55,cm)*.17;}
- float rp=sin(wp.x*1.7+uT*1.3+sin(wp.y*.9+uT))*sin(wp.y*1.3-uT*1.1+wp.x*.4);
+ if(w>.34){float rp=sin(wp.x*1.7+uT*1.3+sin(wp.y*.9+uT))*sin(wp.y*1.3-uT*1.1+wp.x*.4);
  vec3 wc=mix(vec3(.20,.42,.46),vec3(.08,.22,.32),smoothstep(.55,1.,w));wc+=vec3(.10,.12,.12)*smoothstep(.55,.95,rp)+vec3(.35)*smoothstep(.93,1.,sin(wp.x*5.1+uT*2.1)*sin(wp.y*4.7-uT*1.7));
  col=mix(col,vec3(.78,.74,.62),smoothstep(.34,.44,w)*(1.-smoothstep(.44,.52,w))*.55);
  {float ik=smoothstep(.4,.6,sk);wc=mix(wc,vec3(.62,.78,.86)*(.92+.1*vn(wp*2.)+.08*vn(wp*9.)),ik);}
- col=mix(col,wc,smoothstep(.44,.54,w));
+ col=mix(col,wc,smoothstep(.44,.54,w));}
  o=vec4(shade(col,n,vL,1.),1.);}`);
 const sprP=prog(`#version 300 es
 uniform mat4 uVP;uniform vec3 uCen;uniform float uSz;out vec2 vT;
@@ -3369,7 +3370,7 @@ function compDraw(){const on=STARTED&&!TITLE&&!CUT.on&&!shopOpen;if(COMPC.hidden
   c.fillStyle='#fff';c.font='700 11px sans-serif';c.textAlign='center';c.textBaseline='middle';c.fillText(out?(d<0?'◂':'▸'):'?',x,y);const m=Math.round(Math.hypot(dx,dy));c.fillStyle='rgba(255,255,255,.9)';c.textAlign=d<0&&out?'left':'right';if(!out)c.textAlign='left';c.fillText(m+' м',d<0&&out?x+12:out?x-12:x+12,y)}}
 function drawMini(){const W=232;drawMap(MMC,W,W,P.x,P.y,W/MMSZ[MMI],false);MMC.fillStyle='rgba(255,255,255,.85)';MMC.font='700 16px sans-serif';MMC.textAlign='center';MMC.textBaseline='top';MMC.fillText(S.lang==='en'?'N':'С',W/2,4)}
 document.getElementById('mm').onclick=()=>{if(shopOpen)return;curTab='Карта';toggleMenu(true)};
-let CELON=true,CELX=false,NOCEL=false;
+let CELON=true,CELX=false,NOCEL=false,DBG=0;
 const edgeP=prog(`#version 300 es
 void main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));gl_Position=vec4(p*2.-1.,0.,1.);}`,`#version 300 es
 precision highp float;uniform sampler2D uD;uniform vec2 uPx;uniform float uK;out vec4 o;
@@ -3405,7 +3406,7 @@ function render(dt){
  gl.useProgram(shadP.p);gl.uniformMatrix4fv(shadP.u.uLVP,false,LVP);drawScene(shadP,!pv);gl.disable(gl.POLYGON_OFFSET_FILL)}
  // main pass
  if(CELX)celEnsure(cv.width,cv.height);gl.bindFramebuffer(gl.FRAMEBUFFER,CELX?CEL.fb:null);gl.viewport(0,0,cv.width,cv.height);if(SNAPC)gl.clearColor(...(SNAPBG||[.2,.188,.165,1]));else gl.clearColor(.41,.33,.23,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
- const setLight=(P_)=>{gl.uniform1f(P_.u.uCel,CELX?1:0);gl.uniformMatrix4fv(P_.u.uVP,false,VP);gl.uniformMatrix4fv(P_.u.uLVP,false,SLVP||LVP);gl.uniform3fv(P_.u.uL,L);gl.uniform3fv(P_.u.uSunC,[1.02,.93,.78]);gl.uniform3fv(P_.u.uSky,[.58,.60,.66]);gl.uniform3fv(P_.u.uGnd,[.40,.33,.25]);gl.uniform1i(P_.u.uShadow,1)};
+ const setLight=(P_)=>{gl.uniform1f(P_.u.uCel,CELX?1:0);gl.uniformMatrix4fv(P_.u.uVP,false,VP);gl.uniformMatrix4fv(P_.u.uLVP,false,SLVP||LVP);gl.uniform3fv(P_.u.uL,L);gl.uniform3fv(P_.u.uSunC,[1.02,.93,.78]);gl.uniform3fv(P_.u.uSky,[.58,.60,.66]);gl.uniform3fv(P_.u.uGnd,[.40,.33,.25]);gl.uniform1i(P_.u.uShadow,1);gl.uniform1f(P_.u.uDbg,DBG)};
  gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,shTex);gl.activeTexture(gl.TEXTURE0);
  gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,bioTex);gl.activeTexture(gl.TEXTURE0);gl.useProgram(grdP.p);setLight(grdP);gl.uniform2f(grdP.u.uC,cam.x,-cam.y);gl.uniform1i(grdP.u.uTex,0);gl.uniform1i(grdP.u.uBio,2);gl.uniform1i(grdP.u.uRoad,3);gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,roadTex);gl.activeTexture(gl.TEXTURE0);gl.uniform1f(grdP.u.uT,T);gl.uniform1f(grdP.u.uCl,SNAPC?0:CLS());cloudUpd();gl.uniform2f(grdP.u.uWd,CLD.x,CLD.y);gl.uniform3f(grdP.u.uSn,SNOW.x,SNOW.y,SNOW.r);gl.bindTexture(gl.TEXTURE_2D,groundTex);gl.bindVertexArray(quadV);if(!SNAPC)gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
  gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);
@@ -4945,8 +4946,8 @@ function fullBench(){
   ['Пустошь + бой (дым, огонь, пыль)',()=>scan((x,y)=>grassAt(x,y)<.05&&waterAt(x,y)<.01&&offRoad(x,y,14)&&cityD(x,y)>150&&stnD(x,y)>60),'fx']];
  const VR=[['Всё включено',()=>{}],['без теней',()=>{NOSH=true}],['без контуров (cel)',()=>{CELON=false}],['без 2D-оверлея',()=>{NOOV=true}],['без миникарты',()=>{NOMINI=true}],
   ['без HTML-интерфейса',()=>{for(const e of document.body.children){if(e===box||e.id==='game'||e.id==='wx'||e.tagName==='SCRIPT'||e.hidden||e.style.display==='none')continue;hid.push([e,e.style.display]);e.style.display='none'}}],
-  ['разрешение 50%',()=>{RS=.5;resize()}],['без логики (update)',()=>{NOUPD=true}],['без моделей',()=>{NODRAW=true}]];
- const reset=()=>{NOSH=false;CELON=sv.cel;NOOV=false;NOMINI=false;NOUPD=false;NODRAW=false;if(RS!==sv.rs){RS=sv.rs;resize()}for(const[e,d]of hid)e.style.display=d;hid.length=0};
+  ['разрешение 50%',()=>{RS=.5;resize()}],['без логики (update)',()=>{NOUPD=true}],['без моделей',()=>{NODRAW=true}],['ДИАГН: земля упрощена',()=>{DBG=1}],['ДИАГН: тени не читаются',()=>{DBG=2}]];
+ const reset=()=>{DBG=0;NOSH=false;CELON=sv.cel;NOOV=false;NOMINI=false;NOUPD=false;NODRAW=false;if(RS!==sv.rs){RS=sv.rs;resize()}for(const[e,d]of hid)e.style.display=d;hid.length=0};
  const out=[];let si=0,vi=0,cur=null;const total=SC.length*VR.length;
  const finish=()=>{reset();perfOn(false);GQ.on=false;FBON=false;P.x=sv.x;P.y=sv.y;P.a=sv.a;P.v=0;cam.x=sv.cx;cam.y=sv.cy;if(typeof CT!=='undefined'){CT.x=sv.cx;CT.y=sv.cy}NOSAVE=sv.ns;GOD=sv.god;
   for(let i=parts.length-1;i>=0;i--)if(parts[i].fb)parts.splice(i,1);
