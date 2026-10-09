@@ -340,7 +340,7 @@ html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font-family:
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.179.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.180.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -1181,6 +1181,7 @@ const ETYPES={baja:{n:'БАХА',veh:'baja',hp:85,sc:.68,tint:null,spd:13,turn:1
  buggy:{n:'БАГГИ',veh:'buggy',hp:28,sc:.6,tint:null,spd:11.5,turn:150,rew:30,gun:ENEMY_MG,ai:'orbit',r:11,fire:34},
  ram:{n:'ТАРАН',veh:'jeep',hp:21,sc:.8,tint:null,spd:15.5,turn:220,rew:20,gun:null,ai:'ram',r:0,fire:0},
  heavy:{n:'БРОНЕВИК',veh:'truck',hp:160,sc:.85,tint:null,spd:8.5,turn:95,rew:90,gun:HEAVY_GUN,ai:'orbit',r:17,fire:40},
+ msltur:{n:'РАКЕТНАЯ ТУРЕЛЬ',veh:'truck',hp:250,sc:.9,tint:[.8,.85,1],spd:0,turn:0,rew:0,gun:null,ai:'tower',r:0,fire:42,msl:true,mcd:3.2,mn:3,mdm:18},
  rocketeer:{n:'РАКЕТЧИК',veh:'jeep',hp:65,sc:.72,tint:[.72,1,.78],spd:9.5,turn:130,rew:80,gun:null,ai:'orbit',r:23,fire:46,msl:true,mcd:6,mn:2,mdm:26}};
 function mkEnemy(type,x,y){const t=ETYPES[type];return{type,t,n:t.n,x,y,a:Math.random()*360,v:0,wp:null,hit:0,acc:0,pv:0,hp:t.hp,max:t.hp,armor:0,dead:0,shown:t.hp,sc:t.sc,tint:t.tint,rew:t.rew,dir:1,
  gw:{aim:0,aw:0,cd:0,flash:0,kick:0,ammo:t.gun?t.gun.mag:0,rel:0,on:false,bt:.6+Math.random()}}}
@@ -3005,6 +3006,7 @@ function update(dt){
  for(const en of ENEMIES){
   if(en.dead>0){en.dead-=dt;if(en.dead<=0)respawnEnemy(en);continue}
   if(en.idle){en.v=0;en.hit=Math.max(0,(en.hit||0)-dt);continue}
+  if(en.t.ai==='tower'){en.v=0;en.hit=Math.max(0,(en.hit||0)-dt);if(P.dead<=0&&Math.hypot(P.x-en.x,P.y-en.y)<en.t.fire){en.a=norm(en.a+Math.max(-200*dt,Math.min(200*dt,angDiff(en.a,Math.atan2(P.x-en.x,P.y-en.y)/D2R))))}enemyMissile(en,dt);continue}
   const t=en.t;
   if(t.ai==='ram')en.wp={x:P.x+Math.sin(P.a*D2R)*P.v*.5,y:P.y+Math.cos(P.a*D2R)*P.v*.5};
   else{if(Math.random()<dt*.12)en.dir=-(en.dir||1);const an=Math.atan2(en.y-P.y,en.x-P.x)+.75*(en.dir||1),r=t.r+3*Math.sin(T*.6+en.x);en.wp={x:P.x+Math.cos(an)*r,y:P.y+Math.sin(an)*r}}
@@ -3282,7 +3284,7 @@ function drawScene(P_,withRocks,ph){ph=ph||0;NOCEL=ph===2;
  if(P_===meshP&&!PVON&&ph!==1)drawTracks(P_);
  if(withRocks&&ph!==2){const rm=rockMats();for(let i=0;i<rocks.length;i++)if(rm[i])drawMesh(P_,ROCK,rm[i],rocks[i].c,null,false,false)}}
 /* ===== карта полигона (DEV): схема вместо карты мира ===== */
-let PSQ=null;
+let PSQ=null,TURR=null;
 function polyBase(c,W,H,px,py,sc,big){
  c.fillStyle='#55555a';c.fillRect(0,0,W,H);
  const R=(x0,y0,w,h,col)=>{c.fillStyle=col;c.fillRect(px(x0),py(y0+h),w*sc,h*sc)},T=(t,x,y,f,col)=>{c.font='700 '+f+'px sans-serif';c.textAlign='center';c.textBaseline='middle';c.lineWidth=3;c.strokeStyle='rgba(20,14,8,.85)';c.strokeText(t,x,y);c.fillStyle=col||'#fff';c.fillText(t,x,y)};
@@ -3429,6 +3431,7 @@ function render(dt){
   o2.fillStyle='#fff3d3';o2.font='600 12px "Chakra Petch",sans-serif';o2.fillText(E.n+'  '+Math.ceil(E.hp)+(HOOK&&HOOK.en===E?'  ·  ЗАЦЕП '+Math.max(0,HOOK.t).toFixed(1)+'с':''),hx,hy-10);
  }
 
+ if(DEV&&TURR&&!TITLE){const tw=ENEMIES.find(e=>e.type==='msltur'),hot=P.dead<=0&&Math.hypot(P.x-TURR.x,P.y-TURR.y)<TURR.r&&tw&&tw.dead<=0;o2.save();o2.lineWidth=hot?3:2;o2.strokeStyle=hot?'rgba(255,70,50,.95)':'rgba(255,170,90,.7)';o2.setLineDash(hot?[]:[14,10]);o2.beginPath();for(let q=0;q<=64;q++){const a=q/64*6.2832,[px,py]=w2s(TURR.x+Math.sin(a)*TURR.r,TURR.y+Math.cos(a)*TURR.r,.1);q?o2.lineTo(px,py):o2.moveTo(px,py)}o2.stroke();o2.restore()}
  if(ENGST>0&&P.dead<=0&&!TITLE){/* ключ зажигания над грузовиком: поворачивается при запуске */const[kx,ky]=w2s(P.x,P.y,5.3),u=1-ENGST/ENGT,rot=-.9+Math.min(1,u/.55)*1.5,al=u>.85?(1-u)/.15:1;o2.save();o2.globalAlpha=Math.max(0,al);o2.translate(kx,ky);
   o2.fillStyle='rgba(20,14,8,.72)';o2.beginPath();o2.arc(0,0,27,0,6.2832);o2.fill();o2.strokeStyle='#8a7350';o2.lineWidth=2;o2.stroke();
   o2.rotate(rot);o2.fillStyle='#e0b34a';o2.strokeStyle='#4a3512';o2.lineWidth=1.5;o2.beginPath();o2.arc(0,-9,8,0,6.2832);o2.fill();o2.stroke();o2.fillStyle='rgba(20,14,8,.9)';o2.beginPath();o2.arc(0,-9,3,0,6.2832);o2.fill();
@@ -5168,6 +5171,7 @@ function enterDev(){
  gl.bindTexture(gl.TEXTURE_2D,roadTex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,RN,RN,0,gl.RGBA,gl.UNSIGNED_BYTE,ROAD_A);
  // враги в ряд сверху, бездействуют
  ENEMIES.length=0;['buggy','baja','ram','heavy','rocketeer'].forEach((t,i)=>{const x=(i-2)*16,y=30,e=mkEnemy(t,x,y);e.idle=true;e.home=[x,y,180];e.a=180;ENEMIES.push(e);});
+ {const tx=120,ty=40,e=mkEnemy('msltur',tx,ty);e.home=[tx,ty,180];e.a=180;ENEMIES.push(e);DEVL.push({x:tx,y:ty-8,s:'РАКЕТНАЯ ТУРЕЛЬ · заедь в круг (R '+e.t.fire+' м), проверь активную защиту',z:6,c:'#ff9a7a'});TURR={x:tx,y:ty,r:e.t.fire}}
  E=ENEMIES[0];P.x=0;P.y=0;P.a=90;P.v=0;CT.x=cam.x=0;CT.y=cam.y=0;META.cp=[0,0,90];
  DEVL.push({x:-70,y:26,s:'ГАРАЖ: подъедь и нажми E',z:6,c:'#9ad8a0'});
  Object.keys(ITEMS).filter(k=>PG[k]).forEach((k,i)=>{const x=-12+i*4,y=-30;PROPS.push({k,x,y,ry:.3,s:1.6,t:null});DEVL.push({x,y:y-3,s:ITEMS[k].n,z:.2})});DEVL.push({x:0,y:-24,s:'СКЛАД ГРУЗОВ',z:.2,c:'#e2c88a'});
