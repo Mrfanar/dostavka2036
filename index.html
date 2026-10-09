@@ -341,7 +341,7 @@ body.gpc :is(.ico,.bar,.tiers button,#wl,.chip,#gear,#editbar){backdrop-filter:b
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.193.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.194.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -575,6 +575,20 @@ function buildCityNew(C){
  const MKT=(u,v,c1,c2)=>{for(const a of[-3.2,3.2])for(const b of[-2.6,2.6]){B(u+a,v+b,.3,.3,3.4,[60,56,50]);C1(u+a,v+b,.35)}for(let k=0;k<6;k++)B(u-2.75+k*1.1,v,1.1,7,.25,k%2?c1:c2,3.4);B(u,v,5.2,4.4,.9,vv([140,120,96]),0);B(u+1,v-1,1.2,1.2,1,[158,118,72]);B(u-1.2,v+1.2,1,1,.8,[158,118,72]);C1(u,v,2.4)};
  const STREET=(col)=>{B(0,0,hx*2+8,9,.04,col,.1);for(let u=-hx-2;u<=hx+2;u+=3.4)B(u,0,1.5,.26,.04,[216,180,46],.14)};
  const TOWER=(u,v,hg,roof,deck,post,gz)=>{for(const a of[-1.4,1.4])for(const b of[-1.4,1.4])B(u+a,v+b,.35,.35,hg+(roof?2.4:.9),post);B(u,v,3.8,3.8,.3,deck,hg);for(const[a,b,su,sv]of[[0,1.8,3.8,.14],[0,-1.8,3.8,.14],[1.8,0,.14,3.8],[-1.8,0,.14,3.8]])B(u+a,v+b,su,sv,.7,post,hg+.3);if(roof)PY(u,v,4.8,4.8,1.9,roof,hg+2.4);C1(u,v,2.2);mg.push([u,v,hg+.3+(gz||.55),0])};
+const RUIN=(u,v,su,sv,h,ft)=>{const DKc=[24,22,20],RB=[[150,142,126],[168,150,118],[120,112,100],[96,70,50]];
+  for(const sg of[-1,1,-1,1]){if(rn()<.35)continue;const w=.9+rn()*1.3,hh=.9+rn()*.9,t=(rn()-.5)*(su-2.4),cy=.3+rn()*Math.max(0,h-hh-.5);m.box(u+t,cy-.12,-(v+sg*(sv/2+.03)),w+.4,hh+.24,.05,[176,146,104]);m.box(u+t,cy,-(v+sg*(sv/2+.06)),w,hh,.05,DKc)}
+  for(const sg of[-1,1,-1,1]){if(rn()<.5)continue;const w=.9+rn()*1.1,hh=.9+rn()*.8,t=(rn()-.5)*(sv-2.4),cy=.3+rn()*Math.max(0,h-hh-.5);m.box(u+sg*(su/2+.03),cy-.12,-(v+t),.05,hh+.24,w+.4,[176,146,104]);m.box(u+sg*(su/2+.06),cy,-(v+t),.05,hh,w,DKc)}
+  {const q=m.len(),sg=rn()<.5?-1:1,cx=u+(rn()-.5)*su*.4;m.box(cx,0,-(v+sg*(sv/2+1)),Math.min(su*.6,3.2),.18,2.1,[112,58,42]).box(cx,.18,-(v+sg*(sv/2+1)),Math.min(su*.6,3.2),.05,2.1,[150,92,70]);m.rotv(q,'x',-sg*.8,0,0,-(v+sg*(sv/2+2)))}
+  const mx=Math.max(su,sv);for(let j=0;j<9;j++){const a=rn()*6.283,rr=mx/2+.3+rn()*1.5;m.box(u+Math.cos(a)*rr*su/mx,0,-(v+Math.sin(a)*rr*sv/mx),.3+rn()*.7,.12+rn()*.4,.3+rn()*.6,RB[Math.floor(rn()*4)].map(c=>c*(.85+rn()*.3)),rn()*3)}
+  for(let j=0;j<5;j++)m.box(u+(rn()-.5)*su*.9,h+(ft?ft-h:.9)+rn()*.3,-(v+(rn()-.5)*sv*.6),.12,.9+rn()*.9,.12,[40,30,22],rn()*3);
+  if(ft){const X=u+(rn()-.5)*(su-3),Z=v+(rn()-.5)*(sv-3),w=1.4+rn()*1.2,d=1.1+rn()*1.1;m.box(X,ft+.012,-Z,w+.5,.03,d+.5,[176,158,124],rn()*2);m.box(X,ft+.03,-Z,w,.03,d,DKc,rn()*2);for(let j=0;j<3;j++)m.box(X+(rn()-.5)*w,ft,-Z+(rn()-.5)*d,.3+rn()*.4,.12+rn()*.2,.3+rn()*.3,RB[j],rn()*3)}
+  m.box(u+(rn()-.5)*2,.072,-(v+(rn()-.5)*2),su*.8,.012,sv*.8,[34,32,30],rn())};
+ const GBR=(u,v,su,sv,h,col,y0)=>{if(rn()<.3){GB(u,v,su,sv,h,col,y0);return}const z0=-v,run=Math.hypot(sv/2,h),ang=Math.atan2(h,sv/2),sg=rn()<.5?1:-1,cut=rn()<.4;
+  m.box(u,y0+.01,z0,su-.5,.02,sv-.6,[26,24,22]);
+  let q=m.len();m.box(u,y0,z0+sg*(sv/2-run/2),su,.15,run,col);m.rotv(q,'x',sg*ang*.98,0,y0,z0+sg*sv/2);
+  if(!cut){q=m.len();m.box(u,y0-.45,z0-sg*(sv/2-run/2),su,.15,run,col.map(c=>c*.8));m.rotv(q,'x',-sg*ang*(.25+rn()*.2),0,y0-.45,z0-sg*sv/2)}
+  else{for(let j=0;j<3;j++)m.box(u+(rn()-.5)*su*.7,y0-.1,z0-sg*(sv*.25+rn()*.5),.12,.12,sv*.5,[48,34,24],(rn()-.5)*.4);q=m.len();m.box(u+su*.3,y0-.4,z0-sg*sv*.2,su*.4,.14,sv*.5,col.map(c=>c*.75),.25);m.rotv(q,'x',-sg*.35,0,y0-.4,z0-sg*sv*.2)}
+  m.box(u-su*.45,y0,z0+sg*(sv/2-.15),.12,h*.9,.12,[48,34,24]).box(u+su*.45,y0,z0+sg*(sv/2-.15),.12,h*.9,.12,[48,34,24])};
  const NEST=(u,v)=>mg.push([u,v,1.05,1]);
  let mkt=C.mkt||[9,0];
 
@@ -647,7 +661,7 @@ function buildCityNew(C){
   const SH=[[148,96,64],[88,112,120],[120,128,84],[176,150,90],[150,70,56],[108,112,118]],RF=[[96,92,88],[130,70,50],[70,96,110],[150,140,110]],DK=[48,44,40];
   B(0,0,hx*2+1,hy*2+1,.16,vv([112,94,72]),-.05);
   // забор из листов
-  let n=0;const fseg=(u0,v0,u1,v1)=>{const L=Math.hypot(u1-u0,v1-v0),k=Math.max(1,Math.round(L/2.6)),an=Math.atan2(v1-v0,u1-u0);for(let i=0;i<k;i++){const t=(i+.5)/k,u=u0+(u1-u0)*t,v=v0+(v1-v0)*t,hh=2.2+rn()*1.1;B(u,v,L/k+.1,.22,hh,vv(SH[(n++)%6],18),0,an);if(i%2===0)B(u,v+.12,.22,.22,hh+.7,DK,0)}};
+  let n=0;const fseg=(u0,v0,u1,v1)=>{const L=Math.hypot(u1-u0,v1-v0),k=Math.max(1,Math.round(L/2.6)),an=Math.atan2(v1-v0,u1-u0);for(let i=0;i<k;i++){const t=(i+.5)/k,u=u0+(u1-u0)*t,v=v0+(v1-v0)*t,hh=rn()<.25?.8+rn()*1.2:2.2+rn()*1.1;B(u,v,L/k+.1,.22,hh,vv(SH[(n++)%6],18),0,an);if(i%2===0)B(u,v+.12,.22,.22,hh+.7,DK,0)}};
   fseg(-hx,-hy,hx,-hy);fseg(-hx,hy,hx,hy);fseg(-hx,-hy,-hx,hy);fseg(hx,-hy,hx,-g);fseg(hx,g,hx,hy);
   for(let v=-hy;v<=hy+.01;v+=1.6){if(Math.abs(v)>g+1)C1(hx,v,1);C1(-hx,v,1)}for(let u=-hx;u<=hx+.01;u+=1.6){C1(u,hy,1);C1(u,-hy,1)}
   // ворота из покрышек
@@ -656,7 +670,7 @@ function buildCityNew(C){
   for(const[u,v]of[[hx-1,hy-1],[hx-1,-hy+1],[-hx+1,hy-1],[-hx+1,-hy+1]])TOWER(u,v,3.4,null,[110,92,70],DK,.5);
   TOWER(hx-1.2,g+3.6,3.0,null,[110,92,70],DK,.5);TOWER(hx-1.2,-g-3.6,3.0,null,[110,92,70],DK,.5);
   // лачуги
-  for(const[u,v,su,sv,hh]of[[-14,-9,6,5,2.6],[-14,-1,5,5,3],[-14,8,6,5,2.4],[-6,-10,5,4,2.8],[-6,10,5,4.5,2.4],[0,-10.5,4.6,4,2.6],[1,11,5,4,3],[-8,0,4,4,2.2],[14,-11,5,4,2.8],[14,11.5,5,4.2,2.5]]){const c=SH[(rn()*6)|0];B(u,v,su,sv,hh,vv(c,18));B(u,v,su+.9,sv+.9,.25,vv(RF[(rn()*4)|0],14),hh);B(u+su*.25,v,.4,.4,1.5,DK,hh);B(u,v-sv/2-.03,1,.12,1.6,DK,0);if(rn()<.5)B(u-su*.15,v+sv/2+.03,1.2,.12,.9,[70,100,112],hh*.4);CR(u,v,su,sv)}
+  for(const[u,v,su,sv,hh]of[[-14,-9,6,5,2.6],[-14,-1,5,5,3],[-14,8,6,5,2.4],[-6,-10,5,4,2.8],[-6,10,5,4.5,2.4],[0,-10.5,4.6,4,2.6],[1,11,5,4,3],[-8,0,4,4,2.2],[14,-11,5,4,2.8],[14,11.5,5,4.2,2.5]]){const c=SH[(rn()*6)|0];B(u,v,su,sv,hh,vv(c,18));B(u,v,su+.9,sv+.9,.25,vv(RF[(rn()*4)|0],14),hh);B(u+su*.25,v,.4,.4,1.5,DK,hh);B(u,v-sv/2-.03,1,.12,1.6,DK,0);if(rn()<.5)B(u-su*.15,v+sv/2+.03,1.2,.12,.9,[70,100,112],hh*.4);CR(u,v,su,sv);RUIN(u,v,su,sv,hh,hh+.25)}
   // палатки
   for(const[u,v,c]of[[-1,-4,[176,60,50]],[-1.5,5,[70,110,120]],[6.5,-8.5,[200,170,80]]]){PY(u,v,3.6,3.6,2.6,c,0,.4);C1(u,v,1.9)}
   // водонапорный бак
@@ -670,7 +684,7 @@ function buildCityNew(C){
  else if(st===6){ // БРОД: деревянный посёлок за частоколом
   const WD=[122,88,56],WD2=[96,68,44],TH=[176,150,86],ST=[130,128,120];
   B(0,0,hx*2+1,hy*2+1,.16,vv([100,112,70]),-.05);
-  const pal=(u0,v0,u1,v1,skipGate)=>{const L=Math.hypot(u1-u0,v1-v0),k=Math.round(L/.8);for(let i=0;i<=k;i++){const t=i/k,u=u0+(u1-u0)*t,v=v0+(v1-v0)*t,hh=4+rn()*1;Y(u,v,.36,hh,vv(WD,18),0,5);Y(u,v,.36,.9,vv(WD2,10),hh,5,.04)}};
+  const pal=(u0,v0,u1,v1,skipGate)=>{const L=Math.hypot(u1-u0,v1-v0),k=Math.round(L/.8);for(let i=0;i<=k;i++){const t=i/k,u=u0+(u1-u0)*t,v=v0+(v1-v0)*t,hh=rn()<.22?1.2+rn()*2:4+rn()*1;Y(u,v,.36,hh,vv(WD,18),0,5);Y(u,v,.36,.9,vv(WD2,10),hh,5,.04)}};
   pal(-hx,-hy,hx,-hy);pal(-hx,hy,hx,hy);pal(-hx,-hy,-hx,hy);pal(hx,-hy,hx,-g-1.6);pal(hx,g+1.6,hx,hy);
   for(let v=-hy;v<=hy+.01;v+=1.6){if(Math.abs(v)>g+1)C1(hx,v,1);C1(-hx,v,1)}for(let u=-hx;u<=hx+.01;u+=1.6){C1(u,hy,1);C1(u,-hy,1)}
   // ворота-арка
@@ -678,8 +692,8 @@ function buildCityNew(C){
   for(const[u,v]of[[hx-1,hy-1],[hx-1,-hy+1],[-hx+1,hy-1],[-hx+1,-hy+1]])TOWER(u,v,4.2,vv(TH),vv(WD),vv(WD2),.5);
   TOWER(hx-1.4,g+3.4,4.2,vv(TH),vv(WD),vv(WD2),.5);TOWER(hx-1.4,-g-3.4,4.2,vv(TH),vv(WD),vv(WD2),.5);
   // дома
-  for(const[u,v,su,sv]of[[-14,-9,7,5.5],[-14,0,6,5],[-14,9,7,5.5],[-5,-11,6,5],[-5,11,6.5,5],[2.5,-12,5.5,4.4]]){B(u,v,su,sv,2.6,vv(WD,16));B(u,v-sv/2-.03,1,.14,1.7,vv(WD2));B(u+su*.25,v-sv/2-.03,1,.14,.8,[70,90,100],1.4);GB(u,v,su+1.2,sv+1.4,1.9,vv(TH,12),2.6);B(u-su*.3,v+sv*.2,.7,.7,1.6,ST,2.6);CR(u,v,su,sv)}
-  B(4,13,11,5,2.8,vv(WD,16));GB(4,13,12.2,6.4,2.2,vv(TH,12),2.8);B(4,10.47,1.1,.14,1.7,vv(WD2));CR(4,13,11,5);
+  for(const[u,v,su,sv]of[[-14,-9,7,5.5],[-14,0,6,5],[-14,9,7,5.5],[-5,-11,6,5],[-5,11,6.5,5],[2.5,-12,5.5,4.4]]){B(u,v,su,sv,2.6,vv(WD,16));B(u,v-sv/2-.03,1,.14,1.7,vv(WD2));B(u+su*.25,v-sv/2-.03,1,.14,.8,[70,90,100],1.4);GBR(u,v,su+1.2,sv+1.4,1.9,vv(TH,12),2.6);B(u-su*.3,v+sv*.2,.7,.7,1.6,ST,2.6);CR(u,v,su,sv);RUIN(u,v,su,sv,2.6,0)}
+  B(4,13,11,5,2.8,vv(WD,16));GBR(4,13,12.2,6.4,2.2,vv(TH,12),2.8);B(4,10.47,1.1,.14,1.7,vv(WD2));CR(4,13,11,5);RUIN(4,13,11,5,2.8,0);
   // мельница
   Y(-8,0,2.3,6.4,vv([172,152,122]),0,8,1.5);PY(-8,0,4,4,2.2,vv(TH),6.4,.78);B(-6.6,0,.3,.6,8.4,[222,212,190],3.6);B(-6.6,0,.3,8.4,.6,[222,212,190],7.2);C1(-8,0,2.4);
   // колодец, стога
@@ -691,14 +705,14 @@ function buildCityNew(C){
   const SD=[214,198,160],STN=[148,150,148],WD=[124,92,60],WHt=[236,232,224],RDt=[196,56,48],BL=[70,100,140],DK=[44,44,48];
   Y(0,0,31,.16,vv(SD),-.05,30);Y(0,0,24,.04,vv([172,160,126]),.1,26);
   // волнолом-забор по кругу
-  const R=hx+5,NN=26;for(let i=0;i<NN;i++){const th=i/NN*6.2832,dd=Math.min(Math.abs(th),6.2832-th);if(dd<.24)continue;PB(R,th,6.4,1.3,2.2,vv(STN,12),0);PB(R,th,6.2,.18,.55,DK,2.2);C1(R*Math.cos(th),R*Math.sin(th),1.9)}
+  const R=hx+5,NN=26;for(let i=0;i<NN;i++){const th=i/NN*6.2832,dd=Math.min(Math.abs(th),6.2832-th);if(dd<.24)continue;{const bw=rn()<.32?.5+rn()*1.1:2.2;PB(R,th,6.4,1.3,bw,vv(STN,12),0);if(bw>2)PB(R,th,6.2,.18,.55,DK,2.2);else{PB(R+(rn()-.5)*.6,th+.05,2,1.1,.3,vv(STN,10),0)}}C1(R*Math.cos(th),R*Math.sin(th),1.9)}
   for(const d of[-1,1]){B(R,d*(g+.3),1.1,1.1,3.8,vv(STN));B(R,d*(g+.3),1.5,1.5,.4,RDt,3.8)}
   // пулемётные гнёзда на волноломе
   for(const th of[.55,-.55,1.57,-1.57,2.65,-2.65])NEST((R-.2)*Math.cos(th),(R-.2)*Math.sin(th));
   // маяк
   Y(-4,0,3.8,3,[120,110,98],0,14);for(let k=0;k<6;k++){const y0=3+k*3,r0=3.5-1.2*k/6,r1=3.5-1.2*(k+1)/6;Y(-4,0,r0,3,k%2?WHt:RDt,y0,14,r1)}Y(-4,0,3.4,.5,DK,21,14);m.torus(-4,22.4,0,3.3,.1,DK,14,4);Y(-4,0,1.7,2.6,[255,232,150],21.5,10);Y(-4,0,2.3,1.6,RDt,24.1,10,.2);B(-4,0,.4,.4,.8,DK,25.6);C1(-4,0,4.3);
   // домики
-  for(const[u,v,su,sv,c]of[[5,-9,6,5,RDt],[-12,-9,6,5,BL],[-13,8,6.4,5,RDt],[5,10.5,6,4.6,BL]]){B(u,v,su,sv,2.6,vv(WHt,8));GB(u,v,su+1,sv+1.2,1.8,vv(c,10),2.6);B(u,v-sv/2-.03,1,.14,1.7,DK);B(u+su*.25,v-sv/2-.03,1,.14,.8,[80,110,130],1.4);B(u-su*.3,v+sv*.15,.7,.7,1.4,STN,2.6);CR(u,v,su,sv)}
+  for(const[u,v,su,sv,c]of[[5,-9,6,5,RDt],[-12,-9,6,5,BL],[-13,8,6.4,5,RDt],[5,10.5,6,4.6,BL]]){B(u,v,su,sv,2.6,vv(WHt,8));GBR(u,v,su+1,sv+1.2,1.8,vv(c,10),2.6);B(u,v-sv/2-.03,1,.14,1.7,DK);B(u+su*.25,v-sv/2-.03,1,.14,.8,[80,110,130],1.4);B(u-su*.3,v+sv*.15,.7,.7,1.4,STN,2.6);CR(u,v,su,sv);RUIN(u,v,su,sv,2.6,0)}
   // причал и лодки
   B(-30,0,17,3,.35,vv(WD),.45);for(let u=-37;u<=-22;u+=2.5)for(const d of[-1,1]){B(u,d*1.4,.3,.3,1.1,DK,-.2);}C1(-24,0,1.6);
   B(-30,5.4,6.6,2,.9,vv([176,70,52]),.2);B(-30.4,5.4,2.2,1.4,1.1,WHt,1.1);B(-33.2,5.4,1.6,1,.5,vv([176,70,52]),.2,.3);
