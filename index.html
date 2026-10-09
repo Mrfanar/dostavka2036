@@ -341,7 +341,7 @@ body.gpc :is(.ico,.bar,.tiers button,#wl,.chip,#gear,#editbar){backdrop-filter:b
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.191.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.192.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -493,6 +493,8 @@ function MB(){const P=[],N=[],C=[];
    for(let i=0;i<seg;i++){const tm=(i+.5)/seg*6.2832,ct=[cx+R*Math.cos(tm),cy,cz+R*Math.sin(tm)];for(let j=0;j<ring;j++){const a=pt(i,j),b=pt(i+1,j),c=pt(i+1,j+1),d=pt(i,j+1);tri(a,b,c,col,ct);tri(a,c,d,col,ct)}}return o},
   rx(){for(let i=0;i<P.length;i+=3){const y=P[i+1],z=P[i+2];P[i+1]=z;P[i+2]=-y;const ny=N[i+1],nz=N[i+2];N[i+1]=nz;N[i+2]=-ny}return o},
   rz(){for(let i=0;i<P.length;i+=3){const x=P[i],y=P[i+1];P[i]=-y;P[i+1]=x;const nx=N[i],ny=N[i+1];N[i]=-ny;N[i+1]=nx}return o},
+  len(){return P.length},
+  rotv(from,ax,ang,px,py,pz){const c=Math.cos(ang),sn=Math.sin(ang);for(let i=from;i<P.length;i+=3){const x=P[i]-px,y=P[i+1]-py,z=P[i+2]-pz,nx=N[i],ny=N[i+1],nz=N[i+2];if(ax==='z'){P[i]=px+x*c-y*sn;P[i+1]=py+x*sn+y*c;N[i]=nx*c-ny*sn;N[i+1]=nx*sn+ny*c}else{P[i+1]=py+y*c-z*sn;P[i+2]=pz+y*sn+z*c;N[i+1]=ny*c-nz*sn;N[i+2]=ny*sn+nz*c}}return o},
   mv(dx,dy,dz){for(let i=0;i<P.length;i+=3){P[i]+=dx;P[i+1]+=dy;P[i+2]+=dz}return o},
   pyr(cx,cy,cz,sx,sz,h,col,ry=0){const q=[[-sx/2,0,-sz/2],[sx/2,0,-sz/2],[sx/2,0,sz/2],[-sx/2,0,sz/2]].map(p=>rot(p,ry,cx,cy,cz)),a=rot([0,h,0],ry,cx,cy,cz),ct=[cx,cy+h*.35,cz];for(let i=0;i<4;i++)tri(q[i],q[(i+1)%4],a,col,ct);tri(q[0],q[1],q[2],col,ct);tri(q[0],q[2],q[3],col,ct);return o},
   gable(cx,cy,cz,sx,sz,h,col,ry=0){const R=p=>rot(p,ry,cx,cy,cz),A=R([-sx/2,0,-sz/2]),Bq=R([sx/2,0,-sz/2]),Cq=R([sx/2,0,sz/2]),D=R([-sx/2,0,sz/2]),R1=R([-sx/2,h,0]),R2=R([sx/2,h,0]),ct=[cx,cy+h*.4,cz];tri(A,Bq,R2,col,ct);tri(A,R2,R1,col,ct);tri(D,Cq,R2,col,ct);tri(D,R2,R1,col,ct);tri(A,D,R1,col,ct);tri(Bq,Cq,R2,col,ct);tri(A,Bq,Cq,col,ct);tri(A,Cq,D,col,ct);return o},
@@ -784,19 +786,18 @@ function buildProps(){const G={};roadPropsGeo(G);
   const rub=(x,z,n,sp,col)=>{for(let k=0;k<n;k++){const a=Math.sin(k*12.9+x)*43758.5,b=a-Math.floor(a),c2=Math.sin(k*78.2+z)*43758.5,d=c2-Math.floor(c2),w=.25+.45*b,h=.12+.3*d;m.box(x+(b-.5)*sp,.07,z+(d-.5)*sp,w,h,.2+.4*b,col.map(q=>q*(.8+.3*d)),b*3)}};
   // пол и копоть
   m.box(0,.065,-8,9,.04,4.2,FL);m.box(1.8,.071,.1,2.8,.012,1.9,[34,32,30]).box(-1.9,.071,.4,2.2,.012,1.4,[40,38,36]).box(0.2,.071,-3.2,6,.012,.5,[44,42,40]).box(3.2,.071,-1.5,3.2,.012,2.4,CH);
-  // навес: опоры
-  m.box(-3.6,.07,-2,.36,2.6,.36,Wh);m.box(-3.6,.07,2,.36,2.1,.36,Wh);m.box(-3.6,2.17,2,.3,.3,.3,Wh,.6);
-  m.box(3.6,.07,-2,.36,1.1,.36,Wh);m.box(3.5,1.17,-1.95,.24,.3,.22,Wh,.5);m.box(3.6,.07,2,.36,.35,.36,Wh);
-  m.box(5.2,.07,3.6,.36,.36,2.5,Wh,.4);
-  // навес: уцелевшая половина крыши (с провисанием)
-  m.box(-2.1,2.6,0,4.2,.3,5,Rd).box(-2.1,2.9,0,4.2,.06,5,[196,112,86]).box(-2.1,2.6,2.52,4.2,.32,.06,Yl);
-  m.box(-.3,2.45,.2,.9,.28,4.6,Rd);m.box(.5,2.05,.1,.8,.28,4.2,Rd);m.box(1.3,1.55,0,.8,.28,3.6,[120,48,36]);m.box(2.1,1.05,-.2,.8,.28,2.8,[120,48,36]);m.box(2.9,.55,-.4,.8,.28,1.8,[110,44,32]);
-  m.box(.4,.07,-1.6,.9,.1,.1,Dk,.2);m.box(1.7,.07,2.2,.1,.1,2.2,Dk,.1);
+  // навес: левые опоры стоят, правые сломаны, крыша переломилась и повисла на левой стороне
+  m.box(-3.6,.07,-2,.36,2.6,.36,Wh);m.box(-3.6,.07,2,.36,2.6,.36,Wh);
+  m.box(3.6,.07,-2,.36,.9,.36,Wh);m.box(3.5,.97,-1.95,.26,.35,.24,Wh,.5);m.box(3.6,.07,2,.36,.3,.36,Wh);
+  m.box(5.6,.07,3.4,.36,.36,2.6,Wh,.35);
+  {let q=m.len();m.box(-1.9,2.6,0,4.6,.3,5,Rd).box(-1.9,2.9,0,4.6,.06,5,[196,112,86]).box(-1.9,2.6,2.52,4.6,.32,.06,Yl).box(-1.9,2.6,-2.52,4.6,.2,.06,[120,48,36]);m.rotv(q,'z',-.09,-4.2,2.75,0);
+   q=m.len();m.box(2.4,2.6,0,3.9,.3,5,Rd).box(2.4,2.9,0,3.9,.06,5,[196,112,86]).box(2.4,2.6,2.52,3.9,.32,.06,Yl).box(2.4,2.6,-2.52,3.9,.2,.06,[120,48,36]);m.rotv(q,'x',.12,0,2.75,0);m.rotv(q,'z',-.62,.45,2.4,0);m.mv(0,0,0)}
+  m.box(.35,.07,-1.6,.9,.1,.1,Dk,.2);m.box(1.7,.07,2.4,.1,.1,2.2,Dk,.1);
   // обломки крыши на земле
   m.box(5.4,.07,-.8,2.2,.14,1.7,Rd,.45).box(4.6,.07,1.9,1.6,.12,1.2,[120,48,36],-.6).box(-5.6,.07,1.6,1.3,.1,.9,Rd,.9);
   // колонки: одна обгорела, вторая опрокинута
   m.box(-2.9,.07,1.05,1,.16,.9,Cn).box(-2.6,.23,1.2,.4,1.25,.36,CH).box(-2.62,1.1,1.18,.4,.3,.36,[60,58,56]);
-  m.box(2.0,.07,1.05,1,.16,.9,Cn);m.box(1.8,.23,2.4,1.25,.38,.4,[120,114,104],.35);m.box(2.5,.23,1.9,.12,.1,1.5,Dk,.6);
+  m.box(2.0,.07,.2,1,.16,.9,Cn);m.box(2.2,.23,.3,.5,.3,.4,CH,.4);m.box(1.3,.07,1.7,1.25,.38,.4,[120,114,104],.35);m.box(2.6,.15,1.4,.12,.1,1.5,Dk,.6);
   // магазин: стены с провалами
   m.box(0,.07,-10,9.4,2.7,.4,BE).box(-1.2,2.77,-10,2.6,.5,.4,BE2);m.box(3.2,.07+1.9,-10,2.8,.7,.4,BE);m.box(3.2,.07,-10,2.8,1.9,.4,BE);
   m.box(-4.4,.07,-8.2,.4,2.7,3.8,BE).box(-4.4,2.77,-8.2,.4,.4,1.8,BE2);m.box(-4.4,.07,-6.2,.4,1.2,.8,BE);
