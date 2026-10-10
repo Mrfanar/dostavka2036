@@ -341,7 +341,7 @@ body.gpc :is(.ico,.bar,.tiers button,#wl,.chip,#gear,#editbar){backdrop-filter:b
 <button id="stn" hidden>Заправка · E</button>
 <div id="shop" hidden><div class="g-top"><div class="g-money">Лом <b id="s_scr">0</b></div><span class="g-sp"></span><span class="g-tabs2" id="gtabs"></span><span class="g-sp"></span><button class="g-tb x" id="sclose">Выехать</button></div><div class="g-main" id="sbody"></div></div>
 <div id="hint">Джойстик — движение, кнопки огня — по типам оружия. Настройки: ⚙ вверху справа. Пулемёт сам наводится на врага. На клавиатуре: WASD, пробел и F — огонь, цифры 1–4 — тир.</div>
-<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.196.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
+<div id="cut" hidden><canvas></canvas><div id="cutcap"></div><div id="cuthint">НАЖМИ ▸</div><button id="cutskip">ПРОПУСТИТЬ ›</button></div><div id="cin" hidden><div class="ci-bg"></div><div class="ci-sh"></div><div class="ci-dim"></div><div class="ci-t"><h1></h1><p></p></div><div class="ci-m"><img alt=""><div class="ci-mt"><b></b><i></i><p></p></div></div><span>НАЖМИ ▸</span></div><div id="spl" hidden><img alt=""><span>НАЖМИ ▸</span></div><div id="slotp" hidden><div class="slc"><button id="slotx" aria-label="Закрыть">✕</button><h3 id="slott"></h3><div id="slotl"></div></div></div><div id="title"><div id="tbgw"><div class="im"></div><canvas id="tbc"></canvas><div class="fl" id="tf1"></div><div class="fl" id="tf2"></div></div><div id="tbgv"></div><div id="tver">V. 0.197.25.05.10.26</div><div class="tt"><div class="t1">ДОСТАВКА</div><div class="t2"><i></i><b>2036</b><i></i></div></div><div id="tdrv"></div><div id="tsnd" style="position:absolute;left:0;right:0;bottom:14px;text-align:center;color:#c9b99a;font:13px system-ui;opacity:.8;pointer-events:none">🔊 Нажми любую клавишу или кликни — включится звук</div><div class="tb"><button id="tcont" disabled>Продолжить</button><button id="tnew" class="pri">Новая игра</button><button id="tset">Настройки</button></div><div id="tdevrow"><span>DEV-режим (полигон)</span><span id="tdev"></span></div></div><div id="con" hidden><div id="conlog"></div><input id="conin" autocomplete="off" spellcheck="false" placeholder="Команда (help — список), ~ закрыть"></div>
 <div id="fail" hidden><h1>НЕУДАЧА</h1><p id="failn"></p><div class="fbt"><button class="pr" id="failc">С последнего чекпоинта</button><button id="failm">Выйти в меню</button></div><div class="fx"><button id="faile">Выйти</button></div></div><div id="bye" hidden><div>Игру можно закрыть: вкладку можно закрыть вручную.</div><button id="byeb">Вернуться в меню</button></div><div id="ctl" hidden><div class="cp"><button class="cx" id="ctlx" aria-label="Закрыть">✕</button><h2>Управление</h2><div id="ctlb"></div><button class="go" id="ctlgo">Поехали</button></div></div><div id="load"><div class="lg">ДОСТАВКА <b>2036</b></div><div class="sp"></div><div id="ldt">Загрузка файлов игры…</div><div class="bar"><i id="ldb"></i></div></div>
 <script>
 const LD={t:10674716,n:0};
@@ -1281,10 +1281,10 @@ const HEAVY_GUN=Object.assign({},WDEF.mg,{dmg:[4,7],cd:.32,mag:20,rel:2.4,alt:CA
 const BAJA_GUN=Object.assign({},WDEF.shotgun,{dmg:[1.2,2.2],cnt:5,spr:16,sp:48,rng:20,mag:5,rel:2.4,cd:.75,tip:1.4,snd:'shotgun'});
 const ETYPES={baja:{n:'БАХА',veh:'baja',gm:'shotgun',gs:1.5,mnts:[[-1.12,1.34,-1.75],[1.12,1.34,-1.75]],hp:85,sc:.68,tint:null,spd:13,turn:135,rew:50,gun:BAJA_GUN,ai:'orbit',r:9,fire:21},
  buggy:{n:'БАГГИ',veh:'buggy',hp:28,sc:.6,tint:null,spd:11.5,turn:150,rew:30,gun:ENEMY_SMG,gm:'avtomat',mnt:[0,1.1,-1],gs:1.7,ai:'orbit',r:11,fire:34},
- ram:{n:'ТАРАН',veh:'sedan',hp:21,sc:.8,deco:{gm:'harpoon',mnt:[0,1.8,.2],gs:1.4},tint:null,spd:15.5,turn:220,rew:20,gun:null,ai:'ram',r:0,fire:0},
+ ram:{n:'ТАРАН',hook:1,veh:'sedan',hp:21,sc:.8,deco:{gm:'harpoon',mnt:[0,1.8,.2],gs:1.4},tint:null,spd:15.5,turn:220,rew:20,gun:null,ai:'ram',r:0,fire:0},
  heavy:{n:'БРОНЕВИК',veh:'truck',mnts:[[0,3.3,.1],[0,3.3,2.05]],hp:160,sc:.85,tint:null,spd:8.5,turn:95,rew:90,gun:HEAVY_GUN,ai:'orbit',r:17,fire:40},
- msltur:{n:'ГОРЕЦ · РАКЕТЫ',veh:'tatra8',deco:[{gm:'yozh',mnt:[-.75,3.15,-3.6],gs:1.2},{gm:'yozh',mnt:[.75,3.15,-3.6],gs:1.2}],rk:[[-1.7,2.76,1.0],[-1.7,2.76,3.2],[1.7,2.76,1.0],[1.7,2.76,3.2],[-.65,2.48,5.25],[.65,2.48,5.25]],hp:250,sc:.8,tint:null,spd:0,turn:0,rew:0,gun:null,ai:'tower',r:0,fire:42,msl:true,mcd:3.2,mn:3,mdm:18},
- rocketeer:{n:'РАКЕТЧИК',veh:'fire',deco:{gm:'yozh',mnt:[0,2.98,-2.55],gs:1.2},rk:[[-1.55,1.82,.2],[-1.55,1.82,2.4],[1.55,1.82,.2],[1.55,1.82,2.4]],hp:65,sc:.8,tint:null,spd:9.5,turn:130,rew:80,gun:null,ai:'orbit',r:23,fire:46,msl:true,mcd:6,mn:2,mdm:26}};
+ msltur:{n:'ГОРЕЦ · РАКЕТЫ',aps:1,veh:'tatra8',deco:[{gm:'yozh',mnt:[-.75,3.15,-3.6],gs:1.2},{gm:'yozh',mnt:[.75,3.15,-3.6],gs:1.2}],rk:[[-1.7,2.76,1.0],[-1.7,2.76,3.2],[1.7,2.76,1.0],[1.7,2.76,3.2],[-.65,2.48,5.25],[.65,2.48,5.25]],hp:250,sc:.8,tint:null,spd:0,turn:0,rew:0,gun:null,ai:'tower',r:0,fire:42,msl:true,mcd:3.2,mn:3,mdm:18},
+ rocketeer:{n:'РАКЕТЧИК',aps:1,veh:'fire',deco:{gm:'yozh',mnt:[0,2.98,-2.55],gs:1.2},rk:[[-1.55,1.82,.2],[-1.55,1.82,2.4],[1.55,1.82,.2],[1.55,1.82,2.4]],hp:65,sc:.8,tint:null,spd:9.5,turn:130,rew:80,gun:null,ai:'orbit',r:23,fire:46,msl:true,mcd:6,mn:2,mdm:26}};
 function mkEnemy(type,x,y){const t=ETYPES[type];return{type,t,n:t.n,x,y,a:Math.random()*360,v:0,wp:null,hit:0,acc:0,pv:0,hp:t.hp,max:t.hp,armor:0,dead:0,shown:t.hp,sc:t.sc,tint:t.tint,rew:t.rew,dir:1,
  gw:{aim:0,aw:0,cd:0,flash:0,kick:0,ammo:t.gun?t.gun.mag:0,rel:0,on:false,bt:.6+Math.random()}}}
 /* ---------- state ---------- */
@@ -2580,6 +2580,14 @@ function enemyFire(en,dt){const W=en.gw,d=en.t.gun,sa=Math.sin(en.a*D2R),ca=Math
   const ax=Math.sin(W.aim*D2R),ay=Math.cos(W.aim*D2R);for(let c=0;c<(dd.cnt||1);c++){const a=W.aim*D2R+(Math.random()-.5)*(dd.spr||6)*D2R;
   bullets.push({x:mx+ax*dd.tip,y:my+ay*dd.tip,dx:Math.sin(a),dy:Math.cos(a),d:0,d0:Math.max(12,Math.min(dd.rng,dist)),z0:2.5,dm:dd,sp:dd.sp*(.96+Math.random()*.08),hostile:true,dmg:dd.dmg[0]+Math.random()*(dd.dmg[1]-dd.dmg[0])})}}}
 /* ---------- ракеты врагов и активная защита ---------- */
+function enemyAPS(en,dt){const A=en.ap=en.ap||{ammo:3,cd:0,rel:0};A.cd-=dt;if(A.rel>0){A.rel-=dt;if(A.rel<=0){A.rel=0;A.ammo=3}return}if(A.ammo<=0){A.rel=6;return}if(A.cd>0)return;
+ for(let i=bullets.length-1;i>=0;i--){const b=bullets[i];if(!b.arc||b.hostile)continue;const dx=b.x-en.x,dy=b.y-en.y,dd=Math.hypot(dx,dy);if(dd>15||dd<.5)continue;if(Math.abs(angDiff(en.a,Math.atan2(dx,dy)/D2R))>70)continue;
+  A.ammo--;A.cd=.45;sfx('aps');const sy=en.t.veh==='tatra8'?3.15:2.98;for(let q=0;q<10;q++)parts.push({t:'spark',x:en.x,y:en.y,z:sy,vx:dx*(1.2+Math.random()*.8)+(Math.random()-.5)*5,vy:dy*(1.2+Math.random()*.8)+(Math.random()-.5)*5,vz:(Math.random()-.5)*2,life:.35,max:.35,c:[1,.85,.5]});
+  misBoom({x:b.x,y:b.y,z:b.z||3},[1,.8,.4]);sfx('gboom');texts.push({x:b.x,y:b.y,z:3.4,life:.8,max:.8,s:'ПЕРЕХВАЧЕНА'});bullets.splice(i,1);break}}
+function enemyHook(en,dt){const H=en.hk=en.hk||{cd:2+Math.random()*3,t:0};if(P.dead>0||en.dead>0){H.t=0;return}
+ const dx=en.x-P.x,dy=en.y-P.y,d=Math.hypot(dx,dy);
+ if(H.t>0){H.t-=dt;if(d>4){const st=Math.min(d-4,9*dt);P.x+=dx/d*st;P.y+=dy/d*st}if(d>38)H.t=0;return}
+ H.cd-=dt;if(H.cd<=0&&d>9&&d<28&&Math.abs(angDiff(en.a,Math.atan2(-dx,-dy)/D2R))<22){H.t=2.5;H.cd=7+Math.random()*3;sfx('hook');playerHit(9);texts.push({x:P.x,y:P.y,z:5.2,life:1.2,max:1.2,s:'⚠ ГАРПУН!',red:true})}}
 function enemyMissile(en,dt){const t=en.t;if(P.dead>0)return;const dist=Math.hypot(P.x-en.x,P.y-en.y);en.mc=(en.mc===undefined?2.5+Math.random()*2:en.mc)-dt;
  if(en.mq>0){en.mt-=dt;if(en.mt<=0){en.mq--;en.mt=.4;const sa=Math.sin(en.a*D2R),ca=Math.cos(en.a*D2R);MIS.push({x:en.x+sa*.4,y:en.y+ca*.4,z:2.4,a:Math.atan2(P.x-en.x,P.y-en.y)+(Math.random()-.5)*.5,v:8,t:0,tr:0,dm:t.mdm,dud:0,dt:0});sfx('mlaunch');
    for(let k=0;k<5;k++)parts.push({t:'dust',c:[.95,.95,.95],x:en.x+sa*.4,y:en.y+ca*.4,z:2.2,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2,vz:1+Math.random(),life:.7,max:.7,r:.4+Math.random()*.4})}}
@@ -2603,8 +2611,8 @@ let APSTXT='';
 function apsUpdate(dt){let txt=[];
  for(const w of WPN){const d=w.def;if(!d.aps)continue;
   w.cd-=dt;w.flash-=dt;w.kick=Math.max(0,w.kick-dt*6);
-  if(w.ammo<=0&&w.rel<=0)w.rel=d.rel;if(w.rel>0){w.rel-=dt;if(w.rel<=0){w.rel=0;w.ammo=d.mag;sfx('reloaded')}}
-  txt.push(d.n+' '+(w.rel>0?'⟳':w.ammo+'/'+d.mag));
+  if(w.ammo<=0&&w.rel<=0&&(AMMO[w.m.w]||0)>0){AMMO[w.m.w]--;w.rel=d.rel*RELK(w.m.w)}if(w.rel>0){w.rel-=dt;if(w.rel<=0){w.rel=0;w.ammo=d.mag;sfx('reloaded')}}
+  txt.push(d.n+' '+(w.rel>0?'⟳':w.ammo+'/'+d.mag)+' ×'+(AMMO[w.m.w]||0));
   const[mx,my]=mountGround(w),mz=w.m.pos[1]+1.2;let tg=null,td=1e9;
   if(P.dead<=0)for(const m of MIS){if(m.dud)continue;const dx=m.x-mx,dy=m.y-my,dd=Math.hypot(dx,dy);if(dd>d.R)continue;if(d.cone&&Math.abs(angDiff(P.a,Math.atan2(dx,dy)/D2R))>d.cone)continue;if(dd<td){td=dd;tg=m}}
   if(d.aps==='kupol'||d.aps==='metelka'){const wa=tg?Math.atan2(tg.x-mx,tg.y-my)/D2R:P.a,df=angDiff(w.aim,wa);w.aw=(w.aw||0)+(Math.max(-d.trv,Math.min(d.trv,df*12))-(w.aw||0))*Math.min(1,dt*20);w.aim=norm(w.aim+w.aw*dt)}else w.aim=P.a;
@@ -2650,10 +2658,10 @@ const TONLY={tank:1},wShow=w=>TS()&&TS().lock4?!!TONLY[w]:!TONLY[w];
 const lowT=()=>Math.min(CFG.cab,CFG.body),slotOk=(q,w)=>q.only?w===q.only:(!TONLY[w]&&WTIER[w]<=lowT()&&isRk(w)===!!q.rocket);
 const WPRICE={mg:60,ldrob:80,avtomat:90,mg_twin:150,shotgun:150,harpoon:200,tsirkul:220,iskra:240,kolotushka:260,gun4:300,rocket:330,yozh:340,dvoika:380,miraj:400,duet:420,kuvalda:460,rubin:480,zontik:480,drovosek:500,gatling:560,laser:600,rocket2:620,goroh:640,karusel:700,rassek:760,metelka:780,prizma:800,rocket4:880,kupol:900,tank:1500};
 const OWN={cab:{1:1},body:{1:1},chas:{1:1}},CFG={cab:1,body:1,chas:1},WOWN={mg:1},SLOTW={'c:roof':'mg'};
-const AMC={mg:'bul',avtomat:'bul',ldrob:'bul',mg_twin:'bul',shotgun:'bul',gun4:'bul',gatling:'bul',laser:'bat',harpoon:'harp',rocket:'rkt',rocket2:'rkt',rocket4:'rkt',iskra:'bat',rubin:'bat',duet:'bat',rassek:'bat',prizma:'bat',tsirkul:'saw',dvoika:'saw',drovosek:'saw',karusel:'saw',kolotushka:'gre',kuvalda:'gre',goroh:'gre',tank:'shl'};
-const AMST={bul:3,bat:0,harp:0,rkt:0,saw:0,gre:0,shl:6},AMN={bul:'Патроны',bat:'Батарейки',harp:'Гарпуны',rkt:'Ракеты',saw:'Диски',gre:'Гранаты',shl:'Снаряды'},AMP={bul:8,bat:15,harp:25,rkt:40,saw:14,gre:18,shl:30},STK=10;
+const AMC={mg:'bul',avtomat:'bul',ldrob:'bul',mg_twin:'bul',shotgun:'bul',gun4:'bul',gatling:'bul',laser:'bat',harpoon:'harp',rocket:'rkt',rocket2:'rkt',rocket4:'rkt',iskra:'bat',rubin:'bat',duet:'bat',rassek:'bat',prizma:'bat',tsirkul:'saw',dvoika:'saw',drovosek:'saw',karusel:'saw',kolotushka:'gre',kuvalda:'gre',goroh:'gre',tank:'shl',yozh:'aps',miraj:'aps',zontik:'aps',metelka:'aps',kupol:'aps'};
+const AMST={bul:3,bat:0,harp:0,rkt:0,saw:0,gre:0,shl:6,aps:0},AMN={bul:'Патроны',bat:'Батарейки',harp:'Гарпуны',rkt:'Ракеты',saw:'Диски',gre:'Гранаты',shl:'Снаряды',aps:'Заряды АЗ'},AMP={bul:8,bat:15,harp:25,rkt:40,saw:14,gre:18,shl:30,aps:20},STK=10;
 const AMMO=new Proxy({},{get:(t,k)=>AMST[AMC[k]]||0,set:(t,k,v)=>{if(AMC[k])AMST[AMC[k]]=Math.max(0,v);return true}});
-const AMI={bul:'<rect x="14" y="22" width="10" height="30" rx="2" fill="#c9a24a"/><rect x="14" y="14" width="10" height="9" rx="4" fill="#b5522e"/><rect x="27" y="22" width="10" height="30" rx="2" fill="#c9a24a"/><rect x="27" y="14" width="10" height="9" rx="4" fill="#b5522e"/><rect x="40" y="22" width="10" height="30" rx="2" fill="#c9a24a"/><rect x="40" y="14" width="10" height="9" rx="4" fill="#b5522e"/>',
+const AMI={aps:'<rect x="18" y="14" width="28" height="40" rx="5" fill="#6b7a4a"/><rect x="18" y="26" width="28" height="8" fill="#e08a2a"/><rect x="24" y="6" width="16" height="10" rx="3" fill="#b9bcb0"/><circle cx="32" cy="44" r="4" fill="#3b4528"/>',bul:'<rect x="14" y="22" width="10" height="30" rx="2" fill="#c9a24a"/><rect x="14" y="14" width="10" height="9" rx="4" fill="#b5522e"/><rect x="27" y="22" width="10" height="30" rx="2" fill="#c9a24a"/><rect x="27" y="14" width="10" height="9" rx="4" fill="#b5522e"/><rect x="40" y="22" width="10" height="30" rx="2" fill="#c9a24a"/><rect x="40" y="14" width="10" height="9" rx="4" fill="#b5522e"/>',
  bat:'<rect x="16" y="18" width="32" height="38" rx="4" fill="#2e4a52"/><rect x="26" y="10" width="12" height="8" fill="#9aa"/><rect x="20" y="26" width="24" height="6" fill="#5ee6e6"/><rect x="20" y="36" width="24" height="6" fill="#5ee6e6"/><rect x="20" y="46" width="14" height="6" fill="#5ee6e6"/>',
  harp:'<path d="M32 6 L42 22 L35 22 L35 54 L29 54 L29 22 L22 22 Z" fill="#9aa2a6"/><rect x="28" y="50" width="8" height="8" fill="#6d4a2c"/>',
  saw:'<circle cx="32" cy="32" r="20" fill="#b9c0c8"/><circle cx="32" cy="32" r="7" fill="#3a3e44"/><path d="M32 6l4 8h-8zM58 32l-8 4v-8zM32 58l-4-8h8zM6 32l8-4v8zM50 14l-2 9-6-6zM50 50l-9-2 6-6zM14 50l2-9 6 6zM14 14l9 2-6 6z" fill="#e09040"/>',
@@ -3113,6 +3121,7 @@ function update(dt){
  for(const en of ENEMIES){
   if(en.dead>0){en.dead-=dt;if(en.dead<=0)respawnEnemy(en);continue}
   if(en.idle){en.v=0;en.hit=Math.max(0,(en.hit||0)-dt);continue}
+  if(en.t.aps)enemyAPS(en,dt);
   if(en.t.ai==='tower'){en.v=0;en.hit=Math.max(0,(en.hit||0)-dt);if(P.dead<=0&&Math.hypot(P.x-en.x,P.y-en.y)<en.t.fire){en.a=norm(en.a+Math.max(-200*dt,Math.min(200*dt,angDiff(en.a,Math.atan2(P.x-en.x,P.y-en.y)/D2R))))}{const inr=P.dead<=0&&Math.hypot(P.x-en.x,P.y-en.y)<en.t.fire;if(inr&&!en.inr&&!(en.mq>0))en.mc=Math.min(en.mc===undefined?9:en.mc,.7);en.inr=inr}enemyMissile(en,dt);continue}
   const t=en.t;
   if(t.ai==='ram')en.wp={x:P.x+Math.sin(P.a*D2R)*P.v*.5,y:P.y+Math.cos(P.a*D2R)*P.v*.5};
@@ -3126,7 +3135,7 @@ function update(dt){
   {const dx=en.x-P.x,dy=en.y-P.y,d=Math.hypot(dx,dy),m=3.4*Math.sqrt(t.sc);
    if(t.ai==='ram'&&d<3.8&&P.dead<=0){ramBoom(en);continue}
    if(d<m&&d>.01){const p=(m-d)/2;en.x+=dx/d*p;en.y+=dy/d*p;P.x-=dx/d*p*.4;P.y-=dy/d*p*.4}}
-  dust(en,dt*30*Math.min(1,Math.abs(en.v)/6));
+  dust(en,dt*30*Math.min(1,Math.abs(en.v)/6));if(t.hook)enemyHook(en,dt);
   if(t.gun)enemyFire(en,dt);if(t.msl)enemyMissile(en,dt)}
  dust(P,dt*40*Math.min(1,Math.abs(P.v)/8));if(P.dead<=0)emitTracks(P,TR);
  for(const o of[P,...ENEMIES]){const a=(o.v-o.pv)/Math.max(dt,1e-3);o.acc+=(a-o.acc)*Math.min(1,dt*6);o.pv=o.v}
@@ -3523,6 +3532,7 @@ function render(dt){
  const tipOf=(w)=>{const[gx,gy]=mountGround(w),d=w.def;return[gx+Math.sin(w.aim*D2R)*d.tip,gy+Math.cos(w.aim*D2R)*d.tip,w.m.pos[1]+d.zb]};
  for(const b of bullets)if(b.dm.harp){const[tx,ty,tz]=tipOf(b.w);seg(tx,ty,tz,b.x,b.y,b.z0+(1.3-b.z0)*Math.min(1,b.d/b.d0),.04,[.55,.5,.42])}
  if(HOOK&&HOOK.en&&HOOK.en.dead<=0){const[tx,ty,tz]=tipOf(HOOK.w);seg(tx,ty,tz,HOOK.en.x,HOOK.en.y,1.3,.05,[.62,.56,.46])}
+ for(const en of ENEMIES)if(en.hk&&en.hk.t>0&&en.dead<=0&&P.dead<=0)seg(en.x,en.y,1.9*en.sc,P.x,P.y,1.3,.06,[.62,.56,.46]);
  for(const b of beams){const a=b.life/b.max,ex=b.x+b.dx*b.L,ey=b.y+b.dy*b.L,z1=b.L<39?1.4:b.z,len=b.L,pit=Math.atan2(z1-b.z,len);const w=(.09+.1*a)*(b.wd||1);
   drawMesh(meshP,BOX,M4.mul(M4.T((b.x+ex)/2,(b.z+z1)/2,-(b.y+ey)/2),M4.mul(M4.RY(-Math.atan2(b.dx,b.dy)),M4.mul(M4.RX(pit),M4.S(w,w,len)))),(b.col||[.5,1,1]).map(c=>c+(1-c)*(1-a)*.6),null,true)}
  // sprites: dust (alpha), sparks + flash (additive)
@@ -5079,7 +5089,7 @@ function hasSave(){try{return !!localStorage.getItem(SKEY)}catch(e){return false
 function readMeta(){try{const o=JSON.parse(localStorage.getItem(SKEY)||'null');return o&&o.meta}catch(e){return null}}
 let CPS=null,WSNAP=null;
 function worldSnap(){try{return{en:ENEMIES.map(e=>Object.assign({},e,{gw:Object.assign({},e.gw),wp:e.wp?Object.assign({},e.wp):null})),it:PROPS.filter(p=>p.k[0]==='i'&&p.k[1]==='t'&&p.k[2]==='_').map(p=>Object.assign({},p)),cn:CANS.map(c=>c.t),kills:KILLS,spt:SPAWNT}}catch(e){return null}}
-function worldRestore(w){ENEMIES.length=0;for(const e of w.en)ENEMIES.push(Object.assign({},e,{gw:Object.assign({},e.gw),wp:e.wp?Object.assign({},e.wp):null,hit:0,v:0,w:0,sub:0}));if(!ENEMIES.length)ENEMIES.push(mkEnemy('buggy',-8,-30)),ENEMIES[0].dead=40;E=ENEMIES[0];LOCK.en=null;LOCK.t=0;
+function worldRestore(w){ENEMIES.length=0;for(const e of w.en)ENEMIES.push(Object.assign({},e,{gw:Object.assign({},e.gw),wp:e.wp?Object.assign({},e.wp):null,hit:0,v:0,w:0,sub:0,hk:null,ap:null}));if(!ENEMIES.length)ENEMIES.push(mkEnemy('buggy',-8,-30)),ENEMIES[0].dead=40;E=ENEMIES[0];LOCK.en=null;LOCK.t=0;
  for(let i=PROPS.length-1;i>=0;i--){const k=PROPS[i].k;if(k[0]==='i'&&k[1]==='t'&&k[2]==='_')PROPS.splice(i,1)}for(const p of w.it)PROPS.push(Object.assign({},p));CANS.forEach((c,i)=>{if(w.cn[i]!==undefined)c.t=w.cn[i]});KILLS=w.kills;SPAWNT=w.spt}
 /* снимок прогресса на последнем чекпоинте: при смерти откат к нему */
 function snapObj(){return {v:1,meta:META,scrap:SCRAP,own:OWN,ft:FT,cfg:CFG,wown:WOWN,slotw:SLOTW,am:AMST,kills:KILLS,q:QS,p:[P.x,P.y,P.a],hp:STAT.hp.v,fu:STAT.fu.v,t:Date.now()}}
