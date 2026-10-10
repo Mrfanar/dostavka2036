@@ -1369,7 +1369,7 @@ const XPN=l=>Math.round(100*Math.pow(l,1.5));
 function addXp(n){if(!n)return;META.xp=(META.xp||0)+n;texts.push({x:P.x+1.5,y:P.y,z:5.4,life:1.1,max:1.1,s:'+'+n+' XP'});let up=false;while((META.lv||1)<15&&META.xp>=XPN(META.lv||1)){META.xp-=XPN(META.lv||1);META.lv=(META.lv||1)+1;up=true}if((META.lv||1)>=15)META.xp=Math.min(META.xp,XPN(14));
  if(up){texts.push({x:P.x,y:P.y,z:6.4,life:2.6,max:2.6,s:'УРОВЕНЬ '+META.lv+'!'});sfx('pick')}}
 let QSHOW=true;const MMSZ=[90,150,240,60];let MMI=0;
-function bhudUpd(){try{diaTick()}catch(e){}if(PCM){const pn=document.getElementById('qpan'),show=QSHOW&&QS.act.length>0&&STARTED&&!TITLE&&!CUT.on&&!shopOpen;if(pn.hidden===show){pn.hidden=!show;document.getElementById('qbtn').classList.toggle('on',show);qHud()}}
+function bhudUpd(){try{diaTick()}catch(e){}try{if(ACCT()!==ACC0){ACC0=ACCT();hudScrap()}}catch(e){}if(PCM){const pn=document.getElementById('qpan'),show=QSHOW&&QS.act.length>0&&STARTED&&!TITLE&&!CUT.on&&!shopOpen;if(pn.hidden===show){pn.hidden=!show;document.getElementById('qbtn').classList.toggle('on',show);qHud()}}
  const h=document.getElementById('bhud');if(!h)return;{const x=document.getElementById('xh');x.hidden=!(PCM&&MSE.in&&!paused&&STARTED&&!CUT.on&&!shopOpen);cv.style.cursor=x.hidden?'':'none'}const on=PCM&&STARTED&&!TITLE&&!CUT.on&&!shopOpen;h.hidden=!on;if(!on)return;
  const hp=STAT.hp,f=hp.max?Math.max(0,Math.min(1,hp.shown/hp.max)):0,bf=document.getElementById('bhf');bf.style.width=(f*100)+'%';bf.classList.toggle('low',f<.3);document.getElementById('bht').textContent=Math.ceil(hp.v)+' / '+hp.max;{const fu=STAT.fu,ff=fu.max?Math.max(0,Math.min(1,fu.shown/fu.max)):0,e=document.getElementById('bff');e.style.width=(ff*100)+'%';e.classList.toggle('low',ff<.2);document.getElementById('bfut').textContent='⛽ '+Math.round(fu.v)+' / '+fu.max}
  const lv=META.lv||1,nx=lv>=15?1:XPN(lv),xp=lv>=15?1:(META.xp||0);document.getElementById('blv').textContent='УР '+lv;document.getElementById('bxf').style.width=Math.min(100,xp/nx*100)+'%';document.getElementById('bxt').textContent=lv>=15?'МАКС':Math.floor(xp)+' / '+nx;
@@ -1455,7 +1455,7 @@ Object.assign(EN,{
 "Вернуться в меню": "Back to menu",
 "Управление": "Controls",
 "Поехали": "Let's go",
-"Загрузка файлов игры…": "Loading game files…",
+"У вас не открыт счёт.": "You don't have an account open.", "Продавец не может с вами торговать.": "The seller can't trade with you.", "Загрузка файлов игры…": "Loading game files…",
 "Прочность": "Armor",
 "Топливо": "Fuel",
 "Карта": "Map",
@@ -2696,7 +2696,9 @@ const SLGUN='<svg viewBox="0 0 48 32" xmlns="http://www.w3.org/2000/svg"><g tran
 const WCLS={mg:'Пулемёты и стрелковое',avtomat:'Пулемёты и стрелковое',ldrob:'Пулемёты и стрелковое',mg_twin:'Пулемёты и стрелковое',shotgun:'Пулемёты и стрелковое',gun4:'Пулемёты и стрелковое',gatling:'Пулемёты и стрелковое',harpoon:'Гарпун',laser:'Энергетическое',iskra:'Энергетическое',rubin:'Энергетическое',duet:'Энергетическое',rassek:'Энергетическое',prizma:'Энергетическое',tsirkul:'Пилы',dvoika:'Пилы',drovosek:'Пилы',karusel:'Пилы',kolotushka:'Гранатомёты',kuvalda:'Гранатомёты',goroh:'Гранатомёты',yozh:'Защита (АПС)',miraj:'Защита (АПС)',zontik:'Защита (АПС)',metelka:'Защита (АПС)',kupol:'Защита (АПС)',rocket:'Ракетный узел (РУ)',rocket2:'Ракетный узел (РУ)',rocket4:'Ракетный узел (РУ)',tank:'Башенное орудие'},WCL_O=['Пулемёты и стрелковое','Гарпун','Энергетическое','Пилы','Гранатомёты','Защита (АПС)','Ракетный узел (РУ)','Башенное орудие'];
 const WCLS_ORD=()=>[...WORDER].sort((a,b)=>WCL_O.indexOf(WCLS[a])-WCL_O.indexOf(WCLS[b])||WTIER[a]-WTIER[b]||WORDER.indexOf(a)-WORDER.indexOf(b));
 let INF_MONEY=DEV;
-function hudScrap(){if(INF_MONEY)SCRAP=999999;const t=INF_MONEY?'∞':SCRAP;$('t_scr').textContent=t;const e=$('s_scr');if(e)e.textContent=t}
+var ACC0=null;function ACCT(){return DEV||META.st1==='done'}
+function noAcct(){let d=document.getElementById('noacct');if(!d){d=document.createElement('div');d.id='noacct';d.style.cssText='position:fixed;left:50%;top:22%;transform:translateX(-50%);z-index:850;background:rgba(20,15,10,.94);border:2px solid #e2a63e;border-radius:10px;padding:14px 22px;color:#eadfc6;font:600 16px/1.5 "Chakra Petch",system-ui,sans-serif;text-align:center;box-shadow:0 8px 30px #000;pointer-events:none;transition:opacity .4s';d.innerHTML='<div>У вас не открыт счёт.</div><div>Продавец не может с вами торговать.</div>';document.body.appendChild(d)}d.style.opacity=1;d.hidden=false;clearTimeout(d._t);d._t=setTimeout(()=>{d.style.opacity=0},4200);try{sfx('hit')}catch(e){}}
+function hudScrap(){if(INF_MONEY)SCRAP=999999;const t=INF_MONEY?'∞':SCRAP;$('t_scr').textContent=t;const e=$('s_scr');if(e)e.textContent=t;const r=document.querySelector('.drow.scrap');if(r)r.style.display=ACCT()?'':'none';const gm=document.querySelector('#shop .g-money');if(gm)gm.style.display=ACCT()?'':'none'}
 function getVeh(){if(TS())return truckVeh(FT,CFG.cab,CFG.body,CFG.chas);const k=CFG.cab+'-'+CFG.body+'-'+CFG.chas;if(!VEH[k]){const c=MAN.chassis[CFG.chas];VEH[k]=vehicle({parts:[MAN.cabs[CFG.cab].mesh,MAN.bodies[CFG.body].mesh,c.mesh],wheels:c.wheels,r:c.r})}return VEH[k]}
 function rebuildWeapons(){const sl=curSlots();WPN=[];sl.forEach((q,i)=>{const w=SLOTW[q.id];if(w)WPN.push({m:{pos:q.pos,g:q.g,w},sec:secOf(q),def:WDEF[w],aim:P.a,aw:0,cd:i*.05,flash:0,kick:0,ammo:WDEF[w].mag,rel:0,ai:0,bi:0})});
  bullets.length=0;beams.length=0;MIS.length=0;HOOK=null;
@@ -3104,8 +3106,8 @@ function renderShop0(){PREVC=null;$('shop').classList.toggle('city',gMode!=='sta
  if(gMode==='store'){const S2=E_('div','g-p');S2.appendChild(inv);const cg=E_('div','g-sum',`<span>Инвентарь кузова <b>${cargoUsed()}/${cargoCap()}</b></span><span>Слотов свободно <b>${curSlots().filter(q=>!SLOTW[q.id]).length}</b></span>`);R.appendChild(cg);bd.appendChild(S2);bd.appendChild(R);return}
  R.appendChild(E_('div','g-sum','Тап по кабине, кузову или шасси слева — сменить на другой купленный тир. Оружие: выбери в инвентаре кузова и тапни слот.'));bd.appendChild(L);bd.appendChild(R)}
 function openCityE(){if(!DEV&&NEARK==='city'){let C0=null;for(const C of CITIES){const mk0=C.mkt||[9,0],[sx,sy]=cxy(C,mk0[0],mk0[1]);if(Math.hypot(wr(P.x-sx),wr(P.y-sy))<42){C0=C;break}}if(C0&&CSPL[C0.id]&&!(META.vis||{})[C0.id]){cityIntro(C0,()=>{if(!shopOpen&&!paused)openShop(true)});return}}openShop(true)}
-$('stn').onclick=()=>NEARK==='cv'?openCv():NEARK==='city'?openCityE():openShop(true);$('sclose').onclick=()=>openShop(false);
-addEventListener('keydown',e=>{if(e.code==='KeyE'){if(shopOpen)openShop(false);else if(NEARK==='cv')openCv();else if(NEARK==='city')openCityE();else if(NEAR)openShop(true)}});
+$('stn').onclick=()=>NEARK==='cv'?openCv():NEARK==='city'?openCityE():ACCT()?openShop(true):noAcct();$('sclose').onclick=()=>openShop(false);
+addEventListener('keydown',e=>{if(e.code==='KeyE'){if(shopOpen)openShop(false);else if(NEARK==='cv')openCv();else if(NEARK==='city')openCityE();else if(NEAR){if(ACCT())openShop(true);else noAcct()}}});
 function mgUpdate(g,dt){let b=null,bd=36;if(P.dead>0||Math.hypot(wr(P.x-g.x),wr(P.y-g.y))>90)return;
  for(const en of ENEMIES){if(en.dead>0)continue;const d=Math.hypot(wr(en.x-g.x),wr(en.y-g.y));if(d<bd){bd=d;b=en}}
  if(!b)return;const ta=Math.atan2(wr(b.x-g.x),wr(b.y-g.y));let d=ta-g.aim;d=Math.atan2(Math.sin(d),Math.cos(d));g.aim+=Math.max(-5*dt,Math.min(5*dt,d));
@@ -5526,7 +5528,7 @@ function cvDo(){const M=cvM(),S=cvSums();if(!(S.r>0&&S.g>=S.r)){cvSay('low');ret
  for(const k in CVX.get){const n=CVX.get[k];if(n<=0)continue;if(k[0]==='b'){qiSet(k,1);M.bought[+k.slice(2)]=1}else invAdd(k,n)}
  M.tr+=1+(S.pf?1:0);if(S.pf){M.pref=cvPick();cvSay('pref')}else cvSay('ok');try{sfx('reloaded')}catch(e){}CVX={give:{},get:{}};hudScrap&&hudScrap();cvRender()}
 function cvPick(){const ids=Object.keys(ITEMS).filter(i=>ITEMS[i].cat==='g'&&i!==cvM().pref);return ids[Math.floor(Math.random()*ids.length)]}
-function openCv(){if(CVO||paused||shopOpen||editing||!cvCanTalk())return;{const q3=QS.act.find(q=>q.code==='st3'),st=q3&&!q3.ready&&qStep(q3);if(st&&st.k==='cvgive'){showTalk(TALKS.st3c,()=>{qiSet('q_nak',0);qiSet('q_bk',3);sfx('pick');texts.push({x:P.x,y:P.y,z:5.4,life:2.4,max:2.4,s:'+ Книги каравана ×3'});diaAdd('q3b');CV.hs=undefined;qNext(q3);setCheckpoint();setTimeout(openCv,250)});return}}cvBuild();const M=cvM();if(!M.pref||!ITEMS[M.pref]||T-(M.pT===undefined?-999:M.pT)>90||T<M.pT)M.pref=cvPick();M.pT=T;CVX={give:{},get:{}};CVO=true;paused=true;
+function openCv(){if(CVO||paused||shopOpen||editing||!cvCanTalk())return;{const q3=QS.act.find(q=>q.code==='st3'),st=q3&&!q3.ready&&qStep(q3);if(st&&st.k==='cvgive'){showTalk(TALKS.st3c,()=>{qiSet('q_nak',0);qiSet('q_bk',3);sfx('pick');texts.push({x:P.x,y:P.y,z:5.4,life:2.4,max:2.4,s:'+ Книги каравана ×3'});diaAdd('q3b');CV.hs=undefined;qNext(q3);setCheckpoint();setTimeout(openCv,250)});return}}if(!ACCT()){noAcct();return}cvBuild();const M=cvM();if(!M.pref||!ITEMS[M.pref]||T-(M.pT===undefined?-999:M.pT)>90||T<M.pT)M.pref=cvPick();M.pT=T;CVX={give:{},get:{}};CVO=true;paused=true;
  for(const k in FIRE)FIRE[k]=false;for(const f of FBTN)f.b.classList.remove('on');sid=null;input.jx=input.jy=0;try{placeStick()}catch(e){}try{engine(0)}catch(e){}$('cvw').hidden=false;cvSay('greet');cvRender()}
 function closeCv(){if(!CVO)return;cvSay('bye');CVO=false;$('cvw').hidden=true;if(!shopOpen)paused=false;if(CV)CV.go=16;try{saveGame()}catch(e){}}
 addEventListener('keydown',e=>{if(!CVO)return;if(e.code==='Escape'||e.code==='KeyE'){e.stopImmediatePropagation();e.preventDefault();if(!e.repeat)closeCv()}},true);
