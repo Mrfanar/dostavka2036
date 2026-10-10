@@ -1299,7 +1299,7 @@ function statUI(dt){try{bhudUpd()}catch(e){}
  if(k==='hp'){const r=document.getElementById('shr'),h=24*Math.max(0,Math.min(1,f));r.setAttribute('y',24-h);r.setAttribute('height',h);document.getElementById('t_dur').textContent=Math.ceil(s.v);continue}
  {const r=document.getElementById('fdr'),h=24*Math.max(0,Math.min(1,f));r.setAttribute('y',24-h);r.setAttribute('height',h);document.getElementById('t_fu').textContent=Math.round(s.v)+'/'+s.max}}}
 const P={x:-44,y:18,a:90,v:0,aim:0,cd:0,flash:0,kick:0,acc:0,pv:0,dead:0,inv:0,hurt:0};
-const ENDEAD=()=>DEV?3:75,ENCAP=()=>DEV?8:3,ENFREE=()=>DEV?4:2;const ENEMIES=[mkEnemy('buggy',-8,-30)];ENEMIES[0].dead=40;let E=ENEMIES[0],KILLS=0,SPAWNT=4;const DEADE={x:1e6,y:1e6,a:0,v:0,dead:1,sc:1,hp:0,max:1};
+const ENDEAD=()=>DEV?3:75,ENCAP=()=>DEV?8:3,ENFREE=()=>DEV?4:2;const ALIVE=()=>{let n=0;for(const e of ENEMIES)if(!(e.dead>0)&&!e.idle&&!(e.t&&e.t.ai==='tower'))n++;return n},ENALIVE=()=>DEV?99:2;const ENEMIES=[mkEnemy('buggy',-8,-30)];ENEMIES[0].dead=40;let E=ENEMIES[0],KILLS=0,SPAWNT=4;const DEADE={x:1e6,y:1e6,a:0,v:0,dead:1,sc:1,hp:0,max:1};
 const pickType=()=>{const r=Math.random();if(!DEV)return r<.1?'baja':'buggy';return KILLS>=3&&r<.14?'rocketeer':KILLS>=5&&r<.3?'heavy':KILLS>=3&&r<.5?'baja':KILLS>=2&&r<.68?'ram':'buggy'};
 const nearestAlive=(x,y)=>{let b=null,bd=1e9;for(const e of ENEMIES){if(e.dead>0)continue;const d=Math.hypot(e.x-x,e.y-y);if(d<bd){bd=d;b=e}}return b||DEADE};
 const bullets=[],parts=[],texts=[];let hits=0;
@@ -3131,7 +3131,7 @@ function gunsUpdate(dt){for(const g of GUNS){g.cd-=dt;g.kick=Math.max(0,g.kick-d
   q.z=Math.max(1.4,q.z-dt*1.2);parts.push({t:'dust',c:[1,.9,.6],x:q.x,y:q.y,z:q.z,vx:0,vy:0,vz:.1,life:.35,max:.35,r:.35});
   if(q.u>=1||(t.dead<=0&&Math.hypot(wr(t.x-q.x),wr(t.y-q.y))<1.6)){if(t.dead<=0)killEnemy(t,true);for(let k=0;k<20;k++)parts.push({t:'spark',x:q.x,y:q.y,z:1.2,vx:(Math.random()-.5)*12,vy:(Math.random()-.5)*12,vz:2+Math.random()*6,life:.6,max:.6,c:[1,.75,.3]});SHELLS.splice(i,1)}}}
 function chkUpdate(dt){for(const c of CHK){c.cool=Math.max(0,c.cool-dt);const d=Math.hypot(wr(P.x-c.x),wr(P.y-c.y));
-  if(!c.on&&c.cool<=0&&SPGR<=0&&d<56&&d>30&&ENEMIES.length<ENCAP()&&P.dead<=0){c.on=true;c.cool=DEV?200:600;for(let k=0;k<(DEV&&KILLS>=6?2:1);k++){const al=(k?1:-1)*2.5,en=mkEnemy(k?'baja':pickType(),c.x+c.ux*al+c.uy*(k?3:-3),c.y+c.uy*al-c.ux*(k?3:-3));en.chk=true;ENEMIES.push(en)}}
+  if(!c.on&&c.cool<=0&&SPGR<=0&&d<56&&d>30&&ENEMIES.length<ENCAP()&&ALIVE()<ENALIVE()&&P.dead<=0){c.on=true;c.cool=DEV?200:600;for(let k=0;k<(DEV&&KILLS>=6?2:1);k++){const al=(k?1:-1)*2.5,en=mkEnemy(k?'baja':pickType(),c.x+c.ux*al+c.uy*(k?3:-3),c.y+c.uy*al-c.ux*(k?3:-3));en.chk=true;ENEMIES.push(en)}}
   if(c.on&&d>110)c.on=false}}
 function update(dt){
  vestTick(dt);try{gUpdate(dt)}catch(e){console.error(e)}
@@ -3145,9 +3145,9 @@ function update(dt){
   if(nk!==NEARK){if(nk&&nk!=='cv'&&(!NEARK||NEARK==='cv')&&STARTED&&!CUT.on&&!(META.st1==='act'&&qiN('q_env')>0))setCheckpoint();NEARK=nk;NEAR=!!nk;$('stn').hidden=!nk;$('stn').textContent=nk==='city'?'Город: гараж и магазин · E':nk==='cv'?'Караван: говорить · E':'Заправка · E'}}
  dmgTick(dt);gunsUpdate(dt);cvUpdate(dt);cityIntroChk();todUpdate(dt);if(ENGST>0&&!paused&&!CUT.on)ENGST=Math.max(0,ENGST-dt);chkUpdate(dt);qUpdate(dt);misUpdate(dt);if(DEV)rangeUpdate(dt);apsUpdate(dt);
  E=nearestAlive(P.x,P.y);if(E===DEADE)E=ENEMIES[0];
- SPGR=Math.max(0,SPGR-dt);if(!DEV&&SPGR<=0&&ENEMIES.length<Math.min(ENFREE(),Math.floor(KILLS/(DEV?5:8)))){SPAWNT-=dt;if(SPAWNT<=0){SPAWNT=DEV?14:70;const p=spawnPos();if(p)ENEMIES.push(mkEnemy(pickType(),p[0],p[1]))}}
+ SPGR=Math.max(0,SPGR-dt);if(!DEV&&SPGR<=0&&ALIVE()<ENALIVE()&&ENEMIES.length<Math.min(ENFREE(),Math.floor(KILLS/(DEV?5:8)))){SPAWNT-=dt;if(SPAWNT<=0){SPAWNT=DEV?14:70;const p=spawnPos();if(p)ENEMIES.push(mkEnemy(pickType(),p[0],p[1]))}}
  for(const en of ENEMIES){
-  if(en.dead>0){en.dead-=dt;if(en.dead<=0){if(SPGR>0&&!DEV)en.dead=2;else respawnEnemy(en)}continue}
+  if(en.dead>0){en.dead-=dt;if(en.dead<=0){if(!DEV&&(SPGR>0||ALIVE()>=ENALIVE()))en.dead=3;else respawnEnemy(en)}continue}
   if(en.idle){en.v=0;en.hit=Math.max(0,(en.hit||0)-dt);continue}
   if(en.t.aps)enemyAPS(en,dt);
   if(en.t.ai==='tower'){en.v=0;en.hit=Math.max(0,(en.hit||0)-dt);if(P.dead<=0&&Math.hypot(P.x-en.x,P.y-en.y)<en.t.fire){en.a=norm(en.a+Math.max(-200*dt,Math.min(200*dt,angDiff(en.a,Math.atan2(P.x-en.x,P.y-en.y)/D2R))))}{const inr=P.dead<=0&&Math.hypot(P.x-en.x,P.y-en.y)<en.t.fire;if(inr&&!en.inr&&!(en.mq>0))en.mc=Math.min(en.mc===undefined?9:en.mc,.7);en.inr=inr}enemyMissile(en,dt);continue}
