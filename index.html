@@ -4496,7 +4496,7 @@ function modBuy(key,city,vendor){const[id,l]=modParse(key),p=modPrice(id,l);if(!
  const m=MST();m.own[key]=(m.own[key]||0)+1;if(!INF_MONEY)SCRAP-=p;if(MODOFF[city.id])m.sold[city.id+key]=1;snd('coin');renderShop()}
 function modSell(key){if(modParse(key)[0][0]==='q')return snd('hit');const m=MST();if(modFree(key)<1)return snd('hit');const[id,l]=modParse(key);m.own[key]--;if(!m.own[key])delete m.own[key];SCRAP+=Math.round(modPrice(id,l)*.6);gMod=null;snd('coin');renderShop()}
 function modOffers(C,vendor){const m=MST(),idx=CITIES.indexOf(C),o=MODOFF[C.id];let a=[];
- for(const x of MODS){if(x.q)continue;if(!DEV&&MODCAP[C.id]&&!MODCAP[C.id].includes(x.id))continue;if(!!MODWEAP[x.id]===(vendor==='weap'))for(let l=1;l<=3;l++)a.push([x.id,l])}
+ for(const x of MODS){if(x.q)continue;if(!DEV&&MODCAP[C.id]&&!MODCAP[C.id].includes(x.id))continue;if(!!MODWEAP[x.id]===(vendor==='weap'))for(let l=1;l<=(!DEV&&MODCAP[C.id]?1:3);l++)a.push([x.id,l])}
  return a.map(([id,l])=>({key:modKey(id,l),sold:!!(o&&m.sold[C.id+modKey(id,l)])}))}
 function modEnsureIcons(){const m=MST();for(const k in m.own)modIconOf(k);for(const x of m.inst)if(x)modIconOf(x)}
 function cModPanel(vendor){const C=QCITY||CITIES[0],W=E_('div','c-stat');W.style.cssText='flex:1;min-width:0;overflow:auto';
