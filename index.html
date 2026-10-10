@@ -2903,7 +2903,7 @@ function cTruck(){
  zone(114,214,238,388,'body','Кузов Мк.'+CFG.body).classList.add('z-body');
  const lb=(x,y,t,c)=>{const d=E_('div','c-lb',t);d.style.cssText='left:'+x+'px;top:'+y+'px'+(c?';transform:translateX(-50%);text-align:center':'');S.appendChild(d)};
  {const t=TS(),n=t?t.n:'Урал',q=/«([^»]+)»/.exec(n),nm=E_('div','c-tn',(q?q[1]:n).toUpperCase());S.appendChild(nm)}
- lb(235,25,'КАБИНА<br>Мк.'+CFG.cab,1);lb(94,121,'ШАСИ<br>Мк.'+CFG.chas);lb(235,206,'КУЗОВ<br>Мк.'+CFG.body,1);
+ lb(235,25,'КАБИНА<br>Мк.'+CFG.cab,1);lb(94,121,'ШАССИ<br>Мк.'+CFG.chas);lb(235,206,'КУЗОВ<br>Мк.'+CFG.body,1);
  const arc=(q,cx,cy,R)=>{if(q.rocket)return;const[c,h]=secOf(q),W=2*R+44,sv=(a)=>[(R*Math.sin(a*Math.PI/180)).toFixed(1),(-R*Math.cos(a*Math.PI/180)).toFixed(1)],o=E_('div','c-arc');o.style.cssText='left:'+(cx-W/2)+'px;top:'+(cy-W/2)+'px;width:'+W+'px;height:'+W+'px';
   let d,m=W/2;if(h>=180)d='<circle cx="'+m+'" cy="'+m+'" r="'+R+'"/>';else{const p=sv(c-h),r=sv(c+h);d='<path d="M'+(m+ +p[0])+' '+(m+ +p[1])+' A'+R+' '+R+' 0 '+(2*h>180?1:0)+' 1 '+(m+ +r[0])+' '+(m+ +r[1])+'"/>'}
   const gzB=FT==='gaz53'&&q.kind!=='cab'&&Math.abs(c)>=60&&Math.abs(c)<=120,lp=sv(h>=180||gzB||(q.kind==='cab'&&Math.abs(c)>=60)?0:c),sd=!gzB&&q.kind!=='cab'&&Math.abs(c)>=60&&Math.abs(c)<=120,tx=m+ +lp[0]*(sd?1.45:1),ty=h>=180&&q.kind!=='cab'?m+R+14:sd?m+ +lp[1]+4:m+ +lp[1]-9;o.innerHTML='<svg width="'+W+'" height="'+W+'" style="overflow:visible"><g fill="none" stroke="#a6e22e" stroke-width="2" stroke-dasharray="5 4">'+d+'</g><text x="'+tx+'" y="'+ty+'" fill="#a6e22e" font-size="12" font-weight="700" text-anchor="middle" style="text-shadow:0 1px 2px #000">'+secTxt(q)+'</text></svg>';S.appendChild(o)};
