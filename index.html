@@ -5174,7 +5174,7 @@ const gss=(a,b,x)=>{x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x)};
 function gPose(k){const th=[];for(let i=0;i<4;i++){const st=[0,.07,.03,.1][i];th.push(GF*(1-gss(.13+st,.58+st,k)))}
  const bounce=-.35*Math.sin(Math.PI*gss(.78,.93,k));
  return{off:-GOFF+GOFF*gss(.3,.82,k)+bounce,th,yaw:(1-gss(.72,.97,k))*1.9}}
-const GF=1.8,GOFF=6.4,GLS=.5,GLY=-2.5*(1-GLS);/* ноги в 2 раза короче (масштаб вокруг бедра), корпус опущен на GLY, чтобы лапы стояли на земле */
+const GF=1.8,GOFF=6.4,GLS=1,GLY=-2.5*(1-GLS);/* ноги в 2 раза короче (масштаб вокруг бедра), корпус опущен на GLY, чтобы лапы стояли на земле */
 function gUpdate(dt){
  gZone();
  const on=(STARTED&&!TITLE&&!CUT.on&&!DEV&&(META.act||1)===1&&P.dead<=0&&!modInvis())||(GD.cv&&STARTED&&!TITLE&&P.dead<=0);
