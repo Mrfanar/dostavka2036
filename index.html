@@ -5195,7 +5195,13 @@ function gUpdate(dt){
    if(k<.85&&Math.random()<dt*(k<.3?30:18)){const a=Math.random()*6.283,r=3.5+Math.random()*3.5;parts.push({t:'dust',c:[.62,.55,.45],x:GD.x+Math.cos(a)*r,y:GD.y+Math.sin(a)*r,z:.2,vx:Math.cos(a)*1.2,vy:Math.sin(a)*1.2,vz:1+Math.random()*2.5,life:1.1,max:1.1,r:.6+Math.random()*.6})}
    if(!GD.pre&&!GD.frz&&(GD.cv||d>=G_SHOOT)&&GD.t>=G_RISE-.7*(GD.cv?3:1)){GD.pre=1;gPlay('shot',1.15)}
    if(!GD.frz&&GD.t>=G_RISE){GD.st='idle';GD.off=0;GD.th=[0,0,0,0];GD.cd=0;GD.shk=0}return}
-  /* idle: стоит на месте, башня следит за игроком */
+  /* idle: башня следит за игроком; корпус шагает вдоль круга за игроком (ноги ходят по очереди, диагональная походка) */
+  {const ta=Math.atan2(wr(P.y-GC[1]),wr(P.x-GC[0]));let da=ta-GD.ang;da=Math.atan2(Math.sin(da),Math.cos(da));
+   const R=G_SPAWN,ms=G_SPD/R*dt,mv=!GD.cv&&Math.abs(da)*R>1.5;if(mv){GD.ang+=Math.max(-ms,Math.min(ms,da));GD.x=GC[0]+Math.cos(GD.ang)*R;GD.y=GC[1]+Math.sin(GD.ang)*R}
+   GD.mv=(GD.mv||0)+((mv?1:0)-(GD.mv||0))*Math.min(1,dt*4);GD.gp=(GD.gp||0)+dt*GD.mv*5.2;
+   const th=[0,0,0,0];for(let i=0;i<4;i++){const ph=GD.gp+(i%2?Math.PI:0),sn=Math.sin(ph);th[i]=Math.max(0,sn)*.5*GD.mv;
+    if(!GD.ls)GD.ls=[0,0,0,0];if(sn>=0)GD.ls[i]=0;else if(GD.ls[i]===0&&GD.mv>.5){GD.ls[i]=1;gDirt(2,.35,3.2)}}
+   GD.th=th;GD.off=Math.abs(Math.sin(GD.gp))*.12*GD.mv}
   let dy=ty-GD.yaw;dy=Math.atan2(Math.sin(dy),Math.cos(dy));GD.yaw+=Math.max(-1,Math.min(1,dy))*Math.min(1,dt*2.2);
   GD.smk-=dt;if(GD.smk<=0){GD.smk=.25;const q=gMuz();parts.push({t:'dust',c:[.95,.95,.95],x:q[0],y:q[1],z:q[2],vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,vz:.8+Math.random()*.6,life:1.6,max:1.6,r:.35+Math.random()*.25})}
   GD.cd-=dt;
