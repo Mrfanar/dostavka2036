@@ -3109,7 +3109,7 @@ function renderInvWin(){PREVC=null;const bd=$('sbody');bd.innerHTML='';hudScrap(
  for(const q of QS.act){const r=E_('div','c-q'+(q.ready?' rdy':''));const to=CITIES.find(c=>c.id===q.to);
   r.innerHTML='<div class="ic">'+(q.story?'<img src="'+QITEMS[q.icon||'q_env'].img+'" width="44" height="44">':QT[q.t].ic)+'</div><div class="t"><b>'+(q.ready?'✔ ':'')+q.ti+'</b><span>'+(q.note?'Сюжетное задание':q.ready?'Выполнено! Сдай в городе '+qFrom(q).name:q.t==='deliv'?qLeft(q):q.p+' / '+q.n)+(q.note?'':' · награда +'+q.rw+' лом')+'</span>'+(q.note?'<span style="color:#e2c88a">'+q.ds+'</span>':q.steps&&qStep(q)?'<span style="color:#e2c88a">Этап '+(q.si+1)+'/'+q.n+': '+qStep(q).txt+'</span>':q.ds?'<span style="opacity:.75">'+q.ds+'</span>':'')+'</div>'+(q.ready||q.story?'':'<div class="c-bar"><i style="width:'+Math.round(qPct(q)*100)+'%'+(q.t==='deliv'?';background:#e2a63e':'')+'"></i></div>');
   L.appendChild(r)}
- R.appendChild(L)}
+ R.appendChild(L);{const bu=bindUI();bu.style.cssText+=';background:rgba(10,8,6,.82);border:1px solid #5a4e3c;box-shadow:none;margin-top:auto;flex:none';R.appendChild(bu)}}
 function openInv(){if(shopOpen||paused||editing)return;openShop(true);if(!shopOpen)return;gMode='inv';try{musCity(false)}catch(e){}renderShop()}
 addEventListener('keydown',e=>{if(e.code!=='KeyI'||e.repeat||TITLE||!STARTED||CUT.on||CTLO||CONO)return;if(shopOpen){if(gMode==='inv')openShop(false);return}openInv()});
 function scrollSave(){const o=[];document.querySelectorAll('#sbody *').forEach(e=>{if(e.scrollTop>0){const c=e.className||e.tagName,all=[...document.querySelectorAll('#sbody *')].filter(x=>(x.className||x.tagName)===c);o.push([c,all.indexOf(e),e.scrollTop])}});return o}
