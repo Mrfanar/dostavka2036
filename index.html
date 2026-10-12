@@ -1352,7 +1352,7 @@ const P={x:-44,y:18,a:90,v:0,aim:0,cd:0,flash:0,kick:0,acc:0,pv:0,dead:0,inv:0,h
 const ENDEAD=()=>DEV?3:75,ENCAP=()=>DEV?8:3,ENFREE=()=>DEV?4:2;const ALIVE=()=>{let n=0;for(const e of ENEMIES)if(!(e.dead>0)&&!e.idle&&!(e.t&&e.t.ai==='tower'))n++;return n},ENALIVE=()=>DEV?99:2;const ENEMIES=[mkEnemy('buggy',-8,-30)];ENEMIES[0].dead=40;let E=ENEMIES[0],KILLS=0,SPAWNT=4;const DEADE={x:1e6,y:1e6,a:0,v:0,dead:1,sc:1,hp:0,max:1};
 const pickType=()=>{const r=Math.random();if(!DEV)return r<.1?'baja':'buggy';return KILLS>=3&&r<.14?'rocketeer':KILLS>=5&&r<.3?'heavy':KILLS>=3&&r<.5?'baja':KILLS>=2&&r<.68?'ram':'buggy'};
 const nearestAlive=(x,y)=>{let b=null,bd=1e9;for(const e of ENEMIES){if(e.dead>0)continue;const d=Math.hypot(e.x-x,e.y-y);if(d<bd){bd=d;b=e}}return b||DEADE};
-let XHT=null;const bullets=[],parts=[],texts=[];let hits=0;
+let XHT=null,XOQ=null;const bullets=[],parts=[],texts=[];let hits=0;
 const SJ={x:0,y:0};const input={jx:0,jy:0,keys:{}};
 let PCM=matchMedia('(hover:hover) and (pointer:fine)').matches;const MSE={nx:0,ny:0,L:0,R:0,in:false},AIMG={x:0,y:0};let HWc=10,HHc=10;
 function curBind(){const b=(typeof META!=='undefined'&&META.pw)||{};const types=[...new Set(WPN.map(w=>w.m.w))].filter(t=>!WDEF[t].aps&&!isRk(t));const fl=x=>(Array.isArray(x)?x:x?[x]:[]).filter(t=>types.includes(t));
@@ -3467,7 +3467,7 @@ function emitDmg(o,V,dt,minSt){const f=o.df;if(f===undefined||f>.8||!V||o.dead>0
    const cn=st===3?2:4,q=I.cargo[Math.floor(Math.random()*cn)];[x,y]=at(q[0]+(Math.random()-.5)*.4,q[1]);parts.push({t:'fire',x,y,z:(I.cy+.05)*sc,vx:vx*.5,vy:vy*.5,vz:1.1+Math.random(),life:.4,max:.4,r:.5+Math.random()*.25});
    if(Math.random()<.35)parts.push({t:'smk',x,y,z:(I.cy+.2)*sc,vx:vx,vy:vy,vz:1.6,life:1.4,max:1.4,r:.5,c:[.07,.07,.07]})}}}
 function drawVehicle(P_,V,o,bobK,emi,tint){
- const{tilt:t0,st}=vehMats(V,o,bobK);LIFTO=o._lift||0;const tilt=o.sc&&o.sc!==1?M4.mul(t0,M4.S(o.sc,o.sc,o.sc)):t0;const OLN=P_===meshP&&o===XHT&&!(o.dead>0)&&!NODRAW,OLC=[1,.14,.1],OLS=M4.S(1.07,1.07,1.07);if(OLN){gl.cullFace(gl.FRONT);const mo=M4.mul(tilt,OLS);for(const g of V.parts)drawMesh(P_,g,mo,OLC,null,true,false);gl.cullFace(gl.BACK)}for(const g of V.parts)drawMesh(P_,g,tilt,tint,emi,false,true);if(P_===meshP&&o.df!==undefined&&o.df<=.8)drawDecals(P_,V,tilt,dmgStage(o.df));
+ const{tilt:t0,st}=vehMats(V,o,bobK);LIFTO=o._lift||0;const tilt=o.sc&&o.sc!==1?M4.mul(t0,M4.S(o.sc,o.sc,o.sc)):t0;const OLN=P_===meshP&&o===XHT&&!(o.dead>0)&&!NODRAW,OLC=[1,.14,.1],OLK=1+.06/Math.max(1.2,(o.L||3.6)*.5*(o.sc||1)),OLS=M4.S(OLK,OLK,OLK);if(OLN&&CELX){XOQ={V,M:tilt,lift:o._lift||0}}else if(OLN){gl.cullFace(gl.FRONT);const mo=M4.mul(tilt,OLS);for(const g of V.parts)drawMesh(P_,g,mo,OLC,null,true,false);gl.cullFace(gl.BACK)}for(const g of V.parts)drawMesh(P_,g,tilt,tint,emi,false,true);if(P_===meshP&&o.df!==undefined&&o.df<=.8)drawDecals(P_,V,tilt,dmgStage(o.df));
  const al=o===P?ML('axle'):0;o.rs=(o.rs||0)+((al?-st*(.4+.2*al):0)-(o.rs||0))*Math.min(1,DT*9);let rz=-1e9;if(Math.abs(o.rs)>.002)for(const w of V.wheels)if(!w.front&&w.pos[2]>rz)rz=w.pos[2];
  for(const w of V.wheels){let m=M4.mul(tilt,M4.T(...w.pos));if(w.front)m=M4.mul(m,M4.RY(-st));else if(rz>-1e8&&w.pos[2]>=rz-.15)m=M4.mul(m,M4.RY(-o.rs));m=M4.mul(m,M4.RX(V.spin));if(OLN){gl.cullFace(gl.FRONT);drawMesh(P_,w.g,M4.mul(m,OLS),OLC,null,true,false);gl.cullFace(gl.BACK)}drawMesh(P_,w.g,m,tint,emi,false,true)}
  return tilt}
@@ -3575,6 +3575,25 @@ const blitP=prog(`#version 300 es
 out vec2 vT;void main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));vT=p;gl_Position=vec4(p*2.-1.,0.,1.);}`,`#version 300 es
 precision highp float;in vec2 vT;uniform sampler2D uC;out vec4 o;void main(){o=vec4(texture(uC,vT).rgb,1.);}`);
 const CEL={w:0,h:0,fb:null,ct:null,dt:null,fb2:null,dt2:null,vao:gl.createVertexArray()};
+const olP=prog(`#version 300 es
+void main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));gl_Position=vec4(p*2.-1.,0.,1.);}`,`#version 300 es
+precision highp float;uniform sampler2D uM;uniform vec2 uPx;uniform float uR;uniform vec3 uC;out vec4 o;
+void main(){vec2 uv=gl_FragCoord.xy*uPx;if(texture(uM,uv).a>.5)discard;float m=0.;
+ for(int i=0;i<12;i++){float a=float(i)*.5236;vec2 d=vec2(cos(a),sin(a))*uPx;m=max(m,texture(uM,uv+d*uR).a);m=max(m,texture(uM,uv+d*uR*.5).a);}
+ if(m<.5)discard;o=vec4(uC,.95);}`);
+const OLM={fb:null,tx:null,dt:null,w:0,h:0};
+/* контур врага под прицелом: маска силуэта (с учётом глубины) -> тонкая линия по внешней границе */
+function xoPass(setLight){const q=XOQ;XOQ=null;if(!q||!CELX||!CEL.dt)return;const w=CEL.w,h=CEL.h;
+ if(!OLM.fb||OLM.dt!==CEL.dt||OLM.w!==w||OLM.h!==h){if(OLM.fb)gl.deleteFramebuffer(OLM.fb);if(OLM.tx)gl.deleteTexture(OLM.tx);
+  OLM.tx=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,OLM.tx);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA8,w,h,0,gl.RGBA,gl.UNSIGNED_BYTE,null);for(const[a,v]of[[gl.TEXTURE_MIN_FILTER,gl.NEAREST],[gl.TEXTURE_MAG_FILTER,gl.NEAREST],[gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE],[gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE]])gl.texParameteri(gl.TEXTURE_2D,a,v);
+  OLM.fb=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,OLM.fb);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,OLM.tx,0);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.TEXTURE_2D,CEL.dt,0);OLM.dt=CEL.dt;OLM.w=w;OLM.h=h}
+ gl.bindFramebuffer(gl.FRAMEBUFFER,OLM.fb);gl.viewport(0,0,w,h);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+ gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.depthMask(false);gl.disable(gl.BLEND);gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);
+ gl.useProgram(meshP.p);setLight(meshP);LIFTO=q.lift;for(const g of q.V.parts)drawMesh(meshP,g,q.M,[1,1,1],null,true,false);LIFTO=null;
+ gl.depthMask(true);gl.depthFunc(gl.LESS);
+ gl.bindFramebuffer(gl.FRAMEBUFFER,CEL.fb);gl.disable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+ gl.useProgram(olP.p);gl.activeTexture(gl.TEXTURE5);gl.bindTexture(gl.TEXTURE_2D,OLM.tx);gl.uniform1i(olP.u.uM,5);gl.uniform2f(olP.u.uPx,1/w,1/h);gl.uniform1f(olP.u.uR,Math.max(1.6,w/1280*1.8));gl.uniform3f(olP.u.uC,1,.2,.12);gl.bindVertexArray(CEL.vao);gl.drawArrays(gl.TRIANGLES,0,3);
+ gl.activeTexture(gl.TEXTURE0);gl.disable(gl.BLEND);gl.enable(gl.DEPTH_TEST);gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK)}
 function celEnsure(w,h){if(CEL.w===w&&CEL.h===h&&CEL.fb)return;CEL.w=w;CEL.h=h;
  for(const k of['fb','fb2','fb3'])if(CEL[k])gl.deleteFramebuffer(CEL[k]);for(const k of['ct','dt','dt2'])if(CEL[k])gl.deleteTexture(CEL[k]);
  const tex=(f,i,t)=>{const x=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,x);gl.texImage2D(gl.TEXTURE_2D,0,f,w,h,0,i,t,null);for(const[a,v]of[[gl.TEXTURE_MIN_FILTER,gl.NEAREST],[gl.TEXTURE_MAG_FILTER,gl.NEAREST],[gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE],[gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE]])gl.texParameteri(gl.TEXTURE_2D,a,v);return x};
@@ -3608,7 +3627,7 @@ function render(dt){
  gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,shTex);gl.activeTexture(gl.TEXTURE0);
  gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,bioTex);gl.activeTexture(gl.TEXTURE0);gl.useProgram(grdP.p);setLight(grdP);gl.uniform2f(grdP.u.uC,Math.round(cam.x/1.25)*1.25,Math.round(-cam.y/1.25)*1.25);gl.uniform1f(grdP.u.uTR,TERON()?TER_A:0);if(!HTX)buildHT();gl.activeTexture(gl.TEXTURE6);gl.bindTexture(gl.TEXTURE_2D,htTex);gl.activeTexture(gl.TEXTURE0);gl.uniform1i(grdP.u.uHt,6);gl.uniform1i(grdP.u.uTex,0);gl.uniform1i(grdP.u.uBio,2);gl.uniform1i(grdP.u.uRoad,3);gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,roadTex);gl.activeTexture(gl.TEXTURE0);gl.uniform1f(grdP.u.uT,T);gl.uniform1f(grdP.u.uCl,SNAPC?0:CLS());gl.uniform1f(grdP.u.uCq,0);cloudUpd();gl.uniform2f(grdP.u.uWd,CLD.x,CLD.y);gl.uniform3f(grdP.u.uSn,SNOW.x,SNOW.y,SNOW.r);gl.bindTexture(gl.TEXTURE_2D,groundTex);gl.bindVertexArray(terrV);if(!SNAPC)gl.drawElements(gl.TRIANGLES,TIDX,gl.UNSIGNED_INT,0);gl.bindVertexArray(quadV);
  gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);
- gl.useProgram(meshP.p);setLight(meshP);if(CELX){drawScene(meshP,true,1);celEdges();gl.viewport(0,0,cv.width,cv.height);gl.useProgram(meshP.p);setLight(meshP);gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,shTex);gl.activeTexture(gl.TEXTURE0);drawScene(meshP,true,2)}else drawScene(meshP,!pv);
+ gl.useProgram(meshP.p);setLight(meshP);if(CELX){drawScene(meshP,true,1);celEdges();xoPass(setLight);gl.viewport(0,0,cv.width,cv.height);gl.useProgram(meshP.p);setLight(meshP);gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,shTex);gl.activeTexture(gl.TEXTURE0);drawScene(meshP,true,2)}else drawScene(meshP,!pv);
  // bullets (unlit boxes)
  for(const b of bullets){const d=b.dm;if(b.saw){drawMesh(meshP,SAWG,M4.mul(M4.T(b.x,b.stuck?1.4:b.z0+(1-b.z0)*Math.min(1,b.d/6),-b.y),M4.mul(M4.RY(T*24+b.rot),M4.S(d.sr,1,d.sr))),null,null,false,false);continue}if(b.arc){const gk=d.lob?.7:1.65,lk=d.lob?.57:1.125;drawMesh(meshP,d.lob?PROJ.gr:PROJ.rk,M4.mul(M4.T(b.x,b.z,-b.y),M4.mul(M4.RY(-Math.atan2(b.dx,b.dy)),M4.mul(M4.RX(Math.atan2(b.dzdu,b.dxy)),M4.S(d.bw*gk,d.bw*gk,d.bl*lk)))),null,null,false,false);continue}const z=b.z0+(1.3-b.z0)*Math.min(1,b.d/b.d0);if(d.aoe&&!b.hostile){drawMesh(meshP,PROJ.sh,M4.mul(M4.T(b.x-b.dx*d.bl*.45,z,-(b.y-b.dy*d.bl*.45)),M4.mul(M4.RY(-Math.atan2(b.dx,b.dy)),M4.S(d.bw*1.05,d.bw*1.05,d.bl*.875))),null,null,false,false);continue}drawMesh(meshP,BOX,M4.mul(M4.T(b.x-b.dx*d.bl*.45,z,-(b.y-b.dy*d.bl*.45)),M4.mul(M4.RY(-Math.atan2(b.dx,b.dy)),M4.S(d.bw,d.bw,d.bl))),b.hostile?[1,.5,.35]:d.col,null,true)}
  if(!pv)for(const m of MIS)drawMesh(meshP,BOX,M4.mul(M4.T(m.x,m.z,-m.y),M4.mul(M4.RY(-m.a),M4.S(.22,.22,1.2))),m.dud?[.55,.55,.55]:[.95,.9,.8],null,true);
