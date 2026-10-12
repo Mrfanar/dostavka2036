@@ -463,7 +463,7 @@ void main(){if(uDbg>.5&&uDbg<1.5){o=vec4(shade(vec3(.4,.35,.25),vec3(0.,1.,0.),v
  col*=1.-.32*smoothstep(.0,.5,w)*(1.-smoothstep(.5,.6,w));
  if(uCl>0.){vec2 cp=wp*.032+uWd*2.;float cm;if(uCq>.5){cm=(vn(cp)*.55+vn(cp*2.03+5.)*.28+vn(cp*4.1+11.)*.17)*.9+vn(wp*.004-uWd*.3+4.)*.15;}else{cp+=vec2(vn(cp*.6+3.),vn(cp*.6+9.))*1.1;cm=(vn(cp)*.5+vn(cp*2.03+5.)*.27+vn(cp*4.1+11.)*.15+vn(cp*8.3+2.)*.08)*.9+vn(wp*.004-uWd*.3+4.)*.15;}col*=1.-uCl*smoothstep(.43,.55,cm)*.17;}
  if(w>.34){float rp=sin(wp.x*1.7+uT*1.3+sin(wp.y*.9+uT))*sin(wp.y*1.3-uT*1.1+wp.x*.4);
- vec3 wc=mix(vec3(.20,.42,.46),vec3(.08,.22,.32),smoothstep(.55,1.,w));wc+=vec3(.10,.12,.12)*smoothstep(.55,.95,rp)+vec3(.35)*smoothstep(.93,1.,sin(wp.x*5.1+uT*2.1)*sin(wp.y*4.7-uT*1.7));
+ vec3 wc=mix(vec3(.20,.42,.46),vec3(.08,.22,.32),smoothstep(.55,1.,w));wc+=vec3(.10,.12,.12)*smoothstep(.55,.95,rp);
  col=mix(col,vec3(.78,.74,.62),smoothstep(.34,.44,w)*(1.-smoothstep(.44,.52,w))*.55);
  {float ik=smoothstep(.4,.6,sk);wc=mix(wc,vec3(.62,.78,.86)*(.92+.1*vn(wp*2.)+.08*vn(wp*9.)),ik);}
  col=mix(col,wc,smoothstep(.44,.54,w));}
