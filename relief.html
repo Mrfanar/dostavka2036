@@ -5231,7 +5231,8 @@ function gPose(k){const th=[];for(let i=0;i<4;i++){const st=[0,.07,.03,.1][i];th
 const GF=1.8,GOFF=6.4,GLS=1,GLY=-2.5*(1-GLS);/* ноги в 2 раза короче (масштаб вокруг бедра), корпус опущен на GLY, чтобы лапы стояли на земле */
 function gUpdate(dt){
  gZone();
- const on=(STARTED&&!TITLE&&!CUT.on&&!DEV&&(META.act||1)===1&&P.dead<=0&&!modInvis())||(GD.cv&&STARTED&&!TITLE&&P.dead<=0);
+ if(window.__RT===undefined&&STARTED&&!TITLE&&!CUT.on){window.__RT=1;NOSAVE=true;P.x=715;P.y=0;P.a=90;P.v=0;CT.x=cam.x=715;CT.y=cam.y=0}
+ const on=(STARTED&&!TITLE&&!CUT.on&&!DEV&&false&&(META.act||1)===1&&P.dead<=0&&!modInvis())||(GD.cv&&STARTED&&!TITLE&&P.dead<=0);
  if(STARTED&&!TITLE&&AC&&!GBUF._l)gLoad();
  const d=gDist();
  if(GD.st==='none'){if(!on||d<G_TRIG)return;GD.ang=Math.atan2(wr(P.y-GC[1]),wr(P.x-GC[0]));GD.x=GC[0]+Math.cos(GD.ang)*G_SPAWN;GD.y=GC[1]+Math.sin(GD.ang)*G_SPAWN;const[ax,ay]=gAimDir();GD.by=-Math.atan2(ax,ay);GD.yaw=GD.by+1.9;GD.st='rise';GD.t=0;GD.n=0;GD.pre=0;GD.cv=0;GD.cd=0;GD.off=-GOFF;GD.th=[GF,GF,GF,GF];GD.f1=GD.f2=GD.f3=0;gPlay('spawn',1.5);return}
