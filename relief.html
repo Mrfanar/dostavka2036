@@ -423,11 +423,11 @@ const shadP=prog(`#version 300 es
 in vec3 aP;uniform mat4 uLVP;uniform mat4 uM;uniform float uPS;uniform float uLift;void main(){vec4 w=uM*vec4(aP*uPS,1.);w.y+=uLift;gl_Position=uLVP*w;}`,`#version 300 es
 precision highp float;out vec4 o;void main(){o=vec4(1.);}`);
 const grdP=prog(`#version 300 es
-in vec2 aXZ;uniform mat4 uVP;uniform mat4 uLVP;uniform vec2 uC;uniform sampler2D uBio;uniform sampler2D uHt;uniform float uTR;out vec2 vUV;out vec2 vP;out vec4 vL;out float vFl;
+in vec2 aXZ;uniform mat4 uVP;uniform mat4 uLVP;uniform vec2 uC;uniform sampler2D uBio;uniform highp sampler2D uHt;uniform float uTR;out vec2 vUV;out vec2 vP;out vec4 vL;out float vFl;
 float tht(vec2 wp){vec2 q=textureLod(uHt,wp/${WW}.,0.).rg;vFl=q.g;return q.r;}
 void main(){vec2 p=aXZ*160.+uC;vUV=p/8.;vP=p;float h=uTR>0.?tht(vec2(p.x,-p.y)):0.;if(uTR<=0.)vFl=1.;vL=uLVP*vec4(p.x,h,p.y,1.);gl_Position=uVP*vec4(p.x,h,p.y,1.);}`,
 `#version 300 es
-precision highp float;in vec2 vUV;in vec2 vP;in vec4 vL;in float vFl;out vec4 o;uniform float uTR;uniform sampler2D uTex;uniform sampler2D uBio;uniform sampler2D uRoad;uniform float uT;uniform vec3 uSn;uniform float uCl;uniform float uCq;uniform vec2 uWd;${LIGHT}
+precision highp float;in vec2 vUV;in vec2 vP;in vec4 vL;in float vFl;out vec4 o;uniform float uTR;uniform highp sampler2D uHt;uniform sampler2D uTex;uniform sampler2D uBio;uniform sampler2D uRoad;uniform float uT;uniform vec3 uSn;uniform float uCl;uniform float uCq;uniform vec2 uWd;${LIGHT}
 float snowK(vec2 wp){vec2 d=wp-uSn.xy;d=mod(d+800.,1600.)-800.;if(dot(d,d)>uSn.z*uSn.z*1.6)return 0.;float th=atan(d.y,d.x);float R=uSn.z*(1.+.12*sin(3.*th+1.)+.08*sin(5.*th+2.));float hw=R*.16;return 1.-smoothstep(R-hw,R+hw,length(d));}
 float hs(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
 float vn(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hs(i),hs(i+vec2(1.,0.)),f.x),mix(hs(i+vec2(0.,1.)),hs(i+vec2(1.,1.)),f.x),f.y);}
@@ -437,8 +437,8 @@ void main(){if(uDbg>.5&&uDbg<1.5){o=vec4(shade(vec3(.4,.35,.25),vec3(0.,1.,0.),v
  vec3 col=(t1+t2+t3)*.3333;float lum=dot(col,vec3(.3,.5,.2));
  vec4 b3=texture(uBio,bu*3.);col*=mix(vec3(.86,.82,.76),vec3(1.14,1.05,.92),b3.b);
  float e=1./512.;float hx=texture(uBio,bu+vec2(e*2.,0.)).b-texture(uBio,bu-vec2(e*2.,0.)).b,hy=texture(uBio,bu+vec2(0.,e*2.)).b-texture(uBio,bu-vec2(0.,e*2.)).b;
- float w=b.r;float ks=uTR>0.?uTR*.04*3.2*vFl:7.;vec3 n=normalize(vec3(-hx*ks,1.,hy*ks));n=normalize(mix(n,vec3(0.,1.,0.),smoothstep(.05,.4,w)));
- col=mix(col,vec3(.5,.45,.39)*(lum*1.7+.15),smoothstep(.72,.95,b.b)*.7);
+ float w=b.r;float ks=uTR>0.?uTR*.04*3.2*vFl:7.;vec3 n=normalize(vec3(-hx*ks,1.,hy*ks));n=normalize(mix(n,vec3(0.,1.,0.),smoothstep(.05,.4,w)));float rk=0.;if(uTR>0.){vec2 wm=abs(mod(wp+800.,1600.)-800.);rk=smoothstep(716.,750.,max(wm.x,wm.y));if(rk>0.){float e2=1./1024.;float gx=(texture(uHt,bu+vec2(e2,0.)).r-texture(uHt,bu-vec2(e2,0.)).r)/3.125,gy=(texture(uHt,bu+vec2(0.,e2)).r-texture(uHt,bu-vec2(0.,e2)).r)/3.125;n=normalize(mix(n,normalize(vec3(-gx*4.+(fbm(wp*.45)-.5)*1.4,1.,gy*4.+(fbm(wp*.45+17.)-.5)*1.4)),rk));}}
+ col=mix(col,vec3(.5,.45,.39)*(lum*1.7+.15),smoothstep(.72,.95,b.b)*.7);col=mix(col,vec3(.46,.42,.37)*(lum*1.3+.1)*(.55+.8*fbm(wp*.3)),rk*.96);
  float bl=hs(floor(wp*7.));vec3 gc=vec3(.30,.42,.17)*(lum*1.6+.2)*(.8+.4*bl)+vec3(0.,.02,0.)*hs(floor(wp*2.));
  col=mix(col,gc,b.g*.94);
  float sk=snowK(wp);if(sk>0.){vec3 sn=vec3(.66,.72,.80)*(.84+.22*fbm(wp*.7)+.06*vn(wp*6.));col=mix(col,sn,sk*.95*(1.-b.r));}
@@ -1128,7 +1128,7 @@ const BIO=new Uint8Array(BN*BN*4),BIO_W=new Float32Array(BN*BN),BIO_G=new Float3
 const bIdx=(x,y)=>(Math.floor(((y%WW+WW)%WW)/WW*BN)&(BN-1))*BN+(Math.floor(((x%WW+WW)%WW)/WW*BN)&(BN-1));
 const waterAt=(x,y)=>BIO_W[bIdx(x,y)],grassAt=(x,y)=>BIO_G[bIdx(x,y)];
 /* ===== РЕЛЬЕФ: высота по карте BIO (канал B) с затуханием у городов и на дорогах; формула совпадает с шейдером tht() ===== */
-const TER_A=18;let CH=0;/* CH — высота, на которой смотрит камера */
+const TER_A=18,MAPW=736,RG0=715,RG1=785,MTH=38;let CH=0;/* горы по краю карты: у MAPW невидимая стена *//* CH — высота, на которой смотрит камера */
 const TSS=(a,b,x)=>{x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x)};
 let DEVW=false;function TERON(){try{return S.ter!==0&&!SNAPC&&!PVON&&!DEVW}catch(e){return false}}
 let HTX=null,HTF=null,htTex=null;
@@ -1146,6 +1146,15 @@ function buildHT(){/* карта высот считается один раз �
   for(const C of CITIES){const dx=((x-C.x+WH)%WW+WW)%WW-WH,dy=((y-C.y+WH)%WW+WW)%WW-WH;f*=TSS(50,100,Math.hypot(dx,dy));if(f<=0)break}
   f*=1-TSS(0,.2,RM[k]);
   HTF[k]=f;HTX[k]=(BIO[k*4+2]/255-.5)*.5*TER_A*f}
+ /* горы по периметру: кольцо, на стыке карты (±800) сплошной массив */
+ {const TP=Math.PI*2/WW,mx=[],my=[];let rowsOn=false;
+  for(let j=0;j<BN;j++)for(let i=0;i<BN;i++){const k=j*BN+i,x=(i+.5)/BN*WW,y=(j+.5)/BN*WW,ax=Math.abs(((x+WH)%WW)-WH),ay=Math.abs(((y+WH)%WW)-WH),d=Math.max(ax,ay);
+   if(d<RG0)continue;const s=TSS(RG0,RG1,d),nz=.5+.25*Math.sin(TP*(5*x+3*y)+1)+.25*Math.sin(TP*(9*x-7*y)+2),hm=MTH*(.7+.6*nz);
+   HTX[k]=HTX[k]*(1-s)+hm*s;HTF[k]=Math.max(HTF[k],s);
+   if(s>.04){BIO_W[k]=0;BIO_G[k]*=1-s;BIO[k*4]=0;BIO[k*4+1]*=1-s;BIO[k*4+2]=Math.max(BIO[k*4+2],255*Math.min(1,s*1.6))}}
+  for(let j=0;j<RN;j++)for(let i=0;i<RN;i++){const x=(i+.5)/RN*WW,y=(j+.5)/RN*WW,ax=Math.abs(((x+WH)%WW)-WH),ay=Math.abs(((y+WH)%WW)-WH);if(Math.max(ax,ay)>RG0+14){const q=(j*RN+i)*4;ROAD_A[q]=ROAD_A[q+1]=ROAD_A[q+2]=0;ROAD_A[q+3]=255}}
+  gl.bindTexture(gl.TEXTURE_2D,bioTex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,BN,BN,0,gl.RGBA,gl.UNSIGNED_BYTE,BIO);
+  gl.bindTexture(gl.TEXTURE_2D,roadTex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,RN,RN,0,gl.RGBA,gl.UNSIGNED_BYTE,ROAD_A)}
  // сглаживание 3x3 чтобы у краёв дорог не было ступеней
  const T=new Float32Array(BN*BN),F=new Float32Array(BN*BN);
  for(let j=0;j<BN;j++)for(let i=0;i<BN;i++){let a=0,b=0;for(let dj=-1;dj<=1;dj++)for(let di=-1;di<=1;di++){const q=((j+dj+BN)&(BN-1))*BN+((i+di+BN)&(BN-1));a+=HTX[q];b+=HTF[q]}T[j*BN+i]=a/9;F[j*BN+i]=b/9}
@@ -1153,6 +1162,8 @@ function buildHT(){/* карта высот считается один раз �
  const d=new Float32Array(BN*BN*2);for(let k=0;k<BN*BN;k++){d[k*2]=HTX[k];d[k*2+1]=HTF[k]}
  if(!htTex)htTex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,htTex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RG16F,BN,BN,0,gl.RG,gl.FLOAT,d);
  for(const p of[gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T])gl.texParameteri(gl.TEXTURE_2D,p,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR)}
+function mapWall(){if(!TERON())return;const c=v=>v>MAPW?MAPW:v<-MAPW?-MAPW:v;
+ for(const o of[P,...ENEMIES]){if(!o||typeof o.x!=='number')continue;const x=c(o.x),y=c(o.y);if(x!==o.x||y!==o.y){o.x=x;o.y=y;if(o===P){P.v*=.9;P.vx=(P.vx||0)*.5;P.vy=(P.vy||0)*.5}}}}
 function THT(x,y){if(!TERON()||!HTX)return 0;
  const u=((x/WW*BN-.5)%BN+BN)%BN,v=((y/WW*BN-.5)%BN+BN)%BN,i0=u|0,j0=v|0,fx=u-i0,fy=v-j0,i1=(i0+1)&(BN-1),j1=(j0+1)&(BN-1);
  const a=HTX[j0*BN+i0],b=HTX[j0*BN+i1],c=HTX[j1*BN+i0],d=HTX[j1*BN+i1];
@@ -3180,7 +3191,7 @@ function update(dt){
  vestTick(dt);try{gUpdate(dt)}catch(e){console.error(e)}
  if(P.dead>0){P.dead-=dt;if(P.dead<=0){if(!DEATHC)playerDied();else{for(const k in STAT)STAT[k].v=STAT[k].max;P.inv=2}}}P.inv=Math.max(0,(P.inv||0)-dt);P.hurt=Math.max(0,(P.hurt||0)-dt);
  let[jx,jy]=readInput();if(P.dead>0){jx=jy=0}const sk=Math.min(1,dt*16);SJ.x+=(jx-SJ.x)*sk;SJ.y+=(jy-SJ.y)*sk;jx=SJ.x;jy=SJ.y;const mag=Math.min(1,Math.hypot(jx,jy));
- surfUpdate(dt);itemPick();if(PCM&&sid===null){tankDrive(dt)}else if(mag>.12){steer(P,Math.atan2(jx,jy)/D2R,mag,10.5*TSPD[CFG.chas]*SPK()*(STAT.fu.v>0?1:.3)*SF.s,130*TTURN[CFG.chas]*TNK()*SF.t,9*SF.a,dt,true)}else{P.w=(P.w||0)*Math.max(0,1-10*dt);rot(P,P.w*dt);P.v*=Math.max(0,1-4.5*dt);P.x+=Math.sin(P.a*D2R)*P.v*dt;P.y+=Math.cos(P.a*D2R)*P.v*dt}
+ mapWall();surfUpdate(dt);itemPick();if(PCM&&sid===null){tankDrive(dt)}else if(mag>.12){steer(P,Math.atan2(jx,jy)/D2R,mag,10.5*TSPD[CFG.chas]*SPK()*(STAT.fu.v>0?1:.3)*SF.s,130*TTURN[CFG.chas]*TNK()*SF.t,9*SF.a,dt,true)}else{P.w=(P.w||0)*Math.max(0,1-10*dt);rot(P,P.w*dt);P.v*=Math.max(0,1-4.5*dt);P.x+=Math.sin(P.a*D2R)*P.v*dt;P.y+=Math.cos(P.a*D2R)*P.v*dt}
  if(P.dead<=0&&STAT.fu.v>0){STAT.fu.v=Math.max(0,STAT.fu.v-dt*(.05+.17*Math.min(1,Math.abs(P.v)/10.5))*(1-MPC('ecu')));if(STAT.fu.v<=0){texts.push({x:P.x,y:P.y,z:4.2,life:1.6,max:1.6,s:'НЕТ ТОПЛИВА!',red:true})}}
  {const t=TS(),sc=t?t.len/8.5:1;collide(P,[1.6*sc,-.2*sc,-2*sc,-3.5*sc],1.15*(1+(sc-1)*.45))}
  for(const c of CANS){if(c.t>0){c.t-=dt;continue}if(Math.hypot(wr(c.x-P.x),wr(c.y-P.y))<2.4&&P.dead<=0&&(STAT.fu.v<STAT.fu.max||QS.act.some(q=>q.t==='can'))){c.t=90;const g=Math.min(STAT.fu.max-STAT.fu.v,STAT.fu.max*.3);STAT.fu.v+=g;sfx('pick');qEv('can',1);if(g>0)texts.push({x:P.x,y:P.y,z:4.4,life:1.2,max:1.2,s:'+'+Math.round(g)+' топлива'})}}
@@ -3371,6 +3382,7 @@ const SPG={},sp=(k,x,y,d)=>{const L=SPG[k]||(SPG[k]=[]);for(const q of L){const 
   for(let i=0,n=0;i<40000&&n<95;i++){const x=rr2(-WH,WH),y=rr2(-WH,WH),g=grassAt(x,y);if(g<.22||g>.7||!ok(x,y,2.5)||waterAt(x,y)>.02||snowK(x,y)>.01||!sp('tree',x,y,24))continue;n++;const q=r2();
    add(q<.4?'treeA':q<.8?'treeB':'treeC',x,y,r2()*6.28,.85+r2()*.5,[[0,0,.45]])}}
 }
+{const bad=o=>Math.max(Math.abs(wr(o.x)),Math.abs(wr(o.y)))>725;for(const A of[PROPS,CANS,CHK,STNS])for(let i=A.length;i--;)if(bad(A[i]))A.splice(i,1)}
 const rocks=[];{const r=rnd(99);for(let i=0;i<1500;i++){const c=(96+r()*50)/255,x=r()*WW-WH,y=r()*WW-WH,sz=.25+r()*.75,ry=r()*6.28;if(stnD(x,y)<15||cityD(x,y)<62||waterAt(x,y)>.08||!offRoad(x,y,sz*1.6+1)||!sp('rock',x,y,10)){r();continue}rocks.push({x,y,s:sz,ry,c:[c,c*.95,c*.86]});if(sz>.4)COL.push({x,y,r:sz*1.05})}}
 function swayK(k){if(P_wk<=0)return 0;if(/^(tree|palm|bush|shrub|grass)/.test(k))return P_wk;if(/(rp_sign|lamp_old|lamp_broken|flag|reed)/.test(k))return P_wk*.4;return 0}
 let P_wk=.6;
