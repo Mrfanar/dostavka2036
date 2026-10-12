@@ -423,8 +423,8 @@ const shadP=prog(`#version 300 es
 in vec3 aP;uniform mat4 uLVP;uniform mat4 uM;uniform float uPS;uniform float uLift;void main(){vec4 w=uM*vec4(aP*uPS,1.);w.y+=uLift;gl_Position=uLVP*w;}`,`#version 300 es
 precision highp float;out vec4 o;void main(){o=vec4(1.);}`);
 const grdP=prog(`#version 300 es
-in vec2 aXZ;uniform mat4 uVP;uniform mat4 uLVP;uniform vec2 uC;uniform sampler2D uBio;uniform sampler2D uRoad;uniform float uTR;uniform vec2 uCt[8];out vec2 vUV;out vec2 vP;out vec4 vL;out float vFl;
-float tht(vec2 wp){vec2 bu=wp/${WW}.;vec4 bq=textureLod(uBio,bu,0.);float b=bq.b;float f=1.-smoothstep(0.,.3,bq.a);for(int i=0;i<8;i++){vec2 d=wp-uCt[i];d=mod(d+800.,1600.)-800.;f*=smoothstep(50.,100.,length(d));}vec3 rd=textureLod(uRoad,bu,0.).rgb;f*=1.-smoothstep(.02,.5,max(rd.r,max(rd.g,rd.b)));vFl=f;return (b-.5)*.5*uTR*f;}
+in vec2 aXZ;uniform mat4 uVP;uniform mat4 uLVP;uniform vec2 uC;uniform sampler2D uBio;uniform sampler2D uHt;uniform float uTR;out vec2 vUV;out vec2 vP;out vec4 vL;out float vFl;
+float tht(vec2 wp){vec2 q=textureLod(uHt,wp/${WW}.,0.).rg;vFl=q.g;return q.r;}
 void main(){vec2 p=aXZ*160.+uC;vUV=p/8.;vP=p;float h=uTR>0.?tht(vec2(p.x,-p.y)):0.;if(uTR<=0.)vFl=1.;vL=uLVP*vec4(p.x,h,p.y,1.);gl_Position=uVP*vec4(p.x,h,p.y,1.);}`,
 `#version 300 es
 precision highp float;in vec2 vUV;in vec2 vP;in vec4 vL;in float vFl;out vec4 o;uniform float uTR;uniform sampler2D uTex;uniform sampler2D uBio;uniform sampler2D uRoad;uniform float uT;uniform vec3 uSn;uniform float uCl;uniform float uCq;uniform vec2 uWd;${LIGHT}
@@ -1130,14 +1130,33 @@ const waterAt=(x,y)=>BIO_W[bIdx(x,y)],grassAt=(x,y)=>BIO_G[bIdx(x,y)];
 /* ===== РЕЛЬЕФ: высота по карте BIO (канал B) с затуханием у городов и на дорогах; формула совпадает с шейдером tht() ===== */
 const TER_A=18;let CH=0;/* CH — высота, на которой смотрит камера */
 const TSS=(a,b,x)=>{x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x)};
-function TERON(){try{return S.ter!==0&&!SNAPC&&!PVON}catch(e){return false}}
-function THT(x,y){if(!TERON())return 0;
+let DEVW=false;function TERON(){try{return S.ter!==0&&!SNAPC&&!PVON&&!DEVW}catch(e){return false}}
+let HTX=null,HTF=null,htTex=null;
+function buildHT(){/* карта высот считается один раз на CPU и в том же виде идёт в шейдер — земля и машины не расходятся */
+ HTX=new Float32Array(BN*BN);HTF=new Float32Array(BN*BN);
+ /* маска дорог, размытая широко: рельеф плавно съезжает к дороге, без обрывов у кромки */
+ let RM=new Float32Array(BN*BN);
+ for(let j=0;j<BN;j++)for(let i=0;i<BN;i++){const ri=((Math.floor((j+.5)/BN*RN)&(RN-1))*RN+(Math.floor((i+.5)/BN*RN)&(RN-1)))*4;RM[j*BN+i]=Math.max(ROAD_A[ri],ROAD_A[ri+1],ROAD_A[ri+2])/255}
+ for(let pass=0;pass<3;pass++){const R=5,t=new Float32Array(BN*BN),o=new Float32Array(BN*BN);
+  for(let y=0;y<BN;y++){let s=0;for(let k=-R;k<=R;k++)s+=RM[y*BN+((k+BN)&(BN-1))];for(let x=0;x<BN;x++){t[y*BN+x]=s/(2*R+1);s+=RM[y*BN+((x+R+1)&(BN-1))]-RM[y*BN+((x-R+BN)&(BN-1))]}}
+  for(let x=0;x<BN;x++){let s=0;for(let k=-R;k<=R;k++)s+=t[((k+BN)&(BN-1))*BN+x];for(let y=0;y<BN;y++){o[y*BN+x]=s/(2*R+1);s+=t[((y+R+1)&(BN-1))*BN+x]-t[((y-R+BN)&(BN-1))*BN+x]}}
+  RM=o}
+ for(let j=0;j<BN;j++)for(let i=0;i<BN;i++){const k=j*BN+i,x=(i+.5)/BN*WW,y=(j+.5)/BN*WW;
+  let f=1-TSS(0,.3,BIO[k*4+3]/255);
+  for(const C of CITIES){const dx=((x-C.x+WH)%WW+WW)%WW-WH,dy=((y-C.y+WH)%WW+WW)%WW-WH;f*=TSS(50,100,Math.hypot(dx,dy));if(f<=0)break}
+  f*=1-TSS(0,.2,RM[k]);
+  HTF[k]=f;HTX[k]=(BIO[k*4+2]/255-.5)*.5*TER_A*f}
+ // сглаживание 3x3 чтобы у краёв дорог не было ступеней
+ const T=new Float32Array(BN*BN),F=new Float32Array(BN*BN);
+ for(let j=0;j<BN;j++)for(let i=0;i<BN;i++){let a=0,b=0;for(let dj=-1;dj<=1;dj++)for(let di=-1;di<=1;di++){const q=((j+dj+BN)&(BN-1))*BN+((i+di+BN)&(BN-1));a+=HTX[q];b+=HTF[q]}T[j*BN+i]=a/9;F[j*BN+i]=b/9}
+ HTX=T;HTF=F;
+ const d=new Float32Array(BN*BN*2);for(let k=0;k<BN*BN;k++){d[k*2]=HTX[k];d[k*2+1]=HTF[k]}
+ if(!htTex)htTex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,htTex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RG16F,BN,BN,0,gl.RG,gl.FLOAT,d);
+ for(const p of[gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T])gl.texParameteri(gl.TEXTURE_2D,p,gl.REPEAT);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR)}
+function THT(x,y){if(!TERON()||!HTX)return 0;
  const u=((x/WW*BN-.5)%BN+BN)%BN,v=((y/WW*BN-.5)%BN+BN)%BN,i0=u|0,j0=v|0,fx=u-i0,fy=v-j0,i1=(i0+1)&(BN-1),j1=(j0+1)&(BN-1);
- const q0=(j0*BN+i0)*4,q1=(j0*BN+i1)*4,q2=(j1*BN+i0)*4,q3=(j1*BN+i1)*4;
- const bl=o=>{const a=BIO[q0+o],b=BIO[q1+o],c=BIO[q2+o],d=BIO[q3+o];return(a+(b-a)*fx+(c-a)*fy+(a-b-c+d)*fx*fy)/255};
- const bb=bl(2);let f=1-TSS(0,.3,bl(3));
- for(const C of CITIES){const dx=((x-C.x+WH)%WW+WW)%WW-WH,dy=((y-C.y+WH)%WW+WW)%WW-WH;f*=TSS(50,100,Math.hypot(dx,dy));if(f<=0)return 0}
- f*=1-TSS(.02,.5,roadAt(x,y));return (bb-.5)*.5*TER_A*f}
+ const a=HTX[j0*BN+i0],b=HTX[j0*BN+i1],c=HTX[j1*BN+i0],d=HTX[j1*BN+i1];
+ return a+(b-a)*fx+(c-a)*fy+(a-b-c+d)*fx*fy}
 /* наклон машины по склону: тангаж вперёд и крен на правый борт */
 function terTilt(o){if(!TERON()){o.tp=o.tr=0;return[0,0]}const a=o.a*D2R,fx=Math.sin(a),fy=Math.cos(a),rx=Math.cos(a),ry=-Math.sin(a),L=(o.L||4)*.5*(o.sc||1),Wd=1.2*(o.sc||1);
  const sf=(THT(o.x+fx*L,o.y+fy*L)-THT(o.x-fx*L,o.y-fy*L))/(2*L),sr=(THT(o.x+rx*Wd,o.y+ry*Wd)-THT(o.x-rx*Wd,o.y-ry*Wd))/(2*Wd);
@@ -3575,7 +3594,7 @@ function render(dt){
  if(CELX)celEnsure(cv.width,cv.height);gl.bindFramebuffer(gl.FRAMEBUFFER,CELX?CEL.fb:null);gl.viewport(0,0,cv.width,cv.height);if(SNAPC)gl.clearColor(...(SNAPBG||[.2,.188,.165,1]));else gl.clearColor(.41,.33,.23,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
  const setLight=(P_)=>{gl.uniform1f(P_.u.uCel,CELX?1:0);gl.uniformMatrix4fv(P_.u.uVP,false,VP);gl.uniformMatrix4fv(P_.u.uLVP,false,SLVP||LVP);gl.uniform3fv(P_.u.uL,L);gl.uniform3fv(P_.u.uSunC,[1.02,.93,.78]);gl.uniform3fv(P_.u.uSky,[.58,.60,.66]);gl.uniform3fv(P_.u.uGnd,[.40,.33,.25]);gl.uniform1i(P_.u.uShadow,1);gl.uniform1f(P_.u.uDbg,DBG)};
  gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,shTex);gl.activeTexture(gl.TEXTURE0);
- gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,bioTex);gl.activeTexture(gl.TEXTURE0);gl.useProgram(grdP.p);setLight(grdP);gl.uniform2f(grdP.u.uC,Math.round(cam.x/1.25)*1.25,Math.round(-cam.y/1.25)*1.25);gl.uniform1f(grdP.u.uTR,TERON()?TER_A:0);{const ct=new Float32Array(16);CITIES.forEach((c,i)=>{if(i<8){ct[i*2]=c.x;ct[i*2+1]=c.y}});gl.uniform2fv(grdP.u.uCt,ct)}gl.uniform1i(grdP.u.uTex,0);gl.uniform1i(grdP.u.uBio,2);gl.uniform1i(grdP.u.uRoad,3);gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,roadTex);gl.activeTexture(gl.TEXTURE0);gl.uniform1f(grdP.u.uT,T);gl.uniform1f(grdP.u.uCl,SNAPC?0:CLS());gl.uniform1f(grdP.u.uCq,0);cloudUpd();gl.uniform2f(grdP.u.uWd,CLD.x,CLD.y);gl.uniform3f(grdP.u.uSn,SNOW.x,SNOW.y,SNOW.r);gl.bindTexture(gl.TEXTURE_2D,groundTex);gl.bindVertexArray(terrV);if(!SNAPC)gl.drawElements(gl.TRIANGLES,TIDX,gl.UNSIGNED_INT,0);gl.bindVertexArray(quadV);
+ gl.activeTexture(gl.TEXTURE2);gl.bindTexture(gl.TEXTURE_2D,bioTex);gl.activeTexture(gl.TEXTURE0);gl.useProgram(grdP.p);setLight(grdP);gl.uniform2f(grdP.u.uC,Math.round(cam.x/1.25)*1.25,Math.round(-cam.y/1.25)*1.25);gl.uniform1f(grdP.u.uTR,TERON()?TER_A:0);if(!HTX)buildHT();gl.activeTexture(gl.TEXTURE6);gl.bindTexture(gl.TEXTURE_2D,htTex);gl.activeTexture(gl.TEXTURE0);gl.uniform1i(grdP.u.uHt,6);gl.uniform1i(grdP.u.uTex,0);gl.uniform1i(grdP.u.uBio,2);gl.uniform1i(grdP.u.uRoad,3);gl.activeTexture(gl.TEXTURE3);gl.bindTexture(gl.TEXTURE_2D,roadTex);gl.activeTexture(gl.TEXTURE0);gl.uniform1f(grdP.u.uT,T);gl.uniform1f(grdP.u.uCl,SNAPC?0:CLS());gl.uniform1f(grdP.u.uCq,0);cloudUpd();gl.uniform2f(grdP.u.uWd,CLD.x,CLD.y);gl.uniform3f(grdP.u.uSn,SNOW.x,SNOW.y,SNOW.r);gl.bindTexture(gl.TEXTURE_2D,groundTex);gl.bindVertexArray(terrV);if(!SNAPC)gl.drawElements(gl.TRIANGLES,TIDX,gl.UNSIGNED_INT,0);gl.bindVertexArray(quadV);
  gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);
  gl.useProgram(meshP.p);setLight(meshP);if(CELX){drawScene(meshP,true,1);celEdges();gl.viewport(0,0,cv.width,cv.height);gl.useProgram(meshP.p);setLight(meshP);gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,shTex);gl.activeTexture(gl.TEXTURE0);drawScene(meshP,true,2)}else drawScene(meshP,!pv);
  // bullets (unlit boxes)
@@ -5693,7 +5712,7 @@ function drawRange(P_){if(!RSTANDS.length)return;if(Math.hypot(RTC.x-cam.x,RTC.y
   drawMesh(P_,BOX,M4.mul(M4.T(RX0+110,.02,-st.y),M4.S(240,.03,.35)),[.35,.35,.36],null,true);
   for(const m of[0,...RMARK])drawMesh(P_,BOX,M4.mul(M4.T(RX0+m,.05,-st.y),M4.S(.7,.04,6.5)),[1,1,1],null,true)}}
 function enterDev(){
- NOSAVE=true;STARTED=true;
+ NOSAVE=true;STARTED=true;DEVW=true;
  PROPS.length=0;COL.length=0;STNS.length=0;CHK.length=0;CANS.length=0;GUNS.length=0;for(const k in ROADS)ROADS[k]=[];
  CITIES.length=0;CITIES.push({id:'A',name:'ГАРАЖ',x:-70,y:0,ry:0,st:0,hx:22,hy:18,mil:true},{id:'B',name:'ДАЛЬНИЙ ГОРОД',x:700,y:700,ry:0,st:1,hx:24,hy:20,mil:true,mkt:[9,-9]});
  PROPS.push({k:'city0',x:-70,y:0,ry:0,s:1,t:null});
